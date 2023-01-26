@@ -1,5 +1,5 @@
-import './navbar.css';
-const BasicExample=()=> {
+import './Navbar.css';
+const Navbar=()=> {
   return (
     <div className='header'>
       <img src='/images/1.png'/>
@@ -19,4 +19,4 @@ const BasicExample=()=> {
   );
 }
 
-export default BasicExample;
+export default Navbar;

@@ -2,7 +2,7 @@ import Members from './members';
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import './team_members.css';
+import './Cards.css';
 
 
 class Cards extends Component {
