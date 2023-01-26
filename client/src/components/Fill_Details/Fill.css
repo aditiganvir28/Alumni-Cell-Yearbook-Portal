@@ -1,0 +1,6 @@
+body{
+    display:flex;
+    flex: auto;
+    align-items: center;
+    background-color: #180c1e
+}
