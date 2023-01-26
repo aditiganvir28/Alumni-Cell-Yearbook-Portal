@@ -7,7 +7,7 @@ const Navbar=()=> {
         <ul>
           <li>HOME</li>
           <li>ABOUT</li>
-          <li>DEVELOPERS</li>
+          <li>DEVELOPER</li>
           <li><div className="search">
           <input type="text" placeholder="Search..." />
         </div></li>
