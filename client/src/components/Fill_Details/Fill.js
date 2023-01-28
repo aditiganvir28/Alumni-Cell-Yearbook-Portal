@@ -14,8 +14,11 @@ function Fill() {
             <li>HOME</li>
             <li>ABOUT</li>
             <li>MY PROFILE</li>
-            <li><div className="search">
-            <input type="text" placeholder="Search..." class="search"/></div></li>
+            <li>
+              <div className="searchr">
+                <input type="text" placeholder="Search..." class="search"/>
+              </div>
+            </li>
             <li>
               <img src="/images/profile.jpg" alt="" id="profile"/>
             </li>
