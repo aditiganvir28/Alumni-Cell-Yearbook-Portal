@@ -4,12 +4,14 @@ import './App.css';
 import Navbar from './components/navbar/navbar.jsx';
 import Cards from './components/team/Cards.jsx';
 // import Members from './components/team/Cards.jsx';
+import Fill from './components/Fill_Details/Fill';
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Cards/>
+      {/* <Navbar/> */}
+      {/* <Cards/> */}
+      <Fill></Fill>
     </div>
   );
 }
