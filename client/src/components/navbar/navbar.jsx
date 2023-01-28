@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GoogleLogin } from "react-google-login";
 import {gapi} from "gapi-script";
-import './Navbar.css';
+import './navbar.css';
 const Navbar=()=> {
 
   const [result, setResult] = useState({});
