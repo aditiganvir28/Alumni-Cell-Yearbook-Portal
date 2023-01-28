@@ -11,9 +11,10 @@ function Fill() {
         <img src='/images/1.png' alt='profile'/>
         <div className='navbar'>
           <ul>
-            <li>HOME</li>
-            <li>ABOUT</li>
-            <li>MY PROFILE</li>
+          <a href="#">HOME</a>
+          <a href="#">ABOUT</a>
+          <a href="#">MY PROFILE</a>
+          {/* <a href="#">Link</a> */}
             <li>
               <div className="searchr">
                 <input type="text" placeholder="Search..." class="search"/>
@@ -31,11 +32,13 @@ function Fill() {
           <h1>Fill your Profile</h1><br/>
           <input type="text" placeholder="Name*" size="60"/><br/>
           <input type="text" placeholder="Roll Number*" size="60"/><br/>
+          <input type="text" placeholder="Academic Program*" size="60"/><br/>
+          <input type="text" placeholder="Department*" size="60"/><br/>
           <input type="text" placeholder="Personal Email ID*" size="60"/><br/>
           <input type="text" placeholder="Contact Number*" size="60"/><br/>
           <input type="text" placeholder="Current Company (if any)" size="60"/><br/>
           <input type="text" placeholder="Designation" size="60"/><br/>
-          <button>Submit</button>
+          <button className="submit">Submit</button>
         </div>
         <div className="right">
           <span className="dot"></span>
