@@ -1,14 +1,15 @@
 .container {
     font-family: 'Quantico', sans-serif;
 }
-.header{
+
+.header {
     align-items: center;
     justify-content: center;
     display: flex;
-    padding:2%;
+    padding: 2%;
 }
 
-.navbar{
+.navbar {
     background-color: #4d1a6c;
     display: flex;
     align-items: center;
@@ -37,15 +38,6 @@ li{
 #profile {
     width: 40px;
     height: 40px;
-}
-
-
-
-input {
-    border: none;
-    width: 500;
-    background-color: transparent;
-    color: themed("textColor");      
 }
 
 .dot {
@@ -93,7 +85,7 @@ textarea {
 }
 
 button {
-    display: blcok;
+    display: block;
     color: white;
     font-size: larger;
     border: 2px solid;
@@ -104,4 +96,16 @@ button {
     height: 40px;
     margin-top: 20px;
     margin-left: 500px;
+}
+
+input {
+    width: 500;
+    background-color: transparent;
+    color: themed("textColor");   
+    vertical-align: middle;
+    padding-top: 10px;
+}
+
+.search {
+    border: 1px solid white;
 }
