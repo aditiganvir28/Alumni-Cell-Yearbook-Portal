@@ -1,5 +1,5 @@
 import React from 'react'
-import "@fontsource/quantico";
+// import "@fontsource/quantico";
 function Homepage() {
     return (
         <div className='flex w-screen h-screen bg-[#160923]'>

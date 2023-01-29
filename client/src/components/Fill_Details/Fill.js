@@ -21,7 +21,9 @@ function Fill() {
               </div>
             </li>
             <li>
+              <a href='#'>
               <img src="/images/profile.jpg" alt="" id="profile"/>
+              </a>
             </li>
           </ul>
         </div>
@@ -40,15 +42,17 @@ function Fill() {
           <input type="text" placeholder="Designation" size="60"/><br/>
           <button className="submit">Submit</button>
         </div>
+        </div>
+        <div className="container4">
         <div className="right">
           <span className="dot"></span>
           <h2> </h2><br/>
           <h2>Insert your Profile Picture*</h2><br/>
           <div className="container3">
           <input type="text" placeholder="ABOUT ME" size="60"/><br/>
-          </div>
         </div>
-      </div>
+    </div>
+    </div>
     </div>
   )
 }
