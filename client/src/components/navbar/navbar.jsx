@@ -4,6 +4,54 @@ import {gapi} from "gapi-script";
 // import './Navbar.css';
 const Navbar=()=> {
   const [result, setResult] = useState({});
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [id, setId] = useState("");
+  const [authData, setAuthData] = useState([]);
+
+  const navigate = useNavigate();
+
+    //getting all alumnis email id from json
+    const alumniEmail= alumniData;
+
+    const onSignIn= () => {
+      axios.get('http://localhost:5000/auth')
+        .then((res)=>{
+          console.log(res.data);
+          setAuthData(res.data);
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+  
+        if(authData.includes(authData.user_id===id)){
+          if(alumniData.includes(email)){
+            navigate('/register');
+          }
+          else{
+            navigate('/');
+          }
+        }
+        else{
+          axios.post('http://localhost:5000/auth', {
+        user_id: id,
+        email: email,
+        name: name
+      }).then((res)=>{
+        console.log(res.data);
+      }).catch((err)=>{
+        console.log(err);
+      })
+  
+          if(alumniData.includes(email)){
+            navigate('/register');
+          }
+          else{
+            navigate('/');
+          }
+        }
+      }
+
   const googleSuccess=(res)=>{
 		console.log(res);
 		result=res?.profileObj;

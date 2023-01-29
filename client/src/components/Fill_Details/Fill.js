@@ -2,6 +2,29 @@ import React from 'react'
 import './Fill.css'
 
 function Fill() {
+  //Backend
+
+//sending data to store in the database
+
+// const onSubmit = () =>{
+//     Axios.post("http://localhost:5000/userData", {
+//         user_id: id,
+//         name: name,
+//         roll_no: roll_no,
+//         academic_program: academic_program,
+//         department: department,
+//         contact_details: contact_details,
+//         personal_email_id: personal_email_id,
+//         current_company: current_company,
+//         designation: designation,
+//         about: about,
+//         profile_image:profile_image
+//     }).then((res)=>{
+//         console.log(res.data);
+//     }).catch((err)=>{
+//         console.log(err);
+//     })
+// }
   return (
       <div className='container'>
       <style>

@@ -55,7 +55,24 @@ const userSchema = new mongoose.Schema({
     profile_img: {
         type: String,
         required: [true, "Profile_image is required"],
+    },
+
+    verified: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
+
+userSchema.methods.generateVerificationToken = function () {
+    const user = this;
+    const verificationToken = jwt.sign(
+        {ID: user._id},
+        "12345678",
+        {expiresIn: "7d"}
+    );
+
+    return verificationToken;
+}
 
 module.exports("Users", userSchema);

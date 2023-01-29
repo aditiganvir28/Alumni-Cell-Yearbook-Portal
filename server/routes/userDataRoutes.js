@@ -7,4 +7,7 @@ router.route('/userData')
     .post(userDataController.createUsersData)
     .update(userDataController.deleteUserData)
 
+router.get('/verify/:id', userDataController.verify)
+
 module.exports = router;
+
