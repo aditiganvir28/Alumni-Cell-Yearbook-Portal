@@ -102,7 +102,7 @@ const updataUserData = asyncHandler(async (req,res) => {
     res.json('Your data is updated');
 })
 
-exports.verify = async(req,res) => {
+const verify = async(req,res) => {
     const {token} = re.params;
 
     //Check if we have an id

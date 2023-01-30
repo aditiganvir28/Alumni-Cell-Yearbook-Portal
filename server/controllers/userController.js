@@ -5,18 +5,20 @@ const asyncHandler = require('express-async-handler')
 const getAllusers = asyncHandler(async(rq,res) => {
     //Get all users from mongodb
         const auths = await Auth.find().lean();
+        
     //if no users
-    if(!auths?.length){
-        return res.status(400).json({message:"No users found"})
-    }
+    // if(!auths?.length){
+    //     return res.status(400).json({message:"No users found"})
+    // }
     res.json(auths);
 })
 
-const createUsers = asyncHandler(async(rq,res) => {
-    const {user_id, email} = req.body;
+const createUsers = asyncHandler(async(req,res) => {
+    console.log("hello");
+    const {user_id, email, name} = req.body;
 
     //Create and store user
-    const auths = await Auth.create(userObject);
+    const auths = await Auth.create({user_id, email, name});
 
     if(auths){
         //created
