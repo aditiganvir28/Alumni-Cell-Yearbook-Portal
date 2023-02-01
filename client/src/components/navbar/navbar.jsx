@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useRouteLoaderData} from "react-router-dom";
 import './navbar.css';
 import jwt_decode from "jwt-decode";
 import alumniData from './akumniData.json';
@@ -15,6 +15,23 @@ const Navbar=()=> {
 
   const navigate = useNavigate();
 
+  //Google authentication for IITI students
+
+  useEffect(()=>{
+    /*global google*/
+    if(window.google){
+      google.accounts.id.initialize({
+      client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("google-login"),
+      {theme: "outline", size: "medium", width: "large"}
+    );
+    }
+  }, []);
+
   useEffect(()=>{
       //getting all users who have already signed in
       axios.get('http://localhost:5000/auth')
@@ -28,6 +45,14 @@ const Navbar=()=> {
 
   }, []);
 
+  //Logout function
+
+  const handleLogout = () =>{
+    setUser({});
+    document.getElementById("google-login").hidden = false;
+  }
+
+  //Callback Function after logging in
   function handleCallbackResponse(response){
     console.log(response.credential); 
     var userObject = jwt_decode(response.credential)
@@ -48,39 +73,26 @@ const Navbar=()=> {
       axios.post('http://localhost:5000/auth', {
         user_id: userObject.jti,
         email: userObject.email,
-        name: userObject.name
+        name: userObject.name,
+      }).then((res)=>{
+        console.log(res);
+        if(alumniEmail.includes(userObject.email)){
+          console.log("reached");
+          navigate('/fill', {
+            state: {
+              user_id: userObject.jti
+            }
+          })
+        }
+        else{
+          navigate('/');
+        }
+      }).catch((err)=>{
+        console.log(err);
       })
-
-      if(alumniEmail.includes(user.email)){
-        navigate('/fill', {user_id: userObject.jti})
-      }
-      else{
-        navigate('/');
-      }
     }
   }
 
-  useEffect(()=>{
-    /*global google*/
-    if(window.google){
-      google.accounts.id.initialize({
-      client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("google-login"),
-      {theme: "outline", size: "medium", width: "large"}
-    );
-    }
-  }, []);
-
-  const handleLogout = () =>{
-    setUser({});
-    document.getElementById("google-login").hidden = false;
-  }
-  
   return (
     <div className="container">
       <style>
@@ -106,7 +118,7 @@ const Navbar=()=> {
           <div className="searchr">
             <input type="text" placeholder="Search..." class="search"/>
           </div>
-      </li>
+          </li>
           <li>
           <div className='logout-button'>
             <button onClick={handleLogout}>logout</button>
@@ -114,12 +126,10 @@ const Navbar=()=> {
         </li>
         </>
         }
-          
-
-          </ul>        
-      </div>
-      </div>
+      </ul>        
     </div>
+    </div>
+  </div>
   );
 }
 

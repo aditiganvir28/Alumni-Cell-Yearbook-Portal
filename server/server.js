@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require('express');
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
-// const userDataRoutes = require('./routes/userDataRoutes');
+const userDataRoutes = require('./routes/userDataRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 app.use(
     cors({
         origin: [`http://localhost:3000`],
-        methods: ["GET", "POST"],
+        methods: ["GET", "POST", "UPDATE"],
         credentials: true,
     })
 );
@@ -53,3 +53,4 @@ mongoose.connect("mongodb://localhost:27017/yearbook-portal", {
 });
 
 app.use(userRoutes);
+app.use(userDataRoutes);

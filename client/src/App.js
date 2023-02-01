@@ -7,8 +7,9 @@ import Navbar from './components/navbar/navbar.jsx';
 // import Members from './components/team/Cards.jsx';
 import Fill from './components/Fill_Details/Fill';
 import Homepage from './components/Homepage/Homepage';
-import Profile from './components/Profile/Profile'
+
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
+import { Profile } from './components/Profile/Profile';
 
 function App() {
   return (

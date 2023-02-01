@@ -5,7 +5,7 @@ const userDataController = require('../controllers/userDataController');
 router.route('/userData')
     .get(userDataController.getUsersData)
     .post(userDataController.createUsersData)
-    .update(userDataController.deleteUserData)
+    .put(userDataController.updateUserData)
 
 router.get('/verify/:id', userDataController.verify)
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import axios from 'axios';
 import './Fill.css'
 
@@ -14,27 +14,28 @@ function Fill(props) {
     contact_no:"",
     current_company:"",
     designation:"",
+    profile_image:""
   });
 
 
-  setUserData({...userData, user_id: props.user_id})
+  // setUserData({...userData, user_id: props.user_id})
   //Backend
 
 //sending data to store in the database
 
 const onSubmit = () =>{
-    Axios.post("http://localhost:5000/userData", {
-        user_id: id,
-        name: name_,
-        roll_no: roll_no,
-        academic_program: academic_program,
-        department: department,
-        contact_details: contact_details,
-        personal_email_id: personal_email_id,
-        current_company: current_company,
-        designation: designation,
-        about: about,
-        profile_image:profile_image
+    axios.post("http://localhost:5000/userData", {
+        user_id: props.user_id,
+        name: userData.name_,
+        roll_no: userData.roll_no,
+        academic_program: userData.academic_program,
+        department: userData.department,
+        contact_details: userData.contact_details,
+        personal_email_id: userData.personal_email_id,
+        current_company: userData.current_company,
+        designation: userData.designation,
+        about: userData.about,
+        profile_image:userData.profile_image
     }).then((res)=>{
         console.log(res.data);
     }).catch((err)=>{

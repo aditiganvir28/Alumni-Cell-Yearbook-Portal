@@ -15,6 +15,8 @@ const transporter = nodemailer.createTransport({
 
 const getUsersData = asyncHandler(async (req, res)=>{
     //Get all usersData from MongoDb
+    res.send("hello")
+    console.log('hello');
     const User = await User.find().lean();
 
     //If no usersData
@@ -27,22 +29,24 @@ const getUsersData = asyncHandler(async (req, res)=>{
 })
 
 const createUsersData = asyncHandler(async (req,res) =>{
+
+    console.log("just for you")
     const { user_id, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} =req.body;
 
     //Confirm data
-    if(!user_id || !name || !roll_no || !academic_program || !department || !contact_details || !presonal_email_id || !designation || !about || !profile_img){
-        return res.status(400).json({meassage: 'All fields are required'})
-    }
+    // if(!user_id || !name || !roll_no || !academic_program || !department || !contact_details || !presonal_email_id || !designation || !about || !profile_img){
+    //     return res.status(400).json({meassage: 'All fields are required'})
+    // }
 
     //Check if email is in use
-    try{
-    const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
+    // try{
+    // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
 
-        if(existingUser){
-            return res.status(409).send({
-                message: "Email is already in use."
-            });
-        }
+    //     if(existingUser){
+    //         return res.status(409).send({
+    //             message: "Email is already in use."
+    //         });
+    //     }
 
     //Create and store the new user
 
@@ -57,26 +61,30 @@ const createUsersData = asyncHandler(async (req,res) =>{
     }
 
     //Generate a veification token with th user's ID 
-        const verificationToken = Users.generateVerificationToken();
+    //     const verificationToken = Users.generateVerificationToken();
 
-    //Email the user a unique verification link
-        const url = `http://localhost:5000/verify/${verificationToken}`
+    // //Email the user a unique verification link
+    //     const url = `http://localhost:5000/verify/${verificationToken}`
 
-                transporter.sendMail({
-                    to: personal_email_id,
-                    subject: 'Verify Account',
-                    html: `Click <a href='${url}'>here</a> to confirm your email.` 
-                })
+    //             transporter.sendMail({
+    //                 to: personal_email_id,
+    //                 subject: 'Verify Account',
+    //                 html: `Click <a href='${url}'>here</a> to confirm your email.` 
+    //             })
 
-                return res.status(201).send({
-                    message:`Sent a verification email to ${email}`
-                });
-            }catch(err){
-                return res.status(500).send(err);
-            }
+    //             return res.status(201).send({
+    //                 message:`Sent a verification email to ${email}`
+    //             });
+    //         }catch(err){
+    //             return res.status(500).send(err);
+    //         }
+
+    if(err){
+        console.log(err);
+    }
 })
 
-const updataUserData = asyncHandler(async (req,res) => {
+const updateUserData = asyncHandler(async (req,res) => {
     const {user_id, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} = req.body;
 
     //Confirm data
@@ -149,6 +157,6 @@ const verify = async(req,res) => {
 module.exports = {
     getUsersData,
     createUsersData,
-    updataUserData,
+    updateUserData,
     verify
 }
