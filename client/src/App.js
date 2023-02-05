@@ -2,8 +2,9 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/navbar/navbar.jsx';
-// import About from './components/About/About';
-// import Cards from './components/team/Cards.jsx';
+import Cards from './components/team/Cards.jsx';
+import MakeAComment from './components/Make_a_Comment/MakeAComment';
+import SecondLogin from './components/SecondLogin/SecondLogin';
 // import Members from './components/team/Cards.jsx';
 import Fill from './components/Fill_Details/Fill';
 import Homepage from './components/Homepage/Homepage';
@@ -16,17 +17,8 @@ function App() {
   return (
     <div className="App">
       {/* <Navbar/>
-      {/* <Cards/> */}
-      {/* <Homepage></Homepage> */}
-      {/* <Fill></Fill> */} 
-      <BrowserRouter>
-      <Navbar/>
-      <Routes>
-        <Route path='/' exact element = {<Homepage/>}></Route>
-        <Route path='/fill' exact element={<Fill/>}></Route>
-        <Route path='/profile' exact element={<Profile/>}></Route>
-      </Routes>
-      </BrowserRouter>
+      <Cards/> */}
+      <SecondLogin />
     </div>
   );
 }
