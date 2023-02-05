@@ -4,39 +4,39 @@ const Auth = require("./authModel");
 const userSchema = new mongoose.Schema({
     user_id: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        // required: true,
         ref: Auth,
     },
 
     name: {
         type: String,
-        required: [true, "Name is Required"],
+        // required: [true, "Name is Required"],
     },
 
     roll_no: {
         type: String,
-        required: [true, "Roll Number is required"],
+        // required: [true, "Roll Number is required"],
         unique: true,
     },
 
     academic_program: {
         type: String,
-        required: [true, "Academic Program is required"],
+        // required: [true, "Academic Program is required"],
     },
 
     department: {
         type: String,
-        required: [true, "Department is required"],
+        // required: [true, "Department is required"],
     },
 
     contact_details: {
         type: String,
-        required: [true, "Contact_Details is required"],
+        // required: [true, "Contact_Details is required"],
     },
 
     personal_email_id: {
         type: String,
-        required: [true, "Department is required"],
+        // required: [true, "Department is required"],
     },
 
     current_company: {
@@ -49,17 +49,17 @@ const userSchema = new mongoose.Schema({
 
     about: {
         type: String,
-        required: true,
+        // required: true,
     },
 
     profile_img: {
         type: String,
-        required: [true, "Profile_image is required"],
+        // required: [true, "Profile_image is required"],
     },
 
     verified: {
         type: Boolean,
-        required: true,
+        // required: true,
         default: false
     }
 });
@@ -75,4 +75,4 @@ userSchema.methods.generateVerificationToken = function () {
     return verificationToken;
 }
 
-module.exports("Users", userSchema);
+module.exports= mongoose.model("Users", userSchema);

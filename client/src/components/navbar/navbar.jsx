@@ -1,20 +1,39 @@
-import { useState, useEffect } from 'react';
-import { GoogleLogin } from "react-google-login";
-import {gapi} from "gapi-script";
-// import './Navbar.css';
+import React, {useState, useEffect } from 'react';
+import {useNavigate, useRouteLoaderData} from "react-router-dom";
+import './Navbar.scss';
+import jwt_decode from "jwt-decode";
+import alumniData from './akumniData.json';
+import axios from 'axios';
+
 const Navbar=()=> {
-  const [result, setResult] = useState({});
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [id, setId] = useState("");
-  const [authData, setAuthData] = useState([]);
+
+  const [user, setUser] = useState({});
+  const [authData, setAuthData] = useState({});
+
+  //getting all alumnis from json
+  const alumniEmail= alumniData;
 
   const navigate = useNavigate();
 
-    //getting all alumnis email id from json
-    const alumniEmail= alumniData;
+  //Google authentication for IITI students
 
-    const onSignIn= () => {
+  useEffect(()=>{
+    /*global google*/
+    if(window.google){
+      google.accounts.id.initialize({
+      client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("google-login"),
+      {theme: "outline", size: "medium", width: "large"}
+    );
+    }
+  }, []);
+
+  useEffect(()=>{
+      //getting all users who have already signed in
       axios.get('http://localhost:5000/auth')
         .then((res)=>{
           console.log(res.data);
@@ -23,50 +42,57 @@ const Navbar=()=> {
         .catch((err)=>{
           console.log(err);
         })
-  
-        if(authData.includes(authData.user_id===id)){
-          if(alumniData.includes(email)){
-            navigate('/register');
-          }
-          else{
-            navigate('/');
-          }
+
+  }, []);
+
+  //Logout function
+
+  const handleLogout = () =>{
+    setUser({});
+    document.getElementById("google-login").hidden = false;
+  }
+
+  //Callback Function after logging in
+  function handleCallbackResponse(response){
+    console.log(response.credential); 
+    var userObject = jwt_decode(response.credential)
+    console.log(userObject);
+    setUser(userObject)
+    console.log(user);
+    document.getElementById("google-login").hidden= true;
+
+    if([authData].includes({email: user.email})){
+      if(alumniEmail.includes(user.email)){
+        navigate('/profile');
+      }
+      else{
+        navigate('/');
+      }
+    }
+    else{
+      axios.post('http://localhost:5000/auth', {
+        user_id: userObject.jti,
+        email: userObject.email,
+        name: userObject.name,
+      }).then((res)=>{
+        console.log(res);
+        if(alumniEmail.includes(userObject.email)){
+          console.log("reached");
+          navigate('/fill', {
+            state: {
+              user_id: userObject.jti
+            }
+          })
         }
         else{
-          axios.post('http://localhost:5000/auth', {
-        user_id: id,
-        email: email,
-        name: name
-      }).then((res)=>{
-        console.log(res.data);
+          navigate('/');
+        }
       }).catch((err)=>{
         console.log(err);
       })
-  
-          if(alumniData.includes(email)){
-            navigate('/register');
-          }
-          else{
-            navigate('/');
-          }
-        }
-      }
+    }
+  }
 
-  const googleSuccess=(res)=>{
-		console.log(res);
-		result=res?.profileObj;
-		setResult(result?.profileIbj)
-		const token=res?.tokenId;
-	}
-  useEffect(()=>{
-		gapi.load("client:auth2",()=>{
-			gapi.auth2.init({clientId:"971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com"})
-		})
-	})
-	const googleFailure=(err)=>{
-		console.log(err);
-		console.log("Failure");
-	}
   return (
     <div className="container">
       <style>
@@ -79,25 +105,31 @@ const Navbar=()=> {
           <a href="#">HOME</a>
           <a href="#">ABOUT</a>
           <a href="#">DEVELOPERS</a>
-          {/* <li>
-              <div className="searchr">
-                <input type="text" placeholder="Search..." class="search"/>
-              </div>
-          </li> */}
+          
           {/* <li><img src='/images/sign_in.png'/></li> */}
           <li>            
-          <div className="google">
-          <GoogleLogin
-			        clientId="971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com"
-			        onSuccess={googleSuccess}
-			        onFailure={googleFailure}
-			        cookiePolicy="single_host_origin"/>
+            <div id='google-login'>
             </div>
-              </li>
-          </ul>        
-      </div>
-      </div>
+          </li>
+          {console.log(user)}
+          {Object.keys(user).length != 0 && 
+          <>
+          <li>
+          <div className="searchr">
+            <input type="text" placeholder="Search..." class="search"/>
+          </div>
+          </li>
+          <li>
+          <div className='logout-button'>
+            <button onClick={handleLogout}>logout</button>
+          </div>
+        </li>
+        </>
+        }
+      </ul>        
     </div>
+    </div>
+  </div>
   );
 }
 
