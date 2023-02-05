@@ -1,11 +1,12 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import './Fill.css'
+import { useLocation } from 'react-router-dom';
 
 function Fill(props) {
+  const {user_id}=useLocation();
 
   const[userData, setUserData] = useState({
-    user_id:"",
     name_:"",
     roll_no:"",
     academic_program:"",
@@ -20,12 +21,13 @@ function Fill(props) {
 
   // setUserData({...userData, user_id: props.user_id})
   //Backend
+  console.log(user_id);
 
 //sending data to store in the database
 
 const onSubmit = () =>{
     axios.post("http://localhost:5000/userData", {
-        user_id: props.user_id,
+        user_id: user_id,
         name: userData.name_,
         roll_no: userData.roll_no,
         academic_program: userData.academic_program,

@@ -7,11 +7,12 @@ import Navbar from './components/navbar/navbar.jsx';
 // import Members from './components/team/Cards.jsx';
 import Fill from './components/Fill_Details/Fill';
 import Homepage from './components/Homepage/Homepage';
-
 import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
 import { Profile } from './components/Profile/Profile';
+import { useContext } from 'react';
 
 function App() {
+  // const authData = useContenxt()
   return (
     <div className="App">
       {/* <Navbar/>

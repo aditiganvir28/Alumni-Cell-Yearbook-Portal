@@ -4,6 +4,7 @@ import './Navbar.scss';
 import jwt_decode from "jwt-decode";
 import alumniData from './akumniData.json';
 import axios from 'axios';
+// import { use } from '../../../../server/routes/userDataRoutes';
 
 const Navbar=()=> {
 
@@ -31,6 +32,8 @@ const Navbar=()=> {
     );
     }
   }, []);
+
+
 
   useEffect(()=>{
       //getting all users who have already signed in
@@ -77,12 +80,8 @@ const Navbar=()=> {
       }).then((res)=>{
         console.log(res);
         if(alumniEmail.includes(userObject.email)){
-          console.log("reached");
-          navigate('/fill', {
-            state: {
-              user_id: userObject.jti
-            }
-          })
+          console.log(userObject.jti);
+          navigate('/fill',{user_id:user.jti});
         }
         else{
           navigate('/');
