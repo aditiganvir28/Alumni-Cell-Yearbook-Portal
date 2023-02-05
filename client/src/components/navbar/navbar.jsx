@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {useNavigate, useRouteLoaderData} from "react-router-dom";
-import './navbar.css';
+import './Navbar.scss';
 import jwt_decode from "jwt-decode";
 import alumniData from './akumniData.json';
 import axios from 'axios';
