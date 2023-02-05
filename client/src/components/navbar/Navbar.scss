@@ -61,7 +61,22 @@ button{
     width: 205px !important;
     padding: 10px !important;
 }
-
+@media screen and (max-width: 720px) {
+    .container {
+      text-align: center;
+      flex-direction: column;
+    }  
+    .container-nav {
+      flex-direction: column;
+    }  
+    nav ul {
+      flex-direction: column;
+    }  
+    nav li {
+      margin: 0.8em 0;
+    }
+  }
+  
     /* .navbar{
         background-color: #4d1a6c;
         display: flex;
