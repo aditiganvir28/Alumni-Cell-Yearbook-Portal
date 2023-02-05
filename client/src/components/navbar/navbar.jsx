@@ -91,9 +91,8 @@ const Navbar=()=> {
       })
     }
   }
-
   return (
-    <div className="container">
+    <div className="container container-nav">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
