@@ -1,0 +1,11 @@
+body{
+    display:flex;
+    flex: auto;
+    align-items: center;
+    background-color: #180c1e
+}
+.about{
+    background-color: #4d1a6c;
+    display: flex;
+    color: white;
+}
