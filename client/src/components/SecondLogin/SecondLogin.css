@@ -112,17 +112,24 @@ input {
 .footer-item {
     text-align: left;
     padding: 90px;
-    padding-left: 50px;
+    padding-left: 1%;
 }
 #links {
     display: block;
 }
 
 .fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 50px;
+    padding: 10%;
+    width: 50%;
+    font-size: 150%;
     text-align: center;
     text-decoration: none;
     color: white;
   }
+
+#check {
+    display: inline;
+    padding: 0% !important;
+    margin: 0% !important;
+    width: 10% !important;
+}

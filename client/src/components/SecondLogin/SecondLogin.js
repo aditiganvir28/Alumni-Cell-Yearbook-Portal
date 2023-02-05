@@ -45,7 +45,9 @@ const SecondLogin = () => {
                 </div>
                 <div className="comments" id='new'>
                     <h1>New Comments</h1>
-                    <h1 style={{ display : "inline"}}>........................</h1><a href="" className='fa fa-check-circle'></a><a href="" className='fa fa-times-circle'></a>
+                    <h1 style={{ display : "inline"}}>..................</h1>
+                    <button id='check'><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
+                    <button id='check'><a href="" className='fa fa-times-circle'></a></button>
                 </div>
             </div>
 
@@ -69,10 +71,10 @@ const SecondLogin = () => {
                 </div>
                 <div className="footer-item">
                     <h1>FIND US ON</h1> 
-                    <a href="" className='fa fa-facebook'></a>
-                    <a href="" className='fa fa-twitter'></a>
-                    <a href="" className='fa fa-linkedin'></a>
-                    <a href="" className='fa fa-instagram'></a>
+                    <a href="" className='fa fa-facebook' style={{ display: "inline"}}></a>
+                    <a href="" className='fa fa-twitter' style={{display:"inline"}}></a>
+                    <a href="" className='fa fa-linkedin' style={{display:"inline"}}></a>
+                    <a href="" className='fa fa-instagram' style={{display:"inline"}}></a>
 
                 </div>
             </div>
