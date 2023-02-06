@@ -1,5 +1,5 @@
 import React from 'react'
-import './SecondLogin.css'
+import './SecondLogin.scss'
 
 const SecondLogin = () => {
     return (
@@ -24,7 +24,6 @@ const SecondLogin = () => {
                     </ul>
                 </div>
             </div>
-
             <div className="container2">
                 <div className="comments">
                     <h1>Approved Comments</h1>
