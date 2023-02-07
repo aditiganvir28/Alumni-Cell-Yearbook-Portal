@@ -16,11 +16,10 @@ function App() {
   // const authData = useContenxt()
   return (
     <div className="App">
-      {/* <Navbar></Navbar> */}
-      {/* <Fill></Fill> */}
-      {/* <Navbar/>
-      // <Cards/> */}
-      <SecondLogin />
+      {/* <Navbar/> */}
+      {/* <Cards/> */}
+      {/* <SecondLogin /> */}
+      <Homepage></Homepage>
     </div>
   );
 }
