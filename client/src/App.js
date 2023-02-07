@@ -1,23 +1,25 @@
 // import logo from './logo.svg';
 import React from 'react';
 import './App.css';
-import Navbar from './components/navbar/navbar.jsx';
-import Cards from './components/team/Cards.jsx';
-import MakeAComment from './components/Make_a_Comment/MakeAComment';
+// import Navbar from './components/navbar/navbar.jsx';
+// import Cards from './components/team/Cards.jsx';
+// import MakeAComment from './components/Make_a_Comment/MakeAComment';
 import SecondLogin from './components/SecondLogin/SecondLogin';
-// import Members from './components/team/Cards.jsx';
-import Fill from './components/Fill_Details/Fill';
-import Homepage from './components/Homepage/Homepage';
-import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
-import { Profile } from './components/Profile/Profile';
-import { useContext } from 'react';
+// // import Members from './components/team/Cards.jsx';
+// import Fill from './components/Fill_Details/Fill';
+// import Homepage from './components/Homepage/Homepage';
+// import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
+// import { Profile } from './components/Profile/Profile';
+// import { useContext } from 'react';
 
 function App() {
   // const authData = useContenxt()
   return (
     <div className="App">
+      {/* <Navbar></Navbar> */}
+      {/* <Fill></Fill> */}
       {/* <Navbar/>
-      <Cards/> */}
+      // <Cards/> */}
       <SecondLogin />
     </div>
   );
