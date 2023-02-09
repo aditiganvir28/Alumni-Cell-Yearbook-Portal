@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './SecondLogin.css';
+import './SecondLogin.scss';
 import axios from 'axios';
 
 const SecondLogin = () => {
