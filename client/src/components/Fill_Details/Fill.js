@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import './Fill.css'
 import { useLocation } from 'react-router-dom';
+import { LoginContext } from '../../helpers/Context';
+import { useContext } from 'react';
+
 
 function Fill(props) {
-  const {user_id}=useLocation();
+  const{user} = useContext(LoginContext);
 
   const[userData, setUserData] = useState({
     name_:"",
@@ -12,7 +15,7 @@ function Fill(props) {
     academic_program:"",
     department:"",
     personal_email_id:"",
-    contact_no:"",
+    contact_details:"",
     current_company:"",
     designation:"",
     profile_image:""
@@ -21,19 +24,19 @@ function Fill(props) {
 
   // setUserData({...userData, user_id: props.user_id})
   //Backend
-  console.log(user_id);
+  console.log(user.user_id);
 
 //sending data to store in the database
 
 const onSubmit = () =>{
     axios.post("http://localhost:5000/userData", {
-        user_id: user_id,
+        email: user.email,
         name: userData.name_,
         roll_no: userData.roll_no,
         academic_program: userData.academic_program,
         department: userData.department,
-        contact_details: userData.contact_details,
         personal_email_id: userData.personal_email_id,
+        contact_details: userData.contact_details,
         current_company: userData.current_company,
         designation: userData.designation,
         about: userData.about,
@@ -84,7 +87,7 @@ const onSubmit = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Personal Email ID*" size="60" name="personal_email_id" value={userData.personal_email_id} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Contact Number*" size="60" name="contact_no" value={userData.contact_no} onChange={(e) =>
+          <input type="text" placeholder="Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Current Company (if any)" size="60" name="current_company" value={userData.current_company} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>

@@ -1,25 +1,129 @@
 // import logo from './logo.svg';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './components/navbar/navbar.jsx';
 import Cards from './components/team/Cards.jsx';
 import MakeAComment from './components/Make_a_Comment/MakeAComment';
 import SecondLogin from './components/SecondLogin/SecondLogin';
-// import Members from './components/team/Cards.jsx';
 import Fill from './components/Fill_Details/Fill';
 import Homepage from './components/Homepage/Homepage';
-import { Route, Routes, Navigate, BrowserRouter } from 'react-router-dom';
-import { Profile } from './components/Profile/Profile';
+import { Route, Routes, Navigate, BrowserRouter, Router, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
+import jwt_decode from "jwt-decode";
+import { LoginContext } from './helpers/Context';
+import axios from 'axios';
+import alumniData from './components/navbar/akumniData.json'
+import About from './components/About/About';
 
 function App() {
-  // const authData = useContenxt()
+  const[user, setUser] = useState({});
+  const[loggedin, setLoggedin] = useState(false);
+  const [authData, setAuthData] = useState({});
+
+   //getting all alumnis from json
+   const alumniEmail= alumniData;
+
+   const navigate = useNavigate();
+
+  //Google authentication for IITI students
+
+  useEffect(()=>{
+    /*global google*/
+    if(window.google){
+      google.accounts.id.initialize({
+      client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("google-login"),
+      {theme: "outline", size: "medium", width: "large"}
+    );
+    }
+  }, []);
+
+  useEffect(()=>{
+    //getting all users who have already signed in
+    axios.get('http://localhost:5000/auth')
+      .then((res)=>{
+        // console.log(res.data);
+        setAuthData(res.data);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+}, []);
+
+console.log(authData);
+
+//Callback Function after logging in
+  function handleCallbackResponse(response){
+    console.log(response.credential); 
+    var userObject = jwt_decode(response.credential)
+    console.log(userObject);
+    setUser(userObject)
+    console.log(user);
+    document.getElementById("google-login").hidden= true;
+    setLoggedin(true);
+    
+    var __FOUND = -1;
+    for(var i=0; i<authData.length; i++) {
+	    if(authData[i].email == userObject.email) {
+		// __FOUND is set to the index of the element
+    console.log("loop");
+		__FOUND = i;
+		break;
+	    }
+    }
+    console.log(__FOUND)
+
+
+    if(__FOUND>=0){
+              if(alumniEmail.includes(userObject.email)){
+                navigate('/profile');
+                console.log("Second time sign in and alumni")
+              }
+              else{
+                navigate('/');
+                console.log("second time sign in and student");
+              }
+            }
+            else{
+              axios.post('http://localhost:5000/auth', {
+                email: userObject.email,
+                name: userObject.name,
+              }).then((res)=>{
+                console.log(res);
+                if(alumniEmail.includes(userObject.email)){
+                  console.log(userObject.jti);
+                  console.log("first time login and alumni");
+                  navigate('/fill');
+                }
+                else{
+                  navigate('/');
+                  console.log("first time login and student");
+                }
+              }).catch((err)=>{
+                console.log(err);
+              })
+            }
+  }
+
+
   return (
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData}}>
     <div className="App">
-      {/* <Navbar/>
-      <Cards/> */}
-      <SecondLogin />
+      <Navbar/>
+      <Routes>
+      <Route exact path="/" element={<Homepage/>} />
+      <Route exact path="/fill" element={<Fill />} />
+      <Route exact path="/profile" element={<SecondLogin />} />
+      <Route exact path="/about" element={<About />} />
+      <Route exact path="/team" element={<Cards />} />
+      </Routes>
     </div>
+    </LoginContext.Provider>
   );
 }
 export default App;

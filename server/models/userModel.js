@@ -1,42 +1,45 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 const Auth = require("./authModel");
+const jwt =  require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        // required: true,
-        ref: Auth,
+    email: {
+        type: String,
+        required: true,
+        unique: true
     },
 
     name: {
         type: String,
-        // required: [true, "Name is Required"],
+        required: [true, "Name is Required"],
     },
 
     roll_no: {
         type: String,
-        // required: [true, "Roll Number is required"],
+        required: [true, "Roll Number is required"],
         unique: true,
     },
 
     academic_program: {
         type: String,
-        // required: [true, "Academic Program is required"],
+        required: [true, "Academic Program is required"],
     },
 
     department: {
         type: String,
-        // required: [true, "Department is required"],
+        required: [true, "Department is required"],
     },
 
     contact_details: {
-        type: String,
-        // required: [true, "Contact_Details is required"],
+        type: Number,
+        required: [true, "Contact_Details is required"],
     },
 
     personal_email_id: {
         type: String,
-        // required: [true, "Department is required"],
+        required: [true, "Department is required"],
+        unique: true,
     },
 
     current_company: {
@@ -68,7 +71,7 @@ userSchema.methods.generateVerificationToken = function () {
     const user = this;
     const verificationToken = jwt.sign(
         {ID: user._id},
-        "12345678",
+        process.env.SECRET,
         {expiresIn: "7d"}
     );
 

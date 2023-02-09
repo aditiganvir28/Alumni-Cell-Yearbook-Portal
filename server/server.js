@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 const userDataRoutes = require('./routes/userDataRoutes');
-const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -41,7 +41,7 @@ app.listen(port,(err) =>{
     }
 })
 
-mongoose.connect("mongodb://localhost:27017/yearbook-portal", {
+mongoose.connect("mongodb://0.0.0.0:27017/yearbook-portal", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -52,5 +52,5 @@ mongoose.connect("mongodb://localhost:27017/yearbook-portal", {
         console.log(err.message);
 });
 
-app.use(userRoutes);
+app.use(authRoutes);
 app.use(userDataRoutes);

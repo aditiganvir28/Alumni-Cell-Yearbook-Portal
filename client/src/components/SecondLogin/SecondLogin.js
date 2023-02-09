@@ -1,7 +1,22 @@
-import React from 'react'
-import './SecondLogin.css'
+import React, {useEffect} from 'react';
+import './SecondLogin.css';
+import axios from 'axios';
 
 const SecondLogin = () => {
+
+    useEffect(()=>{
+        //getting all users who have already signed in
+        axios.get('http://localhost:5000/userData')
+          .then((res)=>{
+            console.log(res.data);
+            // setAuthData(res.data);
+          })
+          .catch((err)=>{
+            console.log(err);
+          })
+    
+    }, []);
+
     return (
         <div className='container'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
@@ -9,7 +24,7 @@ const SecondLogin = () => {
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
                 
             </style>
-            <div className='header'>
+            {/* <div className='header'>
                 <img src='/images/1.png' alt='profile' />
                 <div className='navbar'>
                     <ul>
@@ -23,7 +38,7 @@ const SecondLogin = () => {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
 
             <div className="container2">
                 <div className="comments">

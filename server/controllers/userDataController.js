@@ -1,17 +1,18 @@
-const Users = require("../models/userModel");
-const Auth = require("../models/authModel");
 const asyncHandler = require('express-async-handler');
+require("dotenv").config();
 const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const jwt =  require('jsonwebtoken');
+const Users = require("../models/userModel");
 
 const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
-        user:process.env.USER_NAME,
-        pass:process.env.PASSWORD
+        user: "aditi10328@gmail.com",
+        pass:
     }
 })
+
 
 const getUsersData = asyncHandler(async (req, res)=>{
     //Get all usersData from MongoDb
@@ -31,53 +32,54 @@ const getUsersData = asyncHandler(async (req, res)=>{
 const createUsersData = asyncHandler(async (req,res) =>{
 
     console.log("just for you")
-    const { user_id, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} =req.body;
+    const { email, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} =req.body;
 
     //Confirm data
     // if(!user_id || !name || !roll_no || !academic_program || !department || !contact_details || !presonal_email_id || !designation || !about || !profile_img){
     //     return res.status(400).json({meassage: 'All fields are required'})
     // }
 
-    //Check if email is in use
-    // try{
-    // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
+    // Check if email is in use
 
-    //     if(existingUser){
-    //         return res.status(409).send({
-    //             message: "Email is already in use."
-    //         });
-    //     }
+    const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
 
-    //Create and store the new user
+        if(existingUser){
+            return res.status(409).send({
+                message: "Email is already in use."
+            });
+        }
 
-    const usersData = await Users.create({ user_id, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img})
+    // Create and store the new user
+
+    const usersData = await Users.create({ email, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img})
 
     if(usersData){
         //created
-        return res.status(201).json({message: 'New user Created'})
+        res.status(201).json({message: 'New user Created'})
     }
     else{
-        return res.status(400).json({message: 'Invalid userdata recieved'})
+        res.status(400).json({message: 'Invalid userdata recieved'})
     }
 
     //Generate a veification token with th user's ID 
-    //     const verificationToken = Users.generateVerificationToken();
+        const verificationToken = usersData.generateVerificationToken();
+        try{
 
     // //Email the user a unique verification link
-    //     const url = `http://localhost:5000/verify/${verificationToken}`
+        const url = `http://localhost:5000/verify/${verificationToken}`
 
-    //             transporter.sendMail({
-    //                 to: personal_email_id,
-    //                 subject: 'Verify Account',
-    //                 html: `Click <a href='${url}'>here</a> to confirm your email.` 
-    //             })
+        transporter.sendMail({
+                    to: personal_email_id,
+                    subject: 'Verify Account',
+                    html: `Click <a href='${url}'>here</a> to confirm your email.` 
+                })
 
-    //             return res.status(201).send({
-    //                 message:`Sent a verification email to ${email}`
-    //             });
-    //         }catch(err){
-    //             return res.status(500).send(err);
-    //         }
+                return res.status(201).send({
+                    message:`Sent a verification email to ${email}`
+                });
+            }catch(err){
+                return res.status(500).send(err);
+            }
 
     if(err){
         console.log(err);
@@ -85,14 +87,14 @@ const createUsersData = asyncHandler(async (req,res) =>{
 })
 
 const updateUserData = asyncHandler(async (req,res) => {
-    const {user_id, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} = req.body;
+    const {email, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} = req.body;
 
     //Confirm data
-    if(!user_id || !name || !roll_no || !academic_program || !department || !contact_details || !presonal_email_id || !designation || !about || !profile_img){
+    if(!email || !name || !roll_no || !academic_program || !department || !contact_details || !presonal_email_id || !designation || !about || !profile_img){
         return res.status(400).json({meassage: 'All fields are required'})
     }
 
-    const userData = await User.findById(user_id).exec();
+    const userData = await Users.findById(user_id).exec();
 
     userData.name= name
     userData.roll_no= roll_no
@@ -111,7 +113,7 @@ const updateUserData = asyncHandler(async (req,res) => {
 })
 
 const verify = async(req,res) => {
-    const {token} = re.params;
+    const token = (req.params.id);
 
     //Check if we have an id
 
@@ -125,20 +127,23 @@ const verify = async(req,res) => {
     let payload = null
     try{
         payload = jwt.verify(
-            token, "12345678"
+            token, process.env.SECRET
+            
         );
     }catch(err) {
-        return res.status(500)/send(err);
+        return res.send(err);
     }
 
     try{
         //Find user with matcjhing ID
-        const user = await User.findOne({_id: payload.ID}).exec();
+        const user = await Users.findOne({_id: payload.ID}).exec();
 
         if(!user){
+            console.log("reached")
             return res.status(404).send({
                 message:"User does not exist"
             });
+            
         };
 
         //Update user verification status to true
