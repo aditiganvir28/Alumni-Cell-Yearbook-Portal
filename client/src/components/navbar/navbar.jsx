@@ -26,9 +26,9 @@ const Navbar=()=> {
       <img src='/images/1.png'/>
       <div className='navbar'>
         <ul>
-          <a href="#">HOME</a>
-          <a href="#">ABOUT</a>
-          <a href="#">DEVELOPERS</a>
+          <a href="/">HOME</a>
+          <a href="/">ABOUT</a>
+          <a href="/">DEVELOPERS</a>
           
           {/* <li><img src='/images/sign_in.png'/></li> */}
           <li>   
