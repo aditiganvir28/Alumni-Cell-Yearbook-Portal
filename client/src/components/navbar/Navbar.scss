@@ -115,3 +115,25 @@ button{
             background-color: transparent;
             color: themed("textColor");      
     } */ 
+
+    .dropdown {
+        width: 400px;
+
+    }
+
+    .dropdown .dropdown-btn {
+        background-color: #4d1a6c;
+        border: 1px white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .dropdown-content .dropdown-item {
+        cursor: pointer;
+    }
+
+    .fa {
+        font-size: small;
+        color: white;
+        padding: none !important;
+    }
