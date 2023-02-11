@@ -1,9 +1,9 @@
 import React from 'react'
 import "@fontsource/quantico";
-import Insta from "../Homepage/images/insta.png";
-import Twitter from "../Homepage/images/twitter.png";
-import Linkedin from "../Homepage/images/linkedin.png";
-import Facebook from "../Homepage/images/Facebook.png";
+// import Insta from "../Homepage/images/insta.png";
+// import Twitter from "../Homepage/images/twitter.png";
+// import Linkedin from "../Homepage/images/linkedin.png";
+// import Facebook from "../Homepage/images/Facebook.png";
 function Homepage() {
     return (
         <div className="overflow-x-hidden">
@@ -46,7 +46,7 @@ function Homepage() {
                     </div>
                 </div>
                 {/* footer */}
-                <div className='w-full mx-8 flex flex-row justify-around items-start'>
+                {/* <div className='w-full mx-8 flex flex-row justify-around items-start'>
                     <div className='flex flex-col w-1/3'>
                         <h1 className='uppercase px-0 py-4'>ALUMNI cell iit indore</h1>
                         <p className='text-white'>...................... ..................... ......................... .................................. ......................................... ...................................... ............................... .........</p>
@@ -65,7 +65,7 @@ function Homepage() {
                             <img className='w-8' src={Facebook}></img>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

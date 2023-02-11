@@ -14,7 +14,7 @@ import { LoginContext } from './helpers/Context';
 import axios from 'axios';
 import alumniData from './components/navbar/akumniData.json'
 import About from './components/About/About';
-
+import Footer from './components/Footer/Footer';
 function App() {
   const[user, setUser] = useState({});
   const[loggedin, setLoggedin] = useState(false);
@@ -109,8 +109,6 @@ console.log(authData);
               })
             }
   }
-
-
   return (
     <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData}}>
     <div className="App">
@@ -122,6 +120,7 @@ console.log(authData);
       <Route exact path="/about" element={<About />} />
       <Route exact path="/team" element={<Cards />} />
       </Routes>
+      <Footer></Footer>
     </div>
     </LoginContext.Provider>
   );
