@@ -117,23 +117,21 @@ button{
     } */ 
 
     .dropdown {
-        width: 400px;
-
-    }
-
-    .dropdown .dropdown-btn {
-        background-color: #4d1a6c;
-        border: 1px white;
-        border-radius: 10px;
+        width: 90%;
         cursor: pointer;
+        display: block;
     }
-
-    .dropdown-content .dropdown-item {
-        cursor: pointer;
+    
+    i {
+        height: 1%;
+        margin-top: 2%;
+        margin-left: 1%;
     }
-
     .fa {
         font-size: small;
         color: white;
         padding: none !important;
+        width: 2% !important;
+        vertical-align: middle !important;
+        padding-bottom: 0% !important;
     }

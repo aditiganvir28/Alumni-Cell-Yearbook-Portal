@@ -60,13 +60,13 @@ const Navbar=()=> {
               <img src="../../../images/profile.jpg" alt="" /> 
               <i className="fa fa-caret-down" style={{padding:'0px', textAlign:'left', verticalAlign:'center'}}></i>
             </div>
-          </div>
+          
           {isActive && (
             <div className="dropdown-content">
-              <div className="dropdown-item"><button className='button' href="#" style={{textAlign:'left'}}>My Profile</button></div>
-              <div className="dropdown-item"><button onClick={handleLogout} className='button' style={{textAlign:'left'}}>Logout</button></div>
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button className='button' href="#" style={{textAlign:'left'}}>My Profile</button></a></div>
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button onClick={handleLogout} className='button' style={{textAlign:'left'}}>Logout</button></a></div>
             </div>
-          )}
+          )}</div>
 
         </li>
         </>
