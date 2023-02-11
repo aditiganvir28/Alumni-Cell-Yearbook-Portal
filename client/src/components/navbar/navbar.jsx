@@ -74,7 +74,7 @@ const Navbar=()=> {
       })
     }
   return (
-    <div className="container container-nav">
+    <div className="overflow-x-hidden">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>

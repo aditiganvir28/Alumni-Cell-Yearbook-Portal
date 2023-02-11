@@ -125,10 +125,10 @@ function App() {
 
   return (
     <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData}}>
-    <div className="App">
-      <Navbar/>
+    <div className="App overflow-x-hidden">
+      {/* <Navbar/> */}
       <Routes>
-      <Route exact path="/" element={<Homepage/>} />
+      <Route exact path="/" element={<div className='overflow-x-hidden'><Homepage/></div>} />
       <Route exact path="/fill" element={<Fill />} />
       <Route exact path="/profile" element={<SecondLogin />} />
       <Route exact path="/about" element={<About />} />
