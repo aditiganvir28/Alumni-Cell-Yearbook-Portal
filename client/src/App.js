@@ -20,6 +20,7 @@ function App() {
   const[user, setUser] = useState({});
   const[loggedin, setLoggedin] = useState(false);
   const [authData, setAuthData] = useState({});
+  const [result, setResult] = useState({});
 
    //getting all alumnis from json
    const alumniEmail= alumniData;
@@ -124,9 +125,9 @@ function App() {
 
 
   return (
-    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData}}>
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult}}>
     <div className="App overflow-x-hidden">
-      {/* <Navbar/> */}
+      <Navbar/>
       <Routes>
       <Route exact path="/" element={<div className='overflow-x-hidden'><Homepage/></div>} />
       <Route exact path="/fill" element={<Fill />} />

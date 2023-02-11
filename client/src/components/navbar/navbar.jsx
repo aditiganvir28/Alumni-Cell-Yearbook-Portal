@@ -14,6 +14,7 @@ const Navbar=()=> {
   const [searchword, setSearchword] = useState("");
   const [wordentered, setWordentered] = useState();
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
+  const {result, setResult} = useContext(LoginContext);
 
      //Logout function
 
@@ -55,7 +56,7 @@ const Navbar=()=> {
       axios.post('http://localhost:5000/searchword', {
         searchword: searchword
       }).then((res)=>{
-        
+        setResult(res.data);
         console.log(res.data);
       }).catch((err)=>{
         console.log(err)
@@ -107,6 +108,7 @@ const Navbar=()=> {
         e.preventDefault();
             setSearchword(val.email);
             // search=val;
+            navigate('/comment')
         }}>{val.name}</button></li>)
           )}
           </div>

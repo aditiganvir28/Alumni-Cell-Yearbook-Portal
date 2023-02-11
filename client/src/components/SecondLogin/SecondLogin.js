@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss';
 import axios from 'axios';
@@ -7,7 +7,14 @@ const SecondLogin = () => {
 
 
     const {user} = useContext(LoginContext);
-    console.log(user.email);
+    const [myComments, setMyComments] = useState([]);
+    const [newComments, setNewComments] = useState([]);
+    const [approvedComments, setApprovedComments] = useState([]);
+    const [friendEmail, setFriendEmail] = useState("");
+    const [friendName, setFriendName] = useState("");
+    const [comment, setComment] = useState("");
+    
+    //Get the data to be displayed on the profile
     useEffect(()=>{
       axios.post('http://localhost:5000/profile', {
         email: user.email
@@ -15,6 +22,72 @@ const SecondLogin = () => {
         console.log(res.data);
       })
     })
+
+    //Getting the myComment to be dispalyed in the myComments Section
+
+    useEffect(()=>{
+        axios.post('http://localhost:5000/getMyComments', {
+            user_email: user.email
+        }).then((res)=>{
+            console.log(res.data);
+            setMyComments(res.data.comments);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    })
+
+    //Getting all the newComments to be displayed in the newComments Section
+
+    useEffect(()=>{
+        axios.post('http://localhost:5000/getNewComments', {
+            user_email: user.email
+        }).then((res)=>{
+            console.log(res.data);
+            setNewComments(res.data.comments);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    })
+
+    //Getting all the approved comments to be displayed in the approved section
+    useEffect(()=>{
+        axios.post('http://localhost:5000/getApprovedComments', {
+            user_email: user.email
+        }).then((res)=>{
+            console.log(res.data);
+            setApprovedComments(res.data.comments);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    })
+
+    //Sending the data to be inserted in the approved table
+
+    const Approved = () =>{
+        axios.post('http://localhost:5000/approvedComments', {
+            user_email: user.email,
+            friend_email: friendEmail,
+            friend_name: friendName,
+            comment: comment 
+        }).then((res)=>{
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    
+    const Rejected = () =>{
+        axios.post('http://localhost:5000/rejectedComments', {
+            user_email: user.email,
+            friend_email: friendEmail,
+            friend_name: friendName,
+            comment: comment 
+        }).then((res)=>{
+            console.log(res.data);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
 
     return (
         <div className='container'>
