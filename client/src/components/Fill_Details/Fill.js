@@ -81,8 +81,17 @@ const onSubmit = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Academic Program*" size="60" name="academic_program" value={userData.academic_program} onChange={(e) =>
-              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          {/* <input type="text" placeholder="Academic Program*" size="60" name="academic_program" value={userData.academic_program} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/> */}
+
+        <select name="academic_program" id="" onChange={(e) => setUserData({ ...userData, [e.target.name]: e.target.value})} defaultValue={userData.academic_program}>
+            <option value="Bachelor of Technology (BTech)">Bachelor of Technology (BTech)</option>
+            <option value="Master of Technology (MTech)">Master of Technology (MTech)</option>
+            <option value="Master of Science (MSc)">Master of Science (MSc)</option>
+            <option value="Five Year BTech + MTech">Five Year BTech + MTech</option>
+            <option value="MS (Research)">MS (Research)</option>
+            <option value="Doctor of Philosophy">Doctor of Philosophy</option>
+          </select><br />
           <input type="text" placeholder="Department*" size="60" name="department" value={userData.department} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Personal Email ID*" size="60" name="personal_email_id" value={userData.personal_email_id} onChange={(e) =>
