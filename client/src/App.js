@@ -1,9 +1,9 @@
 // import logo from './logo.svg';
 import React, { useState, useEffect } from 'react';
 import './App.css';
-// import Navbar from './components/navbar/navbar.jsx';
-// import Cards from './components/team/Cards.jsx';
-// import MakeAComment from './components/Make_a_Comment/MakeAComment';
+import Navbar from './components/navbar/navbar.jsx';
+import Cards from './components/team/Cards.jsx';
+import MakeAComment from './components/Make_a_Comment/MakeAComment';
 import SecondLogin from './components/SecondLogin/SecondLogin';
 import Fill from './components/Fill_Details/Fill';
 import Homepage from './components/Homepage/Homepage';
@@ -14,6 +14,7 @@ import { LoginContext } from './helpers/Context';
 import axios from 'axios';
 import alumniData from './components/navbar/akumniData.json'
 import About from './components/About/About';
+
 
 function App() {
   const[user, setUser] = useState({});
@@ -46,7 +47,7 @@ function App() {
     //getting all users who have already signed in
     axios.get('http://localhost:5000/auth')
       .then((res)=>{
-        // console.log(res.data);
+        console.log(res.data);
         setAuthData(res.data);
       })
       .catch((err)=>{
@@ -55,17 +56,30 @@ function App() {
 
 }, []);
 
-console.log(authData);
+// useEffect(()=>{
+//   axios.get('http://localhost:5000/userData')
+//   .then((res)=>{
+//     console.log(res.data);
+//     console.log("reached");
+//   })
+//   .catch((err)=>{
+//     console.log(err);
+//   })
+// })
 
 //Callback Function after logging in
   function handleCallbackResponse(response){
-    console.log(response.credential); 
+    // console.log(response.credential); 
     var userObject = jwt_decode(response.credential)
-    console.log(userObject);
-    setUser(userObject)
-    console.log(user);
+    // console.log(userObject);
+    setUser(userObject);
+    localStorage.setItem('user' ,JSON.stringify(userObject));
+    // console.log(user);
     document.getElementById("google-login").hidden= true;
     setLoggedin(true);
+    window.localStorage.setItem('loggedin', true);
+    // window.localStorage.setItem('loggedin', loggedin);
+    // console.log(loggedin)
     
     var __FOUND = -1;
     for(var i=0; i<authData.length; i++) {
@@ -77,9 +91,7 @@ console.log(authData);
 	    }
     }
     console.log(__FOUND)
-
-
-    if(__FOUND>=0){
+    if(__FOUND!==-1){
               if(alumniEmail.includes(userObject.email)){
                 navigate('/profile');
                 console.log("Second time sign in and alumni")
@@ -94,7 +106,7 @@ console.log(authData);
                 email: userObject.email,
                 name: userObject.name,
               }).then((res)=>{
-                console.log(res);
+                // console.log(res);
                 if(alumniEmail.includes(userObject.email)){
                   console.log(userObject.jti);
                   console.log("first time login and alumni");
@@ -121,6 +133,7 @@ console.log(authData);
       <Route exact path="/profile" element={<SecondLogin />} />
       <Route exact path="/about" element={<About />} />
       <Route exact path="/team" element={<Cards />} />
+      <Route exact path="/comment" element={<MakeAComment />} />
       </Routes>
     </div>
     </LoginContext.Provider>

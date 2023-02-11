@@ -1,21 +1,20 @@
-import React, {useEffect} from 'react';
-import './SecondLogin.css';
+import React, { useContext, useEffect } from 'react'
+import { LoginContext } from '../../helpers/Context'
+import './SecondLogin.scss';
 import axios from 'axios';
 
 const SecondLogin = () => {
 
+
+    const {user} = useContext(LoginContext);
+    console.log(user.email);
     useEffect(()=>{
-        //getting all users who have already signed in
-        axios.get('http://localhost:5000/userData')
-          .then((res)=>{
-            console.log(res.data);
-            // setAuthData(res.data);
-          })
-          .catch((err)=>{
-            console.log(err);
-          })
-    
-    }, []);
+      axios.post('http://localhost:5000/profile', {
+        email: user.email
+      }).then((res)=>{
+        console.log(res.data);
+      })
+    })
 
     return (
         <div className='container'>

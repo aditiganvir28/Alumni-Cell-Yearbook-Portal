@@ -7,7 +7,10 @@ router.route('/userData')
     .post(userDataController.createUsersData)
     .put(userDataController.updateUserData)
 
-router.get('/verify/:id', userDataController.verify)
+router.get('/verify/:id', userDataController.verify);
+router.post('/profile', userDataController.getProfileData);
+router.post('/wordEntered', userDataController.getWordEntered);
+router.post('/searchword', userDataController.getSearchWord)
 
 module.exports = router;
 

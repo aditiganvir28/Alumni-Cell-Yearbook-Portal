@@ -1,5 +1,5 @@
 import React from 'react'
-import "@fontsource/quantico";
+// import "@fontsource/quantico";
 import Insta from "../Homepage/images/insta.png";
 import Twitter from "../Homepage/images/twitter.png";
 import Linkedin from "../Homepage/images/linkedin.png";
