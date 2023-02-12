@@ -15,7 +15,7 @@ const Navbar=()=> {
   const [wordentered, setWordentered] = useState();
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
   const {result, setResult} = useContext(LoginContext);
-
+  const [isActive, setIsActive] = useState(false);
 //After refreshing the page user is still signed in 
   useEffect(()=>{
     if(window.localStorage.getItem('user')!==null){
