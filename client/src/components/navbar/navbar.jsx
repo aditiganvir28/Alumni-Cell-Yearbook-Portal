@@ -11,7 +11,7 @@ const Navbar=()=> {
 
   const navigate = useNavigate();
 
-  const [searchword, setSearchword] = useState("");
+  const [searchword, setSearchword] = useState();
   const [wordentered, setWordentered] = useState("");
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
 
