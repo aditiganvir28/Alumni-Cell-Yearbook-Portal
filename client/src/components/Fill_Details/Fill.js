@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import './Fill.css'
+import './Fill.scss'
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';

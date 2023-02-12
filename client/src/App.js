@@ -14,8 +14,7 @@ import { LoginContext } from './helpers/Context';
 import axios from 'axios';
 import alumniData from './components/navbar/akumniData.json'
 import About from './components/About/About';
-
-
+import Footer from './components/Footer/Footer';
 function App() {
   const[user, setUser] = useState({}); //the one who logged in
   const[loggedin, setLoggedin] = useState(false);
@@ -112,13 +111,14 @@ function App() {
     <div className="App overflow-x-hidden">
       <Navbar/>
       <Routes>
-      <Route exact path="/" element={<div className='overflow-x-hidden'><Homepage/></div>} />
+      <Route exact path="/" element={<Homepage/>} />
       <Route exact path="/fill" element={<Fill />} />
       <Route exact path="/profile" element={<SecondLogin />} />
       <Route exact path="/about" element={<About />} />
       <Route exact path="/team" element={<Cards />} />
       <Route exact path="/comment" element={<MakeAComment />} />
       </Routes>
+      <Footer></Footer>
     </div>
     </LoginContext.Provider>
   );
