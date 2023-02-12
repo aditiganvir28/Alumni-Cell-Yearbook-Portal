@@ -2,12 +2,23 @@ const mongoose = require("mongoose");
 const Auth = require("./authModel");
 
 const mySchema = new mongoose.Schema({
-    user :{
-        type: mongoose.Schema.Types.ObjectId,
+    user_email :{
+        type: String,
     },
-    comment:{
-        type: String
+    comment: [
+        {
+        friend_email:{
+            type: String
+        },
+        friend_name:{
+            type: String
+        },
+        comment:{
+            type: String
+        }
     }
+    ]
+    
 });
 
 module.exports("my_comments", mySchema);

@@ -24,8 +24,8 @@ function Footer() {
                         <li><a href='https://alumni.iiti.ac.in/'>Alumni Portal</a></li>
                         <li><a href ='https://iiti.ac.in/'>IITI Official Website</a></li>
                     </ul>
+                    {/* <br></br> */}
                     <p><a href='https://www.gmail.com' className='fa fa-envelope'></a> alumnicell@iiti.ac.in,<br></br> acroffice@iiti.ac.in </p>
-                    <br></br>
                 </div>
                 <div className="footer-item2">
                     <h1>Find Us On</h1><br></br>
