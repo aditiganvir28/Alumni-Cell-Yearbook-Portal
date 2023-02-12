@@ -12,7 +12,7 @@ const Navbar=()=> {
   const navigate = useNavigate();
 
   const [searchword, setSearchword] = useState("");
-  const [wordentered, setWordentered] = useState();
+  const [wordentered, setWordentered] = useState("");
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
 
      //Logout function
@@ -102,13 +102,12 @@ const Navbar=()=> {
                 console.log(wordentered);
                 onEnter();
             }} />
-             {wordEnteredList.map((val, index)=>
-     (<li><button  className="btnsearch2" key={index} onClick={(e)=>{
-        e.preventDefault();
-            setSearchword(val.email);
-            // search=val;
-        }}>{val.name}</button></li>)
-          )}
+             {wordentered.length > 0 && wordEnteredList.map((val, index)=>
+  (<li><button className="btnsearch2" key={index} onClick={(e)=>{
+    e.preventDefault();
+        setSearchword(val.email);
+    }}>{val.name}</button></li>)
+)}
           </div>
           <div className='logout-button'>
             <button onClick={handleLogout}>logout</button>
