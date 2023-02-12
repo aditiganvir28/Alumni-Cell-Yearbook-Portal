@@ -31,7 +31,7 @@ function App() {
     /*global google*/
     if(window.google){
       google.accounts.id.initialize({
-      client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
+      client_id: "279659903183-6ctccbqdo4skcudgca030m3uti3at58i.apps.googleusercontent.com",
       callback: handleCallbackResponse
 
     });
@@ -70,7 +70,7 @@ function App() {
     //Checking if the user who has logged in has already logged in before
     var __FOUND = -1;
     for(var i=0; i<authData.length; i++) {
-	    if(authData[i].email == userObject.email) {
+	    if(authData[i].email === userObject.email) {
 		__FOUND = i;
 		break;
 	    }
