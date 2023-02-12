@@ -4,29 +4,70 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const jwt =  require('jsonwebtoken');
 const Users = require("../models/userModel");
+const session= require('express-session');
 
 const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
         user: "aditi10328@gmail.com",
-        pass:
+        pass: ""
     }
 })
 
 
 const getUsersData = asyncHandler(async (req, res)=>{
     //Get all usersData from MongoDb
-    res.send("hello")
-    console.log('hello');
-    const User = await User.find().lean();
+    const User = await Users.find();
 
+    
     //If no usersData
     if(!User?.length){
-        return res.status(400).json({message: 'No usersData found'});
+        console.log('princy')
+        // return res.status(400).json({message: 'No usersData found'});
+        res.send("No userData found");
     }
 
     res.josn(User);
 
+})
+
+const getProfileData = asyncHandler(async (req,res)=>{
+
+    const {email} = req.body;
+
+    const User = await Users.find({email: email}).exec();
+
+    res.send(User);
+})
+
+const getWordEntered = asyncHandler(async (req,res) => {
+
+    const wordEntered = req.body.wordentered;
+    console.log(wordEntered);
+    const User = await Users.find({name:{$regex: `(?i)${wordEntered}`}});
+
+    console.log(User);
+
+    if(!User?.length){
+        return res.status(400).json({message: 'No usersData found'});
+    }
+
+    res.send(User);
+
+})
+
+const getSearchWord = asyncHandler(async (req,res) =>{
+    const searchWord = req.body.searchword;
+
+    console.log(searchWord);
+
+    const User = await Users.find({email: searchWord});
+
+    if(!User?.length){
+        return res.status(400).json({message: 'No usersData found'});
+    }
+
+    res.send(User);
 })
 
 const createUsersData = asyncHandler(async (req,res) =>{
@@ -41,13 +82,13 @@ const createUsersData = asyncHandler(async (req,res) =>{
 
     // Check if email is in use
 
-    const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
+    // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
 
-        if(existingUser){
-            return res.status(409).send({
-                message: "Email is already in use."
-            });
-        }
+    //     if(existingUser){
+    //         return res.status(409).send({
+    //             message: "Email is already in use."
+    //         });
+    //     }
 
     // Create and store the new user
 
@@ -55,6 +96,7 @@ const createUsersData = asyncHandler(async (req,res) =>{
 
     if(usersData){
         //created
+        req.session.user=usersData;
         res.status(201).json({message: 'New user Created'})
     }
     else{
@@ -151,9 +193,10 @@ const verify = async(req,res) => {
         user.verified =true;
         await user.save();
 
-        return res.status(200).send({
-            message:"Account Verified"
-        });
+        return res.redirect('http://localhost:3000/profile')
+        // return res.status(200).send({
+        //     message:"Account Verified"
+        // });
     } catch(err){
         return res.status(500).send(err);
     }
@@ -163,5 +206,8 @@ module.exports = {
     getUsersData,
     createUsersData,
     updateUserData,
-    verify
+    verify,
+    getProfileData,
+    getWordEntered,
+    getSearchWord
 }

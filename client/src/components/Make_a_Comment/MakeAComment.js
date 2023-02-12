@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import { LoginContext } from '../../helpers/Context'
 import './MakeAComment.css'
+import axios from 'axios'
 
 const MakeAComment = () => {
+ 
   return (
     <div className='container'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
-      <div className='header'>
+      {/* <div className='header'>
         <img src='/images/1.png'/>
         <div className='navbar'>
           <ul>
@@ -24,7 +27,7 @@ const MakeAComment = () => {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
       <div className="container2">
         <div className="left">
           <span className="dot"></span>

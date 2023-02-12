@@ -22,10 +22,6 @@ function Fill(props) {
   });
 
 
-  // setUserData({...userData, user_id: props.user_id})
-  //Backend
-  console.log(user.user_id);
-
 //sending data to store in the database
 
 const onSubmit = () =>{

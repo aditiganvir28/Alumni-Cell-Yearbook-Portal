@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        // unique: true
     },
 
     name: {
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     roll_no: {
         type: String,
         required: [true, "Roll Number is required"],
-        unique: true,
+        // unique: true,
     },
 
     academic_program: {
@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
     personal_email_id: {
         type: String,
         required: [true, "Department is required"],
-        unique: true,
+        // unique: true,
     },
 
     current_company: {

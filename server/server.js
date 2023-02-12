@@ -4,6 +4,9 @@ const cors = require('cors');
 const { default: mongoose } = require('mongoose');
 const userDataRoutes = require('./routes/userDataRoutes');
 const authRoutes = require('./routes/authRoutes');
+const bodyParser=require('body-parser');
+const cookieParser=require('cookie-parser');
+const session= require('express-session');
 
 const app = express();
 
@@ -25,6 +28,18 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(session({
+    key:"userId",
+    secret:"subscribe",
+    resave: false,
+    saveUninitialized: false,
+    cookie:{
+        expires:60*60*24*60*60*60,
+    },
+}))
 
 app.get("/", (req,res)=>{
     // res.json({message: "Hello from server!!"});
@@ -54,3 +69,9 @@ mongoose.connect("mongodb://0.0.0.0:27017/yearbook-portal", {
 
 app.use(authRoutes);
 app.use(userDataRoutes);
+
+app.post('/profile', (req,res)=>{
+    userEmail: req.userEmail;
+
+    
+})
