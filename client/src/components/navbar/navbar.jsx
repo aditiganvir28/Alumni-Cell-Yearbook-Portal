@@ -27,7 +27,7 @@ const Navbar=()=> {
   const logged = (window.localStorage.getItem('loggedin'));
   if(logged==="true"){
        setLoggedin(true);
-  ``}
+  }
     else{
         setLoggedin(false);
     }
