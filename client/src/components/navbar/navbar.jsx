@@ -106,34 +106,12 @@ const Navbar=()=> {
                 console.log(wordentered);
                 onEnter();
             }} />
-<<<<<<< Updated upstream
              {wordentered.length > 0 && wordEnteredList.map((val, index)=>
   (<li><button className="btnsearch2" key={index} onClick={(e)=>{
     e.preventDefault();
         setSearchword(val.email);
     }}>{val.name}</button></li>)
 )}
-=======
-             {wordEnteredList.length != 0 && (
-        <div className="dataResult">
-          {wordEnteredList.map((val, index) => (
-            <li>
-              <button
-                className="btnsearch2"
-                key={index}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setSearchword(val.email);
-                  // search=val;
-                }}
-              >
-                {val.name}
-              </button>
-            </li>
-          ))}
-        </div>
-      )}
->>>>>>> Stashed changes
           </div>
           <div className='logout-button'>
             <button onClick={handleLogout}>logout</button>
