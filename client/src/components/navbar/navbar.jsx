@@ -15,6 +15,7 @@ const Navbar=()=> {
   const [wordentered, setWordentered] = useState();
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
   const {result, setResult} = useContext(LoginContext);
+  const [ isActive, setIsActive] = useState(false);
 
 //After refreshing the page user is still signed in 
   useEffect(()=>{
@@ -38,18 +39,7 @@ const Navbar=()=> {
       setUser({});
       window.localStorage.removeItem('user');
       setLoggedin(false);
-<<<<<<< HEAD
-      setIsActive(!isActive);
-  
-    }
-
-    const [isActive, setIsActive] = useState(false);
-
-  return (
-    <div className="container container-nav">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/fontawesome.min.js" integrity="sha512-36dJpwdEm9DCm3k6J0NZCbjf8iVMEP/uytbvaiOKECYnbCaGODuR4HSj9JFPpUqY98lc2Dpn7LpyPsuadLvTyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-=======
+      // setIsActive(!isActive);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
       navigate('/');
@@ -85,7 +75,6 @@ const Navbar=()=> {
 
   return (
     <div className="overflow-x-hidden">
->>>>>>> master
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
@@ -96,6 +85,7 @@ const Navbar=()=> {
           <Link to="/">HOME</Link>
           <Link to="/about">ABOUT</Link>
           <Link to="/team">DEVELOPERS</Link>
+          
           <li>   
           <div id='google-login'>
           </div>
