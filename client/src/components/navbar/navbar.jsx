@@ -15,7 +15,7 @@ const Navbar=()=> {
   const [wordentered, setWordentered] = useState();
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
   const {result, setResult} = useContext(LoginContext);
-
+  const [isActive, setIsActive] = useState(false);
 //After refreshing the page user is still signed in 
   useEffect(()=>{
     if(window.localStorage.getItem('user')!==null){
@@ -107,8 +107,22 @@ const Navbar=()=> {
           )}
           </div>
           <div className='logout-button'>
-            <button onClick={handleLogout}>logout</button>
+            {/* <button onClick={handleLogout}>logout</button> */}
           </div>
+
+          <div className="dropdown" style={{}}>
+            <div className="dropdown-btn" style={{display:'flex'}} onClick={e => setIsActive(!isActive)}>
+              <img src="../../../images/profile.jpg" alt="" /> 
+              <i className="fa fa-caret-down" style={{padding:'0px', textAlign:'left', verticalAlign:'center'}}></i>
+            </div>
+          
+          {isActive && (
+            <div className="dropdown-content">
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button className='button' href="#" style={{textAlign:'left'}}>My Profile</button></a></div>
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button onClick={handleLogout} className='button' style={{textAlign:'left'}}>Logout</button></a></div>
+            </div>
+          )}</div>
+
         </li>
         </>
         }
