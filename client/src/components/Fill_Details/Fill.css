@@ -137,3 +137,11 @@ input.search{
       flex-direction: column;
     }
   }
+
+select {
+    width: 73%;
+    background-color: #3E185C;
+    color: white;      
+    padding: 10px;
+    margin-bottom: 2%;
+}
