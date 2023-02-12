@@ -177,7 +177,7 @@ const verify = async(req,res) => {
     }
 
     try{
-        //Find user with matcjhing ID
+        //Find user with matching ID
         const user = await Users.findOne({_id: payload.ID}).exec();
 
         if(!user){
