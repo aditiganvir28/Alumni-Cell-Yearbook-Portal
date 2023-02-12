@@ -2,18 +2,17 @@ const mongoose = require("mongoose");
 const Auth = require("./authModel");
 
 const newSchema = new mongoose.Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: Auth,
+    user_email: {
+        type: String,
     },
 
     comments: [
         {
-            user: String,
+            friend_email: String,
+            friend_name: String,
             comment: String,
         }
     ]
 });
 
-module.exports("new_comments", newSchema);
+module.exports = mongoose.model("NewComments", newSchema);

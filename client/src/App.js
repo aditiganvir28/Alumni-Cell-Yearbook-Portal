@@ -14,20 +14,19 @@ import { LoginContext } from './helpers/Context';
 import axios from 'axios';
 import alumniData from './components/navbar/akumniData.json'
 import About from './components/About/About';
-
-
+import Footer from './components/Footer/Footer';
 function App() {
-  const[user, setUser] = useState({});
+  const[user, setUser] = useState({}); //the one who logged in
   const[loggedin, setLoggedin] = useState(false);
-  const [authData, setAuthData] = useState({});
+  const [authData, setAuthData] = useState({}); //all the users wha have already logged in
+  const [result, setResult] = useState({});
 
    //getting all alumnis from json
-   const alumniEmail= alumniData;
+   const alumniEmail= alumniData; //geeting all the alumnis data
 
    const navigate = useNavigate();
 
   //Google authentication for IITI students
-
   useEffect(()=>{
     /*global google*/
     if(window.google){
@@ -56,41 +55,27 @@ function App() {
 
 }, []);
 
-// useEffect(()=>{
-//   axios.get('http://localhost:5000/userData')
-//   .then((res)=>{
-//     console.log(res.data);
-//     console.log("reached");
-//   })
-//   .catch((err)=>{
-//     console.log(err);
-//   })
-// })
-
 //Callback Function after logging in
   function handleCallbackResponse(response){
-    // console.log(response.credential); 
-    var userObject = jwt_decode(response.credential)
-    // console.log(userObject);
+    //getting all the data from google for the user who signs in
+    var userObject = jwt_decode(response.credential);
     setUser(userObject);
-    localStorage.setItem('user' ,JSON.stringify(userObject));
-    // console.log(user);
-    document.getElementById("google-login").hidden= true;
     setLoggedin(true);
+    //Storing the users data in the localStorage
+    window.localStorage.setItem('user' ,JSON.stringify(userObject));
     window.localStorage.setItem('loggedin', true);
-    // window.localStorage.setItem('loggedin', loggedin);
-    // console.log(loggedin)
+    //Rendering the signin button
+    document.getElementById("google-login").hidden= true;
     
+    //Checking if the user who has logged in has already logged in before
     var __FOUND = -1;
     for(var i=0; i<authData.length; i++) {
 	    if(authData[i].email == userObject.email) {
-		// __FOUND is set to the index of the element
-    console.log("loop");
 		__FOUND = i;
 		break;
 	    }
     }
-    console.log(__FOUND)
+    
     if(__FOUND!==-1){
               if(alumniEmail.includes(userObject.email)){
                 navigate('/profile');
@@ -108,7 +93,6 @@ function App() {
               }).then((res)=>{
                 // console.log(res);
                 if(alumniEmail.includes(userObject.email)){
-                  console.log(userObject.jti);
                   console.log("first time login and alumni");
                   navigate('/fill');
                 }
@@ -122,9 +106,8 @@ function App() {
             }
   }
 
-
   return (
-    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData}}>
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult}}>
     <div className="App overflow-x-hidden">
       <Navbar/>
       <Routes>
@@ -135,6 +118,7 @@ function App() {
       <Route exact path="/team" element={<Cards />} />
       <Route exact path="/comment" element={<MakeAComment />} />
       </Routes>
+      <Footer></Footer>
     </div>
     </LoginContext.Provider>
   );

@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import {useNavigate, useRouteLoaderData} from "react-router-dom";
+import {Link, useNavigate, useRouteLoaderData} from "react-router-dom";
 import './Navbar.scss';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
@@ -14,32 +14,29 @@ const Navbar=()=> {
   const [searchword, setSearchword] = useState();
   const [wordentered, setWordentered] = useState("");
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
-
-     //Logout function
-
-     useEffect(()=>{
-      if(window.localStorage.getItem('user')!==null){
-      const userLoggedIn = window.localStorage.getItem('user');
-      console.log(JSON.parse(userLoggedIn));
-      if(userLoggedIn!=null){
-      setUser(JSON.parse(userLoggedIn));
-      }
+  const {result, setResult} = useContext(LoginContext);
+  const [isActive, setIsActive] = useState(false);
+//After refreshing the page user is still signed in 
+  useEffect(()=>{
+    if(window.localStorage.getItem('user')!==null){
+    const userLoggedIn = window.localStorage.getItem('user');
+    if(userLoggedIn!=null){
+    setUser(JSON.parse(userLoggedIn));
     }
-      console.log(window.localStorage.getItem('loggedin'))
-      const logged = (window.localStorage.getItem('loggedin'));
-
-      if(logged==="true"){
-        setLoggedin(true);
-      }
-      else{
+  }
+  const logged = (window.localStorage.getItem('loggedin'));
+  if(logged==="true"){
+       setLoggedin(true);
+  }
+    else{
         setLoggedin(false);
-      }
-     },[])
+    }
+  },[])
 
-     const handleLogout = () =>{
+  //Logout Function
+  const handleLogout = () =>{
       setUser({});
       window.localStorage.removeItem('user');
-      
       setLoggedin(false);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
@@ -50,12 +47,12 @@ const Navbar=()=> {
       document.getElementById("google-login").hidden = true;
     }
 
-    //Search
+    //Search Engine Functions
     useEffect(() =>{
       axios.post('http://localhost:5000/searchword', {
         searchword: searchword
       }).then((res)=>{
-        
+        setResult(res.data);
         console.log(res.data);
       }).catch((err)=>{
         console.log(err)
@@ -77,6 +74,7 @@ const Navbar=()=> {
         console.log(err);
       })
     }
+
   return (
     <div className="overflow-x-hidden">
       <style>
@@ -86,13 +84,10 @@ const Navbar=()=> {
       <img src='/images/1.png'/>
       <div className='navbar'>
         <ul>
-          <a href="/">HOME</a>
-          <a href="/">ABOUT</a>
-          <a href="/">DEVELOPERS</a>
-          
-          {/* <li><img src='/images/sign_in.png'/></li> */}
-            <li>   
-                 
+          <Link to="/">HOME</Link>
+          <Link to="/about">ABOUT</Link>
+          <Link to="/team">DEVELOPERS</Link>
+          <li>   
           <div id='google-login'>
           </div>
         </li>
@@ -114,11 +109,26 @@ const Navbar=()=> {
 )}
           </div>
           <div className='logout-button'>
-            <button onClick={handleLogout}>logout</button>
+            {/* <button onClick={handleLogout}>logout</button> */}
           </div>
+
+          <div className="dropdown" style={{}}>
+            <div className="dropdown-btn" style={{display:'flex'}} onClick={e => setIsActive(!isActive)}>
+              <img src="../../../images/profile.jpg" alt="" /> 
+              <i className="fa fa-caret-down" style={{padding:'0px', textAlign:'left', verticalAlign:'center'}}></i>
+            </div>
+          
+          {isActive && (
+            <div className="dropdown-content">
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button className='button' href="#" style={{textAlign:'left'}}>My Profile</button></a></div>
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button onClick={handleLogout} className='button' style={{textAlign:'left'}}>Logout</button></a></div>
+            </div>
+          )}</div>
+
         </li>
         </>
         }
+
       </ul>        
     </div>
     </div>
