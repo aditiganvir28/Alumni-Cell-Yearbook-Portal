@@ -38,6 +38,18 @@ const Navbar=()=> {
       setUser({});
       window.localStorage.removeItem('user');
       setLoggedin(false);
+<<<<<<< HEAD
+      setIsActive(!isActive);
+  
+    }
+
+    const [isActive, setIsActive] = useState(false);
+
+  return (
+    <div className="container container-nav">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/fontawesome.min.js" integrity="sha512-36dJpwdEm9DCm3k6J0NZCbjf8iVMEP/uytbvaiOKECYnbCaGODuR4HSj9JFPpUqY98lc2Dpn7LpyPsuadLvTyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+=======
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
       navigate('/');
@@ -73,6 +85,7 @@ const Navbar=()=> {
 
   return (
     <div className="overflow-x-hidden">
+>>>>>>> master
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
@@ -107,8 +120,22 @@ const Navbar=()=> {
           )}
           </div>
           <div className='logout-button'>
-            <button onClick={handleLogout}>logout</button>
+            {/* <button onClick={handleLogout}>logout</button> */}
           </div>
+
+          <div className="dropdown" style={{}}>
+            <div className="dropdown-btn" style={{display:'flex'}} onClick={e => setIsActive(!isActive)}>
+              <img src="../../../images/profile.jpg" alt="" /> 
+              <i className="fa fa-caret-down" style={{padding:'0px', textAlign:'left', verticalAlign:'center'}}></i>
+            </div>
+          
+          {isActive && (
+            <div className="dropdown-content">
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button className='button' href="#" style={{textAlign:'left'}}>My Profile</button></a></div>
+              <div className="dropdown-item"><a style={{ padding:'2%'}}><button onClick={handleLogout} className='button' style={{textAlign:'left'}}>Logout</button></a></div>
+            </div>
+          )}</div>
+
         </li>
         </>
         }
