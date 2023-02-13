@@ -12,6 +12,7 @@ const Navbar=()=> {
   const navigate = useNavigate();
 
   const [searchword, setSearchword] = useState("");
+  const [inputValue, setInputValue] = useState();
   const [wordentered, setWordentered] = useState("");
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
   const {result, setResult} = useContext(LoginContext);
@@ -51,34 +52,34 @@ const Navbar=()=> {
     }
 
     //Search Engine Functions
-    useEffect(() =>{
-      axios.post('http://localhost:5000/searchword', {
-        searchword: searchword
-      }).then((res)=>{
-        setResult(res.data);
-        console.log(res.data);
-      }).catch((err)=>{
-        console.log(err)
-      })
-    })
+    // useEffect(() =>{
+    //   axios.post('http://localhost:5000/searchword', {
+    //     searchword: searchword
+    //   }).then((res)=>{
+    //     setResult(res.data);
+    //     console.log(res.data);
+    //   }).catch((err)=>{
+    //     console.log(err)
+    //   })
+    // })
 
     const searchAWord = (event) =>{
       setWordentered(event.target.value);
       console.log(wordentered);
     }
 
-    useEffect(() =>{
-      axios.post('http://localhost:5000/wordEntered',{
-        wordentered: wordentered
-      }).then((res)=>{
-        console.log(res.data);
-        setWordEnteredList(res.data);
-        console.log(wordEnteredList)
-      }).catch((err)=>{
-        console.log(err);
-      })
-    }
-    )
+    // useEffect(() =>{
+    //   axios.post('http://localhost:5000/wordEntered',{
+    //     wordentered: wordentered
+    //   }).then((res)=>{
+    //     // console.log(res.data);
+    //     setWordEnteredList(res.data);
+    //     // console.log(wordEnteredList)
+    //   }).catch((err)=>{
+    //     console.log(err);
+    //   })
+    // }
+    // )
 
   return (
     <div className="overflow-x-hidden">
@@ -106,11 +107,14 @@ const Navbar=()=> {
               searchAWord(e);
               (e.target.value==="")?setDisplay(false):setDisplay(true);
               // onEnter();
-            }} />
+            }} value={inputValue}/>
              {wordEnteredList.map((val, index)=>
         (<li><button  className={`btnsearch2 ${(display)?"":"display-none"}`} key={index} onClick={(e)=>{
         e.preventDefault();
             setSearchword(val.email);
+            setInputValue("");
+            setDisplay(false);
+            e.target.value="";
             // search=val;
             navigate('/comment')
         }}>{val.name}</button></li>)

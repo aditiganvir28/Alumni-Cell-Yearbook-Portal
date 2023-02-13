@@ -4,10 +4,28 @@ import './Fill.scss'
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
-
+import{ Image } from "cloudinary-react"
+import {fill} from "@cloudinary/url-gen/actions/resize";
+import {CloudinaryImage} from '@cloudinary/url-gen';
 
 function Fill(props) {
   const{user} = useContext(LoginContext);
+  const [imageSelected, setImageSelected] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const uploadImage = () => {
+    console.log(imageSelected );
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset","profile_image");
+    console.log(formData);
+
+    axios.post('https://api.cloudinary.com/v1_1/dheskw46y/image/upload', formData)
+    .then((res)=>{
+      console.log(res.data.url);
+      setImageUrl(res.data.url);
+    })
+
+  }
 
   const[userData, setUserData] = useState({
     name_:"",
@@ -109,8 +127,12 @@ const onSubmit = () =>{
         </div>
         <div className="container4">
         <div className="right">
-          <span className="dot"></span>
+          <span className="dot">
+            {/* <img src=""/> */}
+          </span>
           <h2> </h2><br/>
+          <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
+          <button onClick = {uploadImage}>Upload Image</button>
           <h2>Insert your Profile Picture*</h2><br/>
           <div className="container3">
           <input type="text" placeholder="ABOUT ME" size="60"/><br/>
