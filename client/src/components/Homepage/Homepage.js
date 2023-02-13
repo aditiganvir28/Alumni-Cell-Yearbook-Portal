@@ -19,8 +19,8 @@ function Homepage() {
                         <div className='lg:h-1/2 lg:mb-0 mb-2 text-white uppercase text-3xl text-left pl-4 mt-8 lg:mt-1 w-full flex-wrap overscroll-contain'>ALUMNI CELL, IIT INDORE <br></br><span className='capitalize text-sm'>Welcome to the Yearbook Portal – A one-stop hub to curate your Yearbook profile and help others do the same! The Portal is simple to operate. Log in using your institute ID, and upon the first login, you will be asked to complete your information details. Following this, you will have created your profile for the Yearbook! Now for the fun part: Using the Search Bar, you can look up other batchmates who have registered on the Portal and can comment on their page! Likewise, others can comment on your page, and you will have the power to approve those comments. At the end of the year, your profile will be complete and printed in the Yearbook! So, register now and join in on the nostalgic trips of your time at IIT Indore! Regards The Web Development Division The Alumni Cell Indian Institute of Technology, Indore</span></div>
                     </div>
                     <div className='w-full lg:w-1/3 lg:h-3/4 mt-8 lg:mt-0 flex flex-col items-center lg:items-start'>
-                        <div className='text-4xl uppercase text-white text-center lg:text-left w-4/5 lg:w-3/4'>Welcome to your mjfighxd fj,grd,fk jgrdbhc;new memories page!</div>
-                        <div className='bg-[#3E185C] h-96 w-96 rounded-full mt-12 lg:mb-0 mb-12'></div>
+                        <div className='text-4xl uppercase text-white text-center lg:text-left w-4/5 lg:w-3/4'>Welcome to your new memories page!</div>
+                        <div className='bg-[#3E185C] h-full w-3/5 rounded-full mt-12 lg:mb-0 mb-12'></div>
                     </div>
                 </div>
             </div>
