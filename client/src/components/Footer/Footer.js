@@ -13,9 +13,8 @@ function Footer() {
                     <h1>Alumni Cell</h1>
                     <div className="tt">
                      The Alumni Cell is the student-run cell to connect and broaden the Institute’s alum network.<br></br><br></br>
-                     <p>
-                     <span className='fa fa-map-marker bg-[#180c1e]'></span>
-                     <span className='bg-[#180c1e]'>Alumni and Corporate Relations Office, 7th floor, Abhinandan Bhavan, Indian Institute of Technology Indore, Khandwa Road, Simrol, Indore-453552, India</span></p>
+                     <i className='fa fa-map-marker bg-[#180c1e]' id='map'></i>
+                     <p className='bg-[#180c1e]' id='address'>Alumni and Corporate Relations Office, 7th floor, Abhinandan Bhavan, Indian Institute of Technology Indore, Khandwa Road, Simrol, Indore-453552, India</p>
                     </div>
                 </div>
                 <div className="footer-item1">
@@ -25,7 +24,8 @@ function Footer() {
                         <li><a href ='https://iiti.ac.in/'>IITI Official Website</a></li>
                     </ul>
                     {/* <br></br> */}
-                    <p id='para2'><a href='https://www.gmail.com' className='fa fa-envelope'></a> alumnicell@iiti.ac.in,<br></br> acroffice@iiti.ac.in </p>
+                    <a href='https://www.gmail.com' className='fa fa-envelope' id='env'></a>
+                    <p id='para2'> alumnicell@iiti.ac.in,<br></br> acroffice@iiti.ac.in </p>
                 </div>
                 <div className="footer-item2">
                     <h1>Find Us On</h1><br></br>

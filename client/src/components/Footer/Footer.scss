@@ -23,6 +23,7 @@
 .footer-item1 #para2{
     color: white;
     background-color: #160923;
+    display: inline-flex;
     font-size: 15px;
     margin-left: 0%;
     padding-left: 1%;
@@ -54,4 +55,12 @@
     padding-bottom: 1%;
     padding-top: 1%;
     color: white;
+}
+.footer-item #address{
+    // padding-left: 1%;
+    font-size: small;
+    display: inline-flex;
+}
+.footer-item #map{
+    margin-bottom: 5%;
 }
