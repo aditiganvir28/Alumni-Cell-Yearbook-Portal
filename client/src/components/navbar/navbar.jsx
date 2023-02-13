@@ -86,7 +86,7 @@ const Navbar=()=> {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
-    <div className='header'>
+    <div className='header22'>
       <img src='/images/1.png'/>
       <div className='navbar'>
         <ul>
