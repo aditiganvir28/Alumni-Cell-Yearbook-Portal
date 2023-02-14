@@ -11,11 +11,14 @@ const Navbar=()=> {
 
   const navigate = useNavigate();
 
-  const [searchword, setSearchword] = useState();
+  const [searchword, setSearchword] = useState("");
+  const [inputValue, setInputValue] = useState();
   const [wordentered, setWordentered] = useState("");
   const [ wordEnteredList, setWordEnteredList ] = useState([]);
   const {result, setResult} = useContext(LoginContext);
-  const [isActive, setIsActive] = useState(false);
+  const [ isActive, setIsActive] = useState(false);
+  const [display, setDisplay] = useState(false);
+
 //After refreshing the page user is still signed in 
   useEffect(()=>{
     if(window.localStorage.getItem('user')!==null){
@@ -38,6 +41,7 @@ const Navbar=()=> {
       setUser({});
       window.localStorage.removeItem('user');
       setLoggedin(false);
+      // setIsActive(!isActive);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
       navigate('/');
@@ -48,60 +52,48 @@ const Navbar=()=> {
     }
 
     //Search Engine Functions
-    useEffect(() =>{
-      axios.post('http://localhost:5000/searchword', {
-        searchword: searchword
-      }).then((res)=>{
-        setResult(res.data);
-        console.log(res.data);
-      }).catch((err)=>{
-        console.log(err)
-      })
-    })
+    // useEffect(() =>{
+    //   axios.post('http://localhost:5000/searchword', {
+    //     searchword: searchword
+    //   }).then((res)=>{
+    //     setResult(res.data);
+    //     console.log(res.data);
+    //   }).catch((err)=>{
+    //     console.log(err)
+    //   })
+    // })
 
-    const onEnter = (event) =>{
+    const searchAWord = (event) =>{
       setWordentered(event.target.value);
       console.log(wordentered);
-      axios.post('http://localhost:5000/wordEntered',{
-        wordentered: wordentered
-      }).then((res)=>{
-        console.log(res.data);
-        if (wordentered === "") {
-          setWordEnteredList([]);
-        } else {
-        setWordEnteredList(res.data);
-        }
-        console.log(wordEnteredList)
-      }).catch((err)=>{
-        console.log(err);
-      })
     }
 
-    // const onChange = (event) => {
-    //   setWordentered(event.target.value);
+    // useEffect(() =>{
     //   axios.post('http://localhost:5000/wordEntered',{
-    //     wordentered: event.target.value
+    //     wordentered: wordentered
     //   }).then((res)=>{
-    //     console.log(res.data);
+    //     // console.log(res.data);
     //     setWordEnteredList(res.data);
-    //     console.log(wordEnteredList)
+    //     // console.log(wordEnteredList)
     //   }).catch((err)=>{
     //     console.log(err);
-    //   });
-    // };
+    //   })
+    // }
+    // )
 
   return (
     <div className="overflow-x-hidden">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
-    <div className='header'>
+    <div className='header22'>
       <img src='/images/1.png'/>
       <div className='navbar'>
         <ul>
           <Link to="/">HOME</Link>
           <Link to="/about">ABOUT</Link>
           <Link to="/team">DEVELOPERS</Link>
+          
           <li>   
           <div id='google-login'>
           </div>
@@ -111,21 +103,22 @@ const Navbar=()=> {
           <>
           <li>
           <div className="searchr">
-            <input type="text" placeholder="Search..." class="search" 
-            // onChange = {(event)=>{
-            //     setWordentered(event.target.value);
-            //     console.log(wordentered);
-            //     onEnter();
-            // }}
-            onChange={(event) => onEnter(event)}
-            
-             />
-             {wordentered.length > 0 && wordEnteredList.map((val, index)=>
-  (<li><button className="btnsearch2" key={index} onClick={(e)=>{
-    e.preventDefault();
-        setSearchword(val.email);
-    }}>{val.name}</button></li>)
-)}
+            <input type="text" placeholder="Search..." class="search" onChange = {(e)=>{
+              searchAWord(e);
+              (e.target.value==="")?setDisplay(false):setDisplay(true);
+              // onEnter();
+            }} value={inputValue}/>
+             {wordEnteredList.map((val, index)=>
+        (<li><button  className={`btnsearch2 ${(display)?"":"display-none"}`} key={index} onClick={(e)=>{
+        e.preventDefault();
+            setSearchword(val.email);
+            setInputValue("");
+            setDisplay(false);
+            e.target.value="";
+            // search=val;
+            navigate('/comment')
+        }}>{val.name}</button></li>)
+          )}
           </div>
           <div className='logout-button'>
             {/* <button onClick={handleLogout}>logout</button> */}

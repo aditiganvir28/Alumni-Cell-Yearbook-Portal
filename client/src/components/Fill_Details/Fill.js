@@ -44,32 +44,13 @@ const onSubmit = () =>{
     })
 }
   return (
-      <div className='container'>
+      <div className='container' id='fill'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
-      {/* <div className='header'>
-        <img src='/images/1.png' alt='profile'/>
-        <div className='navbar'>
-          <ul>
-          <a href="#">HOME</a>
-          <a href="#">ABOUT</a>
-          <a href="#">MY PROFILE</a>
-          {/* <a href="#">Link</a> */}
-            {/* <li>
-              <div className="searchr">
-                <input type="text" placeholder="Search..." class="search"/>
-              </div>
-            </li>
-            <li>
-              <a href='#'>
-              <img src="/images/profile.jpg" alt="" id="profile"/>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div> */} 
-      <div className="container2">
+      
+     
+        <div className="container4">
         <div className="left">
           <h2> </h2><br/>
           <h1>Fill your Profile</h1><br/>
@@ -100,8 +81,6 @@ const onSubmit = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <button className="submit" onClick={onSubmit}>Submit</button>
         </div>
-        </div>
-        <div className="container4">
         <div className="right">
           <span className="dot"></span>
           <h2> </h2><br/>

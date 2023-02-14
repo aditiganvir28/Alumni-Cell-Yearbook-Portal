@@ -10,6 +10,7 @@ const ApprovedCommetns = require("../models/approved_comments");
 const RejectedComments = require("../models/rejected_comments");
 const session= require('express-session');
 
+
 const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
@@ -174,10 +175,8 @@ const getProfileData = asyncHandler(async (req,res)=>{
 const getWordEntered = asyncHandler(async (req,res) => {
 
     const wordEntered = req.body.wordentered;
-    console.log(wordEntered);
-    const User = await Users.find({name:{$regex: `(?i)${wordEntered}`}});
 
-    console.log(User);
+    const User = await Users.find({name: {$regex: new RegExp('^'+wordEntered+'.*', 'i')}}).exec();
 
     if(!User?.length){
         return res.status(400).json({message: 'No usersData found'});
