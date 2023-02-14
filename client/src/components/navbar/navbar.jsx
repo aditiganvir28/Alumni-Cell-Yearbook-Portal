@@ -59,7 +59,9 @@ const Navbar=()=> {
       })
     })
 
-    const onEnter = () =>{
+    const onEnter = (event) =>{
+      setWordentered(event.target.value);
+      console.log(wordentered);
       axios.post('http://localhost:5000/wordEntered',{
         wordentered: wordentered
       }).then((res)=>{
@@ -74,6 +76,19 @@ const Navbar=()=> {
         console.log(err);
       })
     }
+
+    // const onChange = (event) => {
+    //   setWordentered(event.target.value);
+    //   axios.post('http://localhost:5000/wordEntered',{
+    //     wordentered: event.target.value
+    //   }).then((res)=>{
+    //     console.log(res.data);
+    //     setWordEnteredList(res.data);
+    //     console.log(wordEnteredList)
+    //   }).catch((err)=>{
+    //     console.log(err);
+    //   });
+    // };
 
   return (
     <div className="overflow-x-hidden">
@@ -96,11 +111,15 @@ const Navbar=()=> {
           <>
           <li>
           <div className="searchr">
-            <input type="text" placeholder="Search..." class="search" onChange = {(event)=>{
-                setWordentered(event.target.value);
-                console.log(wordentered);
-                onEnter();
-            }} />
+            <input type="text" placeholder="Search..." class="search" 
+            // onChange = {(event)=>{
+            //     setWordentered(event.target.value);
+            //     console.log(wordentered);
+            //     onEnter();
+            // }}
+            onChange={(event) => onEnter(event)}
+            
+             />
              {wordentered.length > 0 && wordEnteredList.map((val, index)=>
   (<li><button className="btnsearch2" key={index} onClick={(e)=>{
     e.preventDefault();
