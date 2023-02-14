@@ -9,6 +9,7 @@ body{
     background-color: #4d1a6c;
     color: white;
     padding: 1%;
+    border-radius: 5%;
 }
 
 .cards{
@@ -25,4 +26,11 @@ body{
 i{
     color: white;
     padding: 1%;
+}
+
+button {
+    text-align: center;
+    vertical-align: middle;
+    margin: 2% !important;
+    margin-right: 0% !important;
 }
