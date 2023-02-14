@@ -1,6 +1,7 @@
 
 .container2 {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     width: auto;
     // background-color: rgb(44, 3, 57);
@@ -11,7 +12,8 @@
     // padding: 90px;
     padding-left: 1%;
     width: 40%;
-    // font-size: smaller;
+    color: white;
+    font-size: large;
 }
 .footer-item p{
     color: white;
@@ -20,18 +22,19 @@
     margin: 0%;
     padding: 0%;
 }
-.footer-item1 #para2{
-    color: white;
-    background-color: #160923;
-    font-size: 15px;
-    margin-left: 0%;
-    padding-left: 1%;
-}
+// .footer-item1 #para2{
+//     color: white;
+//     background-color: #160923;
+//     display: inline-flex;
+//     font-size: 15px;
+//     margin-left: 0%;
+//     padding-left: 1%;
+// }
 .tt{
     color: white;
     font-size: large;
-    padding-left: 5%;
     width: 70%;
+    display: inline-flex;
 }
 .footer-item1 {
     text-align: left;
@@ -48,10 +51,25 @@
     width: 20%;
     // font-size: small;
 }
+.footer-item #line{
+    padding-left: 5%;
+    display: inline-flex;
+    width: 80%;
+    font-size: large;
+}
 .end{
     background-color: black;
     padding-left: 38%;
     padding-bottom: 1%;
     padding-top: 1%;
     color: white;
+}
+.footer-item #map{
+    padding-left: 10%;
+}
+.mail #para2{
+    color: white;
+    display: inline-flex;
+    padding-left: 5%;
+    font-size: medium;
 }
