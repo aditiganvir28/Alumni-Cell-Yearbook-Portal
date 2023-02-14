@@ -4,9 +4,7 @@ import './Fill.scss'
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
-import{ Image } from "cloudinary-react"
-import {fill} from "@cloudinary/url-gen/actions/resize";
-import {CloudinaryImage} from '@cloudinary/url-gen';
+
 
 function Fill(props) {
   const{user} = useContext(LoginContext);
@@ -121,15 +119,9 @@ console.log(userData)
           }
           <button className="submit" onClick={onSubmit}>Submit</button>
         </div>
-        </div>
-        <div className="container4">
         <div className="right">
-          <span className="dot">
-            {/* <img src=""/> */}
-          </span>
+          <span className="dot"></span>
           <h2> </h2><br/>
-          <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
-          <button onClick = {uploadImage}>Upload Image</button>
           <h2>Insert your Profile Picture*</h2><br/>
           <div className="container3">
           <br/>

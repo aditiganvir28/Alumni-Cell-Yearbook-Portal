@@ -7,14 +7,14 @@ import App from '../../App';
 const SecondLogin = () => {
 
 
-    const {user} = useContext(LoginContext);
+    const { user } = useContext(LoginContext);
     const [myComments, setMyComments] = useState([]);
     const [newComments, setNewComments] = useState([]);
     const [approvedComments, setApprovedComments] = useState([]);
     const [friendEmail, setFriendEmail] = useState("");
     const [friendName, setFriendName] = useState("");
     const [comment, setComment] = useState("");
-    
+
     //Get the data to be displayed on the profile
     useEffect(()=>{
       axios.post('http://localhost:5000/profile', {
@@ -32,14 +32,14 @@ const SecondLogin = () => {
         }).then((res)=>{
             // console.log(res.data);
             setMyComments(res.data.comments);
-        }).catch((err)=>{
+        }).catch((err) => {
             console.log(err);
         })
     })
 
     //Getting all the newComments to be displayed in the newComments Section
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.post('http://localhost:5000/getNewComments', {
             friend_email: user.email
         }).then((res)=>{
@@ -67,7 +67,7 @@ const SecondLogin = () => {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
-                
+
             </style>
             {/* <div className='header'>
                 <img src='/images/1.png' alt='profile' />
@@ -87,7 +87,35 @@ const SecondLogin = () => {
 
             <div className="container2">
                 <div className="comments">
-                    <h1>Approved Comments</h1>
+                    <div>
+                        <h1>Approved Comments</h1>
+                    </div>
+                    <div id='commentsscroll'>
+                        <div id='comment'>
+                            <p id='commentp'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur minima molestiae dolores animi, nam earum libero obcaecati! Iure dolor, corrupti ipsum nihil, dignissimos consequatur impedit dolore rerum autem iste voluptate.</p>
+                            <p id='commentby'>-BY</p>
+                        </div>
+                        <div id='comment'>
+                            <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde amet provident minima veniam explicabo alias quos magni commodi animi earum eum recusandae dignissimos aut nam, perferendis accusamus ex culpa modi!</p>
+                            <p id='commentby'>-BY</p>
+                        </div>
+                        <div id='comment'>
+                            <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex repellendus perspiciatis qui minima quas non temporibus accusamus dolor. Ratione, unde nesciunt? Deserunt quos minus fugit sed fuga enim! Natus, eius!</p>
+                            <p id='commentby'>-BY</p>
+                        </div>
+                        <div id='comment'>
+                            <p id='commentp'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae rerum molestiae deleniti dolor! Facilis architecto doloremque, sapiente voluptatem vitae eligendi nam beatae. Incidunt corporis repellat suscipit aliquid deserunt! Ipsa, nihil.</p>
+                            <p id='commentby'>-BY</p>
+                        </div>
+                        <div id='comment'>
+                            <p id='commentp'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae officiis animi ipsam sequi ea esse omnis, dolorem repellendus. Ipsam quia soluta fugit quibusdam, saepe consequuntur fugiat repudiandae aperiam mollitia. Doloribus.</p>
+                            <p id='commentby'>-BY</p>
+                        </div>
+                        <div id='comment'>
+                            <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis excepturi suscipit necessitatibus ad laborum velit deserunt. Ab repellendus reprehenderit at magni, veritatis quos recusandae minima, maiores dolorem, fugiat quo rerum.</p>
+                            <p id='commentby'>-BY</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="profile">
                     <span className="dot"></span>
@@ -97,11 +125,12 @@ const SecondLogin = () => {
                 </div>
             </div>
             <div className="edit">
-                <button className='button'>EDIT YOUR PROFILE</button>
+                <button className='button'style={{width:'30%'}}>EDIT YOUR PROFILE</button>
             </div>
             <div className="container2">
                 <div className="comments">
                     <h1>My Comments</h1>
+
                 </div>
                 <div className="comments" id='new' >
                     <h1>New Comments</h1>
@@ -152,10 +181,10 @@ const SecondLogin = () => {
 
             <div style={{
                 height: "50px"
-                }}>
+            }}>
             </div>
 
-            <div className="container2">
+            {/* <div className="container2">
                 <div className='footer-item'>
                     <h1>ALUMNI CELL IIT INDORE</h1>
                     <h1>.......................</h1>
@@ -163,20 +192,20 @@ const SecondLogin = () => {
                 </div>
                 <div className="footer-item">
                     <h1>IMPORTANT LINKS</h1>
-                    <ul id='links' style={{ listStyleType : "circle", marginLeft: "30px"}}>
+                    <ul id='links' style={{ listStyleType: "circle", marginLeft: "30px" }}>
                         <li>ALUMNI PORTAL</li>
                         <li>IITI OFFICIAL WEBSITE</li>
                     </ul>
                 </div>
                 <div className="footer-item">
-                    <h1>FIND US ON</h1> 
-                    <a href="" className='fa fa-facebook' style={{ display: "inline"}}></a>
-                    <a href="" className='fa fa-twitter' style={{display:"inline"}}></a>
-                    <a href="" className='fa fa-linkedin' style={{display:"inline"}}></a>
-                    <a href="" className='fa fa-instagram' style={{display:"inline"}}></a>
+                    <h1>FIND US ON</h1>
+                    <a href="" className='fa fa-facebook' style={{ display: "inline" }}></a>
+                    <a href="" className='fa fa-twitter' style={{ display: "inline" }}></a>
+                    <a href="" className='fa fa-linkedin' style={{ display: "inline" }}></a>
+                    <a href="" className='fa fa-instagram' style={{ display: "inline" }}></a>
 
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )
