@@ -4,28 +4,10 @@ import './Fill.scss'
 import { useLocation } from 'react-router-dom';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
-import{ Image } from "cloudinary-react"
-import {fill} from "@cloudinary/url-gen/actions/resize";
-import {CloudinaryImage} from '@cloudinary/url-gen';
+
 
 function Fill(props) {
   const{user} = useContext(LoginContext);
-  const [imageSelected, setImageSelected] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const uploadImage = () => {
-    console.log(imageSelected );
-    const formData = new FormData();
-    formData.append("file", imageSelected);
-    formData.append("upload_preset","profile_image");
-    console.log(formData);
-
-    axios.post('https://api.cloudinary.com/v1_1/dheskw46y/image/upload', formData)
-    .then((res)=>{
-      console.log(res.data.url);
-      setImageUrl(res.data.url);
-    })
-
-  }
 
   const[userData, setUserData] = useState({
     name_:"",
@@ -61,39 +43,14 @@ const onSubmit = () =>{
         console.log(err);
     })
 }
-
-  const setOptionValue = (e) =>{
-    setUserData({ ...userData, [e.target.name]: e.target.value})
-  }
-
-  console.log(userData.academic_program)
   return (
-      <div className='container'>
+      <div className='container' id='fill'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
-      {/* <div className='header'>
-        <img src='/images/1.png' alt='profile'/>
-        <div className='navbar'>
-          <ul>
-          <a href="#">HOME</a>
-          <a href="#">ABOUT</a>
-          <a href="#">MY PROFILE</a>
-          {/* <a href="#">Link</a> */}
-            {/* <li>
-              <div className="searchr">
-                <input type="text" placeholder="Search..." class="search"/>
-              </div>
-            </li>
-            <li>
-              <a href='#'>
-              <img src="/images/profile.jpg" alt="" id="profile"/>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div> */} 
-      <div className="container2">
+      
+     
+        <div className="container4">
         <div className="left">
           <h2> </h2><br/>
           <h1>Fill your Profile</h1><br/>
@@ -104,13 +61,13 @@ const onSubmit = () =>{
           {/* <input type="text" placeholder="Academic Program*" size="60" name="academic_program" value={userData.academic_program} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/> */}
 
-        <select name="academic_program" id="" defaultValue={userData.academic_program}  onChange={setOptionValue}>
-            <option value="Bachelor of Technology (BTech)" name= "academic_program">Bachelor of Technology (BTech)</option>
-            <option value="Master of Technology (MTech)" name= "academic_program">Master of Technology (MTech)</option>
-            <option value="Master of Science (MSc)" name= "academic_program"  >Master of Science (MSc)</option>
-            <option value="Five Year BTech + MTech" name= "academic_program" >Five Year BTech + MTech</option>
-            <option value="MS (Research)" name= "academic_program">MS (Research)</option>
-            <option value="Doctor of Philosophy" name= "academic_program">Doctor of Philosophy</option>
+        <select name="academic_program" id="" onChange={(e) => setUserData({ ...userData, [e.target.name]: e.target.value})} defaultValue={userData.academic_program}>
+            <option value="Bachelor of Technology (BTech)">Bachelor of Technology (BTech)</option>
+            <option value="Master of Technology (MTech)">Master of Technology (MTech)</option>
+            <option value="Master of Science (MSc)">Master of Science (MSc)</option>
+            <option value="Five Year BTech + MTech">Five Year BTech + MTech</option>
+            <option value="MS (Research)">MS (Research)</option>
+            <option value="Doctor of Philosophy">Doctor of Philosophy</option>
           </select><br />
           <input type="text" placeholder="Department*" size="60" name="department" value={userData.department} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
@@ -124,15 +81,9 @@ const onSubmit = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <button className="submit" onClick={onSubmit}>Submit</button>
         </div>
-        </div>
-        <div className="container4">
         <div className="right">
-          <span className="dot">
-            {/* <img src=""/> */}
-          </span>
+          <span className="dot"></span>
           <h2> </h2><br/>
-          <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
-          <button onClick = {uploadImage}>Upload Image</button>
           <h2>Insert your Profile Picture*</h2><br/>
           <div className="container3">
           <input type="text" placeholder="ABOUT ME" size="60"/><br/>
