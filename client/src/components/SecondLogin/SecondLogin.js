@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss';
 import axios from 'axios';
+import App from '../../App';
 
 const SecondLogin = () => {
 
@@ -19,17 +20,17 @@ const SecondLogin = () => {
       axios.post('http://localhost:5000/profile', {
         email: user.email
       }).then((res)=>{
-        console.log(res.data);
+        // console.log(res.data);
       })
     })
 
     //Getting the myComment to be dispalyed in the myComments Section
 
     useEffect(()=>{
-        axios.post('http://localhost:5000/getMyComments', {
+        axios.post('http://localhost:5000/getmyComments', {
             user_email: user.email
         }).then((res)=>{
-            console.log(res.data);
+            // console.log(res.data);
             setMyComments(res.data.comments);
         }).catch((err)=>{
             console.log(err);
@@ -40,54 +41,26 @@ const SecondLogin = () => {
 
     useEffect(()=>{
         axios.post('http://localhost:5000/getNewComments', {
-            user_email: user.email
+            friend_email: user.email
         }).then((res)=>{
-            console.log(res.data);
-            setNewComments(res.data.comments);
+            // console.log(res.data);
+            setNewComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
         })
     })
 
     //Getting all the approved comments to be displayed in the approved section
-    useEffect(()=>{
-        axios.post('http://localhost:5000/getApprovedComments', {
-            user_email: user.email
-        }).then((res)=>{
-            console.log(res.data);
-            setApprovedComments(res.data.comments);
-        }).catch((err)=>{
-            console.log(err);
-        })
-    })
-
-    //Sending the data to be inserted in the approved table
-
-    const Approved = () =>{
-        axios.post('http://localhost:5000/approvedComments', {
-            user_email: user.email,
-            friend_email: friendEmail,
-            friend_name: friendName,
-            comment: comment 
-        }).then((res)=>{
-            console.log(res.data);
-        }).catch((err)=>{
-            console.log(err);
-        })
-    }
-    
-    const Rejected = () =>{
-        axios.post('http://localhost:5000/rejectedComments', {
-            user_email: user.email,
-            friend_email: friendEmail,
-            friend_name: friendName,
-            comment: comment 
-        }).then((res)=>{
-            console.log(res.data);
-        }).catch((err)=>{
-            console.log(err);
-        })
-    }
+    // useEffect(()=>{
+    //     axios.post('http://localhost:5000/getApprovedComments', {
+    //         user_email: user.email
+    //     }).then((res)=>{
+    //         console.log(res.data);
+    //         setApprovedComments(res.data.comments);
+    //     }).catch((err)=>{
+    //         console.log(err);
+    //     })
+    // })
 
     return (
         <div className='container'>
@@ -130,11 +103,50 @@ const SecondLogin = () => {
                 <div className="comments">
                     <h1>My Comments</h1>
                 </div>
-                <div className="comments" id='new'>
+                <div className="comments" id='new' >
                     <h1>New Comments</h1>
-                    <h1 style={{ display : "inline"}}>..................</h1>
-                    <button id='check'><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
-                    <button id='check'><a href="" className='fa fa-times-circle'></a></button>
+                    {/* <h1 style={{ display : "inline"}}>..................</h1> */}
+                    <ul style={{display: "block"}}>
+                        {
+                            newComments.map((val, index)=>
+                                (<li>
+                                    
+                                    <p className='newComment'>{val.comment}</p>
+                                    <p className='newCommentUserName'>{val.user_name}</p>
+                                    <button id='check'onClick={()=>{
+                                        {
+                                            axios.post('http://localhost:5000/approvedComments', {
+                                                friend_email: user.email,
+                                                user_email: val.user_email,
+                                                user_name: val.user_name,
+                                                comment: val.comment
+                                            }).then((res)=>{
+                                                console.log(res.data);
+                                            }).catch((err)=>{
+                                                console.log(err);
+                                            })
+                                        }
+                                    }}><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
+                                    <button id='check' onClick={()=>{
+                                        {
+                                            axios.post('http://localhost:5000/rejectedComments', {
+                                                friend_email: user.email,
+                                                user_email: val.user_email,
+                                                user_name: val.user_name,
+                                                comment: val.comment
+                                            }).then((res)=>{
+                                                console.log(res.data);
+                                            }).catch((err)=>{
+                                                console.log(err);
+                                            })
+                                        }
+                                    }}><a href="" className='fa fa-times-circle'></a></button>
+                                </li>
+                                    )
+                            )
+                        }
+                    </ul>
+                    
                 </div>
             </div>
 

@@ -16,10 +16,13 @@ import alumniData from './components/navbar/akumniData.json'
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 function App() {
+
   const[user, setUser] = useState({}); //the one who logged in
   const[loggedin, setLoggedin] = useState(false);
-  const [authData, setAuthData] = useState({}); //all the users wha have already logged in
-  const [result, setResult] = useState({});
+  const[authData, setAuthData] = useState([]); //all the users wha have already logged in
+  const[result, setResult] = useState({});
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [found, setFound] = useState(false);
 
    //getting all alumnis from json
    const alumniEmail= alumniData; //geeting all the alumnis data
@@ -42,21 +45,39 @@ function App() {
     }
   }, []);
 
+  //getting all users who have already signed in
   useEffect(()=>{
-    //getting all users who have already signed in
     axios.get('http://localhost:5000/auth')
       .then((res)=>{
-        console.log(res.data);
         setAuthData(res.data);
       })
       .catch((err)=>{
         console.log(err);
       })
-
 }, []);
 
+const find = async(userEmail) =>{
+  // console.log(userEmail)
+  for(var i=0; i<authData.length; i++) {
+    console.log("running");
+    if(authData[i].email === userEmail) {
+      setFound(true);
+      break;
+    }
+  }
+
+  authData.map((val)=>{
+    if(val.email===userEmail){
+      console.log('fuck');
+      setFound(true);
+    }
+  })
+}
+
+
+
 //Callback Function after logging in
-  function handleCallbackResponse(response){
+  async function handleCallbackResponse(response){
     //getting all the data from google for the user who signs in
     var userObject = jwt_decode(response.credential);
     setUser(userObject);
@@ -67,18 +88,31 @@ function App() {
     //Rendering the signin button
     document.getElementById("google-login").hidden= true;
     
-    //Checking if the user who has logged in has already logged in before
-    var __FOUND = -1;
-    for(var i=0; i<authData.length; i++) {
-	    if(authData[i].email === userObject.email) {
-		__FOUND = i;
-		break;
-	    }
-    }
+
+    find(userObject.email);
+
+    console.log(found);
+
+    const finds = authData.find(el => el.email === userObject.email)
+    console.log(finds);
     
-    if(__FOUND!==-1){
+    if(finds){
               if(alumniEmail.includes(userObject.email)){
-                navigate('/profile');
+                axios.post('http://localhost:5000/findAUser',{
+                  email:userObject.email
+                }).then((res)=>{
+                  if(res.data.message === "User Found"){
+                    if(res.data.User[0].verified === true){
+                      console.log("verified");
+                      navigate('/profile');
+                    }
+                    else{
+                      navigate('/fill');
+                    }
+                  }else{
+                    navigate('/fill');
+                  }
+                })
                 console.log("Second time sign in and alumni")
               }
               else{
@@ -91,7 +125,7 @@ function App() {
                 email: userObject.email,
                 name: userObject.name,
               }).then((res)=>{
-                // console.log(res);
+                console.log(res);
                 if(alumniEmail.includes(userObject.email)){
                   console.log("first time login and alumni");
                   navigate('/fill');
@@ -107,7 +141,7 @@ function App() {
   }
 
   return (
-    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult}}>
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered}}>
     <div className="App overflow-x-hidden">
       <Navbar/>
       <Routes>

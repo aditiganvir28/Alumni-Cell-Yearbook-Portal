@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 // import "@fontsource/quantico";
 import Insta from "../Homepage/images/insta.png";
 import Twitter from "../Homepage/images/twitter.png";
 import Linkedin from "../Homepage/images/linkedin.png";
 import Facebook from "../Homepage/images/Facebook.png";
 import "@fontsource/quantico";
+import { useNavigate } from 'react-router';
+import { LoginContext } from '../../helpers/Context';
+import axios from 'axios';
 // import Insta from "../Homepage/images/insta.png";
 // import Twitter from "../Homepage/images/twitter.png";
 // import Linkedin from "../Homepage/images/linkedin.png";
 // import Facebook from "../Homepage/images/Facebook.png";
 function Homepage() {
+    const navigate = useNavigate();
+    const {setLoggedin, setUser, user}= useContext(LoginContext);
+    //Get the data to be displayed on the profile
+// useEffect(()=>{
+//     axios.post('http://localhost:5000/profile', {
+//       email: user.email
+//     }).then((res)=>{
+//     //   console.log(res.data);
+//       if(res.data.message==="No User Found"){
+//         setUser({});
+//         window.localStorage.removeItem('user');
+//         setLoggedin(false);
+//         window.localStorage.setItem('loggedin', false)
+//         document.getElementById("google-login").hidden = false;
+//         navigate('/');
+//       }
+//     })
+//   },[])
     return (
         <div className="overflow-x-hidden w-screen flex flex-col">
             <div className='flex bg-[#160923] overflow-x-hidden lg:h-screen'>

@@ -41,7 +41,6 @@ const Navbar=()=> {
       setUser({});
       window.localStorage.removeItem('user');
       setLoggedin(false);
-      // setIsActive(!isActive);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
       navigate('/');
@@ -51,35 +50,32 @@ const Navbar=()=> {
       document.getElementById("google-login").hidden = true;
     }
 
-    //Search Engine Functions
-    // useEffect(() =>{
-    //   axios.post('http://localhost:5000/searchword', {
-    //     searchword: searchword
-    //   }).then((res)=>{
-    //     setResult(res.data);
-    //     console.log(res.data);
-    //   }).catch((err)=>{
-    //     console.log(err)
-    //   })
-    // })
+    // Search Engine Functions
+    useEffect(() =>{
+      axios.post('http://localhost:5000/searchword', {
+        searchword: searchword
+      }).then((res)=>{
+        setResult(res.data);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    })
 
     const searchAWord = (event) =>{
       setWordentered(event.target.value);
       console.log(wordentered);
     }
 
-    // useEffect(() =>{
-    //   axios.post('http://localhost:5000/wordEntered',{
-    //     wordentered: wordentered
-    //   }).then((res)=>{
-    //     // console.log(res.data);
-    //     setWordEnteredList(res.data);
-    //     // console.log(wordEnteredList)
-    //   }).catch((err)=>{
-    //     console.log(err);
-    //   })
-    // }
-    // )
+    useEffect(() =>{
+      axios.post('http://localhost:5000/wordEntered',{
+        wordentered: wordentered
+      }).then((res)=>{
+        setWordEnteredList(res.data);
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
+    )
 
   return (
     <div className="overflow-x-hidden">

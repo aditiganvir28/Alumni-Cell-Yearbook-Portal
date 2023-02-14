@@ -5,33 +5,44 @@ import axios from 'axios'
 
 const MakeAComment = () => {
     const {result, setResult, user, setUser} = useContext(LoginContext);
-    console.log(result);
+    // console.log(result);
+    const [userData, setUserData] = useState({});
+    const [comment, setComment] = useState();
 
-    const [comment, setComment] = useState("");
+    //Get the data to be displayed on the profile
+    useEffect(()=>{
+      axios.post('http://localhost:5000/profile', {
+        email: user.email
+      }).then((res)=>{
+        setUserData(res.data.User);
+      })
+    })
 
-    const handleSubmit = () =>{
+    const handleSubmit = (e) =>{
+      e.preventDefault();
       axios.post('http://localhost:5000/myComments', {
         comment: comment,
-        friend_email: result.email,
-        friend_name: result.name,
-        user_email: user.email
+        friend_email: result[0].email,
+        friend_name: result[0].name,
+        user_email: userData[0].email
       }).then((res)=>{
         console.log(res);
       }).catch((err)=>{
         console.log(err);
       })
-
+    
       axios.post('http://localhost:5000/newComments', {
         comment:comment,
-        user_email: user.email,
-        user_name: user.name,
-        friend_email: result.email
+        user_email: userData[0].email,
+        user_name: userData[0].name,
+        friend_email: result[0].email
       }).then((res)=>{
         console.log(res);
       }).catch((err)=>{
         console.log(err);
       })
     }
+
 
   return (
     <div className='container'>
@@ -66,12 +77,12 @@ const MakeAComment = () => {
         </div>
         <div className="right">
           <h1 id='make'>Make a Comment</h1>
-          <form onSubmit={handleSubmit}>
+          <form>
           <textarea name="comment" id="" cols="85" rows="14" placeholder='Add your Comment' value={comment} onChange={(e)=>{
             setComment(e.target.value);
           }}/><br />
           <input type='submit' value="Submit"/>
-          <button type='submit'>POST!</button>
+          <button type='submit' onClick={handleSubmit}>POST!</button>
           </form>
           
         </div>
