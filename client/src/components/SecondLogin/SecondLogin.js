@@ -31,7 +31,7 @@ const SecondLogin = () => {
             user_email: user.email
         }).then((res)=>{
             // console.log(res.data);
-            setMyComments(res.data.comments);
+            setMyComments(res.data[0].comments);
         }).catch((err) => {
             console.log(err);
         })
@@ -51,16 +51,16 @@ const SecondLogin = () => {
     })
 
     //Getting all the approved comments to be displayed in the approved section
-    // useEffect(()=>{
-    //     axios.post('http://localhost:5000/getApprovedComments', {
-    //         user_email: user.email
-    //     }).then((res)=>{
-    //         console.log(res.data);
-    //         setApprovedComments(res.data.comments);
-    //     }).catch((err)=>{
-    //         console.log(err);
-    //     })
-    // })
+    useEffect(()=>{
+        axios.post('http://localhost:5000/getApprovedComments', {
+            friend_email: user.email
+        }).then((res)=>{
+            console.log(res.data);
+            setApprovedComments(res.data[0].comments);
+        }).catch((err)=>{
+            console.log(err);
+        })
+    })
 
     return (
         <div className='container'>

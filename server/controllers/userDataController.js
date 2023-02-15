@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
         user: "aditi10328@gmail.com",
-        pass: "sedmznapvcnyavsh"
+        pass: ""
     }
 })
 
@@ -384,7 +384,7 @@ const rejectedComments = asyncHandler (async (req, res) =>{
                 console.log(err);
             }
     
-            console.log(doc);
+            // console.log(doc);
         });
     });
     
@@ -392,17 +392,23 @@ const rejectedComments = asyncHandler (async (req, res) =>{
 
 //Get all the approved comments for the user who is logged in
 const getApprovedComments = asyncHandler (async (req,res) => {
-    const user_email = req.body.user_email;
+    const friend_email = req.body.friend_email;
 
-    const User = ApprovedCommetns.find({user_email: user_email});
+    const User = ApprovedCommetns.find({friend_email: friend_email}, (err,docs)=>{
+        if(err){
+            console.log(err)
+        }
+        if(!docs?.length){
+            return res.send({message: "No comments made"});
+        }
+        else{
+            return res.send(docs);
+            console.log(docs);
+        }
+    })
+    });
 
-    if(!User?.length){
-        return res.send({message: "No comments made"});
-    }
-    else{
-        return res.send(User);
-    }
-})
+    
 
 //Get all the rejected comments for the user who is logged in
 const getRejectedComments = asyncHandler (async (req,res) => {

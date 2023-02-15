@@ -29,6 +29,7 @@ const Navbar = () => {
   const [wordEnteredList, setWordEnteredList] = useState([]);
   const { result, setResult } = useContext(LoginContext);
   // const [isActive, setIsActive] = useState(false);
+  const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
 
   //After refreshing the page user is still signed in 
@@ -57,8 +58,9 @@ const Navbar = () => {
       document.getElementById("google-login").hidden = false;
       navigate('/');
     }
+  
 
-  }
+  
 
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
@@ -70,7 +72,6 @@ const Navbar = () => {
       searchword: searchword
     }).then((res) => {
       setResult(res.data);
-      console.log(res.data);
     }).catch((err) => {
       console.log(err)
     })
@@ -78,7 +79,6 @@ const Navbar = () => {
 
   const searchAWord = (event) => {
     setWordentered(event.target.value);
-    console.log(wordentered);
   }
 
   useEffect(() => {
@@ -87,7 +87,6 @@ const Navbar = () => {
     }).then((res) => {
       console.log(res.data);
       setWordEnteredList(res.data);
-      console.log(wordEnteredList)
     }).catch((err) => {
       console.log(err);
     })
@@ -120,12 +119,14 @@ const Navbar = () => {
                       searchAWord(e);
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
-                    }} />
+                    }} value= {inputValue}/>
                     {wordEnteredList.map((val, index) =>
                     (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} key={index} onClick={(e) => {
                       e.preventDefault();
                       setSearchword(val.email);
-                      // search=val;
+                      setInputValue("");
+                      setDisplay(false);
+                      e.target.value="";
                       navigate('/comment')
                     }}>{val.name}</button></li>)
                     )}
@@ -163,7 +164,8 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-  );
+  )
 }
+
 
 export default Navbar;
