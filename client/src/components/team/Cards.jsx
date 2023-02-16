@@ -15,7 +15,7 @@ class Cards extends Component {
                 <Card.Body>
                   <Card.Title >{member.Name}</Card.Title>
                   <Card.Text>{member.Desc}</Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
+                  <Button variant="primary" style={{ width :"70%"}}>Go somewhere</Button>
                 </Card.Body>
               </Card>
                 )          
