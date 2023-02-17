@@ -7,7 +7,7 @@ const getAllusers = asyncHandler(async(rq,res) => {
         
     // if no users
     if(!auths?.length){
-        return res.status(400).json({message:"No users found"})
+        return res.send({message:"No users found"})
     }
     res.json(auths);
 })
@@ -16,19 +16,33 @@ const createUsers = asyncHandler(async(req,res) => {
     console.log("hello");
     const {email, name} = req.body;
 
+
     //Create and store user
     const auths = await Auth.create({email, name});
 
     if(auths){
         //created
-        res.status(201).json({message: `new user created`})
+        res.send({message:"New User Created"});
     }else{
-        res.status(400).json({message: 'Invalid user data recieved'})
+        res.send({message:"Invalid user data recieved"});
+    }
+})
 
+const findAAuth = asyncHandler(async (req,res)=>{
+    const email = req.body.email;
+
+    const User = await Auth.find({email:email}).exec();
+
+    if(!User.length){
+        res.send({message:"No Auth Found"})
+    }
+    else{
+        res.send({message:"Auth Found", User});
     }
 })
 
 module.exports = {
     getAllusers,
-    createUsers
+    createUsers,
+    findAAuth
 }
