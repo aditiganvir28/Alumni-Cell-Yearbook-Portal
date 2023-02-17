@@ -120,7 +120,7 @@ const Navbar = () => {
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
                     }} value= {inputValue}/>
-                    {wordEnteredList.map((val, index) =>
+                    {[wordEnteredList].map((val, index) =>
                     (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} key={index} onClick={(e) => {
                       e.preventDefault();
                       setSearchword(val.email);
