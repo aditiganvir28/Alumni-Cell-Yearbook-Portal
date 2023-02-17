@@ -23,6 +23,7 @@ function App() {
   const[result, setResult] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
   const [found, setFound] = useState(false);
+  const [loading, setLoading] = useState(true);
 
    //getting all alumnis from json
    const alumniEmail= alumniData; //geeting all the alumnis data
@@ -56,26 +57,6 @@ function App() {
       })
 }, []);
 
-const find = async(userEmail) =>{
-  // console.log(userEmail)
-  for(var i=0; i<authData.length; i++) {
-    console.log("running");
-    if(authData[i].email === userEmail) {
-      setFound(true);
-      break;
-    }
-  }
-
-  authData.map((val)=>{
-    if(val.email===userEmail){
-      console.log('fuck');
-      setFound(true);
-    }
-  })
-}
-
-
-
 //Callback Function after logging in
   async function handleCallbackResponse(response){
     //getting all the data from google for the user who signs in
@@ -87,63 +68,64 @@ const find = async(userEmail) =>{
     window.localStorage.setItem('loggedin', true);
     //Rendering the signin button
     document.getElementById("google-login").hidden= true;
-    
 
-    find(userObject.email);
+    const finds = setTimeout(()=>{
+      authData.find(el => el.email === userObject.email)
+    },1000);
 
-    console.log(found);
-
-    const finds = authData.find(el => el.email === userObject.email)
     console.log(finds);
-    
-    if(finds){
-              if(alumniEmail.includes(userObject.email)){
-                axios.post('http://localhost:5000/findAUser',{
-                  email:userObject.email
-                }).then((res)=>{
-                  if(res.data.message === "User Found"){
-                    if(res.data.User[0].verified === true){
-                      console.log("verified");
-                      navigate('/profile');
-                    }
-                    else{
-                      navigate('/fill');
-                    }
-                  }else{
-                    navigate('/fill');
-                  }
-                })
-                console.log("Second time sign in and alumni")
+
+    setTimeout(()=>{
+      if(finds){
+        if(alumniEmail.includes(userObject.email)){
+          axios.post('http://localhost:5000/findAUser',{
+            email:userObject.email
+          }).then((res)=>{
+            if(res.data.message === "User Found"){
+              if(res.data.User[0].verified === true){
+                console.log("verified");
+                navigate('/profile');
               }
               else{
-                navigate('/');
-                console.log("second time sign in and student");
+                navigate('/fill');
               }
+            }else{
+              navigate('/fill');
             }
-            else{
-              axios.post('http://localhost:5000/auth', {
-                email: userObject.email,
-                name: userObject.name,
-              }).then((res)=>{
-                console.log(res);
-                if(alumniEmail.includes(userObject.email)){
-                  console.log("first time login and alumni");
-                  navigate('/fill');
-                }
-                else{
-                  navigate('/');
-                  console.log("first time login and student");
-                }
-              }).catch((err)=>{
-                console.log(err);
-              })
-            }
+          })
+          console.log("Second time sign in and alumni")
+        }
+        else{
+          navigate('/');
+          console.log("second time sign in and student");
+        }
+      }
+      else{
+        axios.post('http://localhost:5000/auth', {
+          email: userObject.email,
+          name: userObject.name,
+        }).then((res)=>{
+          console.log(res);
+          if(alumniEmail.includes(userObject.email)){
+            console.log("first time login and alumni");
+            navigate('/fill');
+          }
+          else{
+            navigate('/');
+            console.log("first time login and student");
+          }
+        }).catch((err)=>{
+          console.log(err);
+        })
+      }
+    }, 2000)
   }
+    
 
   return (
-    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered}}>
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading}}>
     <div className="App overflow-x-hidden">
-      <Navbar/>
+      {!loading && <Navbar/>}
       <Routes>
       <Route exact path="/" element={<Homepage/>} />
       <Route exact path="/fill" element={<Fill />} />
@@ -152,7 +134,7 @@ const find = async(userEmail) =>{
       <Route exact path="/team" element={<Cards />} />
       <Route exact path="/comment" element={<MakeAComment />} />
       </Routes>
-      <Footer></Footer>
+      {!loading && <Footer/>}
     </div>
     </LoginContext.Provider>
   );

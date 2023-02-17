@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import qnas from './q&as.js'
 import { ChakraProvider } from '@chakra-ui/react'
 import './About.scss';
@@ -10,11 +10,15 @@ import {
   AccordionIcon,
   Box,
 } from '@chakra-ui/react'
+import { LoginContext } from '../../helpers/Context.js';
 
 class About extends Component {
-  render() {
+  render() 
+  // constructor(){
+  //   const {loading, setLoading} = useContext(LoginContext);} 
+  {
     return (
-      <ChakraProvider>
+      // <ChakraProvider>
         <div className='wrapper'>
           <div className='about'>
             <h1 id='about'>ABOUT ALUMNI CELL</h1>
@@ -24,7 +28,7 @@ class About extends Component {
           <div className='faq'>
             <h1 id='faq'>Frequently Asked Questions</h1>
             <div className='qna'>
-              <Accordion defaultIndex={[0]} allowMultiple>
+              {/* <Accordion defaultIndex={[0]} allowMultiple>
                 {qnas.map((qna) => {
                   return (
                     <AccordionItem>
@@ -39,16 +43,16 @@ class About extends Component {
                   <AccordionPanel pb={4} id='a'>
                     {qna.a}
                   </AccordionPanel>
-                </AccordionItem>
-                  )
-                })}
+                </AccordionItem> */}
+                  {/* )
+                // })} */}
                 
-              </Accordion>
+              {/* </Accordion> */}
               
             </div>
           </div>
         </div>
-      </ChakraProvider>
+      // </ChakraProvider>
     );
   }
 };

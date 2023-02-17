@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
-import './MakeAComment.scss'
+import './MakeAComment.scss';
+import loadingSpinner from '../Homepage/images/808.gif'
 import axios from 'axios'
 
 const MakeAComment = () => {
@@ -8,6 +9,15 @@ const MakeAComment = () => {
     // console.log(result);
     const [userData, setUserData] = useState({});
     const [comment, setComment] = useState();
+    const {loading, setLoading} = useContext(LoginContext); 
+
+    useEffect(async () => {
+      await new Promise((r) => setTimeout(r, 5000));
+
+      // Toggle loading state
+      setLoading(false);
+      
+  }, [])
 
     //Get the data to be displayed on the profile
     useEffect(()=>{
@@ -45,7 +55,10 @@ const MakeAComment = () => {
 
 
   return (
-    <div className='container'>
+    <>{loading && <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <img src={loadingSpinner}></img>
+        </div>}
+    {!loading && <div className='container'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
@@ -69,7 +82,8 @@ const MakeAComment = () => {
           
         </div>
       </div>
-    </div>
+    </div>}
+    </>
   );
 }
 

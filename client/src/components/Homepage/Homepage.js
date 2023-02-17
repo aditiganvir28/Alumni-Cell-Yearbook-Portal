@@ -8,30 +8,31 @@ import "@fontsource/quantico";
 import { useNavigate } from 'react-router';
 import { LoginContext } from '../../helpers/Context';
 import axios from 'axios';
+import loadingSpinner from '../Homepage/images/808.gif'
 // import Insta from "../Homepage/images/insta.png";
 // import Twitter from "../Homepage/images/twitter.png";
 // import Linkedin from "../Homepage/images/linkedin.png";
 // import Facebook from "../Homepage/images/Facebook.png";
 function Homepage() {
-    const navigate = useNavigate();
-    const {setLoggedin, setUser, user}= useContext(LoginContext);
-    //Get the data to be displayed on the profile
-// useEffect(()=>{
-//     axios.post('http://localhost:5000/profile', {
-//       email: user.email
-//     }).then((res)=>{
-//     //   console.log(res.data);
-//       if(res.data.message==="No User Found"){
-//         setUser({});
-//         window.localStorage.removeItem('user');
-//         setLoggedin(false);
-//         window.localStorage.setItem('loggedin', false)
-//         document.getElementById("google-login").hidden = false;
-//         navigate('/');
-//       }
-//     })
-//   },[])
+    const {loading, setLoading} = useContext(LoginContext);
+    useEffect(() => {
+        const Load = async () =>{
+            await new Promise((r) => setTimeout(r, 5000));
+
+             // Toggle loading state
+        setLoading(false);
+        }
+
+        Load();
+  }, [])
+
+    
     return (
+        <>
+        {loading && <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <img src={loadingSpinner}></img>
+        </div>}
+        {!loading && 
         <div className="overflow-x-hidden w-screen flex flex-col">
             <div className='flex bg-[#160923] overflow-x-hidden lg:h-screen'>
                 <div className='flex flex-col lg:flex-row w-full justify-around items-center'>
@@ -71,29 +72,9 @@ function Homepage() {
                         </div>
                     </div>
                 </div>
-                {/* footer */}
-                {/* <div className='w-full mx-8 flex flex-row justify-around items-start'>
-                    <div className='flex flex-col w-1/3'>
-                        <h1 className='uppercase px-0 py-4'>ALUMNI cell iit indore</h1>
-                        <p className='bg-transparent text-white'>...................... ..................... ......................... .................................. ......................................... ...................................... ............................... .........</p>
-                    </div>
-                    <div className='w-1/3 ml-4'>
-                        <h1 className='uppercase px-0 text-4xl py-6'>important links</h1>
-                        <p className='bg-transparent text-white uppercase'>alumni portal</p>
-                        <p className='bg-transparent text-white uppercase'>iiti official website</p>
-                    </div>
-                    <div className='w-1/3'>
-                        <h1 className='uppercase px-0 text-4xl py-6'>find us on</h1>
-                        <div className='flex flex-row justify-start space-x-4'>
-                            <img className='w-12' src={Insta}></img>
-                            <img className='w-8' src={Twitter}></img>
-                            <img className='w-8' src={Linkedin}></img>
-                            <img className='w-8' src={Facebook}></img>
-                        </div>
-                    </div>
-                </div> */}
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 

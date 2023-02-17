@@ -14,6 +14,16 @@ const SecondLogin = () => {
     const [friendEmail, setFriendEmail] = useState("");
     const [friendName, setFriendName] = useState("");
     const [comment, setComment] = useState("");
+    const {loading, setLoading} = useContext(LoginContext)
+    const [loading2, setLoading2] = useState(true);
+      
+    useEffect(async () => {
+        await new Promise((r) => setTimeout(r, 5000));
+  
+        // Toggle loading state
+        setLoading(false);
+        
+    }, [])
 
     //Get the data to be displayed on the profile
     useEffect(()=>{
@@ -63,6 +73,11 @@ const SecondLogin = () => {
     })
 
     return (
+        <>
+        {loading &&
+            <h1>Loading ...</h1>
+        }
+        {!loading &&
         <div className='container'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
             <style>
@@ -208,6 +223,8 @@ const SecondLogin = () => {
             </div> */}
 
         </div>
+}
+        </>
     )
 }
 

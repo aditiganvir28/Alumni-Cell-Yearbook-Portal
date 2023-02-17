@@ -31,6 +31,7 @@ const Navbar = () => {
   // const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
+  const {loading, setLoading} = useContext(LoginContext); 
 
   //After refreshing the page user is still signed in 
   useEffect(() => {
@@ -85,7 +86,7 @@ const Navbar = () => {
     axios.post('http://localhost:5000/wordEntered', {
       wordentered: wordentered
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setWordEnteredList(res.data);
     }).catch((err) => {
       console.log(err);
@@ -106,10 +107,10 @@ const Navbar = () => {
             <Link to="/about">ABOUT</Link>
             <Link to="/team">DEVELOPERS</Link>
 
-
+            <li>
             <div id='google-login'>
             </div>
-
+            </li>
 
             {loggedin &&
               <>
@@ -120,6 +121,8 @@ const Navbar = () => {
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
                     }} value= {inputValue}/>
+                    {wordEnteredList.length!==0 && 
+                    <ul>
                     {wordEnteredList.map((val, index) =>
                     (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} key={index} onClick={(e) => {
                       e.preventDefault();
@@ -130,6 +133,9 @@ const Navbar = () => {
                       navigate('/comment')
                     }}>{val.name}</button></li>)
                     )}
+                    </ul>
+                    }
+                    
                   </div>
 
 
