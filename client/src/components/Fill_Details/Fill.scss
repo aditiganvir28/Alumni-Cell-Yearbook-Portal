@@ -30,20 +30,30 @@ ul{
     gap: 2rem;
     color: white;
 }
+.right #upload{
+    color: white;
+    padding: 1%;
+    border: 1px solid;
+    border-color: white;
+    border-radius: 10px;
+    background-color: #3E065F;
+    overflow: hidden;
+    font-size: large;
+}
 li{
     flex: auto;
 }
-.navbar a {
-    color: white;
-    padding: 14px 50px ;
-    text-decoration: none;
-    text-align: center;
-}
-.navbar a:hover {
-    background-color: #3b1353;
-    color: white;
-    border-radius: 10px;
-  }
+// .navbar a {
+//     color: white;
+//     padding: 14px 50px ;
+//     text-decoration: none;
+//     text-align: center;
+// }
+// .navbar a:hover {
+//     background-color: #3b1353;
+//     color: white;
+//     border-radius: 10px;
+//   }
 img{
     border-radius: 30px;
     width: 8%;

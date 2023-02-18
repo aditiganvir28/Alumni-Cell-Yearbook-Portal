@@ -28,7 +28,7 @@ function Footer() {
                     </ul>
                     {/* <br></br> */}
                     <div className="mail">
-                        <a href='https://www.gmail.com' className='fa fa-envelope' id='env'></a>
+                        <a href='https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=alumnicell@iiti.ac.in' className='fa fa-envelope' id='env'></a>
                         <p id='para2' className='bg-transparent'> alumnicell@iiti.ac.in,<br></br> acroffice@iiti.ac.in </p>
                     </div>
                 </div>

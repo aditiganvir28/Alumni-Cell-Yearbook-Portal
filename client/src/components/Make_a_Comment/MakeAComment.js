@@ -67,7 +67,7 @@ const MakeAComment = () => {
       <div className="container2">
         <div className="left1">
           <span className="dot"></span>
-          <h1>Name - Department</h1>
+          <h1 id='named'>Name - Department</h1>
           <div className='description'>
             <h1>Description</h1>
           </div>
@@ -75,11 +75,11 @@ const MakeAComment = () => {
         <div className="right1">
           <h1 id='make'>Make a Comment</h1>
           <form>
-          <textarea name="comment" id="" cols="85" rows="14" placeholder='Add your Comment' value={comment} onChange={(e)=>{
+          <textarea name="comment" id="commenttext" cols="85" rows="14" placeholder='Add your Comment' value={comment} onChange={(e)=>{
             setComment(e.target.value);
           }}/><br />
           <input type='submit' value="Submit"/>
-          <button type='submit' onClick={handleSubmit}>POST!</button>
+          <button type='submit' id='post' onClick={handleSubmit}>POST!</button>
           </form>
           
         </div>
