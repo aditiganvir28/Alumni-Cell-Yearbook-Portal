@@ -47,16 +47,7 @@ function Homepage() {
 //     })
 //   },[])
     return (
-<<<<<<< Updated upstream
-        <>
-        {loading && <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
-            <img src={loadingSpinner}></img>
-        </div>}
-        {!loading && 
-        <div className="overflow-x-hidden w-screen flex flex-col">
-=======
         <div className="overflow-x-hidden w-screen flex flex-col overflow-clip lg:-mt-24 mt-0">
->>>>>>> Stashed changes
             <div className='flex flex-col overflow-x-hidden'>
                 <div className='flex flex-col lg:flex-row w-full justify-around items-center lg:mb-8 lg:h-screen h-[150vh]'>
                     <div className='w-4/5 lg:w-2/5 lg:mt-0 mt-8 border-2 lg:h-3/5 h-2/5 rounded-xl flex flex-col items-start justify-center relative'>
@@ -295,8 +286,9 @@ function Homepage() {
                     </div>
                 </div>
             </div>
-        </div>}
-        </>
+        </div>
+        // }
+        // </>
     )
 }
 

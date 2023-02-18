@@ -1,16 +1,16 @@
 import React, { Component, useContext, useEffect} from 'react';
 import qnas from './q&as.js'
-import { ChakraProvider } from '@chakra-ui/react';
+// import { ChakraProvider } from '@chakra-ui/react';
 import loadingSpinner from '../Homepage/images/808.gif'
 import './About.scss';
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
-} from '@chakra-ui/react'
+// import {
+//   Accordion,
+//   AccordionItem,
+//   AccordionButton,
+//   AccordionPanel,
+//   AccordionIcon,
+//   Box,
+// } from '@chakra-ui/react'
 import { LoginContext } from '../../helpers/Context.js';
 
 function About(){
@@ -41,7 +41,7 @@ function About(){
         <style>
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');                
         </style>
-      <ChakraProvider>
+      {/* <ChakraProvider> */}
         <div className='wrapper' id='abd'>
           <div className='abouta' id='abt'>
             <h1 id='abouta'>ABOUT ALUMNI CELL</h1>
@@ -68,17 +68,12 @@ function About(){
                   </AccordionPanel>
                 </AccordionItem> */}
                   {/* )
-                // })} */}
-                
-              {/* </Accordion> */}
-              
+                // })} */}                
+              {/* </Accordion> */}              
             </div>
           </div>
-        </div>
-        
-     
-        
-      </ChakraProvider>
+        </div>              
+      {/* </ChakraProvider> */}
       </div>
       </div>
       </div>
