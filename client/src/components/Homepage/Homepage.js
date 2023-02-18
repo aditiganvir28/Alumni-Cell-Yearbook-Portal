@@ -18,7 +18,17 @@ import loadingSpinner from '../Homepage/images/808.gif'
 // import Facebook from "../Homepage/images/Facebook.png";
 function Homepage() {
     const navigate = useNavigate();
-    const {setLoggedin, setUser, user}= useContext(LoginContext);
+    const {setLoggedin, setUser, user, loading, setLoading}= useContext(LoginContext);
+    
+    useEffect(() => {
+        const Load = async () => {
+            await new Promise((r) => setTimeout(r, 5000));
+
+            setLoading((loading) => !loading);
+        }
+
+        Load();
+    }, [])
     //Get the data to be displayed on the profile
 // useEffect(()=>{
 //     axios.post('http://localhost:5000/profile', {

@@ -1,11 +1,31 @@
 import Members from './members';
-import React, {Component} from 'react';
+import React, {Component, useContext, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import loadingSpinner from '../Homepage/images/808.gif'
 import './Cards.css';
-class Cards extends Component {
-    render(){
+import { LoginContext } from '../../helpers/Context';
+function Cards(){
+    const {loading, setLoading} = useContext(LoginContext);
+    
+    useEffect(() => {
+      const Load = async () => {
+          await new Promise((r) => setTimeout(r, 5000));
+
+          setLoading((loading) => !loading);
+      }
+
+      Load();
+  }, [])
+
     return(
+      <>
+      {!loading &&
+      <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+      <img src={loadingSpinner}></img>
+  </div>
+      }
+      {loading &&
         <div className="cards">
             {Members.map((member) => {
                 
@@ -20,9 +40,10 @@ class Cards extends Component {
               </Card>
                 )          
             })}
-        </div>
+        </div>}
+      </>
     );
-        }
+        
 };
 
 export default Cards;

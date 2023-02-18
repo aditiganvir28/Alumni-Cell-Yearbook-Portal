@@ -1,6 +1,7 @@
-import React, { Component, useContext } from 'react';
+import React, { Component, useContext, useEffect} from 'react';
 import qnas from './q&as.js'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
+import loadingSpinner from '../Homepage/images/808.gif'
 import './About.scss';
 import {
   Accordion,
@@ -12,14 +13,30 @@ import {
 } from '@chakra-ui/react'
 import { LoginContext } from '../../helpers/Context.js';
 
-class About extends Component {
-  render() 
-  // constructor(){
-  //   const {loading, setLoading} = useContext(LoginContext);} 
-  {
+function About(){
+
+  const {loading, setLoading} = useContext(LoginContext);
+
+  useEffect(() => {
+    const Load = async () => {
+        await new Promise((r) => setTimeout(r, 5000));
+
+        setLoading((loading) => !loading);
+    }
+
+    Load();
+}, [])
+  
+  
     return (
       // <ChakraProvider>
-        <div className='wrapper'>
+      <>
+      {!loading &&
+      <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+      <img src={loadingSpinner}></img>
+  </div>
+      }
+        {loading && <div className='wrapper'>
           <div className='about'>
             <h1 id='about'>ABOUT ALUMNI CELL</h1>
             <p id='para-about'>The Alumni Cell is the Institute’s student-run cell to connect and broaden the alum network. It started as a group of 4 individuals but now encompasses 5 teams working to improve Alum-Institute-Student Relations.The Yearbook was one such initiative undertaken by the Cell. Starting with the Class of 2021, the Yearbook’s First Edition was a smashing success and helped the alums and the students connect more. Following the same, the Yearbook Portal is another initiative headed by the Web Development Division of the Alumni Cell. A one-stop hub to curate your Yearbook profile and help others do the same. This is the very first edition of the Yearbook Portal, and we would love to hear your comments and suggestions so we can improve in the coming years. </p>
@@ -51,10 +68,10 @@ class About extends Component {
               
             </div>
           </div>
-        </div>
-      // </ChakraProvider>
+        </div>}
+        </>
+     
     );
-  }
 };
 
 export default About;

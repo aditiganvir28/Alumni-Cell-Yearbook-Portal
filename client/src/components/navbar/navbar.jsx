@@ -20,7 +20,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, authData, setAuthData } = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading} = useContext(LoginContext);
 
   const navigate = useNavigate();
 
@@ -31,10 +31,9 @@ const Navbar = () => {
   // const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
-  const {loading, setLoading} = useContext(LoginContext); 
 
   //After refreshing the page user is still signed in 
-  useEffect(() => {
+  useEffect(async () => {
     if (window.localStorage.getItem('user') !== null) {
       const userLoggedIn = window.localStorage.getItem('user');
       if (userLoggedIn != null) {
@@ -51,9 +50,9 @@ const Navbar = () => {
   }, [])
 
   //Logout Function
-  const handleLogout = () =>{
+  const handleLogout = async () =>{
       setUser({});
-      window.localStorage.removeItem('user');
+      await window.localStorage.removeItem('user');
       setLoggedin(false);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
@@ -66,6 +65,7 @@ const Navbar = () => {
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
   }
+
 
   //Search Engine Functions
   useEffect(() => {
@@ -95,6 +95,7 @@ const Navbar = () => {
   )
 
   return (
+    <>
     <div className="overflow-x-hidden">
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -107,10 +108,9 @@ const Navbar = () => {
             <Link to="/about">ABOUT</Link>
             <Link to="/team">DEVELOPERS</Link>
 
-            <li>
+            
             <div id='google-login'>
             </div>
-            </li>
 
             {loggedin &&
               <>
@@ -170,6 +170,8 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    </>
+  
   )
 }
 

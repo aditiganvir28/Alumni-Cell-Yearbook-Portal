@@ -125,7 +125,7 @@ function App() {
   return (
     <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading}}>
     <div className="App overflow-x-hidden">
-      {!loading && <Navbar/>}
+      <Navbar/>
       <Routes>
       <Route exact path="/" element={<Homepage/>} />
       <Route exact path="/fill" element={<Fill />} />

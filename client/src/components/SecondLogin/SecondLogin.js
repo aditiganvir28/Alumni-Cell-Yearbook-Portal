@@ -3,6 +3,7 @@ import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss';
 import axios from 'axios';
 import App from '../../App';
+import loadingSpinner from '../Homepage/images/808.gif'
 
 const SecondLogin = () => {
 
@@ -74,9 +75,9 @@ const SecondLogin = () => {
 
     return (
         <>
-        {loading &&
-            <h1>Loading ...</h1>
-        }
+        {loading && <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <img src={loadingSpinner}></img>
+        </div>}
         {!loading &&
         <div className='container'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
