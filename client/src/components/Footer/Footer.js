@@ -5,10 +5,9 @@ function Footer() {
     <div>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
             <style>
-                @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
-                
+                @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');                
             </style>
-        <div className="container2">
+        <div className="container2" id='abd'>
                 <div className='footer-item'>
                     <h1>Alumni Cell</h1>
                     <p id='line'>The Alumni Cell is the student-run cell to connect and broaden the Institute’s alum network.</p>

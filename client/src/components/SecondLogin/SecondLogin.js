@@ -143,7 +143,7 @@ const SecondLogin = () => {
                 }}>
             </div>
 
-            <div className="container2">
+            {/* <div className="container2">
                 <div className='footer-item'>
                     <h1>ALUMNI CELL IIT INDORE</h1>
                     <h1>.......................</h1>
@@ -164,7 +164,7 @@ const SecondLogin = () => {
                     <a href="" className='fa fa-instagram' style={{display:"inline"}}></a>
 
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )
