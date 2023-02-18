@@ -21,7 +21,7 @@ const MakeAComment = () => {
   //     setLoading(false);
       
   // }, [])
-
+    console.log(result);
     //Get the data to be displayed on the profile
     useEffect(()=>{
       axios.post('http://localhost:5000/profile', {
@@ -66,10 +66,16 @@ const MakeAComment = () => {
       </style>
       <div className="container2">
         <div className="left1">
-          <span className="dot"></span>
+          <span className="dot">
+            {/* <img src={profile.profile_img}/> */}
+          </span>
           <h1 id='named'>Name - Department</h1>
           <div className='description'>
-            <h1>Description</h1>
+            {/* <h1>Description</h1> */}
+            <h2>{result[0].name}</h2>
+            <h3 style={{color:"white"}}>Roll No: {result[0].roll_no}</h3>
+            <h3 style={{color:"white"}}>{result[0].academic_program}, {result[0].department}</h3>
+            <h3 style={{color:"white"}}>{result[0].current_company}, {result[0].designation}</h3>
           </div>
         </div>
         <div className="right1">

@@ -17,6 +17,7 @@ const SecondLogin = () => {
     const [comment, setComment] = useState("");
     const {loading, setLoading} = useContext(LoginContext)
     const [loading2, setLoading2] = useState(true);
+    const [profile, setProfile] = useState({});
       
     // useEffect(async () => {
     //     await new Promise((r) => setTimeout(r, 5000));
@@ -32,6 +33,8 @@ const SecondLogin = () => {
         email: user.email
       }).then((res)=>{
         // console.log(res.data);
+        setProfile(res.data.User[0]);
+        console.log(profile);
       })
     })
 
@@ -54,7 +57,7 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getNewComments', {
             friend_email: user.email
         }).then((res)=>{
-            console.log(res.data);
+            // console.log(res.data);
             setNewComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
@@ -66,7 +69,7 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getApprovedComments', {
             friend_email: user.email
         }).then((res)=>{
-            console.log(res.data);
+            // console.log(res.data);
             setApprovedComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
@@ -132,10 +135,16 @@ const SecondLogin = () => {
                     </div>
                 </div>
                 <div className="profile">
-                    <span className="dot"></span>
+                    <span className="dot">
+                        {/* <img src={profile.profile_img}/> */}
+                    </span>
                     <br></br><br></br>
                     <div className='about1'>
-                        <h2 id='about'>About Me</h2>
+                        {/* <h2 id='about'>About Me</h2> */}
+                        <h2>{profile.name}</h2>
+                        <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
+                        <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
+                        <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
                     </div>
                 </div>
             </div>
