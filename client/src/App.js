@@ -63,6 +63,7 @@ function App() {
     var userObject = jwt_decode(response.credential);
     setUser(userObject);
     setLoggedin(true);
+    setLoading(true);
     //Storing the users data in the localStorage
     window.localStorage.setItem('user' ,JSON.stringify(userObject));
     window.localStorage.setItem('loggedin', true);

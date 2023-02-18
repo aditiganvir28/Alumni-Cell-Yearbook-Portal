@@ -30,12 +30,12 @@ function About(){
   
     return (
       <>
-      {!loading &&
+      {/* {!loading &&
       <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
       <img src={loadingSpinner}></img>
   </div>
-      }
-        {loading && <div className='wrapper'>
+      } */}
+        <div className='wrapper'>
           <div className='about'>
       <div>
         <style>
@@ -81,7 +81,7 @@ function About(){
       </ChakraProvider>
       </div>
       </div>
-      </div>}
+      </div>
       </>
     );
 };

@@ -3,6 +3,7 @@ import { LoginContext } from '../../helpers/Context'
 import './MakeAComment.scss';
 import loadingSpinner from '../Homepage/images/808.gif'
 import axios from 'axios'
+import { useNavigate } from 'react-router';
 
 const MakeAComment = () => {
     const {result, setResult, user, setUser} = useContext(LoginContext);
@@ -10,6 +11,8 @@ const MakeAComment = () => {
     const [userData, setUserData] = useState({});
     const [comment, setComment] = useState();
     const {loading, setLoading} = useContext(LoginContext); 
+
+    const navigate = useNavigate();
 
     useEffect(async () => {
       await new Promise((r) => setTimeout(r, 5000));
@@ -51,6 +54,8 @@ const MakeAComment = () => {
       }).catch((err)=>{
         console.log(err);
       })
+
+      navigate('/profile')
     }
 
 
