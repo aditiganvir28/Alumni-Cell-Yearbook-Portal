@@ -79,7 +79,7 @@ const MakeAComment = () => {
             setComment(e.target.value);
           }}/><br />
           <input type='submit' value="Submit"/>
-          <button type='submit' onClick={handleSubmit}>POST!</button>
+          <button type='submit' id='post' onClick={handleSubmit}>POST!</button>
           </form>
           
         </div>

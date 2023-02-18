@@ -126,7 +126,7 @@ console.log(userData)
           </span>
           <h2> </h2><br/>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
-          <button onClick = {uploadImage}>Upload Image</button>
+          <button id='upload' onClick = {uploadImage}>Upload Image</button>
     </div>
     </div>
     </div>

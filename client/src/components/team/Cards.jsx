@@ -3,7 +3,7 @@ import React, {Component, useContext, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import loadingSpinner from '../Homepage/images/808.gif'
-import './Cards.css';
+import './Cards.scss';
 import { LoginContext } from '../../helpers/Context';
 function Cards(){
     const {loading, setLoading} = useContext(LoginContext);
@@ -35,7 +35,7 @@ function Cards(){
                 <Card.Body>
                   <Card.Title >{member.Name}</Card.Title>
                   <Card.Text>{member.Desc}</Card.Text>
-                  <Button variant="primary" style={{ width :"70%"}}>Go somewhere</Button>
+                  <Button variant="primary" id='go' style={{ width :"70%"}}>Go somewhere</Button>
                 </Card.Body>
               </Card>
                 )          
