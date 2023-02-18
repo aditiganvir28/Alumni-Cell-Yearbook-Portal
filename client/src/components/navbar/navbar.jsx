@@ -94,7 +94,7 @@ const Navbar = () => {
   }
   )
 
-  return (
+  return(
     <>
     <div className="overflow-x-hidden" id='abd'>
       <style>

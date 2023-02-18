@@ -11,6 +11,7 @@ function Fill(props) {
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [verify, setVerify] = useState(false);
+ 
   const uploadImage = () => {
     console.log(imageSelected );
     const formData = new FormData();
@@ -120,12 +121,12 @@ console.log(userData)
           <button className="submit1" onClick={onSubmit}>Submit</button>
         </div>
         <div className="right">
-          <span className="dot"></span>
+        <span className="dot">
+            {/* <img src=""/> */}
+          </span>
           <h2> </h2><br/>
-          <h2>Insert your Profile Picture*</h2><br/>
-          <div className="container3">
-          <br/>
-        </div>
+          <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
+          <button onClick = {uploadImage}>Upload Image</button>
     </div>
     </div>
     </div>
