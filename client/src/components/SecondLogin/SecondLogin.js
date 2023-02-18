@@ -223,8 +223,8 @@ const SecondLogin = () => {
             </div> */}
 
         </div>
-}
-        </>
+// 
+        // </>
     )
 }
 
