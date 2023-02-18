@@ -45,7 +45,7 @@ const MakeAComment = () => {
 
 
   return (
-    <div className='container'>
+    <div className='containermc'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>

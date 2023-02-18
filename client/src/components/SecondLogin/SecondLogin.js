@@ -63,7 +63,7 @@ const SecondLogin = () => {
     })
 
     return (
-        <div className='container'>
+        <div className='containersl'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -119,8 +119,9 @@ const SecondLogin = () => {
                 </div>
                 <div className="profile">
                     <span className="dot"></span>
+                    <br></br><br></br>
                     <div className='about1'>
-                        <h1 id='about'>About Me</h1>
+                        <h2 id='about'>About Me</h2>
                     </div>
                 </div>
             </div>
@@ -128,11 +129,11 @@ const SecondLogin = () => {
                 <button className='button'style={{width:'30%'}}>EDIT YOUR PROFILE</button>
             </div>
             <div className="container2">
-                <div className="comments">
+                <div className="comments2">
                     <h1>My Comments</h1>
 
                 </div>
-                <div className="comments" id='new' >
+                <div className="comments3" id='new' >
                     <h1>New Comments</h1>
                     {/* <h1 style={{ display : "inline"}}>..................</h1> */}
                     <ul style={{display: "block"}}>
