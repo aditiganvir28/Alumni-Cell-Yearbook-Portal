@@ -19,13 +19,16 @@ const SecondLogin = () => {
     const [loading2, setLoading2] = useState(true);
     const [profile, setProfile] = useState({});
       
-    // useEffect(async () => {
-    //     await new Promise((r) => setTimeout(r, 5000));
-  
-    //     // Toggle loading state
-    //     setLoading(false);
-        
-    // }, [])
+    useEffect(() => {
+        setLoading(true);
+        const Load = async () => {
+            await new Promise((r) => setTimeout(r, 2000));
+    
+            setLoading((loading) => !loading);
+        }
+    
+        Load();
+    }, [])
 
     //Get the data to be displayed on the profile
     useEffect(()=>{
@@ -77,7 +80,13 @@ const SecondLogin = () => {
     })
 
     return (
-        <div className='containersl'>
+        <>
+        {loading &&
+            <div className='spinner'>
+            <span class="loader"></span>
+            </div>
+            }
+        {!loading && <div className='containersl'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -240,9 +249,9 @@ const SecondLogin = () => {
                 </div>
             </div> */}
 
-        </div>
+        </div>}
 // 
-        // </>
+        </>
     )
 }
 

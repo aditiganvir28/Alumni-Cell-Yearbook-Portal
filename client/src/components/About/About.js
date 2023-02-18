@@ -1,7 +1,6 @@
 import React, { Component, useContext, useEffect} from 'react';
 import qnas from './q&as.js'
 // import { ChakraProvider } from '@chakra-ui/react';
-import loadingSpinner from '../Homepage/images/808.gif'
 import './About.scss';
 // import {
 //   Accordion,
@@ -18,8 +17,9 @@ function About(){
   const {loading, setLoading} = useContext(LoginContext);
 
   useEffect(() => {
+    setLoading(true);
     const Load = async () => {
-        await new Promise((r) => setTimeout(r, 5000));
+        await new Promise((r) => setTimeout(r, 2000));
 
         setLoading((loading) => !loading);
     }
@@ -30,12 +30,12 @@ function About(){
   
     return (
       <>
-      {/* {!loading &&
-      <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
-      <img src={loadingSpinner}></img>
-  </div>
-      } */}
-        <div className='wrapper'>
+      {loading &&
+            <div className='spinner'>
+            <span class="loader"></span>
+            </div>
+            }
+        {!loading && <div className='wrapper'>
           <div className='about'>
       <div>
         <style>
@@ -76,7 +76,7 @@ function About(){
       {/* </ChakraProvider> */}
       </div>
       </div>
-      </div>
+      </div>}
       </>
     );
 };

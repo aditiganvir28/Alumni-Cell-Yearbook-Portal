@@ -13,14 +13,16 @@ const MakeAComment = () => {
     const {loading, setLoading} = useContext(LoginContext); 
 
     const navigate = useNavigate();
-
-  //   useEffect(async () => {
-  //     await new Promise((r) => setTimeout(r, 5000));
-
-  //     // Toggle loading state
-  //     setLoading(false);
-      
-  // }, [])
+    useEffect(() => {
+      setLoading(true);
+      const Load = async () => {
+          await new Promise((r) => setTimeout(r, 2000));
+  
+          setLoading((loading) => !loading);
+      }
+  
+      Load();
+  }, [])
     console.log(result);
     //Get the data to be displayed on the profile
     useEffect(()=>{
@@ -60,7 +62,13 @@ const MakeAComment = () => {
 
 
   return (
-    <div className='containermc'>
+    <>
+    {loading &&
+            <div className='spinner'>
+            <span class="loader"></span>
+            </div>
+        }
+    {!loading && <div className='containermc'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
@@ -91,8 +99,8 @@ const MakeAComment = () => {
         </div>
       </div>
     </div>
-    // }
-    // </>
+    }
+    </>
   );
 }
 

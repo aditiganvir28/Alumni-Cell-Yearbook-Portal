@@ -20,7 +20,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading} = useContext(LoginContext);
 
   const navigate = useNavigate();
 
@@ -104,7 +104,7 @@ const Navbar = () => {
         <img src='/images/1.png' />
         <div className='navbar'>
           <ul>
-            <Link to="/">HOME</Link>
+            <Link to="/" onClick={()=>{setLoading(true)}}>HOME</Link>
             <Link to="/about">ABOUT</Link>
             <Link to="/team">DEVELOPERS</Link>
 

@@ -22,8 +22,9 @@ function Homepage() {
     const {setLoggedin, setUser, user, loading, setLoading}= useContext(LoginContext);
     
     useEffect(() => {
+        setLoading(true);
         const Load = async () => {
-            await new Promise((r) => setTimeout(r, 5000));
+            await new Promise((r) => setTimeout(r, 2000));
 
             setLoading((loading) => !loading);
         }
@@ -47,6 +48,12 @@ function Homepage() {
 //     })
 //   },[])
     return (
+        <>{loading &&
+            <div className='spinner'>
+            <span class="loader"></span>
+            </div>
+        }
+        {!loading &&
         <div className="overflow-x-hidden w-screen flex flex-col overflow-clip lg:-mt-24 mt-0">
             <div className='flex flex-col overflow-x-hidden'>
                 <div className='flex flex-col lg:flex-row w-full justify-around items-center lg:mb-8 lg:h-screen h-[150vh]'>
@@ -286,8 +293,8 @@ function Homepage() {
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div>}
+        </>
     )
 }
 

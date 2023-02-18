@@ -9,23 +9,24 @@ function Cards(){
     const {loading, setLoading} = useContext(LoginContext);
     
     useEffect(() => {
+      setLoading(true);
       const Load = async () => {
-          await new Promise((r) => setTimeout(r, 5000));
-
+          await new Promise((r) => setTimeout(r, 2000));
+  
           setLoading((loading) => !loading);
       }
-
+  
       Load();
   }, [])
 
     return(
       <>
-      {!loading &&
-      <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
-      <img src={loadingSpinner}></img>
-  </div>
-      }
       {loading &&
+            <div className='spinner'>
+            <span class="loader"></span>
+            </div>
+            }
+      {!loading &&
         <div className="cards">
             {Members.map((member) => {
                 
