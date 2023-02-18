@@ -10,7 +10,17 @@ router.route('/userData')
 router.get('/verify/:id', userDataController.verify);
 router.post('/profile', userDataController.getProfileData);
 router.post('/wordEntered', userDataController.getWordEntered);
-router.post('/searchword', userDataController.getSearchWord)
+router.post('/searchword', userDataController.getSearchWord);
+router.post('/findAUser', userDataController.findAUser);
+router.post('/myComments', userDataController.myComments);
+router.post('/newComments', userDataController.newComments);
+router.post('/getmyComments', userDataController.getMyComments);
+router.post('/getNewComments', userDataController.getNewComments);
+router.post('/approvedComments', userDataController.approvedComments);
+router.post('/rejectedComments', userDataController.rejectedComments);
+router.post('/getApprovedComments', userDataController.getApprovedComments);
+router.post('/getRejectedComments', userDataController.getRejectedComments);
+
 
 module.exports = router;
 

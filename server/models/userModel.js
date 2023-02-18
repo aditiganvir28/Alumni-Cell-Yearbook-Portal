@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
 
     academic_program: {
         type: String,
-        required: [true, "Academic Program is required"],
+        default: "Bachelor of Technology (BTech)"
     },
 
     department: {
@@ -38,8 +38,8 @@ const userSchema = new mongoose.Schema({
 
     personal_email_id: {
         type: String,
-        // required: [true, "Department is required"],
-        unique: true,
+        required: [true, "Department is required"],
+        // unique: true,
     },
 
     current_company: {
@@ -52,12 +52,12 @@ const userSchema = new mongoose.Schema({
 
     about: {
         type: String,
-        // required: true,
+        required: true,
     },
 
     profile_img: {
         type: String,
-        // required: [true, "Profile_image is required"],
+        required: [true, "Profile_image is required"],
     },
 
     verified: {

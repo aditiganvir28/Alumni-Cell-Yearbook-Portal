@@ -10,7 +10,7 @@ function Footer() {
         <div className="container2" id='abd'>
                 <div className='footer-item'>
                     <h1>Alumni Cell</h1>
-                    <p id='line'>The Alumni Cell is the student-run cell to connect and broaden the Institute’s alum network.</p>
+                    <p id='line' className='bg-white'>The Alumni Cell is the student-run cell to connect and broaden the Institute’s alum network.</p>
                     <div className="iconn">
                      <i className='fa fa-map-marker bg-[#180c1e]' id='map'></i>
                     <div className="tt">
@@ -27,7 +27,7 @@ function Footer() {
                     {/* <br></br> */}
                     <div className="mail">
                     <a href='https://www.gmail.com' className='fa fa-envelope' id='env'></a>
-                    <p id='para2'> alumnicell@iiti.ac.in,<br></br> acroffice@iiti.ac.in </p>
+                    <p id='para2' className='bg-transparent'> alumnicell@iiti.ac.in,<br></br> acroffice@iiti.ac.in </p>
                     </div>
                 </div>
                 <div className="footer-item2">

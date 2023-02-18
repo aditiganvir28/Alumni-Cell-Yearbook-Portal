@@ -45,8 +45,8 @@ li{
     border-radius: 10px;
   }
 img{
-    border-radius: 30px !important;
-    width: 8% !important;
+    border-radius: 30px;
+    width: 8%;
 }
 #profile {
     width: 40px;
@@ -69,13 +69,15 @@ input {
     margin-right: 90px;
     margin-left: 70px;
 }
-.container2 {
-    display: flex;
-    margin-left: 50px;
+#fill{
+    width: 100%;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 .container4{
     display: flex;
-    margin: 0 500px 0 0;
+    flex: auto;
+    // margin: 0 500px 0 0;
 }
 h1 {
     color: white;
@@ -91,12 +93,12 @@ h2{
     /* margin-left: 600px; */
 }
 .left {
-    display: block;
-    position: absolute;
-    padding: 10px;
+    
+    // position: absolute;
+    padding-bottom: 10%;
     /* padding-left: 150px; */
     background-color: #210735;
-    margin: 20px;
+    
     height: 700px;
 }
 .description {
@@ -106,8 +108,11 @@ h2{
     margin-bottom: 20px;
 }
 .right {
-    margin-left: 800px;
-    display: block;
+    // margin-left: 800px;
+    display: flex;
+    flex-flow: column;
+    flex: auto;
+    align-items: center;
 }
 #make {
     display: flex;

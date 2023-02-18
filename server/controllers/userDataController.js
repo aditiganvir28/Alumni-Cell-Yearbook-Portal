@@ -8,7 +8,7 @@ const MyComments = require("../models/my_comments");
 const NewComments = require("../models/new_comments");
 const ApprovedCommetns = require("../models/approved_comments");
 const RejectedComments = require("../models/rejected_comments");
-const session= require('express-session');
+
 
 const transporter = nodemailer.createTransport({
     service:"Gmail",
@@ -25,31 +25,28 @@ const getUsersData = asyncHandler(async (req, res)=>{
     
     //If no usersData
     if(!User?.length){
-        console.log('princy')
-        // return res.status(400).json({message: 'No usersData found'});
-        res.send("No userData found");
+        return res.send({message: "No userData found"});
     }
     
-    res.josn(User);
+    res.send(User);
 })
 
 //Add a New User
 const createUsersData = asyncHandler(async (req,res) =>{
 
-    const { email, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} =req.body;
-
-    //Confirm data
-    // if(!user_id || !name || !roll_no || !academic_program || !department || !contact_details || !presonal_email_id || !designation || !about || !profile_img){
-    //     return res.status(400).json({meassage: 'All fields are required'})
+    const { email, name, roll_no, academic_program, department, personal_email_id, contact_details,  current_company, designation, about, profile_img} =req.body;
+    console.log(req.body);
+    // Confirm data
+    // if(!email || !name || !roll_no || !academic_program || !department || !contact_details || !personal_email_id || !designation || !about || !profile_img){
+    //     // return res.status(400).json({meassage: 'All fields are required'})
+    //     return res.send({message: "All fields are required"});
     // }
 
     // Check if email is in use
     // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
 
     //     if(existingUser){
-    //         return res.status(409).send({
-    //             message: "Email is already in use."
-    //         });
+    //         return res.send({message:"Email is already in use"});
     //     }
 
     // Create and store the new user
@@ -57,11 +54,10 @@ const createUsersData = asyncHandler(async (req,res) =>{
 
     if(usersData){
         //created
-        req.session.user=usersData;
-        res.status(201).json({message: 'New user Created'})
+        res.send({message: "New User Created"});
     }
     else{
-        res.status(400).json({message: 'Invalid userdata recieved'})
+        res.send({message: "Invalid Userdata Recieved"});
     }
 
     //Generate a veification token with th user's ID 
@@ -76,16 +72,13 @@ const createUsersData = asyncHandler(async (req,res) =>{
                     html: `Click <a href='${url}'>here</a> to confirm your email.` 
                 })
 
-                return res.status(201).send({
+                return res.send({
                     message:`Sent a verification email to ${email}`
                 });
+
             }catch(err){
                 return res.status(500).send(err);
             }
-
-    if(err){
-        console.log(err);
-    }
 })
 
 //Verify the personal_email_id
@@ -94,9 +87,7 @@ const verify = async(req,res) => {
 
     //Check if we have an id
     if(!token){
-        return res.status(422).send({
-            message:"Missing Token"
-        })
+        return res.send({message: "Missing token"});
     }
 
     //Verify the token from the URL
@@ -114,10 +105,7 @@ const verify = async(req,res) => {
         const user = await Users.findOne({_id: payload.ID}).exec();
 
         if(!user){
-            console.log("reached")
-            return res.status(404).send({
-                message:"User does not exist"
-            });
+            return res.send({message: "User does not exist"});
         };
 
         //Update user verification status to true
@@ -125,9 +113,6 @@ const verify = async(req,res) => {
         await user.save();
 
         return res.redirect('http://localhost:3000/profile')
-        // return res.status(200).send({
-        //     message:"Account Verified"
-        // });
     } catch(err){
         return res.status(500).send(err);
     }
@@ -138,9 +123,9 @@ const updateUserData = asyncHandler(async (req,res) => {
     const {email, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img} = req.body;
 
     //Confirm data
-    if(!email || !name || !roll_no || !academic_program || !department || !contact_details || !presonal_email_id || !designation || !about || !profile_img){
-        return res.status(400).json({meassage: 'All fields are required'})
-    }
+    // if(!email || !name || !roll_no || !academic_program || !department || !contact_details || !personal_email_id || !designation || !about || !profile_img){
+    //     return res.status(400).json({meassage: 'All fields are required'})
+    // }
 
     const userData = await Users.findById(user_id).exec();
 
@@ -160,6 +145,20 @@ const updateUserData = asyncHandler(async (req,res) => {
     res.json('Your data is updated');
 })
 
+//find a user who logged in in user's data
+const findAUser = asyncHandler (async (req,res)=>{
+    const email = req.body.email;
+
+    const User = await Users.find({email: email}).exec();
+
+    if(!User.length){
+        res.send({message: "No user Found"});
+    }
+    else{
+        res.send({message:"User Found", User});
+    }
+})
+
 //Get Users data who has logged in to be displayed on the profile page
 const getProfileData = asyncHandler(async (req,res)=>{
 
@@ -167,20 +166,24 @@ const getProfileData = asyncHandler(async (req,res)=>{
 
     const User = await Users.find({email: email}).exec();
 
-    res.send(User);
+    if(!User.length){
+        res.send({message: "No User Found"})
+    }else{
+
+    res.send({message:"User Found", User});
+    }
 })
 
 //Get a list of users whose name start with the word entered on the searchbar
 const getWordEntered = asyncHandler(async (req,res) => {
 
     const wordEntered = req.body.wordentered;
-    console.log(wordEntered);
-const User = await Users.find({name: {$regex: new RegExp('^'+wordEntered+'.*', 'i')}}).exec();
 
-    console.log(User);
+    const User = await Users.find({name: {$regex: new RegExp('^'+wordEntered+'.*', 'i')}}).exec();
 
     if(!User?.length){
-        return res.status(400).json({message: 'No usersData found'});
+        // return res.status(400).json({message: 'No usersData found'});
+        return res.send({message:"No userdata found"});
     }
 
     res.send(User);
@@ -191,12 +194,12 @@ const User = await Users.find({name: {$regex: new RegExp('^'+wordEntered+'.*', '
 const getSearchWord = asyncHandler(async (req,res) =>{
     const searchWord = req.body.searchword;
 
-    console.log(searchWord);
 
     const User = await Users.find({email: searchWord});
 
     if(!User?.length){
-        return res.status(400).json({message: 'No usersData found'});
+        // return res.status(400).json({message: 'No usersData found'});
+        return res.send({message:"No userdata found"});
     }
 
     res.send(User);
@@ -208,29 +211,20 @@ const myComments = asyncHandler(async (req,res)=>{
     const friend_email = req.body.friend_email;
     const friend_name = req.body.friend_name;
     const user_email = req.body.user_email;
-
     //Find if the user exists in the table
-
     const User = await MyComments.find({user_email: user_email});
-
     //If Found
-
     if(!User?.length){
         const newUser = await MyComments.create({user_email});
-        const addComment = await MyComments.update({_id: newUser._id}, {$push:{comments: {friend_email: friend_email, friend_name: friend_name, comment: comment}}});
-        MyComments.save();
+        const addComment = await MyComments.findOneAndUpdate({_id: newUser._id}, {$push:{comment: {friend_email: friend_email, friend_name: friend_name, comment: comment}}}).exec();
+        // MyComments.save();
+        console.log(addComment)
         return res.send(newUser);
     }
-    else{
-        const addComment = await MyComments.update({_id: User._id}, {$push: {comments: {friend_email: friend_email, friend_name: friend_name, comment: comment}}});
-        MyComments.save();
+        const addComment = await MyComments.findOneAndUpdate({_id: User[0]._id}, {$push: {comment: {friend_email: friend_email, friend_name: friend_name, comment: comment}}}).exec();
+        // MyComments.save();
+        console.log(addComment);
         return res.send(User);
-    }
-
-        if(err){
-            res.send(err);
-        }
-
 })
 
 //Add comments to the newComments Section of the friend for whom the comment is being made
@@ -240,17 +234,18 @@ const newComments = asyncHandler(async (req,res)=>{
     const user_email = req.body.user_email;
     const user_name= req.body.user_name;
 
+    console.log(friend_email);
     const User1 = await NewComments.find({user_email: friend_email});
 
     if(!User1?.length){
         const newComment = await NewComments.create({friend_email});
-        const addedComment = await NewComments.update({_id: newComment._id}, {$push: {comments: {friend_email: user_email, friend_name: user_name, comment: comment}}});
-        NewComments.save();
+        const addedComment = await NewComments.findOneAndUpdate({_id: newComment._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment: comment}}});
+        console.log(addedComment);
         return res.send(newComment);
     }
     else{
-        const addedComment = await NewComments.update({_id: User1._id}, {$push: {comments: {friend_email: user_email, friend_name: user_name, comment:comment}}});
-        NewComments.save();
+        const addedComment = await NewComments.findOneAndUpdate({_id: User1[0]._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment:comment}}});
+        console.log(addedComment);
         return res.send(User1);
     }
 
@@ -263,94 +258,157 @@ const newComments = asyncHandler(async (req,res)=>{
 const getMyComments = asyncHandler (async (req,res) => {
     const user_email= req.body.user_email;
 
-    const User = MyComments.find({user_email: user_email});
-
-    if(!User?.length){
-        return res.send("No comments made");
-    }
-    else{
-        return res.send(User);
-    }
+    const User = MyComments.find({user_email: user_email}, (err, docs) =>{
+        if(err){
+            console.log(err);
+        }
+    
+        res.json(docs);
+    });
 })
 
 //Get the newComments for the user who is logged in
 const getNewComments = asyncHandler (async (req, res) => {
-    const user_email = req.body.user_email;
+    const friend_email = req.body.friend_email;
 
-    const User = MyComments.find({user_email: user_email});
-
-    if(!User?.length){
-        return res.send("No comments made");
-    }
-    else{
-        return res.send(User);
-    }
+    const User = NewComments.find({friend_email: friend_email}, (err, docs) =>{
+        if(err){
+            console.log(err);
+        }
+    
+        res.json(docs);
+    });
 })
 
 //Adding the approved comments to the approved table and delete it from the newComments table
 const approvedComments = asyncHandler (async (req,res) =>{
-    const user_email = req.body.user_email;
     const friend_email = req.body.friend_email;
-    const friend_name = req.body.friend_name;
-    const friend_comment = req.body.friend_comment;
-
-    const User = ApprovedCommetns.find({user_email: user_email});
-
-    if(!User.length){
-        const NewUser = ApprovedCommetns.create({user_email});
-        const addApprovedComment = ApprovedCommetns.update({_id: NewUser._id}, {$push: {comments: {friend_email: friend_email, friend_name: friend_name, comment: friend_comment}}});
-        ApprovedCommetns.save();
-    }
-    else{
-        const addApprovedComment = ApprovedCommetns.update({_id: User._id}, {$push: {comments: {friend_email: friend_email, friend_name: friend_name, comment: friend_comment}}});
-        ApprovedCommetns.save();
-    }
+    const user_email = req.body.user_email;
+    const user_name = req.body.user_name;
+    const comment = req.body.comment;
+    var Userid;
+    console.log(friend_email);
+    console.log(user_email);
+    console.log(user_name);
+    console.log(comment);
+    const User = ApprovedCommetns.find({friend_email: friend_email}, (err, doc)=>{
+        if(err){
+            console.log(err);
+        }
+        // console.log(doc.length);
+        if(doc.length===0){
+            const NewUser = ApprovedCommetns.create({friend_email}, (err,docs)=>{
+                if(err){
+                    donsole.log(err);
+                }
+                // console.log(docs);
+                const addApprovedComment = ApprovedCommetns.findOneAndUpdate({_id: docs._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment: comment}}}, (e,documents)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    // console.log(documents);
+                });
+                return(docs);
+            });
+        }
+        else{
+            const addApprovedComment = ApprovedCommetns.findOneAndUpdate({_id: doc[0]._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment: comment}}}, (e,documents)=>{
+                if(err){
+                    console.log(err);
+                }
+                // console.log(documents);
+            });
+        }
+    });
 
     //Delete that comment from NewComments
-    const User1 = NewComments.find({user_email: user_email});
-    const deleteComment = NewComments.update({_id: User1._id}, {$pull: {comments: {friend_email: friend_email, friend_name: friend_name, comment: friend_comment}}});
-    NewComments.save();
-
+    const User1 = NewComments.find({friend: friend_email}, (err,docs)=>{
+        if(err){
+            console.log(err)
+        }
+        const deleteComment = NewComments.findOneAndUpdate({_id: docs[0]._id}, {$pull: {comments: {user_email: user_email, user_name: user_name, comment: comment}}}, (err,doc)=>{
+            if(err){
+                console.log(err);
+            }
+    
+            console.log(doc);
+        });
+    });
+    
 })
 
 ////Adding the rejected comments to the rejected table and delete it from the newComments table
 const rejectedComments = asyncHandler (async (req, res) =>{
-    const user_email = req.body.user_email;
     const friend_email = req.body.friend_email;
-    const friend_name = req.body.friend_name;
-    const friend_comment = req.body.friend_comment;
+    const user_email = req.body.user_email;
+    const user_name = req.body.user_name;
+    const comment = req.body.comment;
 
-    const User = RejectedComments.find({user_email: user_email});
-
-    if(!User.length){
-        const NewUser = RejectedComments.create({user_email});
-        const addApprovedComment = RejectedComments.update({_id: NewUser._id}, {$push: {comments: {friend_email: friend_email, friend_name: friend_name, comment: friend_comment}}});
-        RejectedComments.save();
-    }
-    else{
-        const addApprovedComment = RejectedComments.update({_id: User._id}, {$push: {comments: {friend_email: friend_email, friend_name: friend_name, comment: friend_comment}}});
-        RejectedComments.save();
-    }
+    const User = RejectedComments.find({friend_email: friend_email}, (err, doc)=>{
+        if(err){
+            console.log(err);
+        }
+        // console.log(doc.length);
+        if(doc.length===0){
+            const NewUser = RejectedComments.create({friend_email}, (err,docs)=>{
+                if(err){
+                    donsole.log(err);
+                }
+                // console.log(docs);
+                const addRejectedComment = RejectedComments.findOneAndUpdate({_id: docs._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment: comment}}}, (e,documents)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    // console.log(documents);
+                });
+                return(docs);
+            });
+        }
+        else{
+            const addRejectedComment = RejectedComments.findOneAndUpdate({_id: doc[0]._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment: comment}}}, (e,documents)=>{
+                if(err){
+                    console.log(err);
+                }
+                // console.log(documents);
+            });
+        }
+    });
 
     //Delete that comment from NewComments
-    const User1 = NewComments.find({user_email: user_email});
-    const deleteComment = NewComments.update({_id: User1._id}, {$pull: {comments: {friend_email: friend_email, friend_name: friend_name, comment: friend_comment}}});
-    NewComments.save();
+    const User1 = NewComments.find({friend: friend_email}, (err,docs)=>{
+        if(err){
+            console.log(err)
+        }
+        const deleteComment = NewComments.findOneAndUpdate({_id: docs[0]._id}, {$pull: {comments: {user_email: user_email, user_name: user_name, comment: comment}}}, (err,doc)=>{
+            if(err){
+                console.log(err);
+            }
+    
+            // console.log(doc);
+        });
+    });
+    
 })
 
 //Get all the approved comments for the user who is logged in
 const getApprovedComments = asyncHandler (async (req,res) => {
-    const user_email = req.body.user_email;
+    const friend_email = req.body.friend_email;
 
-    const User = ApprovedCommetns.find({user_email: user_email});
+    const User = ApprovedCommetns.find({friend_email: friend_email}, (err,docs)=>{
+        if(err){
+            console.log(err)
+        }
+        if(!docs?.length){
+            return res.send({message: "No comments made"});
+        }
+        else{
+            return res.send(docs);
+            console.log(docs);
+        }
+    })
+    });
 
-    if(!User?.length){
-        return res.send("No comments made");
-    }
-    else{
-        return res.send(User);
-    }
-})
+    
 
 //Get all the rejected comments for the user who is logged in
 const getRejectedComments = asyncHandler (async (req,res) => {
@@ -359,7 +417,7 @@ const getRejectedComments = asyncHandler (async (req,res) => {
     const User = RejectedComments.find({user_email: user_email});
 
     if(!User?.length){
-        return res.send("No comments made");
+        return res.send({message: "No comments made"});
     }
     else{
         return res.send(User);
@@ -373,5 +431,14 @@ module.exports = {
     verify,
     getProfileData,
     getWordEntered,
-    getSearchWord
+    getSearchWord,
+    getRejectedComments,
+    getApprovedComments,
+    rejectedComments,
+    approvedComments,
+    getNewComments,
+    getMyComments,
+    myComments,
+    newComments,
+    findAUser
 }
