@@ -3,6 +3,7 @@ import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss';
 import axios from 'axios';
 import App from '../../App';
+import loadingSpinner from '../Homepage/images/808.gif'
 
 const SecondLogin = () => {
 
@@ -14,6 +15,16 @@ const SecondLogin = () => {
     const [friendEmail, setFriendEmail] = useState("");
     const [friendName, setFriendName] = useState("");
     const [comment, setComment] = useState("");
+    const {loading, setLoading} = useContext(LoginContext)
+    const [loading2, setLoading2] = useState(true);
+      
+    useEffect(async () => {
+        await new Promise((r) => setTimeout(r, 5000));
+  
+        // Toggle loading state
+        setLoading(false);
+        
+    }, [])
 
     //Get the data to be displayed on the profile
     useEffect(()=>{
@@ -91,11 +102,14 @@ const SecondLogin = () => {
                         <h1>Approved Comments</h1>
                     </div>
                     <div id='commentsscroll'>
-                        <div id='comment'>
-                            <p id='commentp'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur minima molestiae dolores animi, nam earum libero obcaecati! Iure dolor, corrupti ipsum nihil, dignissimos consequatur impedit dolore rerum autem iste voluptate.</p>
-                            <p id='commentby'>-BY</p>
+                        {approvedComments.map((val)=>(
+                            <div id='comment'>
+                            <p id='commentp'>{val.comment}</p>
+                            <p id='commentby'>-{val.user_name}</p>
                         </div>
-                        <div id='comment'>
+                        ))}
+                        
+                        {/* <div id='comment'>
                             <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde amet provident minima veniam explicabo alias quos magni commodi animi earum eum recusandae dignissimos aut nam, perferendis accusamus ex culpa modi!</p>
                             <p id='commentby'>-BY</p>
                         </div>
@@ -114,7 +128,7 @@ const SecondLogin = () => {
                         <div id='comment'>
                             <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis excepturi suscipit necessitatibus ad laborum velit deserunt. Ab repellendus reprehenderit at magni, veritatis quos recusandae minima, maiores dolorem, fugiat quo rerum.</p>
                             <p id='commentby'>-BY</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="profile">
@@ -209,6 +223,8 @@ const SecondLogin = () => {
             </div> */}
 
         </div>
+}
+        </>
     )
 }
 

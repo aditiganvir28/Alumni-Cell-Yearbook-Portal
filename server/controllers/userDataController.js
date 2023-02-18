@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
         user: "aditi10328@gmail.com",
-        pass: ""
+        pass: "sedmznapvcnyavsh"
     }
 })
 
@@ -37,10 +37,10 @@ const createUsersData = asyncHandler(async (req,res) =>{
     const { email, name, roll_no, academic_program, department, personal_email_id, contact_details,  current_company, designation, about, profile_img} =req.body;
     console.log(req.body);
     // Confirm data
-    // if(!email || !name || !roll_no || !academic_program || !department || !contact_details || !personal_email_id || !designation || !about || !profile_img){
-    //     // return res.status(400).json({meassage: 'All fields are required'})
-    //     return res.send({message: "All fields are required"});
-    // }
+    if(!email || !name || !roll_no || !department || !contact_details || !personal_email_id || !designation || !about || !profile_img){
+        // return res.status(400).json({meassage: 'All fields are required'})
+        return res.send({message: "All fields are required"});
+    }
 
     // Check if email is in use
     // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
@@ -178,6 +178,10 @@ const getProfileData = asyncHandler(async (req,res)=>{
 const getWordEntered = asyncHandler(async (req,res) => {
 
     const wordEntered = req.body.wordentered;
+
+    if(wordEntered.length === 0){
+        return res.send([]);
+    }
 
     const User = await Users.find({name: {$regex: new RegExp('^'+wordEntered+'.*', 'i')}}).exec();
 

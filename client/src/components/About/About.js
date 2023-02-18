@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import qnas from './q&as.js';
-import "@fontsource/quantico";
-import { ChakraProvider } from '@chakra-ui/react'
+import React, { Component, useContext, useEffect} from 'react';
+import qnas from './q&as.js'
+import { ChakraProvider } from '@chakra-ui/react';
+import loadingSpinner from '../Homepage/images/808.gif'
 import './About.scss';
 import {
   Accordion,
@@ -11,10 +11,32 @@ import {
   AccordionIcon,
   Box,
 } from '@chakra-ui/react'
+import { LoginContext } from '../../helpers/Context.js';
 
-class About extends Component {
-  render() {
+function About(){
+
+  const {loading, setLoading} = useContext(LoginContext);
+
+  useEffect(() => {
+    const Load = async () => {
+        await new Promise((r) => setTimeout(r, 5000));
+
+        setLoading((loading) => !loading);
+    }
+
+    Load();
+}, [])
+  
+  
     return (
+      <>
+      {/* {!loading &&
+      <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+      <img src={loadingSpinner}></img>
+  </div>
+      } */}
+        <div className='wrapper'>
+          <div className='about'>
       <div>
         <style>
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');                
@@ -29,7 +51,7 @@ class About extends Component {
           <div className='faq'>
             <h1 id='faq'>Frequently Asked Questions</h1>
             <div className='qna'>
-              <Accordion defaultIndex={[0]} allowMultiple>
+              {/* <Accordion defaultIndex={[0]} allowMultiple>
                 {qnas.map((qna) => {
                   return (
                     <AccordionItem>
@@ -44,19 +66,24 @@ class About extends Component {
                   <AccordionPanel pb={4} id='a'>
                     {qna.a}
                   </AccordionPanel>
-                </AccordionItem>
-                  )
-                })}
+                </AccordionItem> */}
+                  {/* )
+                // })} */}
                 
-              </Accordion>
+              {/* </Accordion> */}
               
             </div>
           </div>
         </div>
+        
+     
+        
       </ChakraProvider>
-                </div>
+      </div>
+      </div>
+      </div>
+      </>
     );
-  }
 };
 
 export default About;
