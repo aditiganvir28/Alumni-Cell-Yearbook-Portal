@@ -10,26 +10,47 @@ import Comment from "./images/comment.png";
 
 import { motion } from "framer-motion";
 
+import axios from 'axios';
+import loadingSpinner from '../Homepage/images/808.gif'
+// import Insta from "../Homepage/images/insta.png";
+// import Twitter from "../Homepage/images/twitter.png";
+// import Linkedin from "../Homepage/images/linkedin.png";
+// import Facebook from "../Homepage/images/Facebook.png";
 function Homepage() {
     const navigate = useNavigate();
-    const { setLoggedin, setUser, user } = useContext(LoginContext);
+    const {setLoggedin, setUser, user, loading, setLoading}= useContext(LoginContext);
+    
+    useEffect(() => {
+        const Load = async () => {
+            await new Promise((r) => setTimeout(r, 5000));
+
+            setLoading((loading) => !loading);
+        }
+
+        Load();
+    }, [])
     //Get the data to be displayed on the profile
-    // useEffect(()=>{
-    //     axios.post('http://localhost:5000/profile', {
-    //       email: user.email
-    //     }).then((res)=>{
-    //     //   console.log(res.data);
-    //       if(res.data.message==="No User Found"){
-    //         setUser({});
-    //         window.localStorage.removeItem('user');
-    //         setLoggedin(false);
-    //         window.localStorage.setItem('loggedin', false)
-    //         document.getElementById("google-login").hidden = false;
-    //         navigate('/');
-    //       }
-    //     })
-    //   },[])
+// useEffect(()=>{
+//     axios.post('http://localhost:5000/profile', {
+//       email: user.email
+//     }).then((res)=>{
+//     //   console.log(res.data);
+//       if(res.data.message==="No User Found"){
+//         setUser({});
+//         window.localStorage.removeItem('user');
+//         setLoggedin(false);
+//         window.localStorage.setItem('loggedin', false)
+//         document.getElementById("google-login").hidden = false;
+//         navigate('/');
+//       }
+//     })
+//   },[])
     return (
+        <>
+        {loading && <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <img src={loadingSpinner}></img>
+        </div>}
+        {!loading && 
         <div className="overflow-x-hidden w-screen flex flex-col">
             <div className='flex flex-col overflow-x-hidden'>
                 <div className='flex flex-col lg:flex-row w-full justify-around items-center lg:mb-8 lg:h-screen'>
@@ -231,7 +252,8 @@ function Homepage() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>}
+        </>
     )
 }
 

@@ -2,15 +2,16 @@ body{
     display:flex;
     flex: auto;
     align-items: center;
-    background-color: #180c1e
+    background-color: #180c1e !important;
 }
 .css-uttm9k{
     flex:auto;
     border:none;
 }
-.about{
+.abouta{
     width:100%;
     height: 45%;
+    font-size: larger;
 }
 .faq{
     height: 25%;
@@ -26,22 +27,38 @@ body{
     color: white;
     background-color:#180c1e;
 }
-.about>p{
-    font-size: x-large;
+#abt{
+        background-color: #4d1a6c;
+        border-color: white;
+        border-radius: 110px;
+        border-width: 2px;    
+        overflow: hidden;
 }
-h1#about{
-    font-size: xx-large;
+.abouta>p{
+    font-size: x-large;
+    padding-left: 1%;
+    padding-right: 1%;
+    // text-align: left;  
+}
+h1#abouta{
+    font-size: 300%;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#para-about{
-    text-align: center;
+#para-abouta{
+    text-align: left;
 }
 
 h1#faq{
     font-size: xx-large;
+}
+// @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap'); 
+#abd{
+    font-family: 'Quantico';
+    padding: 1%;
 }
 .qna{
     display: flex;

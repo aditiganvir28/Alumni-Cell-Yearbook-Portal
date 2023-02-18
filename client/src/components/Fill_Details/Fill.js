@@ -112,12 +112,12 @@ console.log(userData)
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Designation" size="60" name="designation" value={userData.designation} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="ABOUT ME" size="60" name = "about" value={userData.about} onChange={(e) =>
+          <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           {verify && 
           <h2>Sent a veification mail to your personal_email_id</h2>
           }
-          <button className="submit" onClick={onSubmit}>Submit</button>
+          <button className="submit1" onClick={onSubmit}>Submit</button>
         </div>
         <div className="right">
           <span className="dot"></span>

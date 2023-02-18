@@ -2,7 +2,7 @@ body {
     display: block;
 }
 
-.container {
+.containersl {
     font-family: 'Quantico', sans-serif;
 }
 .header {
@@ -12,17 +12,17 @@ body {
     padding: 2%;
 }
 
-.navbar {
-    background-color: #4d1a6c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 2%;
-    margin-right: 2%;
-    flex: auto;
-    border: 2px solid white;
-    border-radius: 15px;
-}
+// .navbar {
+//     background-color: #4d1a6c;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     margin-left: 2%;
+//     margin-right: 2%;
+//     flex: auto;
+//     border: 2px solid white;
+//     border-radius: 15px;
+// }
 
 ul{
     list-style-type: none;
@@ -38,18 +38,6 @@ li{
     flex: auto;
 }
 
-input {
-    padding-bottom: 20px;
-    border: none;
-    width: 500;
-    background-color: transparent;
-    color: themed("textColor");      
-}
-
-.search {
-    border: none;
-}
-
 .container2 {
     display: flex;
     flex-direction: row;
@@ -61,11 +49,34 @@ input {
     background-color: #2E0249;
     border: none;
     border-radius: 20px;
-    width: 500px;
+    width: 600px;
     height: 600px;
     margin-left: 20px;
     text-align: left;
     margin-bottom: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.comments2 {
+    padding: 30px;
+    background-color: #2E0249;
+    border: none;
+    border-radius: 20px;
+    width: 500px;
+    height: 600px;
+    margin-left: 20px;
+    text-align: left;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.comments3 {
+    padding: 30px;
+    background-color: #2E0249;
+    border: none;
+    border-radius: 20px;
+    width: 600px;
+    height: 600px;
+    // margin-left: 20px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -80,7 +91,7 @@ input {
 }
 
 .profile {
-    margin-left: 300px;
+    margin-left: 200px;
 }
 
 #about {
@@ -88,21 +99,18 @@ input {
     position: relative;
     margin: auto;
 }
-.about {
+.about1{
     background-color: #3E065F;
-    border: none;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    height: 180px;
-    padding-top: 50px;
+    border-color: white;
+    border-radius: 10px;
+    border-width: 1px;
+    overflow: hidden;
 }
 .edit {
     display: flex;
     padding-left: 40%;
     padding-bottom: 5%;
 }
-
 .button {
     margin: auto;
     height: 50px;

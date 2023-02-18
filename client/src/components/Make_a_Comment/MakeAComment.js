@@ -1,13 +1,26 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
-import './MakeAComment.scss'
+import './MakeAComment.scss';
+import loadingSpinner from '../Homepage/images/808.gif'
 import axios from 'axios'
+import { useNavigate } from 'react-router';
 
 const MakeAComment = () => {
     const {result, setResult, user, setUser} = useContext(LoginContext);
     // console.log(result);
     const [userData, setUserData] = useState({});
     const [comment, setComment] = useState();
+    const {loading, setLoading} = useContext(LoginContext); 
+
+    const navigate = useNavigate();
+
+    useEffect(async () => {
+      await new Promise((r) => setTimeout(r, 5000));
+
+      // Toggle loading state
+      setLoading(false);
+      
+  }, [])
 
     //Get the data to be displayed on the profile
     useEffect(()=>{
@@ -41,11 +54,13 @@ const MakeAComment = () => {
       }).catch((err)=>{
         console.log(err);
       })
+
+      navigate('/profile')
     }
 
 
   return (
-    <div className='container'>
+    <div className='containermc'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
@@ -70,6 +85,8 @@ const MakeAComment = () => {
         </div>
       </div>
     </div>
+    // }
+    // </>
   );
 }
 
