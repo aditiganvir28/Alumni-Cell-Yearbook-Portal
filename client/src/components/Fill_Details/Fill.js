@@ -11,6 +11,7 @@ function Fill(props) {
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [verify, setVerify] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false);
  
   const uploadImage = () => {
     console.log(imageSelected );
@@ -23,6 +24,7 @@ function Fill(props) {
     .then((res)=>{
       console.log(res.data.url);
       setImageUrl(res.data.url);
+      setImageUploaded(true);
     })
 
   }
@@ -122,11 +124,14 @@ console.log(userData)
         </div>
         <div className="right">
         <span className="dot">
-            {/* <img src=""/> */}
+            <img src={imageUrl}/>
           </span>
           <h2> </h2><br/>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
           <button onClick = {uploadImage}>Upload Image</button>
+          {imageUploaded && 
+          <h3 style={{color:"white"}}>Image Uploaded</h3>
+          }
     </div>
     </div>
     </div>

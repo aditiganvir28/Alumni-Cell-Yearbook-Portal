@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
         user: "aditi10328@gmail.com",
-        pass: "sedmznapvcnyavsh"
+        pass: ""
     }
 })
 
@@ -239,8 +239,8 @@ const newComments = asyncHandler(async (req,res)=>{
     const user_name= req.body.user_name;
 
     console.log(friend_email);
-    const User1 = await NewComments.find({user_email: friend_email});
-
+    const User1 = await NewComments.find({friend_email: friend_email});
+try{
     if(!User1?.length){
         const newComment = await NewComments.create({friend_email});
         const addedComment = await NewComments.findOneAndUpdate({_id: newComment._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment: comment}}});
@@ -251,11 +251,14 @@ const newComments = asyncHandler(async (req,res)=>{
         const addedComment = await NewComments.findOneAndUpdate({_id: User1[0]._id}, {$push: {comments: {user_email: user_email, user_name: user_name, comment:comment}}});
         console.log(addedComment);
         return res.send(User1);
+    }}
+    catch{
+        if(err){
+            return res.send(err);
+        }
     }
 
-    if(err){
-        return res.send(err);
-    }
+    
 })
 
 //Get the Mycomments for the user who is logged in
@@ -274,14 +277,15 @@ const getMyComments = asyncHandler (async (req,res) => {
 //Get the newComments for the user who is logged in
 const getNewComments = asyncHandler (async (req, res) => {
     const friend_email = req.body.friend_email;
-
+    console.log(friend_email)
     const User = NewComments.find({friend_email: friend_email}, (err, docs) =>{
         if(err){
             console.log(err);
         }
-    
+        console.log(docs);
         res.json(docs);
     });
+
 })
 
 //Adding the approved comments to the approved table and delete it from the newComments table

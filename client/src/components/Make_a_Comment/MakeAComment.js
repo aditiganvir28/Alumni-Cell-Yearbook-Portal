@@ -14,13 +14,13 @@ const MakeAComment = () => {
 
     const navigate = useNavigate();
 
-    useEffect(async () => {
-      await new Promise((r) => setTimeout(r, 5000));
+  //   useEffect(async () => {
+  //     await new Promise((r) => setTimeout(r, 5000));
 
-      // Toggle loading state
-      setLoading(false);
+  //     // Toggle loading state
+  //     setLoading(false);
       
-  }, [])
+  // }, [])
 
     //Get the data to be displayed on the profile
     useEffect(()=>{

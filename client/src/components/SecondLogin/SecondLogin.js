@@ -18,13 +18,13 @@ const SecondLogin = () => {
     const {loading, setLoading} = useContext(LoginContext)
     const [loading2, setLoading2] = useState(true);
       
-    useEffect(async () => {
-        await new Promise((r) => setTimeout(r, 5000));
+    // useEffect(async () => {
+    //     await new Promise((r) => setTimeout(r, 5000));
   
-        // Toggle loading state
-        setLoading(false);
+    //     // Toggle loading state
+    //     setLoading(false);
         
-    }, [])
+    // }, [])
 
     //Get the data to be displayed on the profile
     useEffect(()=>{
@@ -42,7 +42,7 @@ const SecondLogin = () => {
             user_email: user.email
         }).then((res)=>{
             // console.log(res.data);
-            setMyComments(res.data[0].comments);
+            setMyComments(res.data[0].comment);
         }).catch((err) => {
             console.log(err);
         })
@@ -54,7 +54,7 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getNewComments', {
             friend_email: user.email
         }).then((res)=>{
-            // console.log(res.data);
+            console.log(res.data);
             setNewComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
@@ -145,8 +145,16 @@ const SecondLogin = () => {
             <div className="container2">
                 <div className="comments2">
                     <h1>My Comments</h1>
-
-                </div>
+                
+                <div id='commentsscroll'>
+                        {myComments.map((val)=>(
+                            <div id='comment'>
+                            <p id='commentp'>{val.comment}</p>
+                            <p id='commentby'>-{val.friend_name}</p>
+                        </div>
+                        ))}
+                        </div>
+                        </div>
                 <div className="comments3" id='new' >
                     <h1>New Comments</h1>
                     {/* <h1 style={{ display : "inline"}}>..................</h1> */}
@@ -171,8 +179,9 @@ const SecondLogin = () => {
                                             })
                                         }
                                     }}><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
-                                    <button id='check' onClick={()=>{
+                                    <button id='check' onClick={(e)=>{
                                         {
+                                            e.preventDefault();
                                             axios.post('http://localhost:5000/rejectedComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
