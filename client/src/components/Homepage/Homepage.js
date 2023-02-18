@@ -7,6 +7,7 @@ import Lines2 from "./images/lines2.png";
 import Lines3 from "./images/lines3.png";
 import Search from "./images/search.png";
 import Comment from "./images/comment.png";
+import People from "./images/people1.png"
 
 import { motion } from "framer-motion";
 
@@ -46,21 +47,25 @@ function Homepage() {
 //     })
 //   },[])
     return (
+<<<<<<< Updated upstream
         <>
         {loading && <div className='loading_spinner' style={{width: "100%", height:"100vh", display: "flex", alignItems: "center", justifyContent: "center"}}>
             <img src={loadingSpinner}></img>
         </div>}
         {!loading && 
         <div className="overflow-x-hidden w-screen flex flex-col">
+=======
+        <div className="overflow-x-hidden w-screen flex flex-col overflow-clip lg:-mt-24 mt-0">
+>>>>>>> Stashed changes
             <div className='flex flex-col overflow-x-hidden'>
-                <div className='flex flex-col lg:flex-row w-full justify-around items-center lg:mb-8 lg:h-screen'>
-                    <div className='w-4/5 lg:w-2/5 lg:mt-0 mt-8 border-2 lg:h-3/5 h-4/5 rounded-xl flex flex-col items-start justify-center relative'>
+                <div className='flex flex-col lg:flex-row w-full justify-around items-center lg:mb-8 lg:h-screen h-[150vh]'>
+                    <div className='w-4/5 lg:w-2/5 lg:mt-0 mt-8 border-2 lg:h-3/5 h-2/5 rounded-xl flex flex-col items-start justify-center relative'>
                         <div className='text-white font-bold uppercase text-4xl lg:text-5xl lg:text-left lg:pl-4 mt-8 text-center'>WELCOME TO THE YEARBOOK PORTAL '23 OF IIT INDORE ...</div>
                         <div className=' lg:mb-0 mb-2 text-white uppercase text-3xl text-left pl-4 lg:pr-4 mt-8 lg:mt-8 w-full flex-wrap overscroll-contain'>ALUMNI CELL, IIT INDORE <br></br><br></br><span className='capitalize text-xl'>Welcome to the Yearbook Portal- A one-stop hub to curate your Yearbook profile and help others do the same!</span></div>
                     </div>
                     <div className='w-full lg:w-1/3 lg:h-3/4 mt-8 lg:mt-0 flex flex-col items-center lg:items-start'>
-                        <div className='text-4xl uppercase text-white text-center lg:text-left w-4/5 lg:w-3/4'>Welcome to your new memories page!</div>
-                        <div className='bg-[#3E185C] h-96 w-96 rounded-full mt-12 lg:mb-0 mb-12'></div>
+                        <div className='text-4xl uppercase text-white text-center lg:mt-12 lg:text-left w-4/5 lg:w-3/4'>Welcome to your new memories page!</div>
+                        <div className='h-96 w-96 rounded-full mt-12 lg:mb-0 mb-12'><img src={People} className="w-full"></img></div>
                     </div>
                 </div>
             </div>
@@ -72,28 +77,44 @@ function Homepage() {
                     viewport={{ once: true }}
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 100 }} className=' ml-16 w-1/2 text-4xl text-white capitalize'>connecting with your friends has never been <span className='text-[#fec80a]'>more</span> easy before!</motion.div>
-                <div className='flex flex-row mt-2'>
+                    transition={{ duration: 0.3, type: "spring", stiffness: 100 }} className=' lg:ml-16 lg:w-1/2 text-center lg:text-left lg:px-0 px-4 text-4xl text-white capitalize'>connecting with your friends has never been <span className='text-[#fec80a]'>more</span> easy before!</motion.div>
+                <div className='flex flex-col lg:flex-row mt-2'>
                     <motion.div
                         viewport={{ once: true }}
                         initial={{ opacity: 0, height: 0 }}
                         whileInView={{ opacity: 1, height: 500 }}
                         transition={{ duration: 0.5, type: "spring", stiffness: 100, delay: 0.3 }}
-                        className="overflow-hidden"
+                        className="overflow-hidden lg:block hidden"
                     >
-                        <img className='ml-16 w-32 object-contain z-10 rounded-none' src={Lines}></img>
+                        <img className='ml-16 lg:w-32 object-contain z-10 rounded-none' src={Lines}></img>
                     </motion.div>
-                    <div className='mt-48 -ml-32 w-3/4'>
+                    <div className='flex w-full lg:hidden flex-col items-center justify-center'>
+                        <motion.div
+                            viewport={{ once: true }}
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.3 }}
+                            className='w-3/4 h-64 rounded-xl bg-gray-600'>
+                        </motion.div>
+                        <motion.div
+                            viewport={{ once: true }}
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.3 }}
+                            className='w-3/4 mt-4 h-64 rounded-xl bg-gray-800'>
+                        </motion.div>
+                    </div>
+                    <div className='lg:mt-48 lg:-ml-32 lg:w-3/4 w-full'>
                         <motion.h1
                             viewport={{ once: true }}
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-white pl-8 uppercase'>step 1</motion.h1>
+                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-white lg:pl-8 uppercase text-center lg:text-left'>step 1</motion.h1>
                         <motion.div
                             viewport={{ once: true }}
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-2xl text-white bg-transparent ml-24 mt-12 w-2/5'>
+                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-2xl text-white bg-transparent lg:ml-24 lg:mt-12 lg:w-2/5 w-full lg:px-0 px-4 text-center lg:text-left'>
                             Log in using your <span className='text-[#fec80a]'>institute</span> ID, and upon the first login, you will be asked to complete your information details. Following this, you will have created your profile for the Yearbook!
                         </motion.div>
                     </div>
@@ -102,17 +123,17 @@ function Homepage() {
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.3 }}
-                        className='w-96 h-64 rounded-xl bg-gray-600 -ml-64 mt-16'>
+                        className='w-96 h-64 rounded-xl bg-gray-600 -ml-64 mt-16 hidden lg:block'>
                     </motion.div>
                     <motion.div
                         viewport={{ once: true }}
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.3 }}
-                        className='w-96 h-64 rounded-xl bg-gray-800 -ml-72 mt-32'>
+                        className='w-96 h-64 rounded-xl bg-gray-800 -ml-72 mt-32 hidden lg:block'>
                     </motion.div>
                 </div>
-                <div className='w-full h-8 mt-4 object-contain'>
+                <div className='w-full h-8 mt-4 object-contain hidden lg:block'>
                     <motion.img
                         initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
@@ -122,28 +143,39 @@ function Homepage() {
                     </motion.img>
                 </div>
             </div>
+
+
             <div className='w-full'>
-                <div className='flex flex-row mt-4 items-start'>
+                <div className='flex lg:flex-row flex-col mt-4 items-start'>
                     <motion.div
                         viewport={{ once: true }}
                         initial={{ opacity: 0, height: 0 }}
                         whileInView={{ opacity: 1, height: 500 }}
                         transition={{ duration: 0.5, type: "spring", stiffness: 100, delay: 0.3 }}
-                        className="overflow-hidden"
+                        className="overflow-hidden hidden lg:block"
                     >
                         <img className='ml-14 w-16 object-contain z-10 rounded-none' src={Lines2}></img>
                     </motion.div>
-                    <div className='w-3/4 mt-48 -ml-12'>
+                    <div className='lg:w-3/4 lg:mt-48 lg:-ml-12 w-full'>
+                        <div className='w-full flex items-center justify-center lg:hidden'>
+                            <motion.div
+                                viewport={{ once: true }}
+                                initial={{ opacity: 0, x: 100 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.3 }}
+                                className='w-3/4 h-96 rounded-xl bg-gray-800'>
+                            </motion.div>
+                        </div>
                         <motion.h1
                             viewport={{ once: true }}
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-white pl-8 uppercase'>step 2</motion.h1>
+                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-white lg:pl-8 text-center lg:text-left uppercase'>step 2</motion.h1>
                         <motion.div
                             viewport={{ once: true }}
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-2xl text-white bg-transparent ml-24 mt-12 w-2/5'>
+                            transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-2xl text-white bg-transparent lg:ml-24 lg:mt-12 lg:w-2/5 w-full px-4 text-center lg:text-left lg:px-0'>
                             Now for the fun part! Using the <span className='text-[#fec80a]'>Search Bar</span>, you can look up other batchmates who have registered on the Portal and can comment on their page!
                         </motion.div>
                     </div>
@@ -152,10 +184,10 @@ function Homepage() {
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.3 }}
-                        className='w-1/3 h-96 rounded-xl bg-gray-800 -ml-96 mt-32'>
+                        className='w-1/3 h-96 rounded-xl bg-gray-800 -ml-96 mt-32 hidden lg:block'>
                     </motion.div>
                 </div>
-                <div className='w-full h-8 mt-4 ml-2 object-contain'>
+                <div className='w-full h-8 mt-4 ml-2 object-contain lg:block hidden'>
                     <motion.img initial={{ opacity: 0, scale: 0 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3, type: "spring" }}
@@ -163,42 +195,53 @@ function Homepage() {
                     </motion.img>
                 </div>
             </div>
+
+
             <div className='w-full mt-4'>
-                <div className='flex flex-row mt-2 mb-4'>
+                <div className='flex lg:flex-row flex-col mt-2 mb-4'>
                     <motion.div
                         viewport={{ once: true }}
                         initial={{ opacity: 0, height: 0 }}
                         whileInView={{ opacity: 1, height: 500 }}
                         transition={{ duration: 0.5, type: "spring", stiffness: 100, delay: 0.3 }}
-                        className="overflow-hidden"
+                        className="overflow-hidden hidden lg:block"
                     >
                         <img className='ml-14 w-8 object-contain z-10 rounded-none' src={Lines3}></img>
                     </motion.div>
                     <div className='flex flex-col'>
-                        <div className='flex flex-row'>
-                            <div className='mt-48  w-3/4'>
+                        <div className='flex lg:flex-row flex-col-reverse'>
+                            <div className='lg:mt-48 lg:w-3/4 w-full'>
                                 <motion.h1
                                     viewport={{ once: true }}
                                     initial={{ opacity: 0, x: -50 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }}
-                                    className='text-white pl-8 uppercase'>remember<span className='text-[#fec80a]'>!</span></motion.h1>
+                                    className='text-white lg:pl-8 text-center lg:text-left uppercase'>remember<span className='text-[#fec80a]'>!</span></motion.h1>
                                 <motion.div
                                     viewport={{ once: true }}
                                     initial={{ opacity: 0, x: -50 }}
                                     whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-2xl text-white bg-transparent ml-24 mt-12 w-2/5'>
+                                    transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} className='text-2xl text-white bg-transparent lg:ml-24 lg:mt-12 lg:w-2/5 w-full px-4 lg:px-4 text-center lg:text-left'>
                                     Others can comment on your page, and you will have the power to <span className='text-[#fec80a]'>approve</span> those comments.
                                 </motion.div>
                             </div>
-                            <div className='w-96 h-64 rounded-xl bg-gray-600 -ml-64 mt-16'></div>
-                            <div className='w-96 h-64 rounded-xl bg-gray-800 -ml-72 mt-32'></div>
+                            <div className='w-96 h-64 rounded-xl bg-gray-600 -ml-64 mt-16 hidden lg:block'></div>
+                            <div className='w-96 h-64 rounded-xl bg-gray-800 -ml-72 mt-32 hidden lg:block'></div>
+                            <motion.div
+                                viewport={{ once: true }}
+                                initial={{ opacity: 0, x: -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, type: "spring", stiffness: 100, delay: 0.3 }} 
+                                className='w-full lg:hidden flex flex-col items-center justify-center'>
+                                <div className='w-3/4 h-64 rounded-xl bg-gray-600'></div>
+                                <div className='w-3/4 h-64 rounded-xl mt-4 bg-gray-800'></div>
+                            </motion.div>
                         </div>
                         <div className='flex flex-col w-full h-96 items-center justify-center'>
                             <motion.h1
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, type: "spring", stiffness: 100 }} className='text-4xl text-white capitalize w-2/3 text-center'>
+                                transition={{ duration: 0.3, type: "spring", stiffness: 100 }} className='text-4xl text-white capitalize w-full px-4 lg:px-0 lg:w-2/3 text-center'>
                                 So, register now and join in on the <span className='text-[#fec80a]'>nostalgic</span> trips of your time at IIT Indore!
                             </motion.h1>
                             <motion.div
@@ -211,7 +254,7 @@ function Homepage() {
                     </div>
                 </div>
             </div>
-            <div className='flex w-screen flex-col bg-[#160923] z-0 -mt-[4rem]'>
+            <div className='flex w-screen flex-col bg-[#160923] z-0 lg:-mt-[4rem]'>
                 <div className='lg:pt-16 flex flex-col lg:flex-row items-center justify-around lg:h-3/5 w-full bg-gradient-to-tr from-purple-800 lg:pb-16'>
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
