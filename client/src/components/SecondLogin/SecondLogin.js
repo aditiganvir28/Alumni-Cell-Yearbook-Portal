@@ -135,7 +135,7 @@ const SecondLogin = () => {
                 </div>
                 <div className="profile">
                     <span className="dot"></span>
-                    <div className='about'>
+                    <div className='about1'>
                         <h1 id='about'>About Me</h1>
                     </div>
                 </div>
