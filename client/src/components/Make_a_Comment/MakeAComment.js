@@ -11,7 +11,7 @@ const MakeAComment = () => {
     const [userData, setUserData] = useState({});
     const [comment, setComment] = useState();
     const {loading, setLoading} = useContext(LoginContext); 
-
+    console.log(result);
     const navigate = useNavigate();
     useEffect(() => {
       setLoading(true);
@@ -80,10 +80,10 @@ const MakeAComment = () => {
           <h1 id='named'>Name - Department</h1>
           <div className='description'>
             {/* <h1>Description</h1> */}
-            <h2>{result[0].name}</h2>
+            {/* <h2>{result[0].name}</h2>
             <h3 style={{color:"white"}}>Roll No: {result[0].roll_no}</h3>
             <h3 style={{color:"white"}}>{result[0].academic_program}, {result[0].department}</h3>
-            <h3 style={{color:"white"}}>{result[0].current_company}, {result[0].designation}</h3>
+            <h3 style={{color:"white"}}>{result[0].current_company}, {result[0].designation}</h3> */}
           </div>
         </div>
         <div className="right1">
