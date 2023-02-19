@@ -27,7 +27,13 @@ function About(){
     Load();
 }, [])
   
-  
+const accordion = document.getElementsByClassName('container');
+
+for (var i=0; i<accordion.length; i++) {
+  accordion[i].addEventListener('click', function () {
+    this.classList.toggle('active')
+  })
+}
     return (
       <>
       {loading &&
@@ -49,31 +55,40 @@ function About(){
             <p>Please reach us at:<br></br>E-Mail: alumnicell@iiti.ac.in<br></br>Enjoy commenting!<br></br>Regards<br></br>The Alumni Cell<br></br>Indian Institute of Technology, Indore<br></br></p>
           </div>
           <div className='faq'>
-            <h1 id='faq'>Frequently Asked Questions</h1>
-            <div className='qna'>
-              {/* <Accordion defaultIndex={[0]} allowMultiple>
-                {qnas.map((qna) => {
-                  return (
-                    <AccordionItem>
-                  <h2 className='q'>
-                    <AccordionButton>
-                      <Box as="span" flex='1' textAlign='left'>
-                        {qna.q}
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4} id='a'>
-                    {qna.a}
-                  </AccordionPanel>
-                </AccordionItem> */}
-                  {/* )
-                // })} */}                
-              {/* </Accordion> */}              
+            <div class="accordion-body">
+              <div class="accordion">
+                <h1>Frequently Asked Questions (FAQs)</h1>
+                <hr></hr>
+                <div class="containera">
+                  <div class="label">lorem 1</div>
+                  <div class="content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint laudantium dolor id aliquam eligendi nobis. Vel aspernatur ut dolorem. Deleniti laudantium a fuga accusantium eaque nostrum reiciendis quod sint quas?</div>
+                </div>
+                <hr></hr>
+                <div class="containera">
+                  <div class="label">lorem 2</div>
+                  <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum porro sit harum reiciendis quibusdam deserunt praesentium aut cum? Adipisci perferendis quisquam reiciendis? Fugiat dolore suscipit tenetur est ipsam impedit doloremque?
+                </div>
+                </div>
+                <hr></hr>
+                <div class="containera">
+                  <div class="label">lorem 3</div>
+                  <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non explicabo consectetur quod voluptatem maxime ipsa iste maiores, blanditiis delectus qui adipisci eius? Ea earum amet temporibus doloribus beatae excepturi nesciunt.</div>
+                </div>
+                <hr></hr>
+                <div class="containera">
+                  <div class="label">lorem 4</div>
+                  <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, reiciendis suscipit aperiam vel consectetur aut explicabo sequi quos ab nam officiis quaerat nesciunt, itaque aliquam sapiente, dolorem dignissimos libero labore!</div>
+                </div>
+                <hr></hr>
+                <div class="containera">
+                  <div class="label">lorem 5</div>
+                  <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt sit, assumenda labore consequuntur possimus eius voluptas corrupti molestiae enim quidem corporis quia dolore. Tenetur porro commodi illum reiciendis, consequatur incidunt?</div>
+                </div>
+                <hr></hr>
+              </div>
+              </div>        
             </div>
-          </div>
-        </div>              
-      {/* </ChakraProvider> */}
+          </div>              
       </div>
       </div>
       </div>}

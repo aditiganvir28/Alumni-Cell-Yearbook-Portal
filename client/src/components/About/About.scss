@@ -29,6 +29,7 @@ body{
 }
 #abt{
         background-color: #4d1a6c;
+        padding: 1%;
         border-color: white;
         border-radius: 110px;
         border-width: 2px;    
@@ -55,7 +56,6 @@ h1#abouta{
 h1#faq{
     font-size: xx-large;
 }
-// @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap'); 
 #abd{
     font-family: 'Quantico';
     padding: 1%;
@@ -83,6 +83,28 @@ h1#about,p{
     padding-bottom: 2.5rem;
     background-color: #4d1a6c;
 }
+.accordion {
+    // width: 800px;
+    margin: 5%;
+    color: white;
+    background-color: #4D1A6C;
+    // padding: 45px 45px;
+}
+.accordion .containera {
+    position: relative;
+    margin: 10px 10px;
+  }
+  
+  /* Positions the labels relative to the .container. Adds padding to the top and bottom and increases font size. Also makes its cursor a pointer */
+  
+  .accordion .label {
+    position: relative;
+    padding: 10px 0;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+  }
+  
 #a{ 
     display: flex;
     font-size: x-large;
@@ -91,10 +113,10 @@ h1#about,p{
     padding: 1rem;
     gap: 1rem;
 }
-.chakra-collapse{
-    background-color: #180c1e;
-    color:grey;
-}
+// .chakra-collapse{
+//     background-color: #180c1e;
+//     color:grey;
+// }
 
 .foot{
     background-color: #180c1e;
