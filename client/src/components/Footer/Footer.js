@@ -16,7 +16,7 @@ function Footer() {
                             <i className='fa fa-map-marker bg-[#180c1e]' id='map'></i>
                         </div>
                         <div className="tt">
-                            <p className='bg-[#180c1e]' id='address'>Alumni and Corporate Relations Office, 7th floor, Abhinandan Bhavan, Indian Institute of Technology Indore, Khandwa Road, Simrol, Indore-453552, India</p>
+                            <p className='bg-[#180c1e]' id='address'>Alumni and Corporate Relations Office, 7th floor, Abhinandan Bhavan, Indian Institute of Technology Indore, Khandwa Road, Simrol, Indore-453552, India<br></br><br></br>+91-731-6603122/+91-731-6603555</p>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ function Footer() {
                 </div>
             </div>
             <div className="end">
-                © 2023 Alumni Cell - all rights reserved
+                © 2023 Alumni Cell IIT Indore - all rights reserved
             </div>
         </div>
     )

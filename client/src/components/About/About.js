@@ -53,9 +53,15 @@ for (var i=0; i<accordion.length; i++) {
           <div className='abouta' id='abt'>
             <h1 id='abouta'>ABOUT ALUMNI CELL</h1>
             <p id='para-abouta'>The Alumni Cell is the Institute’s student-run cell to connect and broaden the alum network. It started as a group of 4 individuals but now encompasses 5 teams working to improve Alum-Institute-Student Relations. The Yearbook was one such initiative undertaken by the Cell. Starting with the Class of 2021, the Yearbook’s First Edition was a smashing success and helped the alums and the students connect more. Following the same, the Yearbook Portal is another initiative headed by the Web Development Division of the Alumni Cell.<br></br> A one-stop hub to curate your Yearbook profile and help others do the same. This is the very first edition of the Yearbook Portal, and we would love to hear your comments and suggestions so we can improve in the coming years. </p>
-            <p>Please reach us at:<br></br>E-Mail: alumnicell@iiti.ac.in<br></br>Enjoy commenting!<br></br>Regards<br></br>The Alumni Cell<br></br>Indian Institute of Technology, Indore<br></br></p>
+            <p>Please reach us at:<br></br>E-Mail: alumnicell@iiti.ac.in<br></br>Enjoy commenting!<br></br>Regards,<br></br>The Alumni Cell,<br></br>Indian Institute of Technology Indore<br></br></p>
+          <hr id='line2'></hr>
           </div>
-          <hr id='line'></hr>
+          <div className='message' id='dean'>
+            <h1 id='msg'>Message from Dean</h1>
+            <p id='para-msg'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente doloribus quaerat mollitia dolorem expedita labore sint quam temporibus suscipit porro distinctio, delectus, incidunt, accusamus architecto soluta corrupti atque totam nesciunt Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, est at dolore eligendi reprehenderit, aperiam perferendis explicabo corrupti architecto dignissimos ratione Perferendis aperiam quo corporis explicabo sit at rem culpa</p>
+          <br></br>
+          <hr id='line2'></hr>
+          </div>  
           <div className='faq'>
             <div class="accordion-body">
               <div class="accordion">
@@ -90,7 +96,7 @@ for (var i=0; i<accordion.length; i++) {
               </div>
               </div>        
             </div>
-          </div>              
+          </div>                     
       </div>
       </div>
       </div>}
