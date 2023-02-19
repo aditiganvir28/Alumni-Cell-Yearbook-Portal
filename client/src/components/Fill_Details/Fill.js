@@ -58,7 +58,7 @@ const onSubmit = () =>{
         console.log(res.data);
         setVerify(true);
     }).catch((err)=>{
-        console.log(err);
+      console.log(err);
     })
 }
 

@@ -57,7 +57,7 @@ const userSchema = new mongoose.Schema({
 
     profile_img: {
         type: String,
-        required: [true, "Profile_image is required"],
+        // required: [true, "Profile_image is required"],
     },
 
     verified: {
