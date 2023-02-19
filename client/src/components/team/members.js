@@ -53,15 +53,15 @@ const Members= [
         Google: '#',
         img: '/images/grey.png'
     },
-    {
-        Name: 'Safdar',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
-    }
+    // {
+    //     Name: 'Safdar',
+    //     Desc: 'this is something about me, basically somewhat of a flavor-text',
+    //     Linkedin: '#',
+    //     Facebook: '#',
+    //     Instagram: '#',
+    //     Google: '#',
+    //     img: '/images/grey.png'
+    // }
 ]
 
 export default Members;
