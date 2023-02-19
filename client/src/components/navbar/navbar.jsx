@@ -15,7 +15,7 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 
 const Navbar = () => {
@@ -23,7 +23,7 @@ const Navbar = () => {
   const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading} = useContext(LoginContext);
 
   const navigate = useNavigate();
-
+  const [navOpen, setNavopen]= useState(false);
   const [searchword, setSearchword] = useState("");
   const [wordentered, setWordentered] = useState("");
   const [wordEnteredList, setWordEnteredList] = useState([]);
@@ -59,7 +59,25 @@ const Navbar = () => {
       navigate('/');
     }
   
-
+  //adding sidebar on smaller screens
+  const handleNavbar=()=>{
+    setNavopen(!navOpen)
+  };
+  const handleDropdownclick=(e)=>{
+    e.stopPropagation();
+  };
+  const handleNavopen=()=>{
+    if(navOpen){
+      setNavopen(!navOpen)
+    }
+  };
+  const renderNav = ()=>{
+    if(navOpen){
+      return "links active"
+    }else{
+      return "links deactivate";
+    }
+  }
   
 
   if (loggedin === true) {
@@ -104,7 +122,7 @@ const Navbar = () => {
       <div className='header22'>
         <img src='/images/1.png' />
         <div className='navbar'>
-          <ul>
+          <ul onClick={handleNavopen} className={renderNav()}>
             <Link to="/" onClick={()=>{setLoading(true)}}>HOME</Link>
             <Link to="/about">ABOUT</Link>
             <Link to="/team">DEVELOPERS</Link>
@@ -115,7 +133,7 @@ const Navbar = () => {
 
             {loggedin &&
               <>
-                <li style={{ display: 'flex' }}>
+                <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
                   <div className="searchr" style={{ width: '190%' }}>
                     <input type="text" placeholder="Search..." class="search" style={{marginBottom:"0%"}} onChange={(e) => {
                       searchAWord(e);
@@ -142,21 +160,6 @@ const Navbar = () => {
                     
                   </div>
 
-
-                  {/* <div className="dropdown" style={{ alignItems: 'center', display: 'block' }}>
-                    <div className="dropdown-btn" style={{ display: 'flex' }} onClick={e => setIsActive(!isActive)}>
-                      <img src="../../../images/profile.jpg" alt="" />
-                      <i className="fa fa-caret-down" style={{ padding: '0px', textAlign: 'left', verticalAlign: 'center' }}></i>
-                    </div>
-
-                    {isActive && (
-                      <div className="dropdown-content">
-                        <div className="dropdown-item"><a style={{ padding: '1%', margin: '2%' }}>My Profile</a></div>
-                        <div className="dropdown-item"><a style={{ padding: '1%', margin: '2%' }} onClick={handleLogout}>Logout</a></div>
-                      </div>
-                    )}
-                  </div> */}
-
                   <Menu>
                     <MenuButton as={Button} w='29%' ml = {2}  rightIcon={<ChevronDownIcon /> }>
                     <img src="../../../images/profile.jpg" alt="" id='profilepic' />
@@ -171,6 +174,9 @@ const Navbar = () => {
             }
 
           </ul>
+          <div onClick={handleNavbar} className="hamburger-toggle">
+            <HamburgerIcon/>
+          </div>
         </div>
       </div>
     </div>
