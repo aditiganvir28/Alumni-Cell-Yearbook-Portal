@@ -33,7 +33,7 @@ const Navbar = () => {
   const [display, setDisplay] = useState(false);
 
   //After refreshing the page user is still signed in 
-  useEffect(async () => {
+  useEffect(() => {
     if (window.localStorage.getItem('user') !== null) {
       const userLoggedIn = window.localStorage.getItem('user');
       if (userLoggedIn != null) {
@@ -50,9 +50,9 @@ const Navbar = () => {
   }, [])
 
   //Logout Function
-  const handleLogout = async () =>{
+  const handleLogout =() =>{
       setUser({});
-      await window.localStorage.removeItem('user');
+      window.localStorage.removeItem('user');
       setLoggedin(false);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
@@ -73,6 +73,7 @@ const Navbar = () => {
       searchword: searchword
     }).then((res) => {
       setResult(res.data);
+      console.log(res.data);
     }).catch((err) => {
       console.log(err)
     })
@@ -130,7 +131,10 @@ const Navbar = () => {
                       setInputValue("");
                       setDisplay(false);
                       e.target.value="";
-                      navigate('/comment')
+                      setTimeout(()=>{
+                        navigate('/comment')
+                      },1000)
+                      
                     }}>{val.name}</button></li>)
                     )}
                     </ul>

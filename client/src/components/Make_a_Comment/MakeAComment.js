@@ -10,8 +10,23 @@ const MakeAComment = () => {
     // console.log(result);
     const [userData, setUserData] = useState({});
     const [comment, setComment] = useState();
-    const {loading, setLoading} = useContext(LoginContext); 
-    console.log(result);
+    const {loading, setLoading} = useContext(LoginContext);
+    const [name, setName] = useState(""); 
+    const [searchedAlumni, setSearchedAlumni] = useState({
+      name: "",
+      roll_no: "",
+      academic_program: "",
+      department:"",
+      current_company:"",
+      designation:"",
+      about:""
+    })
+    // console.log(result[0].name);
+    // if(result.length !==0){
+    // setName(result[0].name);
+    // }
+
+    
     const navigate = useNavigate();
     useEffect(() => {
       setLoading(true);
@@ -23,7 +38,6 @@ const MakeAComment = () => {
   
       Load();
   }, [])
-    console.log(result);
     //Get the data to be displayed on the profile
     useEffect(()=>{
       axios.post('http://localhost:5000/profile', {
@@ -78,13 +92,18 @@ const MakeAComment = () => {
             {/* <img src={profile.profile_img}/> */}
           </span>
           <h1 id='named'>Name - Department</h1>
-          <div className='description'>
+          
             {/* <h1>Description</h1> */}
-            {/* <h2>{result[0].name}</h2>
+            {result.length &&
+            <div className='description'>
+            <h2>{result[0].name}</h2>
+
             <h3 style={{color:"white"}}>Roll No: {result[0].roll_no}</h3>
             <h3 style={{color:"white"}}>{result[0].academic_program}, {result[0].department}</h3>
-            <h3 style={{color:"white"}}>{result[0].current_company}, {result[0].designation}</h3> */}
-          </div>
+            <h3 style={{color:"white"}}>{result[0].current_company}, {result[0].designation}</h3>
+            <h3 style={{color:"white"}}>{result[0].about}</h3>
+            </div>}
+          
         </div>
         <div className="right1">
           <h1 id='make'>Make a Comment</h1>

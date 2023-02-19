@@ -154,6 +154,7 @@ const SecondLogin = () => {
                         <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
                         <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
                         <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
+                        <h3 style={{color:"white"}}>{profile.about}</h3>
                     </div>
                 </div>
             </div>
