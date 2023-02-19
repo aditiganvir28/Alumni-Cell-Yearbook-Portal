@@ -73,7 +73,7 @@ const Navbar = () => {
       searchword: searchword
     }).then((res) => {
       setResult(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     }).catch((err) => {
       console.log(err)
     })
@@ -117,7 +117,7 @@ const Navbar = () => {
               <>
                 <li style={{ display: 'flex' }}>
                   <div className="searchr" style={{ width: '190%' }}>
-                    <input type="text" placeholder="Search..." class="search" onChange={(e) => {
+                    <input type="text" placeholder="Search..." class="search" style={{marginBottom:"0%"}} onChange={(e) => {
                       searchAWord(e);
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
@@ -125,7 +125,7 @@ const Navbar = () => {
                     {wordEnteredList.length!==0 && 
                     <ul>
                     {wordEnteredList.map((val, index) =>
-                    (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} key={index} onClick={(e) => {
+                    (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}key={index} onClick={(e) => {
                       e.preventDefault();
                       setSearchword(val.email);
                       setInputValue("");

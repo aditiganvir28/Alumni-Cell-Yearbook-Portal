@@ -22,7 +22,7 @@ function App() {
   const[authData, setAuthData] = useState([]); //all the users wha have already logged in
   const[result, setResult] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
-  const [found, setFound] = useState(false);
+  const [found, setFound]= useState(false);
   const [loading, setLoading] = useState(true);
 
    //getting all alumnis from json
@@ -51,6 +51,7 @@ function App() {
     axios.get('http://localhost:5000/auth')
       .then((res)=>{
         setAuthData(res.data);
+        console.log(authData)
       })
       .catch((err)=>{
         console.log(err);
@@ -63,20 +64,16 @@ function App() {
     var userObject = jwt_decode(response.credential);
     setUser(userObject);
     setLoggedin(true);
-    setLoading(true);
     //Storing the users data in the localStorage
     window.localStorage.setItem('user' ,JSON.stringify(userObject));
     window.localStorage.setItem('loggedin', true);
     //Rendering the signin button
     document.getElementById("google-login").hidden= true;
 
-    const finds = setTimeout(()=>{
-      authData.find(el => el.email === userObject.email)
-    },1000);
-
-    console.log(finds);
+    const finds= authData.find(el=>el.email===userObject.email);
 
     setTimeout(()=>{
+      console.log(finds);
       if(finds){
         if(alumniEmail.includes(userObject.email)){
           axios.post('http://localhost:5000/findAUser',{
@@ -86,12 +83,15 @@ function App() {
               if(res.data.User[0].verified === true){
                 console.log("verified");
                 navigate('/profile');
+                setLoading(true);
               }
               else{
                 navigate('/fill');
+                setLoading(true);
               }
             }else{
               navigate('/fill');
+              setLoading(true);
             }
           })
           console.log("Second time sign in and alumni")
@@ -110,6 +110,7 @@ function App() {
           if(alumniEmail.includes(userObject.email)){
             console.log("first time login and alumni");
             navigate('/fill');
+            setLoading(true);
           }
           else{
             navigate('/');

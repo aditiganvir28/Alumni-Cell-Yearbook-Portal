@@ -11,12 +11,6 @@ import People from "./images/people1.png"
 
 import { motion } from "framer-motion";
 
-import axios from 'axios';
-import loadingSpinner from '../Homepage/images/808.gif'
-// import Insta from "../Homepage/images/insta.png";
-// import Twitter from "../Homepage/images/twitter.png";
-// import Linkedin from "../Homepage/images/linkedin.png";
-// import Facebook from "../Homepage/images/Facebook.png";
 function Homepage() {
     const navigate = useNavigate();
     const {setLoggedin, setUser, user, loading, setLoading}= useContext(LoginContext);
@@ -24,29 +18,14 @@ function Homepage() {
     useEffect(() => {
         setLoading(true);
         const Load = async () => {
-            await new Promise((r) => setTimeout(r, 2000));
+            await new Promise((r) => setTimeout(r, 1000));
 
             setLoading((loading) => !loading);
         }
 
         Load();
-    }, [])
-    //Get the data to be displayed on the profile
-// useEffect(()=>{
-//     axios.post('http://localhost:5000/profile', {
-//       email: user.email
-//     }).then((res)=>{
-//     //   console.log(res.data);
-//       if(res.data.message==="No User Found"){
-//         setUser({});
-//         window.localStorage.removeItem('user');
-//         setLoggedin(false);
-//         window.localStorage.setItem('loggedin', false)
-//         document.getElementById("google-login").hidden = false;
-//         navigate('/');
-//       }
-//     })
-//   },[])
+    }, []);
+
     return (
         <>{loading &&
             <div className='spinner'>

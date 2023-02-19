@@ -31,7 +31,7 @@ const MakeAComment = () => {
     useEffect(() => {
       setLoading(true);
       const Load = async () => {
-          await new Promise((r) => setTimeout(r, 2000));
+          await new Promise((r) => setTimeout(r, 1000));
   
           setLoading((loading) => !loading);
       }
@@ -111,8 +111,7 @@ const MakeAComment = () => {
           <textarea name="comment" id="commenttext" cols="85" rows="14" placeholder='Add your Comment' value={comment} onChange={(e)=>{
             setComment(e.target.value);
           }}/><br />
-          <input type='submit' value="Submit"/>
-          <button type='submit' id='post' onClick={handleSubmit}>POST!</button>
+          <button type='submit' id='post' onClick={handleSubmit} style={{color:"white"}}>POST!</button>
           </form>
           
         </div>
