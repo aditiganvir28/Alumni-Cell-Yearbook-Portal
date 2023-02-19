@@ -18,6 +18,58 @@ body {
     display: none;
 }
 
+.hamburger-toggle{
+    cursor: pointer;
+    color: white;
+    display: none;
+}
+
+.dropdown-nav{
+    max-height: 5%;
+    
+}
+
+.css-0{
+    border: 2px solid white;
+    transition: ease-in;
+}
+
+@media screen and (max-width: 800px){
+    body{
+       overflow-x: hidden; 
+    }
+    .hamburger-toggle{
+        display: flex;
+        padding-left: 60%;
+    }
+    .navbar{
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+    }
+    .links{
+        padding-top:5vh;
+        position: fixed;
+        // position: absolute;
+        right: 0px;
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        height:100%;
+        top: 0vh;
+        background-color: #4d1a6c;
+        border:solid 2px white;
+        font-size: 20px;
+        transform: translateX(120%);
+        
+        z-index: 100;
+    }
+    .active{
+        transform: translateX(0%);
+        transition: transform 0.5s ease-in;
+    }
+    
+}
+
 .navbar {
     background-color: #4d1a6c;
     display: flex;
@@ -45,10 +97,10 @@ ul {
     color: white;
 }
 
-li {
-    flex: auto;
-    padding: 0 30px 15px 10px;
-}
+// li {
+//     flex: auto;
+//     padding: 0 30px 15px 10px;
+// }
 
 .navbar a {
     color: white;
@@ -78,7 +130,7 @@ button {
 @media (max-width: 720px) {
     .header22 {
         text-align: center;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .container-nav {
@@ -93,45 +145,6 @@ button {
         margin: 0.8em 0;
     }
 }
-
-/* .navbar{
-        background-color: #4d1a6c;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 2%;
-        margin-right: 2%;
-        flex: auto;
-        border: 2px solid white;
-        border-radius: 15px;
-    }
-    
-    ul{
-        list-style-type: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: auto;
-        gap: 2rem;
-        color: white;
-    }
-    li{
-        flex: auto;
-    }
-    .search {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border: 1px solid white;
-        border-radius: 5px;
-        padding: 5px;
-    }
-    input {
-            border: none;
-            width: 500px;
-            background-color: transparent;
-            color: themed("textColor");      
-    } */
 
 .dropdown {
     width: 90%;
@@ -163,32 +176,4 @@ i {
 
 MenuItem {
     background-color: #4d1a6c;
-}
-input .search{
-    margin: 10px 0 0 0;
-}
-.searchr ul{
-    width: 25.5%;
-    display: block;
-    position: absolute;
-    margin: 0;
-    // border: 2px solid black;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    margin-left:1%;
-    background-color: whitesmoke;
-}
-
-.searchr ul li{
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    border-radius: 5%;
-    color: black;
-    
-}
-
-.search ul li button{
-    color: black;
-    text-align: left;
 }
