@@ -59,7 +59,7 @@ function Homepage() {
                 <div className='flex flex-col lg:flex-row w-full justify-around items-center lg:mb-8 lg:h-screen h-[150vh]'>
                     <div className='w-4/5 lg:w-2/5 lg:mt-0 mt-8 border-2 lg:h-3/5 h-2/5 rounded-xl flex flex-col items-start justify-center relative'>
                         <div className='text-white font-bold uppercase text-4xl lg:text-5xl lg:text-left lg:pl-4 mt-8 text-center'>WELCOME TO THE YEARBOOK PORTAL '23 OF IIT INDORE ...</div>
-                        <div className=' lg:mb-0 mb-2 text-white uppercase text-3xl text-left pl-4 lg:pr-4 mt-8 lg:mt-8 w-full flex-wrap overscroll-contain'>ALUMNI CELL, IIT INDORE <br></br><br></br><span className='capitalize text-xl'>Welcome to the Yearbook Portal- A one-stop hub to curate your Yearbook profile and help others do the same!</span></div>
+                        <div className=' lg:mb-0 mb-2 text-white uppercase text-3xl text-left pl-4 lg:pr-4 mt-8 lg:mt-8 w-full flex-wrap overscroll-contain'>ALUMNI CELL, IIT INDORE <br></br><br></br><span className='capitalize text-xl'>A one-stop hub to curate your Yearbook profile and help others do the same!</span></div>
                     </div>
                     <div className='w-full lg:w-1/3 lg:h-3/4 mt-8 lg:mt-0 flex flex-col items-center lg:items-start'>
                         <div className='text-4xl uppercase text-white text-center lg:mt-12 lg:text-left w-4/5 lg:w-3/4'>Welcome to your new memories page!</div>
@@ -246,7 +246,7 @@ function Homepage() {
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, type: "spring", stiffness: 100 }}>
-                                <a><button className='bg-transparent border-2 rounded-xl border-white w-32 h-14 text-white uppercase hover:bg-[#fec80a] hover:text-[#180c1e] hover:border-transparent ease-in-out duration-300 '>Register</button></a>
+                                <a><button className='bg-transparent border-2 rounded-xl border-white w-32 h-14 text-white uppercase hover:bg-[#fec80a] hover:text-[#180c1e] hover:border-transparent ease-in-out duration-300 '>Sign In</button></a>
                             </motion.div>
                         </div>
                     </div>

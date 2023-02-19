@@ -27,7 +27,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Anurag',
+        Name: 'Tarun',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -45,7 +45,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Safdar',
+        Name: 'Ayush',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -54,7 +54,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Sonika',
+        Name: 'Safdar',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',

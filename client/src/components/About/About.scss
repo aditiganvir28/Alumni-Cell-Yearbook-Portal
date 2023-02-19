@@ -28,12 +28,16 @@ body{
     background-color:#180c1e;
 }
 #abt{
-        background-color: #4d1a6c;
+        // background-color: #4d1a6c;
         padding: 1%;
-        border-color: white;
-        border-radius: 110px;
-        border-width: 2px;    
+        // border-color: white;
+        // border-radius: 110px;
+        // border-width: 2px;    
         overflow: hidden;
+}
+.wrapper #line{
+    width: 40%;
+    border: 1px solid #fec80a;
 }
 .abouta>p{
     font-size: x-large;
@@ -43,7 +47,9 @@ body{
 }
 h1#abouta{
     font-size: 300%;
-    font-weight: bold;
+    color: rgb(248 243 20);
+    font-weight: 700;
+    font-style: oblique;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,7 +87,7 @@ h1#faq{
 h1#about,p{
     display: flex;
     padding-bottom: 2.5rem;
-    background-color: #4d1a6c;
+    // background-color: #4d1a6c;
 }
 .accordion {
     // width: 800px;
