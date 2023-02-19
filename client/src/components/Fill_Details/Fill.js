@@ -7,10 +7,23 @@ import { useContext } from 'react';
 
 
 function Fill(props) {
-  const{user} = useContext(LoginContext);
+  const{user, loading, setLoading} = useContext(LoginContext);
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [verify, setVerify] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const Load = async () => {
+        await new Promise((r) => setTimeout(r, 2000));
+
+        setLoading((loading) => !loading);
+    }
+
+    Load();
+}, [])
+ 
   const uploadImage = () => {
     console.log(imageSelected );
     const formData = new FormData();
@@ -22,6 +35,7 @@ function Fill(props) {
     .then((res)=>{
       console.log(res.data.url);
       setImageUrl(res.data.url);
+      setImageUploaded(true);
     })
 
   }
@@ -81,6 +95,12 @@ console.log(userData)
 
   return (
     <>
+    {loading &&
+            <div className='spinner'>
+            <span class="loader"></span>
+            </div>
+            }
+      {!loading &&
       <div className='container'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -120,15 +140,18 @@ console.log(userData)
           <button className="submit1" onClick={onSubmit}>Submit</button>
         </div>
         <div className="right">
-          <span className="dot"></span>
+        <span className="dot">
+            <img src={imageUrl}/>
+          </span>
           <h2> </h2><br/>
-          <h2>Insert your Profile Picture*</h2><br/>
-          <div className="container3">
-          <br/>
-        </div>
+          <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
+          <button onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
+          {imageUploaded && 
+          <h3 style={{color:"white"}}>Image Uploaded</h3>
+          }
     </div>
     </div>
-    </div>
+    </div>}
     </>
   )
 }

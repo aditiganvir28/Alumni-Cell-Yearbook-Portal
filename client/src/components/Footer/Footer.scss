@@ -62,7 +62,7 @@
 }
 .end{
     background-color: black;
-    padding-left: 38%;
+    padding-left: 40%;
     padding-bottom: 1%;
     padding-top: 1%;
     color: white;
@@ -77,4 +77,39 @@
     padding-left: 5%;
     font-size: medium;
     background-color: #160923;
+}
+
+// responsive shit
+
+@media (max-width:950px){
+    .container2{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0px;
+    }
+    .footer-item{
+        width: 100%;
+    }
+    .footer-item1{
+        width: 100%;
+    }
+    .footer-item2{
+        width: 100%;
+    }
+    .footer-item #line{
+        text-align: center;
+    }
+    .alumni-footer{
+        padding-left: 2rem;
+    }
+    .iconnn{
+        display: none !important;
+    }
+    .tt{
+        width: 73%;
+        text-align: center;
+        margin-left: 1rem;
+    }
 }

@@ -20,7 +20,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, authData, setAuthData } = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading} = useContext(LoginContext);
 
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const Navbar = () => {
   const [display, setDisplay] = useState(false);
 
   //After refreshing the page user is still signed in 
-  useEffect(() => {
+  useEffect(async () => {
     if (window.localStorage.getItem('user') !== null) {
       const userLoggedIn = window.localStorage.getItem('user');
       if (userLoggedIn != null) {
@@ -50,9 +50,9 @@ const Navbar = () => {
   }, [])
 
   //Logout Function
-  const handleLogout = () =>{
+  const handleLogout = async () =>{
       setUser({});
-      window.localStorage.removeItem('user');
+      await window.localStorage.removeItem('user');
       setLoggedin(false);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
@@ -65,6 +65,7 @@ const Navbar = () => {
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
   }
+
 
   //Search Engine Functions
   useEffect(() => {
@@ -85,7 +86,7 @@ const Navbar = () => {
     axios.post('http://localhost:5000/wordEntered', {
       wordentered: wordentered
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setWordEnteredList(res.data);
     }).catch((err) => {
       console.log(err);
@@ -93,8 +94,9 @@ const Navbar = () => {
   }
   )
 
-  return (
-    <div className="overflow-x-hidden">
+  return(
+    <>
+    <div className="overflow-x-hidden" id='abd'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
@@ -102,14 +104,13 @@ const Navbar = () => {
         <img src='/images/1.png' />
         <div className='navbar'>
           <ul>
-            <Link to="/">HOME</Link>
+            <Link to="/" onClick={()=>{setLoading(true)}}>HOME</Link>
             <Link to="/about">ABOUT</Link>
             <Link to="/team">DEVELOPERS</Link>
 
-
+            
             <div id='google-login'>
             </div>
-
 
             {loggedin &&
               <>
@@ -120,7 +121,9 @@ const Navbar = () => {
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
                     }} value= {inputValue}/>
-                    {[wordEnteredList].map((val, index) =>
+                    {wordEnteredList.length!==0 && 
+                    <ul>
+                    {wordEnteredList.map((val, index) =>
                     (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} key={index} onClick={(e) => {
                       e.preventDefault();
                       setSearchword(val.email);
@@ -130,6 +133,9 @@ const Navbar = () => {
                       navigate('/comment')
                     }}>{val.name}</button></li>)
                     )}
+                    </ul>
+                    }
+                    
                   </div>
 
 
@@ -164,6 +170,8 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    </>
+  
   )
 }
 

@@ -17,13 +17,17 @@ const SecondLogin = () => {
     const [comment, setComment] = useState("");
     const {loading, setLoading} = useContext(LoginContext)
     const [loading2, setLoading2] = useState(true);
+    const [profile, setProfile] = useState({});
       
-    useEffect(async () => {
-        await new Promise((r) => setTimeout(r, 5000));
-  
-        // Toggle loading state
-        setLoading(false);
-        
+    useEffect(() => {
+        setLoading(true);
+        const Load = async () => {
+            await new Promise((r) => setTimeout(r, 2000));
+    
+            setLoading((loading) => !loading);
+        }
+    
+        Load();
     }, [])
 
     //Get the data to be displayed on the profile
@@ -32,6 +36,8 @@ const SecondLogin = () => {
         email: user.email
       }).then((res)=>{
         // console.log(res.data);
+        setProfile(res.data.User[0]);
+        console.log(profile);
       })
     })
 
@@ -42,7 +48,7 @@ const SecondLogin = () => {
             user_email: user.email
         }).then((res)=>{
             // console.log(res.data);
-            setMyComments(res.data[0].comments);
+            setMyComments(res.data[0].comment);
         }).catch((err) => {
             console.log(err);
         })
@@ -66,7 +72,7 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getApprovedComments', {
             friend_email: user.email
         }).then((res)=>{
-            console.log(res.data);
+            // console.log(res.data);
             setApprovedComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
@@ -74,7 +80,13 @@ const SecondLogin = () => {
     })
 
     return (
-        <div className='containersl'>
+        <>
+        {loading &&
+            <div className='spinner'>
+            <span class="loader"></span>
+            </div>
+            }
+        {!loading && <div className='containersl'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
             <style>
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -132,10 +144,16 @@ const SecondLogin = () => {
                     </div>
                 </div>
                 <div className="profile">
-                    <span className="dot"></span>
+                    <span className="dot">
+                        {/* <img src={profile.profile_img}/> */}
+                    </span>
                     <br></br><br></br>
                     <div className='about1'>
-                        <h2 id='about'>About Me</h2>
+                        {/* <h2 id='about'>About Me</h2> */}
+                        <h2>{profile.name}</h2>
+                        <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
+                        <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
+                        <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
                     </div>
                 </div>
             </div>
@@ -145,8 +163,16 @@ const SecondLogin = () => {
             <div className="container2">
                 <div className="comments2">
                     <h1>My Comments</h1>
-
-                </div>
+                
+                <div id='commentsscroll'>
+                        {myComments.map((val)=>(
+                            <div id='comment'>
+                            <p id='commentp'>{val.comment}</p>
+                            <p id='commentby'>-{val.friend_name}</p>
+                        </div>
+                        ))}
+                        </div>
+                        </div>
                 <div className="comments3" id='new' >
                     <h1>New Comments</h1>
                     {/* <h1 style={{ display : "inline"}}>..................</h1> */}
@@ -171,8 +197,9 @@ const SecondLogin = () => {
                                             })
                                         }
                                     }}><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
-                                    <button id='check' onClick={()=>{
+                                    <button id='check' onClick={(e)=>{
                                         {
+                                            e.preventDefault();
                                             axios.post('http://localhost:5000/rejectedComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
@@ -222,9 +249,9 @@ const SecondLogin = () => {
                 </div>
             </div> */}
 
-        </div>
+        </div>}
 // 
-        // </>
+        </>
     )
 }
 
