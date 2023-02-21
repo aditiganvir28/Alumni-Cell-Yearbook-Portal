@@ -13,8 +13,8 @@ const RejectedComments = require("../models/rejected_comments");
 const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
-        user: "aditi10328@gmail.com",
-        pass: ""
+        user: "sonih6664@gmail.com",
+        pass: "zonxexpoudhsqytv"
     }
 })
 
