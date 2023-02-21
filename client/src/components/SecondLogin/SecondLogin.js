@@ -22,7 +22,7 @@ const SecondLogin = () => {
     useEffect(() => {
         setLoading(true);
         const Load = async () => {
-            await new Promise((r) => setTimeout(r, 2000));
+            await new Promise((r) => setTimeout(r, 1000));
     
             setLoading((loading) => !loading);
         }
@@ -154,6 +154,7 @@ const SecondLogin = () => {
                         <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
                         <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
                         <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
+                        <h3 style={{color:"white"}}>{profile.about}</h3>
                     </div>
                 </div>
             </div>

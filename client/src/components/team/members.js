@@ -27,7 +27,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Anurag',
+        Name: 'Tarun',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -45,7 +45,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Safdar',
+        Name: 'Ayush',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -53,15 +53,15 @@ const Members= [
         Google: '#',
         img: '/images/grey.png'
     },
-    {
-        Name: 'Sonika',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
-    }
+    // {
+    //     Name: 'Safdar',
+    //     Desc: 'this is something about me, basically somewhat of a flavor-text',
+    //     Linkedin: '#',
+    //     Facebook: '#',
+    //     Instagram: '#',
+    //     Google: '#',
+    //     img: '/images/grey.png'
+    // }
 ]
 
 export default Members;

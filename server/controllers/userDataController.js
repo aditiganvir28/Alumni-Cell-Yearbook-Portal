@@ -187,7 +187,7 @@ const getWordEntered = asyncHandler(async (req,res) => {
 
     if(!User?.length){
         // return res.status(400).json({message: 'No usersData found'});
-        return res.send({message:"No userdata found"});
+        return res.send([]);
     }
 
     res.send(User);
@@ -203,7 +203,7 @@ const getSearchWord = asyncHandler(async (req,res) =>{
 
     if(!User?.length){
         // return res.status(400).json({message: 'No usersData found'});
-        return res.send({message:"No userdata found"});
+        return res.send({});
     }
 
     res.send(User);
@@ -334,7 +334,7 @@ const approvedComments = asyncHandler (async (req,res) =>{
                 console.log(err);
             }
     
-            // console.log(doc);
+            console.log(doc);
         });
     });
     

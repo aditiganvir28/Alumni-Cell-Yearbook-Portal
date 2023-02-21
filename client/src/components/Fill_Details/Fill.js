@@ -16,7 +16,7 @@ function Fill(props) {
   useEffect(() => {
     setLoading(true);
     const Load = async () => {
-        await new Promise((r) => setTimeout(r, 2000));
+        await new Promise((r) => setTimeout(r, 1000));
 
         setLoading((loading) => !loading);
     }
@@ -76,8 +76,6 @@ const onSubmit = () =>{
     })
 }
 
-console.log(userData)
-
   const setOptionValue = (e) =>{
     setUserData({ ...userData, [e.target.name]: e.target.value})
   }
@@ -114,7 +112,7 @@ console.log(userData)
           <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
            <select name="academic_program" id="" defaultValue={userData.academic_program}  onChange={setOptionValue}>
-            <option value ="Academic Program" name ="Academic Program"disabled>Academic Program</option>
+            <option value ="" name ="Academic Program" selected disabled>Academic Program</option>
             <option value="Bachelor of Technology (BTech)" name= "academic_program">Bachelor of Technology (BTech)</option>
             <option value="Master of Technology (MTech)" name= "academic_program">Master of Technology (MTech)</option>
             <option value="Master of Science (MSc)" name= "academic_program"  >Master of Science (MSc)</option>
