@@ -139,7 +139,7 @@ const onSubmit = () =>{
         </div>
         <div className="right">
         <span className="dot">
-            <img src={imageUrl}/>
+            <img id='ip'src={imageUrl}/>
           </span>
           <h2> </h2><br/>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
