@@ -89,7 +89,7 @@ const MakeAComment = () => {
       <div className="container2">
         <div className="left1">
           <span className="dot">
-            {/* <img src={profile.profile_img}/> */}
+            <img src={result[0].profile_img}/>
           </span>
           <h1 id='named'>Name - Department</h1>
           

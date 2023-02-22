@@ -4,6 +4,7 @@ body {
 
 .containersl {
     font-family: 'Quantico', sans-serif;
+    width: 100%;
 }
 .header {
     align-items: center;
@@ -41,7 +42,7 @@ li{
 .container2 {
     display: flex;
     flex-direction: row;
-    width: auto;
+    width: 100%;
 }
 
 .comments {
@@ -88,11 +89,12 @@ li{
     background-color: #3E065F;
     border-radius: 50%;
     display: flex;
-    /* margin-left: 90px; */
+    margin-left: 20%; 
 }
 
 .profile {
-    margin-left: 200px;
+    margin-left: 10%;
+    width: 45%;
 }
 
 #about {
