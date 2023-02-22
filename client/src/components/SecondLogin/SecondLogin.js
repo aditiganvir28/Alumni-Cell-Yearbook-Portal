@@ -124,7 +124,7 @@ const SecondLogin = () => {
                 </div>
                 <div className="profile">
                     <span className="dot">
-                        <img src={profile.profile_img}/>
+                        <img id = "ip" src={profile.profile_img}/>
                     </span>
                     <br></br><br></br>
                     <div className='about1'>
