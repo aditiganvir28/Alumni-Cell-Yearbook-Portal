@@ -160,7 +160,14 @@ input.search{
       flex-direction: column;
     }
   }
-
+.right #disclaimer{
+    color: white;
+    padding-bottom: 10px;
+}
+.disc{
+    color: #fec80a;
+    display: inline;
+}
 select {
     width: 73%;
     background-color: #3E185C;

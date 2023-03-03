@@ -126,6 +126,10 @@ const onSubmit = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Alternate Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Address*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Current Company (if any)" size="60" name="current_company" value={userData.current_company} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Designation" size="60" name="designation" value={userData.designation} onChange={(e) =>
@@ -141,7 +145,9 @@ const onSubmit = () =>{
         <span className="dot">
             <img id='ip'src={imageUrl}/>
           </span>
-          <h2> </h2><br/>
+          {/* <h2> </h2> */}
+          <br/>
+          <h4 id='disclaimer'><div className="disc">Disclaimer:</div> This picture will be printed in the yearbook.</h4>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
           <button onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
           {imageUploaded && 
