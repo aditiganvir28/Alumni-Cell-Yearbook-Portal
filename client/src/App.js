@@ -70,7 +70,7 @@ function App() {
     //Rendering the signin button
     document.getElementById("google-login").hidden= true;
 
-    const finds= authData.find(el=>el.email===userObject.email);
+    const finds= setTimeout(()=>{authData.find(el=>el.email===userObject.email)},1000);
 
     setTimeout(()=>{
       console.log(finds);

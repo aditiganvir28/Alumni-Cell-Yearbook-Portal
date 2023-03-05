@@ -120,32 +120,11 @@ const SecondLogin = () => {
                             <p id='commentby'>-{val.user_name}</p>
                         </div>
                         ))}
-                        
-                        {/* <div id='comment'>
-                            <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde amet provident minima veniam explicabo alias quos magni commodi animi earum eum recusandae dignissimos aut nam, perferendis accusamus ex culpa modi!</p>
-                            <p id='commentby'>-BY</p>
-                        </div>
-                        <div id='comment'>
-                            <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex repellendus perspiciatis qui minima quas non temporibus accusamus dolor. Ratione, unde nesciunt? Deserunt quos minus fugit sed fuga enim! Natus, eius!</p>
-                            <p id='commentby'>-BY</p>
-                        </div>
-                        <div id='comment'>
-                            <p id='commentp'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae rerum molestiae deleniti dolor! Facilis architecto doloremque, sapiente voluptatem vitae eligendi nam beatae. Incidunt corporis repellat suscipit aliquid deserunt! Ipsa, nihil.</p>
-                            <p id='commentby'>-BY</p>
-                        </div>
-                        <div id='comment'>
-                            <p id='commentp'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae officiis animi ipsam sequi ea esse omnis, dolorem repellendus. Ipsam quia soluta fugit quibusdam, saepe consequuntur fugiat repudiandae aperiam mollitia. Doloribus.</p>
-                            <p id='commentby'>-BY</p>
-                        </div>
-                        <div id='comment'>
-                            <p id='commentp'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis excepturi suscipit necessitatibus ad laborum velit deserunt. Ab repellendus reprehenderit at magni, veritatis quos recusandae minima, maiores dolorem, fugiat quo rerum.</p>
-                            <p id='commentby'>-BY</p>
-                        </div> */}
                     </div>
                 </div>
                 <div className="profile">
-                    <span className="dot">
-                        {/* <img src={profile.profile_img}/> */}
+                    <span className="dotsl">
+                        <img id = "ip" src={profile.profile_img}/>
                     </span>
                     <br></br><br></br>
                     <div className='about1'>

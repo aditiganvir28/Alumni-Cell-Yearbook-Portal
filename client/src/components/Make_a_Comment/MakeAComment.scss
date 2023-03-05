@@ -13,7 +13,9 @@
     display: flex;
     padding: 2%;
 }
-
+.right1 #commenttext{
+    padding: 10px;
+}
 .navbar {
     background-color: #4d1a6c;
     display: flex;
@@ -81,6 +83,13 @@ h1 {
 .description h1{
     font-size: x-large;
     padding: 10%;
+}
+
+.dot #ip{
+    display: flex;
+    width: 100%;
+    border-radius: 50%;
+    padding: 1%;
 }
 
 .right1 {

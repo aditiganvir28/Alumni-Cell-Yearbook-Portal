@@ -71,6 +71,7 @@ input {
     margin: 0 0 20px 0;
 }
 .dot {
+    margin: 10px;
     width: 350px;
     height: 350px;
     background-color: #3E065F;
@@ -117,6 +118,12 @@ h2{
     border-radius: 20px;
     margin-bottom: 20px;
 }
+.dot #ip{
+    display: flex;
+    width: 100%;
+    border-radius: 50%;
+    padding: 1%;
+}
 .right {
     // margin-left: 800px;
     display: flex;
@@ -153,7 +160,14 @@ input.search{
       flex-direction: column;
     }
   }
-
+.right #disclaimer{
+    color: white;
+    padding-bottom: 10px;
+}
+.disc{
+    color: #fec80a;
+    display: inline;
+}
 select {
     width: 73%;
     background-color: #3E185C;

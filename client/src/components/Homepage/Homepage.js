@@ -240,6 +240,13 @@ function Homepage() {
                         className='flex w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-white justify-center items-center rounded-xl'>
                         <h1 className='text-black text-center'>Class Of 2020</h1>
                     </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
+                        className='flex w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-white justify-center items-center rounded-xl'>
+                        <h1 className='text-black text-center'>Alumni Magazine</h1>
+                    </motion.div>
                     <div className='w-4/5 lg:w-1/3 flex flex-col lg:h-64'>
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
