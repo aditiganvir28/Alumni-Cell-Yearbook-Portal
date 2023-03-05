@@ -159,7 +159,7 @@ const SecondLogin = () => {
                 </div>
             </div>
             <div className="edit">
-                <button className='button'style={{width:'30%'}}>EDIT YOUR PROFILE</button>
+                <button className='button'style={{width:'30%', color:"white"}}>EDIT YOUR PROFILE</button>
             </div>
             <div className="container2">
                 <div className="comments2">
