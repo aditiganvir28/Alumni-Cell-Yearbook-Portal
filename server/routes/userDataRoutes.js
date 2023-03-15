@@ -20,6 +20,8 @@ router.post('/approvedComments', userDataController.approvedComments);
 router.post('/rejectedComments', userDataController.rejectedComments);
 router.post('/getApprovedComments', userDataController.getApprovedComments);
 router.post('/getRejectedComments', userDataController.getRejectedComments);
+// router.post("/login_with_phone", userDataController.loginWithPhoneOtp);
+router.post("/verify", userDataController.verifyPhoneOtp);
 
 
 module.exports = router;

@@ -8,15 +8,17 @@ const MyComments = require("../models/my_comments");
 const NewComments = require("../models/new_comments");
 const ApprovedCommetns = require("../models/approved_comments");
 const RejectedComments = require("../models/rejected_comments");
-
+const fast2sms = require("fast-two-sms");
 
 const transporter = nodemailer.createTransport({
     service:"Gmail",
     auth:{
         user: "aditi10328@gmail.com",
-        pass: ""
+        pass: "sedmznapvcnyavsh"
     }
 })
+const { createJwtToken } = require("../utils/token.util");
+const { generateOTP} = require("../utils/otp.util");
 
 //Geeting all the users data who have created their profile
 const getUsersData = asyncHandler(async (req, res)=>{
@@ -34,27 +36,36 @@ const getUsersData = asyncHandler(async (req, res)=>{
 //Add a New User
 const createUsersData = asyncHandler(async (req,res) =>{
 
-    const { email, name, roll_no, academic_program, department, personal_email_id, contact_details,  current_company, designation, about, profile_img} =req.body;
+    const { email, name, roll_no, academic_program, department, personal_email_id, contact_details, alternate_contact_details, address, current_company, designation, about, profile_img} =req.body;
+
     console.log(req.body);
+
     // Confirm data
-    if(!email || !name || !roll_no || !department || !contact_details || !personal_email_id || !designation || !about || !profile_img){
+    if(!email || !name || !roll_no || !department || !contact_details || !alternate_contact_details || !address || !personal_email_id || !designation || !about || !profile_img){
         // return res.status(400).json({meassage: 'All fields are required'})
         return res.send({message: "All fields are required"});
     }
 
     // Check if email is in use
-    // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
+    const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
 
-    //     if(existingUser){
-    //         return res.send({message:"Email is already in use"});
-    //     }
+        if(existingUser){
+            return res.send({message:"Email is already in use"});
+        }
+
+    // Check if contact_no is in use
+    const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
+
+        if(existingUser2){
+            return res.send({message:"Mobile number is already in use"});
+        }
 
     // Create and store the new user
-    const usersData = await Users.create({ email, name, roll_no, academic_program, department, contact_details, personal_email_id, current_company, designation, about, profile_img})
+    const usersData = await Users.create({ email, name, roll_no, academic_program, department, contact_details, alternate_contact_details, address, personal_email_id, current_company, designation, about, profile_img})
 
     if(usersData){
         //created
-        res.send({message: "New User Created"});
+        res.send({message: `Sent a verification email to ${email}`});
     }
     else{
         res.send({message: "Invalid Userdata Recieved"});
@@ -75,11 +86,102 @@ const createUsersData = asyncHandler(async (req,res) =>{
                 return res.send({
                     message:`Sent a verification email to ${email}`
                 });
-
             }catch(err){
-                return res.status(500).send(err);
+                console.log(err);
             }
+    try{
+    // generate otp
+    const otp = generateOTP(6);
+    // save otp to user collection
+    usersData.phoneOTP = otp;
+    await usersData.save();
+
+    const accountSid = "AC3d44bb903d40babb4fdad3c626de8edc";
+    const authToken = "6cce98e7ef4d627822b3e5c47d5b43db";
+    const client = require("twilio")(accountSid, authToken);
+    client.messages
+        .create({ 
+            body: `Your otp is ${otp}` , 
+            from: "+15074426876", 
+            to: usersData.contact_details
+         }).then(message => 
+            console.log(message.sid));
+        } catch (error) {
+        console.log(error);
+}
 })
+
+// ------------ login with phone otp ----------------------------------
+
+// loginWithPhoneOtp = async (req, res, next) => {
+//     try {
+  
+//       const { phone } = req.body;
+//       const user = await Users.findOne({ phone });
+  
+//       if (!user) {
+//         next({ status: 400, message: "Phone number not found" });
+//         return;
+//       }
+  
+//       res.status(201).json({
+//         type: "success",
+//         message: "OTP sended to your registered phone number",
+//         data: {
+//           userId: user._id,
+//         },
+//       });
+  
+//       // generate otp
+//       const otp = generateOTP(6);
+//       // save otp to user collection
+//       user.phoneOTP = otp;
+//       user.verified = true;
+//       await user.save();
+//       // send otp to phone number
+//       await fast2sms(
+//         {
+//           message: `Your OTP is ${otp}`,
+//           contactNumber: user.contact_details,
+//         },
+//         next
+//       );
+//     } catch (error) {
+//       next(error);
+//     }
+//   };
+  
+//   // ---------------------- verify phone otp -------------------------
+  
+  verifyPhoneOtp = async (req, res, next) => {
+    console.log("reached")
+    console.log(req.body);
+    try {
+      const phoneOtp = req.body.phoneOTP;
+      const userId = req.body.userId;
+      console.log(phoneOtp)
+      const user = await Users.findOne({presonal_email_id: userId}).exec();
+      if (!user) {
+        res.send({message: "User not found"});
+        return;
+      }
+      console.log(user);
+      if (user.phoneOTP !== phoneOtp) {
+        res.send({message: "Incorrect OTP"});
+        return;
+      }
+      const token = createJwtToken({ userId: user._id });
+  
+      user.phoneOTP = "";
+      user.two_step_verified= true;
+      await user.save();
+      res.send(user);
+      res.redirect('http://localhost:3000')
+    } catch (error) {
+      next(error);
+    }
+  };
+  
 
 //Verify the personal_email_id
 const verify = async(req,res) => {
@@ -109,10 +211,10 @@ const verify = async(req,res) => {
         };
 
         //Update user verification status to true
-        user.verified =true;
+        user.one_step_verified =true;
         await user.save();
 
-        return res.redirect('http://localhost:3000/profile')
+        return res.redirect('http://localhost:3000/otpVerification')
     } catch(err){
         return res.status(500).send(err);
     }
@@ -443,5 +545,6 @@ module.exports = {
     getMyComments,
     myComments,
     newComments,
-    findAUser
+    findAUser,
+    verifyPhoneOtp
 }

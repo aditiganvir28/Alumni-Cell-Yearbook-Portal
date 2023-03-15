@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
-const Auth = require("./authModel");
 const jwt =  require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
@@ -32,14 +31,23 @@ const userSchema = new mongoose.Schema({
     },
 
     contact_details: {
-        type: Number,
+        type: String,
         required: [true, "Contact_Details is required"],
+    },
+
+    alternate_contact_details: {
+        type: String,
+        required: [true, "Alternate Contact Details is required"]
     },
 
     personal_email_id: {
         type: String,
         required: [true, "Department is required"],
         // unique: true,
+    },
+
+    address: {
+        tyep: String,
     },
 
     current_company: {
@@ -60,12 +68,24 @@ const userSchema = new mongoose.Schema({
         required: [true, "Profile_image is required"],
     },
 
-    verified: {
+    one_step_verified: {
         type: Boolean,
         required: true,
         default: false
-    }
-});
+    },
+
+    two_step_verified: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+
+    phoneOTP: String,
+
+    
+},
+{timestamps: true}
+);
 
 userSchema.methods.generateVerificationToken = function () {
     const user = this;
