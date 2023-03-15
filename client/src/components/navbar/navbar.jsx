@@ -158,7 +158,7 @@ const Navbar = () => {
                     </ul>
                     }
                     
-                  </div>
+                  </div> 
 
                   <Menu>
                     <MenuButton as={Button} w='29%' ml = {2}  rightIcon={<ChevronDownIcon /> }>
