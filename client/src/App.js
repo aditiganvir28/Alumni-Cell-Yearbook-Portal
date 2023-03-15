@@ -7,6 +7,7 @@ import MakeAComment from './components/Make_a_Comment/MakeAComment';
 import SecondLogin from './components/SecondLogin/SecondLogin';
 import Fill from './components/Fill_Details/Fill';
 import Homepage from './components/Homepage/Homepage';
+import OtpVerification from './components/Otp Verification/otpVerification';
 import { Route, Routes, Navigate, BrowserRouter, Router, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import jwt_decode from "jwt-decode";
@@ -70,8 +71,8 @@ function App() {
     //Rendering the signin button
     document.getElementById("google-login").hidden= true;
 
-    const finds= setTimeout(()=>{authData.find(el=>el.email===userObject.email)},1000);
-
+    const finds = authData.find(el=>el.email===userObject.email);
+    
     setTimeout(()=>{
       console.log(finds);
       if(finds){
@@ -80,7 +81,7 @@ function App() {
             email:userObject.email
           }).then((res)=>{
             if(res.data.message === "User Found"){
-              if(res.data.User[0].verified === true){
+              if(res.data.User[0].two_step_verified === true){
                 console.log("verified");
                 navigate('/profile');
                 setLoading(true);
@@ -122,11 +123,16 @@ function App() {
       }
     }, 2000)
   }
+
+  
     
 
   return (
     <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading}}>
     <div className="App overflow-x-hidden">
+    
+      
+      <div>
       <Navbar/>
       <Routes>
       <Route exact path="/" element={<Homepage/>} />
@@ -136,9 +142,16 @@ function App() {
       <Route exact path="/team" element={<Cards />} />
       <Route exact path="/comment" element={<MakeAComment />} />
       </Routes>
+      
       {!loading && <Footer/>}
+      </div>
+      <div>
+      <Routes>
+      <Route exact path="/otpVerification" element={<OtpVerification />} />
+      </Routes>
+      </div>
     </div>
     </LoginContext.Provider>
-  );
+);
 }
 export default App;

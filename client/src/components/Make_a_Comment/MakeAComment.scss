@@ -1,7 +1,7 @@
 .containermc {
     font-family: 'Quantico', sans-serif;
     // padding-top: 10%;
-    padding-bottom: 7.5%;
+    padding-bottom: 6.5%;
 }
 #root{
     width:100%;
@@ -131,4 +131,11 @@ input {
 
 .search {
     border: 1px solid white;
+}
+
+
+#apcomments {
+    // display: flex;
+    margin: 5%;
+    padding: 1%;
 }

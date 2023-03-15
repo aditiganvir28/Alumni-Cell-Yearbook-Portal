@@ -31,15 +31,11 @@ app.use(express.json());
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(session({
-    key:"userId",
-    secret:"subscribe",
-    resave: false,
-    saveUninitialized: false,
-    cookie:{
-        expires:60*60*24*60*60*60,
-    },
-}))
+
+// log in development environment
+
+    const morgan = require("morgan");
+    app.use(morgan("dev"));
 
 app.get("/", (req,res)=>{
     // res.json({message: "Hello from server!!"});
@@ -70,8 +66,31 @@ mongoose.connect("mongodb://0.0.0.0:27017/yearbook", {
 app.use(authRoutes);
 app.use(userDataRoutes);
 
-app.post('/profile', (req,res)=>{
-    userEmail: req.userEmail;
+// app.post('/profile', (req,res)=>{
+//     userEmail: req.userEmail;
 
     
-})
+// })
+
+// page not found error handling  middleware
+
+app.use("*", (req, res, next) => {
+    const error = {
+      status: 404,
+      message: "API Endpoint does not found",
+    };
+    next(error);
+  });
+  
+  // global error handling middleware
+  app.use((err, req, res, next) => {
+    console.log(err);
+    const status = err.status || 500;
+    const message = err.message || "Something went wrong";
+    const data = err.data || null;
+    res.status(status).json({
+      type: "error",
+      message,
+      data,
+    });
+  });

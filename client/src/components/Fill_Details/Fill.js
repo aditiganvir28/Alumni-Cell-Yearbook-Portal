@@ -8,6 +8,7 @@ import { useContext } from 'react';
 
 function Fill(props) {
   const{user, loading, setLoading} = useContext(LoginContext);
+  const [message, setMessage] = useState("");
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [verify, setVerify] = useState(false);
@@ -47,6 +48,8 @@ function Fill(props) {
     department:"",
     personal_email_id:"",
     contact_details:"",
+    alternate_contact_details:"",
+    address:"",
     current_company:"",
     designation:"",
     about:""
@@ -64,12 +67,15 @@ const onSubmit = () =>{
         department: userData.department,
         personal_email_id: userData.personal_email_id,
         contact_details: userData.contact_details,
+        alternate_contact_details: userData.contact_details,
+        address: userData.contact_details,
         current_company: userData.current_company,
         designation: userData.designation,
         about: userData.about,
         profile_img:imageUrl
     }).then((res)=>{
-        console.log(res.data);
+        console.log(res.data.message);
+        setMessage(res.data.message);
         setVerify(true);
     }).catch((err)=>{
       console.log(err);
@@ -137,7 +143,7 @@ const onSubmit = () =>{
           <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           {verify && 
-          <h2>Sent a veification mail to your personal_email_id</h2>
+          <h2>{message}</h2>
           }
           <button className="submit1" onClick={onSubmit}>Submit</button>
         </div>
