@@ -4,6 +4,7 @@ import './SecondLogin.scss';
 import axios from 'axios';
 import App from '../../App';
 import loadingSpinner from '../Homepage/images/808.gif'
+import { redirect } from 'react-router';
 
 const SecondLogin = () => {
 
@@ -18,7 +19,7 @@ const SecondLogin = () => {
     const {loading, setLoading} = useContext(LoginContext)
     const [loading2, setLoading2] = useState(true);
     const [profile, setProfile] = useState({});
-      
+  
     useEffect(() => {
         setLoading(true);
         const Load = async () => {
@@ -79,6 +80,11 @@ const SecondLogin = () => {
         })
     })
 
+    // redirecting to fill page for editing the profile
+    const editProfile = () => {
+        window.location.href = '/fill';
+    }
+
     return (
         <>
         {loading &&
@@ -138,7 +144,7 @@ const SecondLogin = () => {
                 </div>
             </div>
             <div className="edit">
-                <button className='button'style={{width:'30%', color:"white"}}>EDIT YOUR PROFILE</button>
+                <button className='button'style={{width:'30%', color:"white"}} onClick = {editProfile}>EDIT YOUR PROFILE</button>
             </div>
             <div className="container2">
                 <div className="comments2">
