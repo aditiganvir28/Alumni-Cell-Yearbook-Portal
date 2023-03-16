@@ -82,6 +82,17 @@ const onSubmit = () =>{
     })
 }
 
+const resendMail = () =>{
+  console.log("yeah")
+  axios.post("http://localhost:5000/resendMail",{
+  userId: user.email
+}).then((res)=>{
+    console.log(res);
+  }).catch((err)=>{
+    console.log(err);
+  })
+}
+
   const setOptionValue = (e) =>{
     setUserData({ ...userData, [e.target.name]: e.target.value})
   }
@@ -146,6 +157,9 @@ const onSubmit = () =>{
           <h2>{message}</h2>
           }
           <button className="submit1" onClick={onSubmit}>Submit</button>
+          {verify && 
+          <button className="submit1" onclick={resendMail}>Resend Mail</button>
+          }   
         </div>
         <div className="right">
         <span className="dot">

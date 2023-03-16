@@ -110,78 +110,72 @@ const createUsersData = asyncHandler(async (req,res) =>{
         console.log(error);
 }
 })
-
-// ------------ login with phone otp ----------------------------------
-
-// loginWithPhoneOtp = async (req, res, next) => {
-//     try {
-  
-//       const { phone } = req.body;
-//       const user = await Users.findOne({ phone });
-  
-//       if (!user) {
-//         next({ status: 400, message: "Phone number not found" });
-//         return;
-//       }
-  
-//       res.status(201).json({
-//         type: "success",
-//         message: "OTP sended to your registered phone number",
-//         data: {
-//           userId: user._id,
-//         },
-//       });
-  
-//       // generate otp
-//       const otp = generateOTP(6);
-//       // save otp to user collection
-//       user.phoneOTP = otp;
-//       user.verified = true;
-//       await user.save();
-//       // send otp to phone number
-//       await fast2sms(
-//         {
-//           message: `Your OTP is ${otp}`,
-//           contactNumber: user.contact_details,
-//         },
-//         next
-//       );
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
   
 //   // ---------------------- verify phone otp -------------------------
   
   verifyPhoneOtp = async (req, res, next) => {
-    console.log("reached")
-    console.log(req.body);
     try {
       const phoneOtp = req.body.phoneOTP;
       const userId = req.body.userId;
-      console.log(phoneOtp)
+
       const user = await Users.findOne({presonal_email_id: userId}).exec();
+      
       if (!user) {
         res.send({message: "User not found"});
         return;
       }
-      console.log(user);
+
       if (user.phoneOTP !== phoneOtp) {
         res.send({message: "Incorrect OTP"});
         return;
       }
       const token = createJwtToken({ userId: user._id });
-  
-      user.phoneOTP = "";
-      user.two_step_verified= true;
-      await user.save();
-      res.send(user);
-      res.redirect('http://localhost:3000')
+      
+    user.phoneOTP = "";
+    user.two_step_verified= true;
+    await user.save();
+    res.send("Mobile number verified");
+    res.redirect('http://localhost:3000')
     } catch (error) {
       next(error);
     }
   };
-  
+
+//Resend OTP
+
+const resendOTP = asyncHandler(async(req,res)=>{
+    
+    try{
+        const userId = req.body.userId;
+
+        const user = await Users.findOne({presonal_email_id: userId}).exec();
+
+        if (!user) {
+            res.send({message: "User not found"});
+            return;
+          }
+
+        // generate otp
+        const otp = generateOTP(6);
+        // save otp to user collection
+        user.phoneOTP = otp;
+        await user.save();
+        console.log(user.phoneOTP)
+    
+        const accountSid = "AC3d44bb903d40babb4fdad3c626de8edc";
+        const authToken = "6cce98e7ef4d627822b3e5c47d5b43db";
+        const client = require("twilio")(accountSid, authToken);
+        client.messages
+            .create({ 
+                body: `Your otp is ${otp}` , 
+                from: "+15074426876", 
+                to: user.contact_details
+             }).then(message => 
+                console.log(message.sid));
+            } catch (error) {
+            console.log(error);
+    }
+})
 
 //Verify the personal_email_id
 const verify = async(req,res) => {
@@ -219,6 +213,37 @@ const verify = async(req,res) => {
         return res.status(500).send(err);
     }
 }
+
+//Resend Mail
+const resendMail = asyncHandler(async(req,res)=>{
+    //Generate a veification token with th user's ID 
+    const userId = req.body.userId;
+    console.log("reached")
+    const user = await Users.findOne({presonal_email_id: userId}).exec();
+    if (!user) {
+        res.send({message: "User not found"});
+        return;
+      }
+
+    const verificationToken = user.generateVerificationToken();
+    try{
+        //Email the user a unique verification link
+    const url = `http://localhost:5000/verify/${verificationToken}`
+
+    transporter.sendMail({
+                to: personal_email_id,
+                subject: 'Verify Account',
+                html: `Click <a href='${url}'>here</a> to confirm your email.` 
+            })
+
+            return res.send({
+                message:`Sent a verification email to ${email}`
+            });
+        }catch(err){
+            console.log(err);
+        }
+})
+
 
 //Upadte users data
 const updateUserData = asyncHandler(async (req,res) => {
@@ -546,5 +571,7 @@ module.exports = {
     myComments,
     newComments,
     findAUser,
-    verifyPhoneOtp
+    verifyPhoneOtp,
+    resendOTP,
+    resendMail
 }

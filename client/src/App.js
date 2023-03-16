@@ -130,9 +130,7 @@ function App() {
   return (
     <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading}}>
     <div className="App overflow-x-hidden">
-    
-      
-      <div>
+  
       <Navbar/>
       <Routes>
       <Route exact path="/" element={<Homepage/>} />
@@ -141,16 +139,11 @@ function App() {
       <Route exact path="/about" element={<About />} />
       <Route exact path="/team" element={<Cards />} />
       <Route exact path="/comment" element={<MakeAComment />} />
+      <Route exact path="/otpVerification" element={<OtpVerification />} />
       </Routes>
       
       {!loading && <Footer/>}
       </div>
-      <div>
-      <Routes>
-      <Route exact path="/otpVerification" element={<OtpVerification />} />
-      </Routes>
-      </div>
-    </div>
     </LoginContext.Provider>
 );
 }
