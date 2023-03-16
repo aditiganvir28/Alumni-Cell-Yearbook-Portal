@@ -85,7 +85,8 @@ const onSubmit = () =>{
 const resendMail = () =>{
   console.log("yeah")
   axios.post("http://localhost:5000/resendMail",{
-  userId: user.email
+  userId: user.email,
+  personalMailId:userData.personal_email_id
 }).then((res)=>{
     console.log(res);
   }).catch((err)=>{
@@ -158,7 +159,7 @@ const resendMail = () =>{
           }
           <button className="submit1" onClick={onSubmit}>Submit</button>
           {verify && 
-          <button className="submit1" onclick={resendMail}>Resend Mail</button>
+          <button className="submit1" onClick={resendMail}>Resend Mail</button>
           }   
         </div>
         <div className="right">

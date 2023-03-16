@@ -218,8 +218,10 @@ const verify = async(req,res) => {
 const resendMail = asyncHandler(async(req,res)=>{
     //Generate a veification token with th user's ID 
     const userId = req.body.userId;
+    const personalMailId = req.body.personalMailId
+    console.log(personalMailId)
     console.log("reached")
-    const user = await Users.findOne({presonal_email_id: userId}).exec();
+    const user = await Users.findOne({email: userId}).exec();
     if (!user) {
         res.send({message: "User not found"});
         return;
@@ -231,13 +233,13 @@ const resendMail = asyncHandler(async(req,res)=>{
     const url = `http://localhost:5000/verify/${verificationToken}`
 
     transporter.sendMail({
-                to: personal_email_id,
+                to: personalMailId,
                 subject: 'Verify Account',
                 html: `Click <a href='${url}'>here</a> to confirm your email.` 
             })
 
             return res.send({
-                message:`Sent a verification email to ${email}`
+                message:`Sent a verification email to ${personalMailId}`
             });
         }catch(err){
             console.log(err);
