@@ -126,7 +126,7 @@ const resendMail = () =>{
         <div className="left">
           <h2> </h2><br/>
           <h1>Fill your Profile</h1><br/>
-          <input type="text" placeholder="Name*" size="60" name="name_" value={userData.name_} onChange={(e) =>
+          <input type="text" placeholder="Name*" size="60" name="name_" value={userData.name} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>

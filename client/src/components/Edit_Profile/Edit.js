@@ -5,14 +5,14 @@ import { useLocation } from "react-router-dom";
 import { LoginContext } from "../../helpers/Context";
 import { useContext } from "react";
 
-var temp_USER={};
+var temp_USER = {};
 function Edit(props) {
   const { user, loading, setLoading } = useContext(LoginContext);
   const [message, setMessage] = useState("");
   const [imageSelected, setImageSelected] = useState("gfjebwfbweif");
-    const [imageUrl, setImageUrl] = useState("");
-    const [verify, setVerify] = useState(false);
-    const [imageUploaded, setImageUploaded] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+  const [verify, setVerify] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -40,24 +40,23 @@ function Edit(props) {
         setImageUploaded(true);
       });
   };
-// Getting User Data From Backend
-  useEffect( () => {
-     axios
+  // Getting User Data From Backend
+  useEffect(() => {
+    axios
       .post("http://localhost:5000/profile", {
         email: user.email,
       })
       .then((res) => {
         // console.log(res.data.User[0]);
-        temp_USER=res.data.User[0];
+        temp_USER = res.data.User[0];
         console.log(temp_USER);
 
-        setUserData(temp_USER)
-        
+        setUserData(temp_USER);
+        setImageUrl(temp_USER.profile_img);
       });
-  },[]);
+  }, []);
 
-  const [userData, setUserData] = useState({
-  });
+  const [userData, setUserData] = useState({});
 
   //sending data to store in the database
 
@@ -91,6 +90,18 @@ function Edit(props) {
   const setOptionValue = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
+
+  const resendMail = () =>{
+    console.log("yeah")
+    axios.post("http://localhost:5000/resendMail",{
+    userId: user.email,
+    personalMailId:userData.personal_email_id
+  }).then((res)=>{
+      console.log(res);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
 
   //Get the data for edit profile
   // useEffect(()=>{
@@ -126,7 +137,7 @@ function Edit(props) {
                 type="text"
                 placeholder="Name*"
                 size="60"
-                name="name"
+                name="name_"
                 value={userData.name}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
@@ -214,6 +225,28 @@ function Edit(props) {
               <br />
               <input
                 type="text"
+                placeholder="Alternate Contact Number*"
+                size="60"
+                name="alternate_contact_details"
+                value={userData.alternate_contact_details}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Address*"
+                size="60"
+                name="contact_details"
+                value={userData.contact_details}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br />
+              <input
+                type="text"
                 placeholder="Current Company (if any)"
                 size="60"
                 name="current_company"
@@ -249,6 +282,11 @@ function Edit(props) {
               <button className="submit1" onClick={onSubmit}>
                 Submit
               </button>
+              {verify && (
+                <button className="submit1" onClick={resendMail}>
+                  Resend Mail
+                </button>
+              )}
             </div>
             <div className="right">
               <span className="dot">
