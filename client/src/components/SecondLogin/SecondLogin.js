@@ -82,7 +82,7 @@ const SecondLogin = () => {
 
     // redirecting to fill page for editing the profile
     const editProfile = () => {
-        window.location.href = '/fill';
+        window.location.href = '/edit';
     }
 
     return (

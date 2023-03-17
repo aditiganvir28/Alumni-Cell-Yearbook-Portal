@@ -6,6 +6,7 @@ import Cards from './components/team/Cards.jsx';
 import MakeAComment from './components/Make_a_Comment/MakeAComment';
 import SecondLogin from './components/SecondLogin/SecondLogin';
 import Fill from './components/Fill_Details/Fill';
+import Edit from './components/Edit_Profile/Edit';
 import Homepage from './components/Homepage/Homepage';
 import OtpVerification from './components/Otp Verification/otpVerification';
 import { Route, Routes, Navigate, BrowserRouter, Router, useNavigate } from 'react-router-dom';
@@ -137,6 +138,7 @@ function App() {
       <Routes>
       <Route exact path="/" element={<Homepage/>} />
       <Route exact path="/fill" element={<Fill />} />
+      <Route exact path="/edit" element={<Edit />} />
       <Route exact path="/profile" element={<SecondLogin />} />
       <Route exact path="/about" element={<About />} />
       <Route exact path="/team" element={<Cards />} />
