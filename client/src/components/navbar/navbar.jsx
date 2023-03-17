@@ -4,6 +4,7 @@ import './Navbar.scss';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
 import axios from 'axios';
+import alumniData from './akumniData.json'
 import {
   Menu,
   MenuButton,
@@ -31,6 +32,25 @@ const Navbar = () => {
   // const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
+  const [profileIcon, setProfileIcon] = useState(false);
+
+  const alumniEmail= alumniData; //geeting all the alumnis data
+
+  useEffect(()=>{
+    if(alumniEmail.includes(user.email)){
+      axios.post("http://localhost:5000/findAUser",{
+        email: user.email
+      }).then((res)=>{
+        console.log(res.data);
+        if(res.data.message==="User Found"){
+          if(res.data.User[0].two_step_verified===true){
+            setProfileIcon(true);
+          }
+        }
+      })
+    }
+   
+  })
 
   //After refreshing the page user is still signed in 
   useEffect(() => {
@@ -54,6 +74,7 @@ const Navbar = () => {
       setUser({});
       window.localStorage.removeItem('user');
       setLoggedin(false);
+      setProfileIcon(false);
       window.localStorage.setItem('loggedin', false)
       document.getElementById("google-login").hidden = false;
       navigate('/');
@@ -130,11 +151,11 @@ const Navbar = () => {
             
             <div id='google-login'>
             </div>
-
-            {loggedin &&
+          
               <>
+              {loggedin &&
                 <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
-                  <div className="searchr" style={{ width: '190%' }}>
+                  <div className="searchr" style={{ width: '190%', display:"flex"}}>
                     <input type="text" placeholder="Search..." class="search" style={{marginBottom:"0%"}} onChange={(e) => {
                       searchAWord(e);
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
@@ -157,9 +178,9 @@ const Navbar = () => {
                     )}
                     </ul>
                     }
-                    
+                    {!profileIcon && <button onClick={handleLogout}>Logout</button>}
                   </div>
-
+                  {profileIcon &&
                   <Menu>
                     <MenuButton as={Button} w='29%' ml = {2}  rightIcon={<ChevronDownIcon /> }>
                     <img src="../../../images/profile.jpg" alt="" id='profilepic' />
@@ -169,9 +190,10 @@ const Navbar = () => {
                       <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Logout</MenuItem>
                     </MenuList>
                   </Menu>
+}
                 </li>
+}
               </>
-            }
 
           </ul>
           <div onClick={handleNavbar} className="hamburger-toggle">

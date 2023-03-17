@@ -7,12 +7,13 @@ import { useContext } from 'react';
 
 
 function Fill(props) {
-  const{user, loading, setLoading} = useContext(LoginContext);
+  const{user, loading, setLoading, loggedin, setLoggedin} = useContext(LoginContext);
   const [message, setMessage] = useState("");
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [verify, setVerify] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [upload, setUploaded] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -26,6 +27,7 @@ function Fill(props) {
 }, [])
  
   const uploadImage = () => {
+    setUploaded(true);
     console.log(imageSelected );
     const formData = new FormData();
     formData.append("file", imageSelected);
@@ -67,8 +69,8 @@ const onSubmit = () =>{
         department: userData.department,
         personal_email_id: userData.personal_email_id,
         contact_details: userData.contact_details,
-        alternate_contact_details: userData.contact_details,
-        address: userData.contact_details,
+        alternate_contact_details: userData.alternate_contact_details,
+        address: userData.address,
         current_company: userData.current_company,
         designation: userData.designation,
         about: userData.about,
@@ -144,9 +146,9 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Alternate Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+          <input type="text" placeholder="Alternate Contact Number*" size="60" name="alternate_contact_details" value={userData.alternate_contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Address*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+          <input type="text" placeholder="Address*" size="60" name="address" value={userData.address} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Current Company (if any)" size="60" name="current_company" value={userData.current_company} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
@@ -171,8 +173,8 @@ const resendMail = () =>{
           <h4 id='disclaimer'><div className="disc">Disclaimer:</div> This picture will be printed in the yearbook.</h4>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
           <button onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
-          {imageUploaded && 
-          <h3 style={{color:"white"}}>Image Uploaded</h3>
+          {upload && 
+          <h3 style={{color:"white"}}>{imageUploaded? 'Image Uploaded': 'Wait... while image is uploading'}</h3>
           }
     </div>
     </div>

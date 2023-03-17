@@ -47,18 +47,18 @@ const createUsersData = asyncHandler(async (req,res) =>{
     }
 
     // Check if email is in use
-    const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
+    // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
 
-        if(existingUser){
-            return res.send({message:"Email is already in use"});
-        }
+    //     if(existingUser){
+    //         return res.send({message:"Email is already in use"});
+    //     }
 
-    // Check if contact_no is in use
-    const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
+    // // Check if contact_no is in use
+    // const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
 
-        if(existingUser2){
-            return res.send({message:"Mobile number is already in use"});
-        }
+    //     if(existingUser2){
+    //         return res.send({message:"Mobile number is already in use"});
+    //     }
 
     // Create and store the new user
     const usersData = await Users.create({ email, name, roll_no, academic_program, department, contact_details, alternate_contact_details, address, personal_email_id, current_company, designation, about, profile_img})
@@ -84,7 +84,7 @@ const createUsersData = asyncHandler(async (req,res) =>{
                 })
 
                 return res.send({
-                    message:`Sent a verification email to ${email}`
+                    message:`Sent a verification email to ${personal_mail_id}`
                 });
             }catch(err){
                 console.log(err);
@@ -118,7 +118,7 @@ const createUsersData = asyncHandler(async (req,res) =>{
       const phoneOtp = req.body.phoneOTP;
       const userId = req.body.userId;
 
-      const user = await Users.findOne({presonal_email_id: userId}).exec();
+      const user = await Users.findOne({email: userId}).exec();
       
       if (!user) {
         res.send({message: "User not found"});
@@ -148,7 +148,7 @@ const resendOTP = asyncHandler(async(req,res)=>{
     try{
         const userId = req.body.userId;
 
-        const user = await Users.findOne({presonal_email_id: userId}).exec();
+        const user = await Users.findOne({email: userId}).exec();
 
         if (!user) {
             res.send({message: "User not found"});
