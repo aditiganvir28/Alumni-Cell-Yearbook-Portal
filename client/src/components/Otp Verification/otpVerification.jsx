@@ -16,7 +16,6 @@ const OtpVerification = () =>{
         }).then((res)=>{
             console.log(res);
             if(res.data==="Mobile number verified"){
-                setLoggedin(true);
                 navigate('/profile')
             }
             else{

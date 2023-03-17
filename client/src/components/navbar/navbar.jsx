@@ -45,6 +45,9 @@ const Navbar = () => {
         if(res.data.message==="User Found"){
           if(res.data.User[0].two_step_verified===true){
             setProfileIcon(true);
+            setLoggedin(true);
+          }else{
+            setLoggedin(false);
           }
         }
       })
@@ -106,33 +109,33 @@ const Navbar = () => {
   }
 
 
-  //Search Engine Functions
-  // useEffect(() => {
-  //   axios.post('http://localhost:5000/searchword', {
-  //     searchword: searchword
-  //   }).then((res) => {
-  //     setResult(res.data);
-  //     // console.log(res.data);
-  //   }).catch((err) => {
-  //     console.log(err)
-  //   })
-  // })
+  // Search Engine Functions
+  useEffect(() => {
+    axios.post('http://localhost:5000/searchword', {
+      searchword: searchword
+    }).then((res) => {
+      setResult(res.data);
+      // console.log(res.data);
+    }).catch((err) => {
+      console.log(err)
+    })
+  })
 
   const searchAWord = (event) => {
     setWordentered(event.target.value);
   }
 
-  // useEffect(() => {
-  //   axios.post('http://localhost:5000/wordEntered', {
-  //     wordentered: wordentered
-  //   }).then((res) => {
-  //     // console.log(res.data);
-  //     setWordEnteredList(res.data);
-  //   }).catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
-  // )
+  useEffect(() => {
+    axios.post('http://localhost:5000/wordEntered', {
+      wordentered: wordentered
+    }).then((res) => {
+      // console.log(res.data);
+      setWordEnteredList(res.data);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+  )
 
   return(
     <>
@@ -161,10 +164,14 @@ const Navbar = () => {
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
                     }} value= {inputValue}/>
+                    {wordEnteredList.length===0 && 
+                    <ul>
+                      <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}>No User Found</button></li>
+                      </ul>}
                     {wordEnteredList.length!==0 && 
                     <ul>
                     {wordEnteredList.map((val, index) =>
-                    (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}key={index} onClick={(e) => {
+                    (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}} key={index} onClick={(e) => {
                       e.preventDefault();
                       setSearchword(val.email);
                       setInputValue("");
@@ -174,7 +181,9 @@ const Navbar = () => {
                         navigate('/comment')
                       },1000)
                       
-                    }}>{val.name}</button></li>)
+                    }}><p>{val.name}</p>
+                      <p style={{fontSize: "70%", fontStyle: "italic"}}>{val.academic_program}</p>
+                    </button></li>)
                     )}
                     </ul>
                     }
