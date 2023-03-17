@@ -153,34 +153,31 @@ const MakeAComment = () => {
               <h1 id="make">Approved Comments</h1>
             </div>
             <div style={{ display: "flex" }}>
-              <Card style={{ width: "18rem", height: "11rem", margin: "1rem" }}>
+              <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
                 <Card.Img variant="top" />
                 <Card.Body>
                   <Card.Text style={{paddingBottom:"1rem"}}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Veritatis, laudantium autem rem quo voluptate tempora.
+                    Lorem ipsum dolor sit amet, 
                   </Card.Text>
                   <p id="name" style={{paddingBottom:"0rem"}}>-Name</p>
                   <p id="branch" style={{paddingBottom:"0rem"}}>-Branch</p>
                 </Card.Body>
               </Card>
-              <Card style={{ width: "18rem", height: "11rem", margin: "1rem" }}>
+              <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
                 <Card.Img variant="top" />
                 <Card.Body>
                   <Card.Text style={{paddingBottom:"1rem"}}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Veritatis, laudantium autem rem quo voluptate tempora.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci sed neque, beatae at magnam commodi nesciunt ducimus recusandae corrupti sequi totam perferendis quam? Ad quas architecto reprehenderit consectetur maxime vitae!
                   </Card.Text>
                   <p id="name" style={{paddingBottom:"0rem"}}>-Name</p>
                   <p id="branch" style={{paddingBottom:"0rem"}}>-Branch</p>
                 </Card.Body>
               </Card>
-              <Card style={{ width: "18rem", height: "11rem", margin: "1rem" }}>
+              <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
                 <Card.Img variant="top" />
                 <Card.Body>
                   <Card.Text style={{paddingBottom:"1rem"}}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Veritatis, laudantium autem rem quo voluptate tempora.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing.
                   </Card.Text>
                   <p id="name" style={{paddingBottom:"0rem"}}>-Name</p>
                   <p id="branch" style={{paddingBottom:"0rem"}}>-Branch</p>

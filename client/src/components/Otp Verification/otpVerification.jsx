@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 
 const OtpVerification = () =>{
     const [otp, setOtp] = useState("");
+    const [message, setMessage] = useState("");
     const {user} = useContext(LoginContext);
     const navigate = useNavigate();
     const otpVerify = (e) =>{
@@ -14,8 +15,28 @@ const OtpVerification = () =>{
             userId: user.email
         }).then((res)=>{
             console.log(res);
-            if(res.data.two_step_verified===true){
+            if(res.data.message==="Mobile number verified"){
                 navigate('/profile')
+            }
+            else{
+                setMessage(res.data.message);
+            }
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    const resendOTP = () =>{
+        axios.post('http://localhost:5000/resendOTP',{
+            phoneOTP: otp,
+            userId: user.email
+        }).then((res)=>{
+            console.log(res);
+            if(res.data.message==="Mobile number verified"){
+                navigate('/profile')
+            }
+            else{
+                setMessage(res.data.message);
             }
         }).catch((err)=>{
             console.log(err);
@@ -27,7 +48,9 @@ const OtpVerification = () =>{
         <form >
             <input type="text" onChange={(e)=>{setOtp(e.target.value)}}/>
             <button onClick={otpVerify}>Submit</button>
+            
         </form>
+        <button onClick={resendOTP}>Resend OTP</button>
         </>
     )
 }

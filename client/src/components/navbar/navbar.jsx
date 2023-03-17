@@ -36,7 +36,7 @@ const Navbar = () => {
   useEffect(() => {
     if (window.localStorage.getItem('user') !== null) {
       const userLoggedIn = window.localStorage.getItem('user');
-      if (userLoggedIn != null) {
+      if (userLoggedIn !== null) {
         setUser(JSON.parse(userLoggedIn));
       }
     }
