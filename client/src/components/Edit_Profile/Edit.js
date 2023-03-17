@@ -48,13 +48,16 @@ function Edit(props) {
       })
       .then((res) => {
         // console.log(res.data.User[0]);
-        temp_USER = res.data.User[0];
-        console.log(temp_USER);
+        // temp_USER = res.data.User[0];
+        // console.log(temp_USER);
 
-        setUserData(temp_USER);
-        setImageUrl(temp_USER.profile_img);
+        setUserData(res.data.User[0]);
+        // setImageUrl(temp_USER.profile_img);
+        setImageUrl(res.data.User[0].profile_img);
+        console.log(userData);
       });
   }, []);
+
 
   const [userData, setUserData] = useState({});
 
@@ -137,7 +140,7 @@ function Edit(props) {
                 type="text"
                 placeholder="Name*"
                 size="60"
-                name="name_"
+                name="name"
                 value={userData.name}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
@@ -238,8 +241,8 @@ function Edit(props) {
                 type="text"
                 placeholder="Address*"
                 size="60"
-                name="contact_details"
-                value={userData.contact_details}
+                name="address"
+                value={userData.address}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }

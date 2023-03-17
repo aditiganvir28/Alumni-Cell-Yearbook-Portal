@@ -145,9 +145,9 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Alternate Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+          <input type="text" placeholder="Alternate Contact Number*" size="60" name="alternate_contact_details" value={userData.alternate_contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Address*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+          <input type="text" placeholder="Address*" size="60" name="address" value={userData.address} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Current Company (if any)" size="60" name="current_company" value={userData.current_company} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>

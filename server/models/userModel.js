@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
     },
 
     address: {
-        tyep: String,
+        type: String,
     },
 
     current_company: {
