@@ -6,6 +6,6 @@ router.route('/auth')
     .get(authController.getAllusers)
     .post(authController.createUsers)
 
-router.post('/findAAuth', authController.findAAuth);
+router.post('/checkAuth', authController.checkAuth);
 
 module.exports = router;

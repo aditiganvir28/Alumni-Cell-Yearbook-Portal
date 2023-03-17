@@ -28,21 +28,22 @@ const createUsers = asyncHandler(async(req,res) => {
     }
 })
 
-const findAAuth = asyncHandler(async (req,res)=>{
+const checkAuth = asyncHandler(async (req,res)=>{
     const email = req.body.email;
 
     const User = await Auth.find({email:email}).exec();
 
     if(!User.length){
-        res.send({message:"No Auth Found"})
+        res.send({message:"false"})
     }
     else{
-        res.send({message:"Auth Found", User});
+        res.send({message:"true"});
     }
 })
+
 
 module.exports = {
     getAllusers,
     createUsers,
-    findAAuth
+    checkAuth
 }

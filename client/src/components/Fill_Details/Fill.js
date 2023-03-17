@@ -6,12 +6,17 @@ import { LoginContext } from "../../helpers/Context";
 import { useContext } from "react";
 
 function Fill(props) {
+<<<<<<< HEAD
   const { user, loading, setLoading } = useContext(LoginContext);
+=======
+  const{user, loading, setLoading, loggedin, setLoggedin} = useContext(LoginContext);
+>>>>>>> d67028192d400a210ac1c47c68c159487d023fb8
   const [message, setMessage] = useState("");
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [verify, setVerify] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [upload, setUploaded] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +30,12 @@ function Fill(props) {
   }, []);
 
   const uploadImage = () => {
+<<<<<<< HEAD
     console.log(imageSelected);
+=======
+    setUploaded(true);
+    console.log(imageSelected );
+>>>>>>> d67028192d400a210ac1c47c68c159487d023fb8
     const formData = new FormData();
     formData.append("file", imageSelected);
     formData.append("upload_preset", "profile_image");
@@ -66,8 +76,8 @@ function Fill(props) {
         department: userData.department,
         personal_email_id: userData.personal_email_id,
         contact_details: userData.contact_details,
-        alternate_contact_details: userData.contact_details,
-        address: userData.contact_details,
+        alternate_contact_details: userData.alternate_contact_details,
+        address: userData.address,
         current_company: userData.current_company,
         designation: userData.designation,
         about: userData.about,
@@ -172,8 +182,8 @@ const resendMail = () =>{
           <h4 id='disclaimer'><div className="disc">Disclaimer:</div> This picture will be printed in the yearbook.</h4>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
           <button onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
-          {imageUploaded && 
-          <h3 style={{color:"white"}}>Image Uploaded</h3>
+          {upload && 
+          <h3 style={{color:"white"}}>{imageUploaded? 'Image Uploaded': 'Wait... while image is uploading'}</h3>
           }
     </div>
     </div>

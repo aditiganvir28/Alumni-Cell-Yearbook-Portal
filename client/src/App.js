@@ -24,7 +24,7 @@ function App() {
   const[authData, setAuthData] = useState([]); //all the users wha have already logged in
   const[result, setResult] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
-  const [found, setFound]= useState(false);
+  const [found, setFound]= useState("");
   const [loading, setLoading] = useState(true);
 
    //getting all alumnis from json
@@ -48,6 +48,18 @@ function App() {
     }
   }, []);
 
+  //loading spinner function
+  const loadingSpinner = () =>{
+    setLoading(true);
+        const Load = async () => {
+            await new Promise((r) => setTimeout(r, 2000));
+
+            setLoading((loading) => !loading);
+        }
+
+        Load();
+  }
+
   //getting all users who have already signed in
   useEffect(()=>{
     axios.get('http://localhost:5000/auth')
@@ -66,17 +78,19 @@ function App() {
     var userObject = jwt_decode(response.credential);
     setUser(userObject);
     setLoggedin(true);
+    loadingSpinner();
     //Storing the users data in the localStorage
     window.localStorage.setItem('user' ,JSON.stringify(userObject));
     window.localStorage.setItem('loggedin', true);
     //Rendering the signin button
     document.getElementById("google-login").hidden= true;
 
-    const finds = authData.find(el=>el.email===userObject.email);
     
-    setTimeout(()=>{
-      console.log(finds);
-      if(finds){
+      setTimeout(()=>{axios.post("http://localhost:5000/checkAuth",{
+      email:userObject.email
+    }).then((res)=>{
+      console.log(res.data.message);
+      if(res.data.message==="true"){
         if(alumniEmail.includes(userObject.email)){
           axios.post('http://localhost:5000/findAUser',{
             email:userObject.email
@@ -85,15 +99,14 @@ function App() {
               if(res.data.User[0].two_step_verified === true){
                 console.log("verified");
                 navigate('/profile');
-                setLoading(true);
               }
               else{
                 navigate('/fill');
-                setLoading(true);
+                
               }
             }else{
               navigate('/fill');
-              setLoading(true);
+              
             }
           })
           console.log("Second time sign in and alumni")
@@ -102,8 +115,7 @@ function App() {
           navigate('/');
           console.log("second time sign in and student");
         }
-      }
-      else{
+      }else{
         axios.post('http://localhost:5000/auth', {
           email: userObject.email,
           name: userObject.name,
@@ -112,7 +124,7 @@ function App() {
           if(alumniEmail.includes(userObject.email)){
             console.log("first time login and alumni");
             navigate('/fill');
-            setLoading(true);
+            
           }
           else{
             navigate('/');
@@ -122,14 +134,68 @@ function App() {
           console.log(err);
         })
       }
-    }, 2000)
+    }).catch((err)=>{
+      console.log(err);
+    })
+  },2000)
+    
+    
+    
+    // setTimeout(()=>{
+    //   console.log(found);
+    //   if(found==="true"){
+    //     if(alumniEmail.includes(userObject.email)){
+    //       axios.post('http://localhost:5000/findAUser',{
+    //         email:userObject.email
+    //       }).then((res)=>{
+    //         if(res.data.message === "User Found"){
+    //           if(res.data.User[0].two_step_verified === true){
+    //             console.log("verified");
+    //             navigate('/profile');
+    //           }
+    //           else{
+    //             navigate('/fill');
+                
+    //           }
+    //         }else{
+    //           navigate('/fill');
+              
+    //         }
+    //       })
+    //       console.log("Second time sign in and alumni")
+    //     }
+    //     else{
+    //       navigate('/');
+    //       console.log("second time sign in and student");
+    //     }
+    //   }
+    //   else{
+    //     axios.post('http://localhost:5000/auth', {
+    //       email: userObject.email,
+    //       name: userObject.name,
+    //     }).then((res)=>{
+    //       console.log(res);
+    //       if(alumniEmail.includes(userObject.email)){
+    //         console.log("first time login and alumni");
+    //         navigate('/fill');
+            
+    //       }
+    //       else{
+    //         navigate('/');
+    //         console.log("first time login and student");
+    //       }
+    //     }).catch((err)=>{
+    //       console.log(err);
+    //     })
+    //   }
+    // }, 1000)
   }
 
   
     
 
   return (
-    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading}}>
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading, loadingSpinner}}>
     <div className="App overflow-x-hidden">
   
       <Navbar/>

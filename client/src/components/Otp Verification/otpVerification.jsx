@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router";
 
 const OtpVerification = () =>{
-    const [otp, setOtp] = useState("");
+    const [otp, setOtp, loggedin, setLoggedin] = useState("");
     const [message, setMessage] = useState("");
     const {user} = useContext(LoginContext);
     const navigate = useNavigate();
@@ -15,11 +15,11 @@ const OtpVerification = () =>{
             userId: user.email
         }).then((res)=>{
             console.log(res);
-            if(res.data.message==="Mobile number verified"){
+            if(res.data==="Mobile number verified"){
                 navigate('/profile')
             }
             else{
-                setMessage(res.data.message);
+                setMessage(res.data);
             }
         }).catch((err)=>{
             console.log(err);

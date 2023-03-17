@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
 
     personal_email_id: {
         type: String,
-        required: [true, "Department is required"],
+        // required: [true, "Department is required"],
         // unique: true,
     },
 
