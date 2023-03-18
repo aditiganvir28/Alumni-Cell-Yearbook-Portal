@@ -12,7 +12,7 @@ import People from "./images/people1.png"
 import { motion } from "framer-motion";
 
 function Homepage() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const {setLoggedin, setUser, user, loading, setLoading}= useContext(LoginContext);
     
     useEffect(() => {

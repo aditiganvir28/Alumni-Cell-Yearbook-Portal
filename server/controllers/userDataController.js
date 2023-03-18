@@ -119,7 +119,7 @@ const createUsersData = asyncHandler(async (req,res) =>{
       const userId = req.body.userId;
 
       const user = await Users.findOne({email: userId}).exec();
-      
+      console.log(userId);
       if (!user) {
         res.send({message: "User not found"});
         return;
@@ -135,7 +135,7 @@ const createUsersData = asyncHandler(async (req,res) =>{
     user.two_step_verified= true;
     await user.save();
     res.send("Mobile number verified");
-    res.redirect('http://localhost:3000')
+    // return res.redirect('http://localhost:3000/')
     } catch (error) {
       next(error);
     }

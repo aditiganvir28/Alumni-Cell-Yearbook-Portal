@@ -9,7 +9,7 @@ import Fill from './components/Fill_Details/Fill';
 import Edit from './components/Edit_Profile/Edit';
 import Homepage from './components/Homepage/Homepage';
 import OtpVerification from './components/Otp Verification/otpVerification';
-import { Route, Routes, Navigate, BrowserRouter, Router, useNavigate } from 'react-router-dom';
+import { Route, Routes, Navigate, BrowserRouter, Router, useNavigate} from 'react-router-dom';
 import { useContext } from 'react';
 import jwt_decode from "jwt-decode";
 import { LoginContext } from './helpers/Context';
@@ -17,7 +17,7 @@ import axios from 'axios';
 import alumniData from './components/navbar/akumniData.json'
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
-function App() {
+const App = (({location}) => {
 
   const[user, setUser] = useState({}); //the one who logged in
   const[loggedin, setLoggedin] = useState(false);
@@ -26,6 +26,7 @@ function App() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [found, setFound]= useState("");
   const [loading, setLoading] = useState(true);
+  const [fill, setFill] = useState(false);
 
    //getting all alumnis from json
    const alumniEmail= alumniData; //geeting all the alumnis data
@@ -102,10 +103,12 @@ function App() {
                 navigate('/profile');
               }
               else{
+                setFill(true);
                 navigate('/fill');
                 
               }
             }else{
+              setFill(true);
               navigate('/fill');
               
             }
@@ -124,6 +127,7 @@ function App() {
           console.log(res);
           if(alumniEmail.includes(userObject.email)){
             console.log("first time login and alumni");
+            setFill(true);
             navigate('/fill');
             
           }
@@ -144,10 +148,11 @@ function App() {
     
 
   return (
-    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading, loadingSpinner}}>
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading, loadingSpinner, fill, setFill}}>
     <div className="App overflow-x-hidden">
-  
-      <Navbar/>
+  {
+      window.location.pathname!=='/fill' && window.location.pathname!=='/otpVerification' && <Navbar/>
+  }
       <Routes>
       <Route exact path="/" element={<Homepage/>} />
       <Route exact path="/fill" element={<Fill />} />
@@ -163,5 +168,5 @@ function App() {
       </div>
     </LoginContext.Provider>
 );
-}
+})
 export default App;

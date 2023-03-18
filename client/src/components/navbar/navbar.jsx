@@ -21,7 +21,7 @@ import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading, loadingSpinner} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading, loadingSpinner, fill, setFill} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -105,9 +105,9 @@ const Navbar = () => {
   }
   
 
-  if (loggedin === true) {
-    document.getElementById("google-login").hidden = true;
-  }
+  // if (loggedin === true) {
+  //   document.getElementById("google-login").hidden = true;
+  // }
 
 
   // Search Engine Functions
