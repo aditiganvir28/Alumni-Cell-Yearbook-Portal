@@ -83,8 +83,7 @@ const userSchema = new mongoose.Schema({
     phoneOTP: String,
 
     
-},
-{timestamps: true}
+}
 );
 
 userSchema.methods.generateVerificationToken = function () {

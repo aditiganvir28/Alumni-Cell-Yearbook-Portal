@@ -6,11 +6,7 @@ import { LoginContext } from "../../helpers/Context";
 import { useContext } from "react";
 
 function Fill(props) {
-<<<<<<< HEAD
-  const { user, loading, setLoading } = useContext(LoginContext);
-=======
   const{user, loading, setLoading, loggedin, setLoggedin} = useContext(LoginContext);
->>>>>>> d67028192d400a210ac1c47c68c159487d023fb8
   const [message, setMessage] = useState("");
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -30,12 +26,8 @@ function Fill(props) {
   }, []);
 
   const uploadImage = () => {
-<<<<<<< HEAD
-    console.log(imageSelected);
-=======
     setUploaded(true);
     console.log(imageSelected );
->>>>>>> d67028192d400a210ac1c47c68c159487d023fb8
     const formData = new FormData();
     formData.append("file", imageSelected);
     formData.append("upload_preset", "profile_image");

@@ -21,7 +21,7 @@ import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading, loadingSpinner} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -41,7 +41,7 @@ const Navbar = () => {
       axios.post("http://localhost:5000/findAUser",{
         email: user.email
       }).then((res)=>{
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data.message==="User Found"){
           if(res.data.User[0].two_step_verified===true){
             setProfileIcon(true);
@@ -70,7 +70,7 @@ const Navbar = () => {
     else {
       setLoggedin(false);
     }
-  }, [])
+  },[])
 
   //Logout Function
   const handleLogout =() =>{
@@ -134,8 +134,7 @@ const Navbar = () => {
     }).catch((err) => {
       console.log(err);
     })
-  }
-  )
+  })
 
   return(
     <>
@@ -157,6 +156,7 @@ const Navbar = () => {
           
               <>
               {loggedin &&
+              <div id='loggedIn'>
                 <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
                   <div className="searchr" style={{ width: '190%', display:"flex"}}>
                     <input type="text" placeholder="Search..." class="search" style={{marginBottom:"0%"}} onChange={(e) => {
@@ -187,15 +187,9 @@ const Navbar = () => {
                     )}
                     </ul>
                     }
-<<<<<<< HEAD
-                    
-                  </div> 
-
-=======
                     {!profileIcon && <button onClick={handleLogout}>Logout</button>}
                   </div>
                   {profileIcon &&
->>>>>>> d67028192d400a210ac1c47c68c159487d023fb8
                   <Menu>
                     <MenuButton as={Button} w='29%' ml = {2}  rightIcon={<ChevronDownIcon /> }>
                     <img src="../../../images/profile.jpg" alt="" id='profilepic' />
@@ -207,6 +201,7 @@ const Navbar = () => {
                   </Menu>
 }
                 </li>
+                </div>
 }
               </>
 

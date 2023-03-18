@@ -9,7 +9,7 @@ import { redirect } from 'react-router';
 const SecondLogin = () => {
 
 
-    const { user } = useContext(LoginContext);
+    const { user, loadingSpinner } = useContext(LoginContext);
     const [myComments, setMyComments] = useState([]);
     const [newComments, setNewComments] = useState([]);
     const [approvedComments, setApprovedComments] = useState([]);
@@ -23,7 +23,7 @@ const SecondLogin = () => {
     useEffect(() => {
         setLoading(true);
         const Load = async () => {
-            await new Promise((r) => setTimeout(r, 1000));
+            await new Promise((r) => setTimeout(r, 2500));
     
             setLoading((loading) => !loading);
         }
@@ -36,9 +36,7 @@ const SecondLogin = () => {
       axios.post('http://localhost:5000/profile', {
         email: user.email
       }).then((res)=>{
-        // console.log(res.data);
         setProfile(res.data.User[0]);
-        console.log(profile);
       })
     })
 
@@ -48,7 +46,6 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getmyComments', {
             user_email: user.email
         }).then((res)=>{
-            // console.log(res.data);
             setMyComments(res.data[0].comment);
         }).catch((err) => {
             console.log(err);
@@ -61,7 +58,6 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getNewComments', {
             friend_email: user.email
         }).then((res)=>{
-            // console.log(res.data);
             setNewComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
@@ -73,12 +69,11 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getApprovedComments', {
             friend_email: user.email
         }).then((res)=>{
-            // console.log(res.data);
             setApprovedComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
         })
-    })
+    },)
 
     // redirecting to fill page for editing the profile
     const editProfile = () => {
@@ -177,11 +172,24 @@ const SecondLogin = () => {
                                                 user_name: val.user_name,
                                                 comment: val.comment
                                             }).then((res)=>{
+                                                console.log(res.data.message);
+                                            }).catch((err)=>{
+                                                console.log(err);
+                                            })
+
+                                        axios.post('http://localhost:5000/deleteComments', {
+                                                friend_email: user.email,
+                                                user_email: val.user_email,
+                                                user_name: val.user_name,
+                                                comment: val.comment
+
+                                            }).then((res)=>{
                                                 console.log(res.data);
                                             }).catch((err)=>{
                                                 console.log(err);
                                             })
                                         }
+                                       
                                     }}><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
                                     <button id='check' onClick={(e)=>{
                                         {
@@ -192,11 +200,24 @@ const SecondLogin = () => {
                                                 user_name: val.user_name,
                                                 comment: val.comment
                                             }).then((res)=>{
+                                                console.log(res.data.message);
+                                            }).catch((err)=>{
+                                                console.log(err);
+                                            })
+
+                                            axios.post('http://localhost:5000/deleteComments', {
+                                                friend_email: user.email,
+                                                user_email: val.user_email,
+                                                user_name: val.user_name,
+                                                comment: val.comment
+                                            }).then((res)=>{
                                                 console.log(res.data);
                                             }).catch((err)=>{
                                                 console.log(err);
                                             })
+                                            
                                         }
+                                        // loadingSpinner();
                                     }}><a href="" className='fa fa-times-circle'></a></button>
                                 </li>
                                     )

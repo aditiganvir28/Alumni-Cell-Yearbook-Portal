@@ -23,6 +23,7 @@ router.post('/getRejectedComments', userDataController.getRejectedComments);
 router.post("/verify", userDataController.verifyPhoneOtp);
 router.post("/resendOTP", userDataController.resendOTP);
 router.post("/resendMail", userDataController.resendMail);
+router.post("/deleteComments", userDataController.deleteComments);
 
 
 module.exports = router;

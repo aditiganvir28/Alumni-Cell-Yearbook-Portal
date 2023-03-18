@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import loadingSpinner from "../Homepage/images/808.gif";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import alumniData from '../navbar/akumniData.json'
 
 const MakeAComment = () => {
   const { result, setResult, user, setUser } = useContext(LoginContext);
@@ -14,6 +15,7 @@ const MakeAComment = () => {
   const [comment, setComment] = useState();
   const { loading, setLoading } = useContext(LoginContext);
   const [name, setName] = useState("");
+  const [isStudent, setIsStudent] = useState(false);
   const [searchedAlumni, setSearchedAlumni] = useState({
     name: "",
     roll_no: "",
@@ -27,6 +29,17 @@ const MakeAComment = () => {
   // if(result.length !==0){
   // setName(result[0].name);
   // }
+
+  const alumniEmail = alumniData;
+
+  useEffect(()=>{
+    if(alumniEmail.includes(user.email)){
+      setIsStudent(false);
+    }
+    else{
+      setIsStudent(true);
+    }
+  })
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -52,7 +65,7 @@ const MakeAComment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
+    if(isStudent===false){axios
       .post("http://localhost:5000/myComments", {
         comment: comment,
         friend_email: result[0].email,
@@ -60,13 +73,28 @@ const MakeAComment = () => {
         user_email: userData[0].email,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.message);
+      })
+      .catch((err) => {
+        console.log(err);
+      });}
+      if(isStudent===true){
+        axios
+      .post("http://localhost:5000/newComments", {
+        comment: comment,
+        user_email: user.email,
+        user_name: user.name,
+        friend_email: result[0].email,
+      })
+      .then((res) => {
+        console.log(res.data.message);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    axios
+      }
+      else{
+        axios
       .post("http://localhost:5000/newComments", {
         comment: comment,
         user_email: userData[0].email,
@@ -74,13 +102,18 @@ const MakeAComment = () => {
         friend_email: result[0].email,
       })
       .then((res) => {
-        console.log(res);
+        console.log(res.data.message);
       })
       .catch((err) => {
         console.log(err);
       });
-
-    navigate("/profile");
+      }
+    if(isStudent===true){
+      navigate('/');
+    }else{
+      navigate("/profile");
+    }
+      
   };
 
   return (
