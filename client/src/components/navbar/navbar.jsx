@@ -82,6 +82,7 @@ const Navbar = () => {
       window.localStorage.removeItem('loggedin')
       document.getElementById("google-login").hidden = false;
       navigate('/');
+      window.location.reload();
     }
   
   //adding sidebar on smaller screens
@@ -105,9 +106,9 @@ const Navbar = () => {
   }
   
 
-  // if (loggedin === true) {
-  //   document.getElementById("google-login").hidden = true;
-  // }
+  if (loggedin === true) {
+    document.getElementById("google-login").hidden = true;
+  }
 
 
   // Search Engine Functions
