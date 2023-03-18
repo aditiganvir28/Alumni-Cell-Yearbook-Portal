@@ -20,6 +20,8 @@ const SecondLogin = () => {
     const [loading2, setLoading2] = useState(true);
     const [profile, setProfile] = useState({});
   
+    
+
     useEffect(() => {
         setLoading(true);
         const Load = async () => {

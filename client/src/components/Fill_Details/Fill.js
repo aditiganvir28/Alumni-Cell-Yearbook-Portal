@@ -14,6 +14,7 @@ function Fill(props) {
   const [imageUploaded, setImageUploaded] = useState(false);
   const [upload, setUploaded] = useState(false);
 
+  console.log(user);
   useEffect(() => {
     setLoading(true);
     const Load = async () => {
