@@ -121,9 +121,7 @@ function App() {
         })
       }
     }, 2000)
-  }
-    
-
+  } 
   return (
     <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading}}>
     <div className="App overflow-x-hidden">
