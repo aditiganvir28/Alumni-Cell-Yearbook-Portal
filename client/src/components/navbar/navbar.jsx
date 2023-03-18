@@ -45,7 +45,7 @@ const Navbar = () => {
         if(res.data.message==="User Found"){
           if(res.data.User[0].two_step_verified===true){
             setProfileIcon(true);
-            setLoggedin(true);
+            // setLoggedin(true);
           }else{
             setLoggedin(false);
           }
@@ -79,6 +79,7 @@ const Navbar = () => {
       setLoggedin(false);
       setProfileIcon(false);
       window.localStorage.setItem('loggedin', false)
+      window.localStorage.removeItem('loggedin')
       document.getElementById("google-login").hidden = false;
       navigate('/');
     }
@@ -187,9 +188,8 @@ const Navbar = () => {
                     )}
                     </ul>
                     }
-                    {!profileIcon && <button onClick={handleLogout}>Logout</button>}
                   </div>
-                  {profileIcon &&
+                  {profileIcon ?
                   <Menu>
                     <MenuButton as={Button} w='29%' ml = {2}  rightIcon={<ChevronDownIcon /> }>
                     <img src="../../../images/profile.jpg" alt="" id='profilepic' />
@@ -198,7 +198,8 @@ const Navbar = () => {
                       <MenuItem bgColor={'#4d1a6c'}>My Profile</MenuItem>
                       <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Logout</MenuItem>
                     </MenuList>
-                  </Menu>
+                  </Menu> :
+                  <button onClick={handleLogout}>Logout</button>
 }
                 </li>
                 </div>
