@@ -6,7 +6,9 @@ import Cards from './components/team/Cards.jsx';
 import MakeAComment from './components/Make_a_Comment/MakeAComment';
 import SecondLogin from './components/SecondLogin/SecondLogin';
 import Fill from './components/Fill_Details/Fill';
+import Edit from './components/Edit_Profile/Edit';
 import Homepage from './components/Homepage/Homepage';
+import OtpVerification from './components/Otp Verification/otpVerification';
 import { Route, Routes, Navigate, BrowserRouter, Router, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import jwt_decode from "jwt-decode";
@@ -22,7 +24,7 @@ function App() {
   const[authData, setAuthData] = useState([]); //all the users wha have already logged in
   const[result, setResult] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
-  const [found, setFound]= useState(false);
+  const [found, setFound]= useState("");
   const [loading, setLoading] = useState(true);
 
    //getting all alumnis from json
@@ -46,6 +48,18 @@ function App() {
     }
   }, []);
 
+  //loading spinner function
+  const loadingSpinner = () =>{
+    setLoading(true);
+        const Load = async () => {
+            await new Promise((r) => setTimeout(r, 1999));
+
+            setLoading((loading) => !loading);
+        }
+
+        Load();
+  }
+
   //getting all users who have already signed in
   useEffect(()=>{
     axios.get('http://localhost:5000/auth')
@@ -64,34 +78,36 @@ function App() {
     var userObject = jwt_decode(response.credential);
     setUser(userObject);
     setLoggedin(true);
+    loadingSpinner();
     //Storing the users data in the localStorage
     window.localStorage.setItem('user' ,JSON.stringify(userObject));
     window.localStorage.setItem('loggedin', true);
     //Rendering the signin button
     document.getElementById("google-login").hidden= true;
+    
 
-    const finds= setTimeout(()=>{authData.find(el=>el.email===userObject.email)},1000);
-
-    setTimeout(()=>{
-      console.log(finds);
-      if(finds){
+    
+  setTimeout(()=>{axios.post("http://localhost:5000/checkAuth",{
+      email:userObject.email
+    }).then((res)=>{
+      console.log(res.data.message);
+      if(res.data.message==="true"){
         if(alumniEmail.includes(userObject.email)){
           axios.post('http://localhost:5000/findAUser',{
             email:userObject.email
           }).then((res)=>{
             if(res.data.message === "User Found"){
-              if(res.data.User[0].verified === true){
+              if(res.data.User[0].two_step_verified === true){
                 console.log("verified");
                 navigate('/profile');
-                setLoading(true);
               }
               else{
                 navigate('/fill');
-                setLoading(true);
+                
               }
             }else{
               navigate('/fill');
-              setLoading(true);
+              
             }
           })
           console.log("Second time sign in and alumni")
@@ -100,8 +116,7 @@ function App() {
           navigate('/');
           console.log("second time sign in and student");
         }
-      }
-      else{
+      }else{
         axios.post('http://localhost:5000/auth', {
           email: userObject.email,
           name: userObject.name,
@@ -110,7 +125,7 @@ function App() {
           if(alumniEmail.includes(userObject.email)){
             console.log("first time login and alumni");
             navigate('/fill');
-            setLoading(true);
+            
           }
           else{
             navigate('/');
@@ -120,23 +135,33 @@ function App() {
           console.log(err);
         })
       }
-    }, 2000)
-  } 
+    }).catch((err)=>{
+      console.log(err);
+    })
+  },2000)}
+
+  
+    
+
   return (
-    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading}}>
+    <LoginContext.Provider value={{loggedin, setLoggedin, user, setUser, authData, setAuthData, result, setResult, isRegistered, setIsRegistered, loading, setLoading, loadingSpinner}}>
     <div className="App overflow-x-hidden">
+  
       <Navbar/>
       <Routes>
       <Route exact path="/" element={<Homepage/>} />
       <Route exact path="/fill" element={<Fill />} />
+      <Route exact path="/edit" element={<Edit />} />
       <Route exact path="/profile" element={<SecondLogin />} />
       <Route exact path="/about" element={<About />} />
       <Route exact path="/team" element={<Cards />} />
       <Route exact path="/comment" element={<MakeAComment />} />
+      <Route exact path="/otpVerification" element={<OtpVerification />} />
       </Routes>
+      
       {!loading && <Footer/>}
-    </div>
+      </div>
     </LoginContext.Provider>
-  );
+);
 }
 export default App;

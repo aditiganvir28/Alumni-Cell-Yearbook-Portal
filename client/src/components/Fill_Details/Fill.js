@@ -1,62 +1,66 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-import './Fill.scss'
-import { useLocation } from 'react-router-dom';
-import { LoginContext } from '../../helpers/Context';
-import { useContext } from 'react';
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./Fill.scss";
+import { useLocation } from "react-router-dom";
+import { LoginContext } from "../../helpers/Context";
+import { useContext } from "react";
 
 function Fill(props) {
-  const{user, loading, setLoading} = useContext(LoginContext);
+  const{user, loading, setLoading, loggedin, setLoggedin} = useContext(LoginContext);
+  const [message, setMessage] = useState("");
   const [imageSelected, setImageSelected] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [verify, setVerify] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [upload, setUploaded] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     const Load = async () => {
-        await new Promise((r) => setTimeout(r, 1000));
+      await new Promise((r) => setTimeout(r, 1000));
 
-        setLoading((loading) => !loading);
-    }
+      setLoading((loading) => !loading);
+    };
 
     Load();
-}, [])
- 
+  }, []);
+
   const uploadImage = () => {
+    setUploaded(true);
     console.log(imageSelected );
     const formData = new FormData();
     formData.append("file", imageSelected);
-    formData.append("upload_preset","profile_image");
+    formData.append("upload_preset", "profile_image");
     console.log(formData);
 
-    axios.post('https://api.cloudinary.com/v1_1/dheskw46y/image/upload', formData)
-    .then((res)=>{
-      console.log(res.data.url);
-      setImageUrl(res.data.url);
-      setImageUploaded(true);
-    })
+    axios
+      .post("https://api.cloudinary.com/v1_1/dheskw46y/image/upload", formData)
+      .then((res) => {
+        console.log(res.data.url);
+        setImageUrl(res.data.url);
+        setImageUploaded(true);
+      });
+  };
 
-  }
-
-  const[userData, setUserData] = useState({
-    name_:"",
-    roll_no:"",
-    academic_program:"",
-    department:"",
-    personal_email_id:"",
-    contact_details:"",
-    current_company:"",
-    designation:"",
-    about:""
+  const [userData, setUserData] = useState({
+    name_: "",
+    roll_no: "",
+    academic_program: "",
+    department: "",
+    personal_email_id: "",
+    contact_details: "",
+    alternate_contact_details: "",
+    address: "",
+    current_company: "",
+    designation: "",
+    about: ""
   });
 
+  //sending data to store in the database
 
-//sending data to store in the database
-
-const onSubmit = () =>{
-    axios.post("http://localhost:5000/userData", {
+  const onSubmit = () => {
+    axios
+      .post("http://localhost:5000/userData", {
         email: user.email,
         name: userData.name_,
         roll_no: userData.roll_no,
@@ -64,21 +68,38 @@ const onSubmit = () =>{
         department: userData.department,
         personal_email_id: userData.personal_email_id,
         contact_details: userData.contact_details,
+        alternate_contact_details: userData.alternate_contact_details,
+        address: userData.address,
         current_company: userData.current_company,
         designation: userData.designation,
         about: userData.about,
-        profile_img:imageUrl
-    }).then((res)=>{
-        console.log(res.data);
+        profile_img: imageUrl,
+      })
+      .then((res) => {
+        console.log(res.data.message);
+        setMessage(res.data.message);
         setVerify(true);
-    }).catch((err)=>{
+      })
+      .catch((err) => {
         console.log(err);
     })
 }
 
-  const setOptionValue = (e) =>{
-    setUserData({ ...userData, [e.target.name]: e.target.value})
-  }
+const resendMail = () =>{
+  console.log("yeah")
+  axios.post("http://localhost:5000/resendMail",{
+  userId: user.email,
+  personalMailId:userData.personal_email_id
+}).then((res)=>{
+    console.log(res);
+  }).catch((err)=>{
+    console.log(err);
+  })
+}
+
+  const setOptionValue = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
 
   //Get the data for edit profile
   // useEffect(()=>{
@@ -106,8 +127,8 @@ const onSubmit = () =>{
       <div className="container2">
         <div className="left">
           <h2> </h2><br/>
-          <h1>Fill your Profile</h1><br/>
-          <input type="text" placeholder="Name*" size="60" name="name_" value={userData.name_} onChange={(e) =>
+          <h1 id="fill">Fill your Profile</h1><br/>
+          <input type="text" placeholder="Name*" size="60" name="name_" value={userData.name} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
@@ -126,9 +147,9 @@ const onSubmit = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Alternate Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+          <input type="text" placeholder="Alternate Contact Number*" size="60" name="alternate_contact_details" value={userData.alternate_contact_details} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          <input type="text" placeholder="Address*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+          <input type="text" placeholder="Address*" size="60" name="address" value={userData.address} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Current Company (if any)" size="60" name="current_company" value={userData.current_company} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
@@ -137,9 +158,12 @@ const onSubmit = () =>{
           <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           {verify && 
-          <h2>Sent a veification mail to your personal_email_id</h2>
+          <h2>{message}</h2>
           }
-          <button className="submit1" onClick={onSubmit}>Submit</button>
+          <button className="submit1" onClick={onSubmit}>SUBMIT</button>
+          {verify && 
+          <button className="submit1" onClick={resendMail}>Resend Mail</button>
+          }   
         </div>
         <div className="right">
         <span className="dot">
@@ -149,15 +173,15 @@ const onSubmit = () =>{
           <br/>
           <h4 id='disclaimer'><div className="disc">Disclaimer:</div> This picture will be printed in the yearbook.</h4>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
-          <button onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
-          {imageUploaded && 
-          <h3 style={{color:"white"}}>Image Uploaded</h3>
+          <button id='upld'onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
+          {upload && 
+          <h3 style={{color:"white"}}>{imageUploaded? 'Image Uploaded': 'Wait... while image is uploading'}</h3>
           }
     </div>
     </div>
     </div>}
     </>
-  )
+  );
 }
 
 export default Fill;

@@ -12,14 +12,15 @@ input .search{
     margin: 10px 0 0 0;
 }
 .searchr ul{
-    width: 25.5%;
+    width: 29%;
     display: block;
     position: absolute;
     margin: 0;
     // border: 2px solid black;
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    margin-left:1%;
+    margin-left:0.5%;
+    margin-top: 4.5%;
     background-color: whitesmoke;
 }
 
@@ -35,6 +36,10 @@ input .search{
 .search ul li button{
     color: black;
     text-align: left;
+}
+
+.btnsearch2 p{
+    padding: 0;
 }
 body {
     background-color: #180c1e;

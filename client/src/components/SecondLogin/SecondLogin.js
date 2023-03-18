@@ -4,11 +4,12 @@ import './SecondLogin.scss';
 import axios from 'axios';
 import App from '../../App';
 import loadingSpinner from '../Homepage/images/808.gif'
+import { redirect } from 'react-router';
 
 const SecondLogin = () => {
 
 
-    const { user } = useContext(LoginContext);
+    const { user, loadingSpinner } = useContext(LoginContext);
     const [myComments, setMyComments] = useState([]);
     const [newComments, setNewComments] = useState([]);
     const [approvedComments, setApprovedComments] = useState([]);
@@ -18,11 +19,11 @@ const SecondLogin = () => {
     const {loading, setLoading} = useContext(LoginContext)
     const [loading2, setLoading2] = useState(true);
     const [profile, setProfile] = useState({});
-      
+  
     useEffect(() => {
         setLoading(true);
         const Load = async () => {
-            await new Promise((r) => setTimeout(r, 1000));
+            await new Promise((r) => setTimeout(r, 2500));
     
             setLoading((loading) => !loading);
         }
@@ -35,9 +36,7 @@ const SecondLogin = () => {
       axios.post('http://localhost:5000/profile', {
         email: user.email
       }).then((res)=>{
-        // console.log(res.data);
         setProfile(res.data.User[0]);
-        console.log(profile);
       })
     })
 
@@ -47,7 +46,6 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getmyComments', {
             user_email: user.email
         }).then((res)=>{
-            // console.log(res.data);
             setMyComments(res.data[0].comment);
         }).catch((err) => {
             console.log(err);
@@ -60,7 +58,6 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getNewComments', {
             friend_email: user.email
         }).then((res)=>{
-            // console.log(res.data);
             setNewComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
@@ -72,12 +69,16 @@ const SecondLogin = () => {
         axios.post('http://localhost:5000/getApprovedComments', {
             friend_email: user.email
         }).then((res)=>{
-            // console.log(res.data);
             setApprovedComments(res.data[0].comments);
         }).catch((err)=>{
             console.log(err);
         })
-    })
+    },)
+
+    // redirecting to fill page for editing the profile
+    const editProfile = () => {
+        window.location.href = '/edit';
+    }
 
     return (
         <>
@@ -111,7 +112,7 @@ const SecondLogin = () => {
             <div className="container2">
                 <div className="comments">
                     <div>
-                        <h1>Approved Comments</h1>
+                        <h1 id='cmt'>Approved Comments</h1>
                     </div>
                     <div id='commentsscroll'>
                         {approvedComments.map((val)=>(
@@ -138,11 +139,11 @@ const SecondLogin = () => {
                 </div>
             </div>
             <div className="edit">
-                <button className='button'style={{width:'30%'}}>EDIT YOUR PROFILE</button>
+                <button className='button'style={{width:'30%', color:"white"}} onClick = {editProfile} id='edit'>EDIT YOUR PROFILE</button>
             </div>
             <div className="container2">
                 <div className="comments2">
-                    <h1>My Comments</h1>
+                    <h1 id='cmt'>My Comments</h1>
                 
                 <div id='commentsscroll'>
                         {myComments.map((val)=>(
@@ -154,7 +155,7 @@ const SecondLogin = () => {
                         </div>
                         </div>
                 <div className="comments3" id='new' >
-                    <h1>New Comments</h1>
+                    <h1 id='cmt'>New Comments</h1>
                     {/* <h1 style={{ display : "inline"}}>..................</h1> */}
                     <ul style={{display: "block"}}>
                         {
@@ -171,12 +172,25 @@ const SecondLogin = () => {
                                                 user_name: val.user_name,
                                                 comment: val.comment
                                             }).then((res)=>{
+                                                console.log(res.data.message);
+                                            }).catch((err)=>{
+                                                console.log(err);
+                                            })
+
+                                        axios.post('http://localhost:5000/deleteComments', {
+                                                friend_email: user.email,
+                                                user_email: val.user_email,
+                                                user_name: val.user_name,
+                                                comment: val.comment
+
+                                            }).then((res)=>{
                                                 console.log(res.data);
                                             }).catch((err)=>{
                                                 console.log(err);
                                             })
                                         }
-                                    }}><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
+                                       
+                                    }}><i className='fa fa-check-circle'style={{ display: "inline"}}></i></button><p style={{ display: "inline"}}>   </p>
                                     <button id='check' onClick={(e)=>{
                                         {
                                             e.preventDefault();
@@ -186,11 +200,24 @@ const SecondLogin = () => {
                                                 user_name: val.user_name,
                                                 comment: val.comment
                                             }).then((res)=>{
+                                                console.log(res.data.message);
+                                            }).catch((err)=>{
+                                                console.log(err);
+                                            })
+
+                                            axios.post('http://localhost:5000/deleteComments', {
+                                                friend_email: user.email,
+                                                user_email: val.user_email,
+                                                user_name: val.user_name,
+                                                comment: val.comment
+                                            }).then((res)=>{
                                                 console.log(res.data);
                                             }).catch((err)=>{
                                                 console.log(err);
                                             })
+                                            
                                         }
+                                        // loadingSpinner();
                                     }}><a href="" className='fa fa-times-circle'></a></button>
                                 </li>
                                     )

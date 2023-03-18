@@ -4,6 +4,7 @@ import './Navbar.scss';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
 import axios from 'axios';
+import alumniData from './akumniData.json'
 import {
   Menu,
   MenuButton,
@@ -20,7 +21,7 @@ import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading, loadingSpinner} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -31,12 +32,34 @@ const Navbar = () => {
   // const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
+  const [profileIcon, setProfileIcon] = useState(false);
+
+  const alumniEmail= alumniData; //geeting all the alumnis data
+
+  useEffect(()=>{
+    if(alumniEmail.includes(user.email)){
+      axios.post("http://localhost:5000/findAUser",{
+        email: user.email
+      }).then((res)=>{
+        // console.log(res.data);
+        if(res.data.message==="User Found"){
+          if(res.data.User[0].two_step_verified===true){
+            setProfileIcon(true);
+            // setLoggedin(true);
+          }else{
+            setLoggedin(false);
+          }
+        }
+      })
+    }
+   
+  })
 
   //After refreshing the page user is still signed in 
   useEffect(() => {
     if (window.localStorage.getItem('user') !== null) {
       const userLoggedIn = window.localStorage.getItem('user');
-      if (userLoggedIn != null) {
+      if (userLoggedIn !== null) {
         setUser(JSON.parse(userLoggedIn));
       }
     }
@@ -47,14 +70,16 @@ const Navbar = () => {
     else {
       setLoggedin(false);
     }
-  }, [])
+  },[])
 
   //Logout Function
   const handleLogout =() =>{
       setUser({});
       window.localStorage.removeItem('user');
       setLoggedin(false);
+      setProfileIcon(false);
       window.localStorage.setItem('loggedin', false)
+      window.localStorage.removeItem('loggedin')
       document.getElementById("google-login").hidden = false;
       navigate('/');
     }
@@ -85,7 +110,7 @@ const Navbar = () => {
   }
 
 
-  //Search Engine Functions
+  // Search Engine Functions
   useEffect(() => {
     axios.post('http://localhost:5000/searchword', {
       searchword: searchword
@@ -110,8 +135,7 @@ const Navbar = () => {
     }).catch((err) => {
       console.log(err);
     })
-  }
-  )
+  })
 
   return(
     <>
@@ -130,20 +154,25 @@ const Navbar = () => {
             
             <div id='google-login'>
             </div>
-
-            {loggedin &&
+          
               <>
+              {loggedin &&
+              <div id='loggedIn'>
                 <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
-                  <div className="searchr" style={{ width: '190%' }}>
+                  <div className="searchr" style={{ width: '190%', display:"flex"}}>
                     <input type="text" placeholder="Search..." class="search" style={{marginBottom:"0%"}} onChange={(e) => {
                       searchAWord(e);
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
                     }} value= {inputValue}/>
+                    {wordEnteredList.length===0 && 
+                    <ul>
+                      <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}>No User Found</button></li>
+                      </ul>}
                     {wordEnteredList.length!==0 && 
                     <ul>
                     {wordEnteredList.map((val, index) =>
-                    (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}key={index} onClick={(e) => {
+                    (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}} key={index} onClick={(e) => {
                       e.preventDefault();
                       setSearchword(val.email);
                       setInputValue("");
@@ -153,13 +182,14 @@ const Navbar = () => {
                         navigate('/comment')
                       },1000)
                       
-                    }}>{val.name}</button></li>)
+                    }}><p>{val.name}</p>
+                      <p style={{fontSize: "70%", fontStyle: "italic"}}>{val.academic_program}</p>
+                    </button></li>)
                     )}
                     </ul>
                     }
-                    
                   </div>
-
+                  {profileIcon ?
                   <Menu>
                     <MenuButton as={Button} w='29%' ml = {2}  rightIcon={<ChevronDownIcon /> }>
                     <img src="../../../images/profile.jpg" alt="" id='profilepic' />
@@ -168,10 +198,13 @@ const Navbar = () => {
                       <MenuItem bgColor={'#4d1a6c'}>My Profile</MenuItem>
                       <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Logout</MenuItem>
                     </MenuList>
-                  </Menu>
+                  </Menu> :
+                  <button onClick={handleLogout}>Logout</button>
+}
                 </li>
+                </div>
+}
               </>
-            }
 
           </ul>
           <div onClick={handleNavbar} className="hamburger-toggle">
