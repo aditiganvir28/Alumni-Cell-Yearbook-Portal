@@ -7,8 +7,8 @@ import Lines2 from "./images/lines2.png";
 import Lines3 from "./images/lines3.png";
 import Search from "./images/search.png";
 import Comment from "./images/comment.png";
-import People from "./images/people1.png"
-
+import People from "./images/people1.png";
+import UC from "./images/UC.gif";
 import { motion } from "framer-motion";
 
 function Homepage() {
@@ -244,8 +244,10 @@ function Homepage() {
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
-                        className='flex w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-white justify-center items-center rounded-xl'>
-                        <h1 className='text-black text-center'>Alumni Magazine</h1>
+                        className='flex flex-col w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-gray-800 justify-start relative items-center rounded-xl'>
+                        <img src={UC} className="w-48 h-48 rounded-full object-cover my-12"></img>
+                        <h1 className='text-white text-center z-0'>Coming Soon</h1>
+                        <motion.div whileHover={{ transition: { duration: 0.4 }, opacity: 0, }} className='absolute rounded-xl w-full h-full z-10 bg-white items-center justify-center flex'><h1 className='text-black text-center z-10'>Alumni Magazine</h1></motion.div>
                     </motion.div>
                     <div className='w-4/5 lg:w-1/3 flex flex-col lg:h-64'>
                         <motion.div
