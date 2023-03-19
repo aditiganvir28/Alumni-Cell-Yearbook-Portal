@@ -37,7 +37,7 @@ function Homepage() {
             <div className='flex flex-col overflow-x-hidden'>
                 <div className='flex flex-col lg:flex-row w-full justify-around items-center lg:mb-8 lg:h-screen h-[150vh]'>
                     <div className='w-4/5 lg:w-2/5 lg:mt-0 mt-8 border-2 lg:h-3/5 h-2/5 rounded-xl flex flex-col items-start justify-center relative'>
-                        <div className='text-white font-bold uppercase text-4xl lg:text-5xl lg:text-left lg:pl-4 mt-8 text-center'>WELCOME TO THE YEARBOOK PORTAL '23 OF IIT INDORE ...</div>
+                        <div className='text-white font-bold uppercase text-4xl lg:text-5xl lg:text-left lg:pl-4 mt-8 text-center lg:mr-4'>WELCOME TO THE YEARBOOK PORTAL '23 OF IIT INDORE ...</div>
                         <div className=' lg:mb-0 mb-2 text-white uppercase text-3xl text-left pl-4 lg:pr-4 mt-8 lg:mt-8 w-full flex-wrap overscroll-contain'>ALUMNI CELL, IIT INDORE <br></br><br></br><span className='capitalize text-xl'>A one-stop hub to curate your Yearbook profile and help others do the same!</span></div>
                     </div>
                     <div className='w-full lg:w-1/3 lg:h-3/4 mt-8 lg:mt-0 flex flex-col items-center lg:items-start'>

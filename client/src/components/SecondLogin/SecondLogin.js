@@ -6,6 +6,8 @@ import App from '../../App';
 import loadingSpinner from '../Homepage/images/808.gif'
 import { redirect } from 'react-router';
 
+import Profile from "./profile.jpg";
+
 const SecondLogin = () => {
 
 
@@ -111,7 +113,8 @@ const SecondLogin = () => {
                 </div>
                 <div className="profile">
                     <span className="dotsl">
-                        <img id = "ip" src={profile.profile_img}/>
+                        {/* <img id = "ip" src={profile.profile_img}/> */}
+                        <img className='ipp' id= "ip" src={profile.profile_img}/>
                     </span>
                     <br></br><br></br>
                     <div className='about1'>
