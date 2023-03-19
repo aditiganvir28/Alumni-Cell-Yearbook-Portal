@@ -49,6 +49,7 @@ li{
     display: flex;
     flex-direction: row;
     width: 100%;
+    height: 150%;
 }
 
 .comments {
@@ -57,7 +58,7 @@ li{
     border: none;
     border-radius: 20px;
     width: 40%;
-    height: 600px;
+    height: 650px;
     margin-left: 3%;
     text-align: left;
     margin-bottom: 1%;
@@ -120,7 +121,9 @@ li{
     border-color: white;
     border-radius: 10px;
     border-width: 1px;
-    overflow: hidden;
+    overflow: auto;
+    padding: 4%;
+    height: 33%;
 }
 .edit {
     display: flex;
@@ -170,9 +173,11 @@ li{
 
 #check {
     display: inline;
-    padding: 0% !important;
+    padding: 0.5% !important;
     margin: 1% !important;
     width: 10% !important;
+    border-width: 1px;
+    border-radius: 7px;
 }
 
 #comment {
@@ -226,4 +231,18 @@ li{
   /* Handle on hover */
   .comments::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+  .newComment {
+    font-size: medium;
+    padding-bottom: 2%;
+  }
+
+  .newCommentUserName {
+    float: right;
+  }
+
+  #comment5 {
+    border-width: 1px;
+    border-radius: 7px;
+    padding: 1.5%;
   }

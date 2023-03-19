@@ -131,7 +131,6 @@ const MakeAComment = () => {
               <span className="dot">
                 {result.length && <img id="ip" src={result[0].profile_img} />}
               </span>
-              <h1 id="named">Name - Department</h1>
 
               {/* <h1>Description</h1> */}
               {/* {result.length && (
@@ -150,7 +149,7 @@ const MakeAComment = () => {
                   <h3 style={{ color: "white" }}>{result[0].about}</h3>
                 </div>
               )} */}
-                <div className="description">
+                <div className="description" id="desc">
                   <h2>Agrima Bundela</h2>
 
                   <h3 style={{ color: "white" }}>
@@ -172,7 +171,7 @@ const MakeAComment = () => {
                   name="comment"
                   id="commenttext"
                   cols="85"
-                  rows="14"
+                  rows="25"
                   placeholder="Add your Comment"
                   value={comment}
                   onChange={(e) => {
@@ -184,7 +183,7 @@ const MakeAComment = () => {
                   type="submit"
                   id="post"
                   onClick={handleSubmit}
-                  style={{ color: "white" }}
+                  style={{ color: "white", float:'right' }}
                 >
                   POST!
                 </button>

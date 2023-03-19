@@ -132,7 +132,7 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-           <select name="academic_program" id="" defaultValue={userData.academic_program}  onChange={setOptionValue}>
+           <select name="academic_program" id="" defaultValue={userData.academic_program}  style={{width:"78%"}} onChange={setOptionValue}>
             <option value ="" name ="Academic Program" selected disabled>Academic Program</option>
             <option value="Bachelor of Technology (BTech)" name= "academic_program">Bachelor of Technology (BTech)</option>
             <option value="Master of Technology (MTech)" name= "academic_program">Master of Technology (MTech)</option>
@@ -157,13 +157,15 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <div id="emailver">
+          <button className="submit1" onClick={onSubmit} id="sub5">Submit</button>
           {/* {verify &&  */}
-          <h2>Sent a Verification Mail on ganviraditi28@gmail.com</h2>
+          <h2 id="verificationmessage">Sent a Verification Mail on ganviraditi28@gmail.com</h2>
           {/* // } */}
-          <button className="submit1" onClick={onSubmit}>SUBMIT</button>
           {/* {verify &&  */}
-          <button className="submit1" onClick={resendMail}>Resend Mail</button>
+          <button className="submit1" onClick={resendMail} id="sub5" style={{color:"#fec80a"}} >Resend Mail</button>
           {/* }    */}
+          </div>
         </div>
         <div className="right">
         <span className="dot">

@@ -160,18 +160,18 @@ const SecondLogin = () => {
                     <h1 id='cmt'>New Comments</h1>
                     {/* <h1 style={{ display : "inline"}}>..................</h1> */}
                     <ul style={{display: "block"}}>
-                    <li>
+                    <li id='comment5'>
                                     
                                     <p className='newComment'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
                                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
                                     Duis aute irure dolor in reprehenderit</p>
-                                    <p className='newCommentUserName'>Agrima Bundela</p>
+                                    <p className='newCommentUserName'>-Agrima Bundela</p>
                                     <button id='check'>
-                                        <i className='fa fa-check-circle'style={{ display: "inline"}}></i>
-                                        </button>
-                                        <p style={{ display: "inline"}}>   </p>
-                                        <button id='check'>
-                                        <a href="" className='fa fa-times-circle'></a></button>
+                                    <i className='fa fa-check-circle' style={{ display: "inline"}}></i>
+                                    </button>
+                                    <p style={{ display: "inline"}}></p>
+                                    <button id='check'>
+                                    <i className='fa fa-times-circle' style={{ display: "inline"}}></i></button>
                                 </li>
                         {/* {
                             newComments.map((val, index)=>
