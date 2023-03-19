@@ -33,6 +33,8 @@ const Navbar = () => {
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
   const [profileIcon, setProfileIcon] = useState(false);
+  const [isStudent, setIsStudent] = useState(false);
+  const [verified, setVerified] = useState(false);
 
   const alumniEmail= alumniData; //geeting all the alumnis data
 
@@ -45,9 +47,11 @@ const Navbar = () => {
         if(res.data.message==="User Found"){
           if(res.data.User[0].two_step_verified===true){
             setProfileIcon(true);
-            // setLoggedin(true);
+            setVerified(true);
+            window.getElementById('google-login').hidden=true;
           }else{
             setLoggedin(false);
+            window.getElementById('google-login').hidden=false;
           }
         }
       })
@@ -105,11 +109,20 @@ const Navbar = () => {
     }
   }
   
-
+useEffect(()=>{
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
   }
-
+})
+  
+useEffect(()=>{
+  if(alumniEmail.includes(user.email)){
+    setIsStudent(false);
+  }
+  else{
+    setIsStudent(true);
+  }
+})
 
   // Search Engine Functions
   useEffect(() => {
@@ -157,7 +170,7 @@ const Navbar = () => {
             </div>
           
               <>
-              {loggedin &&
+              {loggedin && (isStudent || verified) &&
               <div id='loggedIn'>
                 <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
                   <div className="searchr" style={{ width: '190%', display:"flex"}}>
@@ -206,8 +219,8 @@ const Navbar = () => {
                 </div>
 }
               </>
-
-          </ul>
+</ul>
+          
           <div onClick={handleNavbar} className="hamburger-toggle">
             <HamburgerIcon/>
           </div>

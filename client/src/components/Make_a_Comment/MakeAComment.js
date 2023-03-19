@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import loadingSpinner from "../Homepage/images/808.gif";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import alumniData from '../navbar/akumniData.json'
 
 const MakeAComment = () => {
@@ -25,10 +25,6 @@ const MakeAComment = () => {
     designation: "",
     about: "",
   });
-  // console.log(result[0].name);
-  // if(result.length !==0){
-  // setName(result[0].name);
-  // }
 
   const alumniEmail = alumniData;
 
@@ -42,6 +38,7 @@ const MakeAComment = () => {
   })
 
   const navigate = useNavigate();
+
   useEffect(() => {
     setLoading(true);
     const Load = async () => {
@@ -63,9 +60,9 @@ const MakeAComment = () => {
       });
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if(isStudent===false){axios
+    if(isStudent===false){await axios
       .post("http://localhost:5000/myComments", {
         comment: comment,
         friend_email: result[0].email,
@@ -79,7 +76,7 @@ const MakeAComment = () => {
         console.log(err);
       });}
       if(isStudent===true){
-        axios
+        await axios
       .post("http://localhost:5000/newComments", {
         comment: comment,
         user_email: user.email,
@@ -94,7 +91,7 @@ const MakeAComment = () => {
       });
       }
       else{
-        axios
+        await axios
       .post("http://localhost:5000/newComments", {
         comment: comment,
         user_email: userData[0].email,

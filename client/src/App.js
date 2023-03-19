@@ -53,7 +53,7 @@ const App = (({location}) => {
   const loadingSpinner = () =>{
     setLoading(true);
         const Load = async () => {
-            await new Promise((r) => setTimeout(r, 1999));
+            await new Promise((r) => setTimeout(r, 1000));
 
             setLoading((loading) => !loading);
         }
@@ -100,15 +100,15 @@ const App = (({location}) => {
             if(res.data.message === "User Found"){
               if(res.data.User[0].two_step_verified === true){
                 console.log("verified");
+                setFill(true);
                 navigate('/profile');
               }
               else{
-                setFill(true);
+                
                 navigate('/fill');
                 
               }
             }else{
-              setFill(true);
               navigate('/fill');
               
             }
@@ -116,6 +116,7 @@ const App = (({location}) => {
           console.log("Second time sign in and alumni")
         }
         else{
+          setFill(true);
           navigate('/');
           console.log("second time sign in and student");
         }
@@ -127,11 +128,11 @@ const App = (({location}) => {
           console.log(res);
           if(alumniEmail.includes(userObject.email)){
             console.log("first time login and alumni");
-            setFill(true);
             navigate('/fill');
             
           }
           else{
+            setFill(true);
             navigate('/');
             console.log("first time login and student");
           }
@@ -142,7 +143,7 @@ const App = (({location}) => {
     }).catch((err)=>{
       console.log(err);
     })
-  },2000)}
+  },1000)}
 
   
     

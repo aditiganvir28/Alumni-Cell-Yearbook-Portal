@@ -517,14 +517,6 @@ const deleteComments = asyncHandler(async(req,res)=>{
 
     const UserData = await Users.find({email: friend_email});
 
-    // const User = await NewComments.find({friend: friend_email}).exec();
-
-    // if(!User?.length){
-    //     return res.send({message:"No user Found"})
-    // }
-
-    // console.log(User);
-
     const User1 = NewComments.find({friend_email: friend_email}, (err,docs)=>{
         if(err){
             console.log(err)
@@ -541,15 +533,6 @@ const deleteComments = asyncHandler(async(req,res)=>{
     });
     
 })
-
-    // const del = NewComments.findOneAndRemove({friend_email: User.friend_email}, {$pull: {comments: {user_email: user_email, user_name:user_name, comment: comment}}});
-    // // del.save();
-    // // if(err){
-    // //     console.log(err);
-    // // }
-    // console.log(del);
-    // res.send({message:`Comment deleted from the New comment of ${UserData}`})
-    // console.log("deleted");
 
 //Get all the approved comments for the user who is logged in
 const getApprovedComments = asyncHandler (async (req,res) => {

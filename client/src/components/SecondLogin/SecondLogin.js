@@ -166,9 +166,9 @@ const SecondLogin = () => {
                                     
                                     <p className='newComment'>{val.comment}</p>
                                     <p className='newCommentUserName'>{val.user_name}</p>
-                                    <button id='check'onClick={()=>{
+                                    <button id='check'onClick={async ()=>{
                                         {
-                                            axios.post('http://localhost:5000/approvedComments', {
+                                    axios.post('http://localhost:5000/approvedComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
                                                 user_name: val.user_name,
@@ -193,7 +193,7 @@ const SecondLogin = () => {
                                         }
                                        
                                     }}><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
-                                    <button id='check' onClick={(e)=>{
+                                    <button id='check' onClick={async (e)=>{
                                         {
                                             e.preventDefault();
                                             axios.post('http://localhost:5000/rejectedComments', {
@@ -207,7 +207,7 @@ const SecondLogin = () => {
                                                 console.log(err);
                                             })
 
-                                            axios.post('http://localhost:5000/deleteComments', {
+                                            await axios.post('http://localhost:5000/deleteComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
                                                 user_name: val.user_name,

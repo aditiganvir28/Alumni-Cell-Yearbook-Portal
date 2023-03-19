@@ -36,6 +36,7 @@ const OtpVerification = () =>{
             console.log(res);
             if(res.data==="Mobile number verified"){
                 navigate('/profile');
+                setFill(true);
                 // window.location.reload();
             }
             else{
