@@ -1,0 +1,42 @@
+.container-otp{
+    display: flex;
+    margin-left: 40%;
+    margin-top: 2%;
+}
+.resend{
+    display: flex;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 10px;
+    margin-left: 15%;
+    // margin-top: 5%;
+    width: 60%;
+    color: black;
+    background-color: #fec90ad9;
+    font-weight: bolder;
+}
+.submit{
+    display: inline-flex;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 10px;
+    // margin-left: 5%;
+    width: 10%;
+    background-color: #4d1a6c;
+    color: white;
+    height: fit-content;
+    font-weight: bolder;
+}
+#otp{
+    display: flex;
+    border: 1px solid;
+    border-color: white;
+    border-radius: 10px;
+}
+#otph1{
+    color: white;
+    font-size: 40px;
+    display: flex;
+    margin-top: 10%;
+    margin-left: 5%;
+}

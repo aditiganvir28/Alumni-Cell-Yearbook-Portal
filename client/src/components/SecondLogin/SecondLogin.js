@@ -95,57 +95,57 @@ const SecondLogin = () => {
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 
             </style>
-            {/* <div className='header'>
-                <img src='/images/1.png' alt='profile' />
-                <div className='navbar'>
-                    <ul>
-                        <li>HOME</li>
-                        <li>ABOUT</li>
-                        <li>MY PROFILE</li>
-                        <li><div className="search">
-                            <input type="text" placeholder="Search..." class="search" /></div></li>
-                        <li>
-                            <img src="/images/profile.jpg" alt="" id="profile" />
-                        </li>
-                    </ul>
-                </div>
-            </div> */}
-
             <div className="container2">
                 <div className="comments">
                     <div>
-                        <h1>Approved Comments</h1>
+                        <h1 id='cmt'>Approved Comments</h1>
                     </div>
                     <div id='commentsscroll'>
-                        {approvedComments.map((val)=>(
+                        {/* {approvedComments.map((val)=>(
                             <div id='comment'>
                             <p id='commentp'>{val.comment}</p>
                             <p id='commentby'>-{val.user_name}</p>
                         </div>
-                        ))}
+                        ))} */}
+                        <div id='comment'>
+                            <p id='commentp'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                            dolor in reprehenderit</p>
+                            <p id='commentby'>-Aditi Ganvir</p>
+                        </div>
                     </div>
                 </div>
                 <div className="profile">
                     <span className="dotsl">
-                        <img id = "ip" src={profile.profile_img}/>
+                        {/* <img id = "ip" src={profile.profile_img}/> */}
+                        <img id = "ip" src="#"/>
                     </span>
                     <br></br><br></br>
                     <div className='about1'>
                         {/* <h2 id='about'>About Me</h2> */}
-                        <h2>{profile.name}</h2>
+                        {/* <h2>{profile.name}</h2>
                         <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
                         <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
                         <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
-                        <h3 style={{color:"white"}}>{profile.about}</h3>
+                        <h3 style={{color:"white"}}>{profile.about}</h3> */}
+                        <h2>Aditi Ganvir</h2>
+                        <h3 style={{color:"white"}}>Roll No: 210001016</h3>
+                        <h3 style={{color:"white"}}>Bachelor of Technology [BTech], CSE</h3>
+                        <h3 style={{color:"white"}}>Google, SDE</h3>
+                        <h3 style={{color:"white"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+                        officia deserunt mollit anim id est laborum.</h3>
                     </div>
                 </div>
             </div>
             <div className="edit">
-                <button className='button'style={{width:'30%', color:"white"}} onClick = {editProfile}>EDIT YOUR PROFILE</button>
+                <button className='button'style={{width:'30%', color:"white"}} onClick = {editProfile} id='edit'>EDIT YOUR PROFILE</button>
             </div>
             <div className="container2">
                 <div className="comments2">
-                    <h1>My Comments</h1>
+                    <h1 id='cmt'>My Comments</h1>
                 
                 <div id='commentsscroll'>
                         {myComments.map((val)=>(
@@ -157,10 +157,23 @@ const SecondLogin = () => {
                         </div>
                         </div>
                 <div className="comments3" id='new' >
-                    <h1>New Comments</h1>
+                    <h1 id='cmt'>New Comments</h1>
                     {/* <h1 style={{ display : "inline"}}>..................</h1> */}
                     <ul style={{display: "block"}}>
-                        {
+                    <li>
+                                    
+                                    <p className='newComment'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                    Duis aute irure dolor in reprehenderit</p>
+                                    <p className='newCommentUserName'>Agrima Bundela</p>
+                                    <button id='check'>
+                                        <i className='fa fa-check-circle'style={{ display: "inline"}}></i>
+                                        </button>
+                                        <p style={{ display: "inline"}}>   </p>
+                                        <button id='check'>
+                                        <a href="" className='fa fa-times-circle'></a></button>
+                                </li>
+                        {/* {
                             newComments.map((val, index)=>
                                 (<li>
                                     
@@ -192,8 +205,8 @@ const SecondLogin = () => {
                                             })
                                         }
                                        
-                                    }}><i className='fa fa-check-circle'></i></button><p style={{ display: "inline"}}>   </p>
-                                    <button id='check' onClick={async (e)=>{
+                                    }}><i className='fa fa-check-circle'style={{ display: "inline"}}></i></button><p style={{ display: "inline"}}>   </p>
+                                    <button id='check' onClick={(e)=>{
                                         {
                                             e.preventDefault();
                                             axios.post('http://localhost:5000/rejectedComments', {
@@ -207,7 +220,7 @@ const SecondLogin = () => {
                                                 console.log(err);
                                             })
 
-                                            await axios.post('http://localhost:5000/deleteComments', {
+                                            axios.post('http://localhost:5000/deleteComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
                                                 user_name: val.user_name,
@@ -224,7 +237,7 @@ const SecondLogin = () => {
                                 </li>
                                     )
                             )
-                        }
+                        } */}
                     </ul>
                     
                 </div>
@@ -235,31 +248,7 @@ const SecondLogin = () => {
             }}>
             </div>
 
-            {/* <div className="container2">
-                <div className='footer-item'>
-                    <h1>ALUMNI CELL IIT INDORE</h1>
-                    <h1>.......................</h1>
-                    <h1>.......................</h1>
-                </div>
-                <div className="footer-item">
-                    <h1>IMPORTANT LINKS</h1>
-                    <ul id='links' style={{ listStyleType: "circle", marginLeft: "30px" }}>
-                        <li>ALUMNI PORTAL</li>
-                        <li>IITI OFFICIAL WEBSITE</li>
-                    </ul>
-                </div>
-                <div className="footer-item">
-                    <h1>FIND US ON</h1>
-                    <a href="" className='fa fa-facebook' style={{ display: "inline" }}></a>
-                    <a href="" className='fa fa-twitter' style={{ display: "inline" }}></a>
-                    <a href="" className='fa fa-linkedin' style={{ display: "inline" }}></a>
-                    <a href="" className='fa fa-instagram' style={{ display: "inline" }}></a>
-
-                </div>
-            </div> */}
-
         </div>}
-// 
         </>
     )
 }

@@ -87,7 +87,6 @@ function Fill(props) {
 }
 
 const resendMail = () =>{
-  console.log("yeah")
   axios.post("http://localhost:5000/resendMail",{
   userId: user.email,
   personalMailId:userData.personal_email_id
@@ -128,7 +127,7 @@ const resendMail = () =>{
       <div className="container2">
         <div className="left">
           <h2> </h2><br/>
-          <h1>Fill your Profile</h1><br/>
+          <h1 id="fill">Fill your Profile</h1><br/>
           <input type="text" placeholder="Name*" size="60" name="name_" value={userData.name} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
@@ -158,26 +157,25 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-          {verify && 
-          <h2>{message}</h2>
-          }
-          <button className="submit1" onClick={onSubmit}>Submit</button>
-          {verify && 
+          {/* {verify &&  */}
+          <h2>Sent a Verification Mail on ganviraditi28@gmail.com</h2>
+          {/* // } */}
+          <button className="submit1" onClick={onSubmit}>SUBMIT</button>
+          {/* {verify &&  */}
           <button className="submit1" onClick={resendMail}>Resend Mail</button>
-          }   
+          {/* }    */}
         </div>
         <div className="right">
         <span className="dot">
             <img id='ip'src={imageUrl}/>
           </span>
-          {/* <h2> </h2> */}
           <br/>
           <h4 id='disclaimer'><div className="disc">Disclaimer:</div> This picture will be printed in the yearbook.</h4>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
-          <button onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
-          {upload && 
+          <button id='upld'onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
+          {/* {upload &&  */}
           <h3 style={{color:"white"}}>{imageUploaded? 'Image Uploaded': 'Wait... while image is uploading'}</h3>
-          }
+          {/* } */}
     </div>
     </div>
     </div>}

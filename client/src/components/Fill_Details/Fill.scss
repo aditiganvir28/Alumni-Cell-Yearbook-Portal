@@ -90,7 +90,7 @@ input {
     flex: auto;
     // margin: 0 500px 0 0;
 }
-h1 {
+#fill{
     font-size: 40px;
     font-weight: bold;
     font-style: oblique;
@@ -149,11 +149,18 @@ input.search{
     border-color: white;
     border-radius: 10px;
     background: #3E065F;
-    width: 90px;
-    height: 40px;
-    margin-top: 20px;
-    margin-left: 500px !important;
-    margin-right: 30px !important;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 80%;
+    // margin-right: 30px !important;
+}
+#upld{
+    border: 1px solid white;
+    border-radius: 10%;
+    overflow: hidden;
+    width: fit-content;
+    background-color: #3E185C;
+    margin-bottom: 2%;
 }
 @media (max-width: 600px) {
     .container2, .navbar, .container4 {   

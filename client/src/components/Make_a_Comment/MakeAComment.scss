@@ -63,11 +63,11 @@ li{
     display: flex;
     margin-left: 60px;
 }
-h1 {
-    color: white;
-    font-size: 30px;
-    padding: 10px;
-}
+// h1 {
+//     color: white;
+//     font-size: 30px;
+//     padding: 10px;
+// }
 
 .left1 {
     display: block;
@@ -107,18 +107,18 @@ textarea {
     color: white;
 }
 
-button #post{
+#post{
     display: block;
     color: white;
     font-size: larger;
-    border: 2px solid;
+    border: 1px solid;
     border-color: white;
     border-radius: 10px;
     background: #3E065F;
-    width: 90px;
-    height: 40px;
-    margin-top: 20px;
-    margin-left: 500px;
+    width: fit-content;
+    height: fit-content;
+    margin-top: 1%;
+    margin-left: 80%;
 }
 
 input {

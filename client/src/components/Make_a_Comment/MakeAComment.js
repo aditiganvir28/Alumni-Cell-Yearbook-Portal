@@ -134,7 +134,7 @@ const MakeAComment = () => {
               <h1 id="named">Name - Department</h1>
 
               {/* <h1>Description</h1> */}
-              {result.length && (
+              {/* {result.length && (
                 <div className="description">
                   <h2>{result[0].name}</h2>
 
@@ -149,7 +149,21 @@ const MakeAComment = () => {
                   </h3>
                   <h3 style={{ color: "white" }}>{result[0].about}</h3>
                 </div>
-              )}
+              )} */}
+                <div className="description">
+                  <h2>Agrima Bundela</h2>
+
+                  <h3 style={{ color: "white" }}>
+                    Roll No: 210002009
+                  </h3>
+                  <h3 style={{ color: "white" }}>
+                    Bachelor of Technology [BTech], CSE
+                  </h3>
+                  <h3 style={{ color: "white" }}>
+                    Microsoft, SDE
+                  </h3>
+                  <h3 style={{ color: "white" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h3>
+                </div>
             </div>
             <div className="right1">
               <h1 id="make">Make a Comment</h1>

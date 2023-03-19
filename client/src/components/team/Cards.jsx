@@ -2,7 +2,7 @@ import Members from "./members";
 import React, { Component, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import loadingSpinner from "../Homepage/images/808.gif";
+// import loadingSpinner from "../Homepage/images/808.gif";
 import "./Cards.scss";
 import { LoginContext } from "../../helpers/Context";
 function Cards() {

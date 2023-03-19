@@ -1,7 +1,13 @@
 body {
     display: block;
 }
-
+#cmt{
+    padding: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    font-weight: bolder;
+    font-size: 40px;
+}
 .containersl {
     font-family: 'Quantico', sans-serif;
     width: 100%;
@@ -54,7 +60,7 @@ li{
     height: 600px;
     margin-left: 3%;
     text-align: left;
-    margin-bottom: 50px;
+    margin-bottom: 1%;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -118,13 +124,27 @@ li{
 }
 .edit {
     display: flex;
-    padding-left: 40%;
-    padding-bottom: 5%;
+    // padding-left: 40%;
+    padding-bottom: 2%;
+    padding-top: 1%;
 }
 .button {
     margin: auto;
     height: 50px;
     width: 190px;
+}
+#edit{
+    border: 1px solid black;
+    border-radius: 10%;
+    overflow: hidden;
+    width: fit-content !important;
+    display: inline-flex;
+    margin-left: 45%;
+    // margin-top: 1%;
+    background-color: #fec90ad9;
+    color: black !important;
+    font-weight: bolder;
+    height: fit-content;
 }
 #new {
     margin-left: 250px;

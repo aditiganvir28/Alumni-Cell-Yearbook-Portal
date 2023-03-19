@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { LoginContext } from "../../helpers/Context";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import "./otpverification.scss";
 
 const OtpVerification = () =>{
     const {loggedin, setLoggedin, fill, setFill,user, setUser} = useContext(LoginContext);
@@ -65,12 +66,22 @@ const OtpVerification = () =>{
 
     return(
         <>
+        <br></br>
+        <h1 id='otph1'>Please enter the OTP sent on provided contact number.</h1>
+        <div className="container-otp">
         <form >
-            <input type="text" onChange={(e)=>{setOtp(e.target.value)}}/>
-            <button onClick={otpVerify}>Submit</button>
-            
+            <input type="text" id='otp' onChange={(e)=>{setOtp(e.target.value)}}/>
+            <div className="resend">
+            <button onClick={resendOTP}>Resend OTP</button>
+        </div>                      
         </form>
-        <button onClick={resendOTP}>Resend OTP</button>
+        <div className="submit">
+            <button onClick={otpVerify} id='submit'>Submit</button>
+            </div>  
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
         </>
     )
 }

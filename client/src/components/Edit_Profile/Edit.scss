@@ -90,8 +90,9 @@ input {
     flex: auto;
     // margin: 0 500px 0 0;
 }
-h1 {
+#fill {
     font-size: 40px;
+    margin-left: 0%;
     font-weight: bold;
     font-style: oblique;
     /* padding: 10px; */
@@ -104,13 +105,14 @@ h2{
     font-size: 25px;
     /* margin-left: 600px; */
 }
-.left {
-    
+.left {    
     // position: absolute;
-    padding-bottom: 10%;
-    padding-left: 70px; 
+    display: block;
+    padding-bottom: 5%;
+    // padding-left: 70px; 
     background-color: #210735;    
     height: fit-content;
+    width: 50%;
 }
 .description {
     background-color: #3E065F;
@@ -149,11 +151,18 @@ input.search{
     border-color: white;
     border-radius: 10px;
     background: #3E065F;
-    width: 90px;
-    height: 40px;
-    margin-top: 20px;
-    margin-left: 500px !important;
-    margin-right: 30px !important;
+    width: fit-content;
+    height: fit-content;
+    margin-left: 80%;
+    // margin-right: 30px !important;
+}
+#upld{
+    border: 1px solid white;
+    border-radius: 10%;
+    overflow: hidden;
+    width: fit-content;
+    background-color: #3E185C;
+    margin-bottom: 2%;
 }
 @media (max-width: 600px) {
     .container2, .navbar, .container4 {   
