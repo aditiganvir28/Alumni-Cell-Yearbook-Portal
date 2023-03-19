@@ -101,42 +101,25 @@ const SecondLogin = () => {
                         <h1 id='cmt'>Approved Comments</h1>
                     </div>
                     <div id='commentsscroll'>
-                        {/* {approvedComments.map((val)=>(
+                        {approvedComments.map((val)=>(
                             <div id='comment'>
                             <p id='commentp'>{val.comment}</p>
                             <p id='commentby'>-{val.user_name}</p>
                         </div>
-                        ))} */}
-                        <div id='comment'>
-                            <p id='commentp'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                            dolor in reprehenderit</p>
-                            <p id='commentby'>-Aditi Ganvir</p>
-                        </div>
+                        ))}
                     </div>
                 </div>
                 <div className="profile">
                     <span className="dotsl">
-                        {/* <img id = "ip" src={profile.profile_img}/> */}
-                        <img id = "ip" src="#"/>
+                        <img id = "ip" src={profile.profile_img}/>
                     </span>
                     <br></br><br></br>
                     <div className='about1'>
-                        {/* <h2 id='about'>About Me</h2> */}
-                        {/* <h2>{profile.name}</h2>
+                        <h2>Aditi Ganvir</h2>
                         <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
                         <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
                         <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
-                        <h3 style={{color:"white"}}>{profile.about}</h3> */}
-                        <h2>Aditi Ganvir</h2>
-                        <h3 style={{color:"white"}}>Roll No: 210001016</h3>
-                        <h3 style={{color:"white"}}>Bachelor of Technology [BTech], CSE</h3>
-                        <h3 style={{color:"white"}}>Google, SDE</h3>
-                        <h3 style={{color:"white"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
-                        officia deserunt mollit anim id est laborum.</h3>
+                        <h3 style={{color:"white"}}>{profile.about}</h3>
                     </div>
                 </div>
             </div>
@@ -160,22 +143,9 @@ const SecondLogin = () => {
                     <h1 id='cmt'>New Comments</h1>
                     {/* <h1 style={{ display : "inline"}}>..................</h1> */}
                     <ul style={{display: "block"}}>
-                    <li>
-                                    
-                                    <p className='newComment'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                                    Duis aute irure dolor in reprehenderit</p>
-                                    <p className='newCommentUserName'>Agrima Bundela</p>
-                                    <button id='check'>
-                                        <i className='fa fa-check-circle'style={{ display: "inline"}}></i>
-                                        </button>
-                                        <p style={{ display: "inline"}}>   </p>
-                                        <button id='check'>
-                                        <a href="" className='fa fa-times-circle'></a></button>
-                                </li>
-                        {/* {
+                        {
                             newComments.map((val, index)=>
-                                (<li>
+                                (<li id='comment5'>
                                     
                                     <p className='newComment'>{val.comment}</p>
                                     <p className='newCommentUserName'>{val.user_name}</p>
@@ -237,7 +207,7 @@ const SecondLogin = () => {
                                 </li>
                                     )
                             )
-                        } */}
+                        }
                     </ul>
                     
                 </div>
