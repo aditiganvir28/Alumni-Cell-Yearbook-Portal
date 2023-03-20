@@ -175,7 +175,7 @@ useEffect(()=>{
                 <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
                   <div className="searchr" style={{ width: '190%', display:"flex"}}>
                     { (isStudent || verified) && <>
-                    <input type="text" placeholder="Search..." class="search" style={{marginBottom:"0%"}} onChange={(e) => {
+                    <input type="text" placeholder="Search..." class="search" onChange={(e) => {
                       searchAWord(e);
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
@@ -212,10 +212,10 @@ useEffect(()=>{
                     </MenuButton>
                     <MenuList>
                       <Link to="/profile"><MenuItem bgColor={'#4d1a6c'}>My Profile</MenuItem></Link>
-                      <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Logout</MenuItem>
+                      <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                     </MenuList>
                   </Menu> :
-                  <button onClick={handleLogout}>Logout</button>
+                  <button id='logout' onClick={handleLogout}>Sign Out</button>
 }
                 </li>
                 </div>
