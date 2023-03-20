@@ -17,6 +17,7 @@ import axios from 'axios';
 import alumniData from './components/navbar/akumniData.json'
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
+import Error from './components/Error/Error';
 const App = (({location}) => {
 
   const[user, setUser] = useState({}); //the one who logged in
@@ -163,6 +164,7 @@ const App = (({location}) => {
       <Route exact path="/team" element={<Cards />} />
       <Route exact path="/comment" element={<MakeAComment />} />
       <Route exact path="/otpVerification" element={<OtpVerification />} />
+      <Route exact path="/error" element={<Error/>} />
       </Routes>
       
       {!loading && <Footer/>}
