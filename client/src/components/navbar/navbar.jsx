@@ -211,7 +211,7 @@ useEffect(()=>{
                     <img src="../../../images/profile.jpg" alt="" id='profilepic' />
                     </MenuButton>
                     <MenuList>
-                      <Link to="/profile"><MenuItem bgColor={'#4d1a6c'}>My Profile</MenuItem></Link>
+                      <Link to="/profile"><MenuItem >My Profile</MenuItem></Link>
                       <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                     </MenuList>
                   </Menu> :

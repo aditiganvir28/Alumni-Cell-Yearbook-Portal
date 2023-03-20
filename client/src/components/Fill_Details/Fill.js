@@ -110,12 +110,12 @@ const resendMail = () =>{
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  useEffect(()=>{
-    if(imageUploaded){
-      setUploaded(false);
-      imageUploaded(false);
-    }
-  })
+  // useEffect(()=>{
+  //   if(imageUploaded){
+  //     setUploaded(false);
+  //     imageUploaded(false);
+  //   }
+  // })
 
   return (
     <>
