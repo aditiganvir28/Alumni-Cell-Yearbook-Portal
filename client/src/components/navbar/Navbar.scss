@@ -10,6 +10,18 @@ MenuItem {
 }
 input .search{
     margin: 10px 0 0 0;
+    // padding: 1%;
+    margin-bottom: 1% !important;
+}
+.search{
+    background-color: #180c1e;
+    border: 1px solid white;
+    border-radius: 10%;
+    // margin-bottom: 5%;
+    // padding: 1%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    width: 100%;
 }
 .searchr ul{
     width: 29%;
@@ -23,7 +35,19 @@ input .search{
     margin-top: 4.5%;
     background-color: whitesmoke;
 }
-
+#logout{
+    border: 1px solid white;
+    margin: 2%;
+    margin-left: 5%;
+    border-radius: 10%;
+    // font-weight: 600;
+}
+#logout:hover{
+    background-color: #fec90ae0;
+    // background-color: white;
+    color: black;
+    border: 1px solid black;
+}
 .searchr ul li{
     width: 100%;
     padding: 0;
