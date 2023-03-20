@@ -40,3 +40,16 @@
     margin-top: 10%;
     margin-left: 5%;
 }
+
+.resend-disabled {
+    display: flex;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 10px;
+    margin-left: 15%;
+    // margin-top: 5%;
+    width: 60%;
+    color: black;
+    background-color: #D8D8D8;
+    font-weight: bolder;
+}

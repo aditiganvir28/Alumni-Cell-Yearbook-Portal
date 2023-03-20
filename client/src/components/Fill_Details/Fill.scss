@@ -183,3 +183,24 @@ select {
     padding: 10px;
     margin-bottom: 2%;
 }
+
+#verificationmessage {
+    font-size: 100%;
+    text-align: right;
+    margin-right: 5%;
+}
+
+#emailver {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#sub5 {
+    margin: 1%;
+    margin-right: 5%;
+    font-size: 95%; 
+    align-self: flex-end;
+    padding: 2% !important;
+    width: auto;
+}

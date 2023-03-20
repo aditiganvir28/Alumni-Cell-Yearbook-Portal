@@ -51,6 +51,7 @@ li{
     text-align: center;
 }
 
+
 .dot {
     width: 400px;
     height: 400px;
@@ -70,8 +71,9 @@ li{
 // }
 
 .left1 {
-    display: block;
+    // display: block;
     padding-left: 30px;
+    width: 45%;
 }
 
 .description {
@@ -93,8 +95,10 @@ li{
 }
 
 .right1 {
-    margin-left: 10%;
-    display: block;
+    margin-right: 1%;
+    width: 45%;
+    // margin: 1%;
+    padding: 1%;
 }
 #make {
     display: flex;
@@ -105,6 +109,8 @@ textarea {
     border-radius: 20px;
     background: #000;
     color: white;
+    width: 100%;
+    height: 70vh;
 }
 
 #post{
@@ -138,4 +144,10 @@ input {
     // display: flex;
     margin: 5%;
     padding: 1%;
+}
+#desc {
+    width: 80%;
+    align-self: center;
+    padding: 4%;
+    overflow: auto;
 }

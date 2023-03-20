@@ -13,6 +13,8 @@ function Fill(props) {
   const [verify, setVerify] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false);
   const [upload, setUploaded] = useState(false);
+  const [verify2, setVeriify2] = useState(false);
+  const [state, setState] = useState(false);
 
   console.log(user);
   useEffect(() => {
@@ -80,6 +82,8 @@ function Fill(props) {
         console.log(res.data.message);
         setMessage(res.data.message);
         setVerify(true);
+        if(res.data.message==='Sent a verification email to your personal email id')
+        setVeriify2(true);
       })
       .catch((err) => {
         console.log(err);
@@ -87,7 +91,11 @@ function Fill(props) {
 }
 
 const resendMail = () =>{
-  console.log("yeah")
+  setState(true);
+        setTimeout(()=>{
+            setState(false)
+        }, 60000)
+
   axios.post("http://localhost:5000/resendMail",{
   userId: user.email,
   personalMailId:userData.personal_email_id
@@ -102,16 +110,12 @@ const resendMail = () =>{
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  //Get the data for edit profile
-  // useEffect(()=>{
-  //   axios.post('http://localhost:5000/profile', {
-  //     email: user.email
-  //   }).then((res)=>{
-  //     // console.log(res.data);
-  //     // setUserData(...userData, res.data);
-  //     setUserData({...userData, })
-  //   })
-  // })
+  useEffect(()=>{
+    if(imageUploaded){
+      setUploaded(false);
+      imageUploaded(false);
+    }
+  })
 
   return (
     <>
@@ -133,7 +137,7 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
-           <select name="academic_program" id="" defaultValue={userData.academic_program}  onChange={setOptionValue}>
+           <select name="academic_program" id="" defaultValue={userData.academic_program}  style={{width:"78%"}} onChange={setOptionValue}>
             <option value ="" name ="Academic Program" selected disabled>Academic Program</option>
             <option value="Bachelor of Technology (BTech)" name= "academic_program">Bachelor of Technology (BTech)</option>
             <option value="Master of Technology (MTech)" name= "academic_program">Master of Technology (MTech)</option>
@@ -158,26 +162,29 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <div id="emailver">
+            {!verify2 &&
+          <button className="submit1" onClick={onSubmit} id="sub5">Submit</button>
+            }
           {verify && 
-          <h2>{message}</h2>
+          <h2 id="verificationmessage">{message}</h2>
           }
-          <button className="submit1" onClick={onSubmit}>SUBMIT</button>
-          {verify && 
-          <button className="submit1" onClick={resendMail}>Resend Mail</button>
-          }   
+          {verify2 && 
+          <button className="submit1" onClick={resendMail} disabled={state} id="sub5" style={{color:state? "#D8D8D8" : "#fec90ad9"}} >Resend Mail</button>
+          }
+          </div>
         </div>
         <div className="right">
         <span className="dot">
             <img id='ip'src={imageUrl}/>
           </span>
-          {/* <h2> </h2> */}
           <br/>
           <h4 id='disclaimer'><div className="disc">Disclaimer:</div> This picture will be printed in the yearbook.</h4>
           <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
           <button id='upld'onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
           {upload && 
           <h3 style={{color:"white"}}>{imageUploaded? 'Image Uploaded': 'Wait... while image is uploading'}</h3>
-          }
+          } 
     </div>
     </div>
     </div>}

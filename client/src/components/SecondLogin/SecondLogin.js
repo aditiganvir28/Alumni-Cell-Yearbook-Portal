@@ -6,6 +6,8 @@ import App from '../../App';
 import loadingSpinner from '../Homepage/images/808.gif'
 import { redirect } from 'react-router';
 
+import Profile from "./profile.jpg";
+
 const SecondLogin = () => {
 
 
@@ -19,6 +21,7 @@ const SecondLogin = () => {
     const {loading, setLoading} = useContext(LoginContext)
     const [loading2, setLoading2] = useState(true);
     const [profile, setProfile] = useState({});
+    const [state, setState] = useState(false);
   
     
 
@@ -95,22 +98,6 @@ const SecondLogin = () => {
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 
             </style>
-            {/* <div className='header'>
-                <img src='/images/1.png' alt='profile' />
-                <div className='navbar'>
-                    <ul>
-                        <li>HOME</li>
-                        <li>ABOUT</li>
-                        <li>MY PROFILE</li>
-                        <li><div className="search">
-                            <input type="text" placeholder="Search..." class="search" /></div></li>
-                        <li>
-                            <img src="/images/profile.jpg" alt="" id="profile" />
-                        </li>
-                    </ul>
-                </div>
-            </div> */}
-
             <div className="container2">
                 <div className="comments">
                     <div>
@@ -127,11 +114,11 @@ const SecondLogin = () => {
                 </div>
                 <div className="profile">
                     <span className="dotsl">
-                        <img id = "ip" src={profile.profile_img}/>
+                        {/* <img id = "ip" src={profile.profile_img}/> */}
+                        <img className='ipp' id= "ip" src={profile.profile_img}/>
                     </span>
                     <br></br><br></br>
                     <div className='about1'>
-                        {/* <h2 id='about'>About Me</h2> */}
                         <h2>{profile.name}</h2>
                         <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
                         <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
@@ -162,13 +149,18 @@ const SecondLogin = () => {
                     <ul style={{display: "block"}}>
                         {
                             newComments.map((val, index)=>
-                                (<li>
+                                (<li id='comment5'>
                                     
                                     <p className='newComment'>{val.comment}</p>
-                                    <p className='newCommentUserName'>{val.user_name}</p>
-                                    <button id='check'onClick={()=>{
+                                    <p className='newCommentUserName'> - {val.user_name}</p>
+                                    <button id='check' disabled={state} onClick={async ()=>{
                                         {
-                                            axios.post('http://localhost:5000/approvedComments', {
+                                            setState(true);
+                                            setTimeout(()=>{
+                                                setState(false)
+                                            }, 60000);
+
+                                    axios.post('http://localhost:5000/approvedComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
                                                 user_name: val.user_name,
@@ -193,9 +185,15 @@ const SecondLogin = () => {
                                         }
                                        
                                     }}><i className='fa fa-check-circle'style={{ display: "inline"}}></i></button><p style={{ display: "inline"}}>   </p>
-                                    <button id='check' onClick={(e)=>{
+                                    <button id='check' disabled={state} onClick={(e)=>{
                                         {
                                             e.preventDefault();
+
+                                            setState(true);
+                                            setTimeout(()=>{
+                                                setState(false)
+                                            }, 60000);
+
                                             axios.post('http://localhost:5000/rejectedComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
@@ -235,31 +233,7 @@ const SecondLogin = () => {
             }}>
             </div>
 
-            {/* <div className="container2">
-                <div className='footer-item'>
-                    <h1>ALUMNI CELL IIT INDORE</h1>
-                    <h1>.......................</h1>
-                    <h1>.......................</h1>
-                </div>
-                <div className="footer-item">
-                    <h1>IMPORTANT LINKS</h1>
-                    <ul id='links' style={{ listStyleType: "circle", marginLeft: "30px" }}>
-                        <li>ALUMNI PORTAL</li>
-                        <li>IITI OFFICIAL WEBSITE</li>
-                    </ul>
-                </div>
-                <div className="footer-item">
-                    <h1>FIND US ON</h1>
-                    <a href="" className='fa fa-facebook' style={{ display: "inline" }}></a>
-                    <a href="" className='fa fa-twitter' style={{ display: "inline" }}></a>
-                    <a href="" className='fa fa-linkedin' style={{ display: "inline" }}></a>
-                    <a href="" className='fa fa-instagram' style={{ display: "inline" }}></a>
-
-                </div>
-            </div> */}
-
         </div>}
-// 
         </>
     )
 }
