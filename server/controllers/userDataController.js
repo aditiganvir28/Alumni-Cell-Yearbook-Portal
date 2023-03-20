@@ -84,7 +84,7 @@ const createUsersData = asyncHandler(async (req,res) =>{
                 })
 
                 return res.send({
-                    message:`Sent a verification email to ${personal_email_id}`
+                    message:`Sent a verification email to your personal email id`
                 });
             }catch(err){
                 console.log(err);

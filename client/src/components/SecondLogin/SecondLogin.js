@@ -21,6 +21,7 @@ const SecondLogin = () => {
     const {loading, setLoading} = useContext(LoginContext)
     const [loading2, setLoading2] = useState(true);
     const [profile, setProfile] = useState({});
+    const [state, setState] = useState(false);
   
     
 
@@ -118,7 +119,7 @@ const SecondLogin = () => {
                     </span>
                     <br></br><br></br>
                     <div className='about1'>
-                        <h2>Aditi Ganvir</h2>
+                        <h2>{profile.name}</h2>
                         <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
                         <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
                         <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
@@ -151,9 +152,14 @@ const SecondLogin = () => {
                                 (<li id='comment5'>
                                     
                                     <p className='newComment'>{val.comment}</p>
-                                    <p className='newCommentUserName'>{val.user_name}</p>
-                                    <button id='check'onClick={async ()=>{
+                                    <p className='newCommentUserName'> - {val.user_name}</p>
+                                    <button id='check' disabled={state} onClick={async ()=>{
                                         {
+                                            setState(true);
+                                            setTimeout(()=>{
+                                                setState(false)
+                                            }, 60000);
+
                                     axios.post('http://localhost:5000/approvedComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,
@@ -179,9 +185,15 @@ const SecondLogin = () => {
                                         }
                                        
                                     }}><i className='fa fa-check-circle'style={{ display: "inline"}}></i></button><p style={{ display: "inline"}}>   </p>
-                                    <button id='check' onClick={(e)=>{
+                                    <button id='check' disabled={state} onClick={(e)=>{
                                         {
                                             e.preventDefault();
+
+                                            setState(true);
+                                            setTimeout(()=>{
+                                                setState(false)
+                                            }, 60000);
+
                                             axios.post('http://localhost:5000/rejectedComments', {
                                                 friend_email: user.email,
                                                 user_email: val.user_email,

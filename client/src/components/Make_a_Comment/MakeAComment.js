@@ -16,6 +16,7 @@ const MakeAComment = () => {
   const { loading, setLoading } = useContext(LoginContext);
   const [name, setName] = useState("");
   const [isStudent, setIsStudent] = useState(false);
+  const [approvedComments, setApprovedComments] = useState([]);
   const [searchedAlumni, setSearchedAlumni] = useState({
     name: "",
     roll_no: "",
@@ -113,6 +114,17 @@ const MakeAComment = () => {
       
   };
 
+  //Getting all the approved comments to be displayed in the approved section
+  useEffect(()=>{
+    axios.post('http://localhost:5000/getApprovedComments', {
+        friend_email: user.email
+    }).then((res)=>{
+        setApprovedComments(res.data[0].comments);
+    }).catch((err)=>{
+        console.log(err);
+    })
+},)
+
   return (
     <>
       {loading && (
@@ -131,38 +143,22 @@ const MakeAComment = () => {
               <span className="dot">
                 {result.length && <img id="ip" src={result[0].profile_img} />}
               </span>
-
-              {/* <h1>Description</h1> */}
-              {/* {result.length && (
-                <div className="description">
+              {result.length && (
+                <div className="description" id="desc">
                   <h2>{result[0].name}</h2>
 
                   <h3 style={{ color: "white" }}>
                     Roll No: {result[0].roll_no}
                   </h3>
                   <h3 style={{ color: "white" }}>
-                    {result[0].academic_program}, {result[0].department}
+                  {result[0].academic_program}, {result[0].department}
                   </h3>
                   <h3 style={{ color: "white" }}>
-                    {result[0].current_company}, {result[0].designation}
+                  {result[0].current_company}, {result[0].designation}
                   </h3>
                   <h3 style={{ color: "white" }}>{result[0].about}</h3>
                 </div>
-              )} */}
-                <div className="description" id="desc">
-                  <h2>Agrima Bundela</h2>
-
-                  <h3 style={{ color: "white" }}>
-                    Roll No: 210002009
-                  </h3>
-                  <h3 style={{ color: "white" }}>
-                    Bachelor of Technology [BTech], CSE
-                  </h3>
-                  <h3 style={{ color: "white" }}>
-                    Microsoft, SDE
-                  </h3>
-                  <h3 style={{ color: "white" }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</h3>
-                </div>
+      )}
             </div>
             <div className="right1">
               <h1 id="make">Make a Comment</h1>
@@ -196,36 +192,17 @@ const MakeAComment = () => {
               <h1 id="make">Approved Comments</h1>
             </div>
             <div style={{ display: "flex" }}>
-              <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+              {approvedComments.map((val)=>(
+                <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
                 <Card.Img variant="top" />
                 <Card.Body>
                   <Card.Text style={{paddingBottom:"1rem"}}>
-                    Lorem ipsum dolor sit amet, 
+                    {val.comment}
                   </Card.Text>
-                  <p id="name" style={{paddingBottom:"0rem"}}>-Name</p>
-                  <p id="branch" style={{paddingBottom:"0rem"}}>-Branch</p>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-{val.user_name}</p>
                 </Card.Body>
               </Card>
-              <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{paddingBottom:"1rem"}}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci sed neque, beatae at magnam commodi nesciunt ducimus recusandae corrupti sequi totam perferendis quam? Ad quas architecto reprehenderit consectetur maxime vitae!
-                  </Card.Text>
-                  <p id="name" style={{paddingBottom:"0rem"}}>-Name</p>
-                  <p id="branch" style={{paddingBottom:"0rem"}}>-Branch</p>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{paddingBottom:"1rem"}}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing.
-                  </Card.Text>
-                  <p id="name" style={{paddingBottom:"0rem"}}>-Name</p>
-                  <p id="branch" style={{paddingBottom:"0rem"}}>-Branch</p>
-                </Card.Body>
-              </Card>
+              ))}
             </div>
           </div>
         </div>

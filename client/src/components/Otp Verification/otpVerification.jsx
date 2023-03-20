@@ -8,6 +8,7 @@ const OtpVerification = () =>{
     const {loggedin, setLoggedin, fill, setFill,user, setUser} = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
+    const [state, setState] = useState(false);
 
      //After refreshing the page user is still signed in 
   useEffect(() => {
@@ -49,12 +50,17 @@ const OtpVerification = () =>{
     }
 
     const resendOTP = () =>{
+        setState(true);
+        setTimeout(()=>{
+            setState(false)
+        }, 60000)
         axios.post('http://localhost:5000/resendOTP',{
             phoneOTP: otp,
             userId: user.email
         }).then((res)=>{
             console.log(res);
             if(res.data.message==="Mobile number verified"){
+
             }
             else{
                 setMessage(res.data.message);
@@ -71,8 +77,8 @@ const OtpVerification = () =>{
         <div className="container-otp">
         <form >
             <input type="text" id='otp' onChange={(e)=>{setOtp(e.target.value)}}/>
-            <div className="resend">
-            <button onClick={resendOTP}>Resend OTP</button>
+            <div className={state? "resend-disabled" : "resend"}>
+            <button onClick={resendOTP} disabled={state}>Resend OTP</button>
         </div>                      
         </form>
         <div className="submit">
