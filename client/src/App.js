@@ -104,7 +104,13 @@ const App = (({location}) => {
                 navigate('/profile');
               }
               else{
-                
+                axios.post('http://localhost:5000/deleteUser',{
+                  email: userObject.email
+                }).then((res)=>{
+                  console.log(res.data.message);
+                }).catch((err)=>{
+                  console.log(err);
+                })
                 navigate('/fill');
                 
               }

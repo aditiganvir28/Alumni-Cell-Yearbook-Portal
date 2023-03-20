@@ -568,6 +568,24 @@ const getRejectedComments = asyncHandler (async (req,res) => {
     }
 })
 
+//delete a user
+
+const deleteUser = asyncHandler (async(req,res)=>{
+    const email = req.body.email;
+    console.log(email);
+    const User = await Users.find({email:email}).exec();
+
+    if(!User?.length){
+        return res.send({message:"User Not Found"});
+    }
+
+    const del = Users.deleteOne({email :email}, function(err, result) { 
+        res.send( (result === 1) ? { msg: 'Deleted' } : { msg: 'error: '+ err } );
+    });
+
+    // return res.send({message: "User deleted"});
+})
+
 module.exports = {
     getUsersData,
     createUsersData,
@@ -588,5 +606,6 @@ module.exports = {
     verifyPhoneOtp,
     resendOTP,
     resendMail,
-    deleteComments
+    deleteComments,
+    deleteUser
 }
