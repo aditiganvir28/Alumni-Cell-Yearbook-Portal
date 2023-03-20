@@ -238,7 +238,7 @@ function Homepage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
                         className='flex w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-white justify-center items-center rounded-xl'>
-                        <h1 className='text-black text-center'>Class Of 2020</h1>
+                        <h1 className='text-black text-center'>Yearbook 2022</h1>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -257,11 +257,11 @@ function Homepage() {
                             className='w-full h-1/2 flex flex-col lg:flex-row justify-start lg:justify-between items-center'>
                             <div className='flex-col w-1/2'>
                                 <h1 className='uppercase p-0 text-5xl'>2.75K+</h1>
-                                <p className='bg-transparent capitalize text-white'>captions in 2021</p>
+                                <p className='bg-transparent capitalize text-white'>captions in 2022</p>
                             </div>
                             <div className='flex-col w-1/2'>
-                                <h1 className='uppercase p-0 text-5xl'>2.75K+</h1>
-                                <p className='bg-transparent capitalize text-white'>captions in 2021</p>
+                                <h1 className='uppercase p-0 text-5xl'>2.2K+</h1>
+                                <p className='bg-transparent capitalize text-white'>students</p>
                             </div>
                         </motion.div>
                         <motion.div
@@ -270,12 +270,12 @@ function Homepage() {
                             transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
                             className='w-full h-1/2 flex flex-col lg:flex-row justify-start lg:justify-between items-center'>
                             <div className='flex-col w-1/2'>
-                                <h1 className='uppercase p-0 text-5xl'>2.75K+</h1>
-                                <p className='bg-transparent capitalize text-white'>captions in 2021</p>
+                                <h1 className='uppercase p-0 text-5xl'>2.5K+</h1>
+                                <p className='bg-transparent capitalize text-white'>alumni</p>
                             </div>
                             <div className='flex-col w-1/2'>
-                                <h1 className='uppercase p-0 text-5xl'>2.75K+</h1>
-                                <p className='bg-transparent capitalize text-white'>captions in 2021</p>
+                                <h1 className='uppercase p-0 text-5xl'>11+</h1>
+                                <p className='bg-transparent capitalize text-white'>departments</p>
                             </div>
                         </motion.div>
                     </div>
