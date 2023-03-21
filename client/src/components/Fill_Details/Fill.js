@@ -333,6 +333,61 @@ function Fill(props) {
                 </h3>
               )}
             </div>
+            }
+      {!loading &&
+      <div className='container_fill'>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+      </style>
+      <div className="container2">
+        <div className="left">
+          <h2> </h2><br/>
+          <h1 id="fill">Fill your Profile</h1><br/>
+          <input type="text" placeholder="Name*" size="60" name="name_" value={userData.name} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Roll Number*" size="60" name="roll_no" value={userData.roll_no} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+           <select name="academic_program" id="" defaultValue={userData.academic_program}  style={{width:"78%"}} onChange={setOptionValue}>
+            <option value ="" name ="Academic Program" selected disabled>Academic Program</option>
+            <option value="Bachelor of Technology (BTech)" name= "academic_program">Bachelor of Technology (BTech)</option>
+            <option value="Master of Technology (MTech)" name= "academic_program">Master of Technology (MTech)</option>
+            <option value="Master of Science (MSc)" name= "academic_program"  >Master of Science (MSc)</option>
+            <option value="Five Year BTech + MTech" name= "academic_program" >Five Year BTech + MTech</option>
+            <option value="MS (Research)" name= "academic_program">MS (Research)</option>
+            <option value="Doctor of Philosophy" name= "academic_program">Doctor of Philosophy</option>
+          </select><br />
+          <input type="text" placeholder="Department*" size="60" name="department" value={userData.department} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Personal Email ID*" size="60" name="personal_email_id" value={userData.personal_email_id} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Contact Number*" size="60" name="contact_details" value={userData.contact_details} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Alternate Contact Number*" size="60" name="alternate_contact_details" value={userData.alternate_contact_details} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Address*" size="60" name="address" value={userData.address} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Current Company (if any)" size="60" name="current_company" value={userData.current_company} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="Designation" size="60" name="designation" value={userData.designation} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+              <p id="ques">QUESTION 1</p>
+          <input type="text" placeholder="Write your answer in about 20-30 words" size="60" name = "ques1" value={userData.about} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+              <p id="ques">QUESTION 2</p>
+          <input type="text" placeholder="Write your answer in about 20-30 words" size="60" name = "ques2" value={userData.about} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+          <div id="emailver">
+            {!verify2 &&
+          <button className="submit1" onClick={onSubmit} id="sub5">Submit</button>
+            }
+          {verify && 
+          <h2 id="verificationmessage">{message}</h2>
+          }
+          {verify2 && 
+          <button className="submit1" onClick={resendMail} disabled={state} id="sub5" style={{color:state? "#D8D8D8" : "#fec90ad9"}} >Resend Mail</button>
+          }
           </div>
         </div>
       )}

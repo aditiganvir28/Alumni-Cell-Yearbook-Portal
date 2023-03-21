@@ -283,6 +283,30 @@ function Edit(props) {
                 }
               />
               <br />
+              <p id="ques">QUESTION 1</p>
+              <input
+                type="text"
+                placeholder="Write your answer in about 20-30 words"
+                size="60"
+                name="ques1"
+                value={userData.about}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br />
+              <p id="ques">QUESTION 2</p>
+              <input
+                type="text"
+                placeholder="Write your answer in about 20-30 words"
+                size="60"
+                name="ques2"
+                value={userData.about}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br />
               {verify && <h2>{message}</h2>}
               <button className="submit1" onClick={onSubmit}>
                 Submit
@@ -309,7 +333,11 @@ function Edit(props) {
                   setImageSelected(event.target.files[0])
                 }}
               />
-              <button onClick={uploadImage} style={{ color: 'white' }}>
+              <button
+                id="upld"
+                onClick={uploadImage}
+                style={{ color: 'white' }}
+              >
                 Upload Image
               </button>
               {imageUploaded && (
