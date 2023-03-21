@@ -125,7 +125,7 @@ const resendMail = () =>{
             </div>
             }
       {!loading &&
-      <div className='container'>
+      <div className='container_fill'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>

@@ -307,7 +307,7 @@ function Edit(props) {
                   setImageSelected(event.target.files[0]);
                 }}
               />
-              <button onClick={uploadImage} style={{ color: "white" }}>
+              <button id='upld' onClick={uploadImage} style={{ color: "white" }}>
                 Upload Image
               </button>
               {imageUploaded && (

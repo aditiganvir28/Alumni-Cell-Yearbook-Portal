@@ -11,6 +11,7 @@ import People from "./images/people1.png";
 import UC from "./images/UC.gif";
 import { motion } from "framer-motion";
 import Step_1 from "./images/Step_1.png";
+import step_22 from "./images/step_22.png";
 import Step_2 from "./images/Step_2.png";
 import Step_3 from "./images/Step_3.png";
 import Step_4 from "./images/Step_4.png";
@@ -138,7 +139,7 @@ function Homepage() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.3 }}
                                 className='w-96 h-64 rounded-xl -ml-80 mt-64 bg-[#180c1e] hidden lg:block border-2'>
-                                <img className='w-full h-full object-contain rounded-xl' src={Step_2}></img>
+                                <img className='w-full h-full object-contain rounded-xl' src={step_22}></img>
                             </motion.div>
                         </div>
                         <div className='w-full h-8 mt-4 object-contain hidden lg:block'>
