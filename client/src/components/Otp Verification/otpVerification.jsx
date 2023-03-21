@@ -9,6 +9,28 @@ const OtpVerification = () =>{
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
     const [state, setState] = useState(false);
+    const [profile, setProfile] = useState({});
+
+    const rand = () => {
+        return Math.random().toString(36).substr(2);
+      };
+      
+      const token = () => {
+        return rand() + rand();
+      };
+      
+      console.log(token());
+
+    //Get the data to be displayed on the profile
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/profile', {
+        email: user.email,
+      })
+      .then((res) => {
+        setProfile(res.data.User[0])
+      })
+  })
 
      //After refreshing the page user is still signed in 
   useEffect(() => {
@@ -37,7 +59,7 @@ const OtpVerification = () =>{
         }).then((res)=>{
             console.log(res);
             if(res.data==="Mobile number verified"){
-                navigate('/profile');
+                navigate(`/profile/${profile._id}/${profile.name}/${token}`);
                 setFill(true);
                 // window.location.reload();
             }
