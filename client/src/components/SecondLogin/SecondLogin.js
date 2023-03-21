@@ -98,7 +98,7 @@ const SecondLogin = () => {
                 @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 
             </style>
-            <div className="container2">
+            <div className="container2sl">
                 <div className="comments">
                     <div>
                         <h1 id='cmt'>Approved Comments</h1>
@@ -129,8 +129,10 @@ const SecondLogin = () => {
             </div>
             <div className="edit">
                 <button className='button'style={{width:'30%', color:"white"}} onClick = {editProfile} id='edit'>EDIT YOUR PROFILE</button>
+                <input type="file" id='memo'></input>
+                <button id='upld2'>Upload Memories Image</button>
             </div>
-            <div className="container2">
+            <div className="container2sl">
                 <div className="comments2">
                     <h1 id='cmt'>My Comments</h1>
                 

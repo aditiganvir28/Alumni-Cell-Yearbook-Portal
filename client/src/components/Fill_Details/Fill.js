@@ -162,6 +162,12 @@ const resendMail = () =>{
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <input type="text" placeholder="About Me" size="60" name = "about" value={userData.about} onChange={(e) =>
               setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+              <p id="ques">QUESTION 1</p>
+          <input type="text" placeholder="Write your answer in about 20-30 words" size="60" name = "ques1" value={userData.about} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+              <p id="ques">QUESTION 2</p>
+          <input type="text" placeholder="Write your answer in about 20-30 words" size="60" name = "ques2" value={userData.about} onChange={(e) =>
+              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
           <div id="emailver">
             {!verify2 &&
           <button className="submit1" onClick={onSubmit} id="sub5">Submit</button>
