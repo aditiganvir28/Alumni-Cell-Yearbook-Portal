@@ -39,7 +39,7 @@ const App = (({location}) => {
     /*global google*/
     if(window.google){
       google.accounts.id.initialize({
-      client_id: "279659903183-6ctccbqdo4skcudgca030m3uti3at58i.apps.googleusercontent.com",
+      client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
       callback: handleCallbackResponse
 
     });

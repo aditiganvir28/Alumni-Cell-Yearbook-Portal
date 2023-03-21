@@ -191,8 +191,8 @@ const MakeAComment = () => {
             <div style={{ display: "inline" }}>
               <h1 id="make">Approved Comments</h1>
             </div>
-            <div style={{ display: "flex" }}>
-              {approvedComments.map((val)=>(
+            <div id="cards-container">
+              {/* {approvedComments.map((val)=>(
                 <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
                 <Card.Img variant="top" />
                 <Card.Body>
@@ -202,8 +202,64 @@ const MakeAComment = () => {
                   <p id="name" style={{paddingBottom:"0rem"}}>-{val.user_name}</p>
                 </Card.Body>
               </Card>
-              ))}
-            </div>
+              ))} */}
+              <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{paddingBottom:"1rem"}}>
+                    Hey
+                  </Card.Text>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-UnKnown</p>
+                </Card.Body></Card>
+                <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{paddingBottom:"1rem"}}>
+                    Hey
+                  </Card.Text>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-UnKnown</p>
+                </Card.Body></Card>
+                <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{paddingBottom:"1rem"}}>
+                    Hey
+                  </Card.Text>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-UnKnown</p>
+                </Card.Body></Card>
+                <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{paddingBottom:"1rem"}}>
+                    Hey
+                  </Card.Text>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-UnKnown</p>
+                </Card.Body></Card>
+                <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{paddingBottom:"1rem"}}>
+                    Hey
+                  </Card.Text>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-UnKnown</p>
+                </Card.Body></Card>
+                <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{paddingBottom:"1rem"}}>
+                    Hey
+                  </Card.Text>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-UnKnown</p>
+                </Card.Body></Card>
+                <Card style={{ width: "18rem", height: "11rem", margin: "1rem", overflow:"auto" }}>
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{paddingBottom:"1rem"}}>
+                    Hey
+                  </Card.Text>
+                  <p id="name" style={{paddingBottom:"0rem"}}>-UnKnown</p>
+                </Card.Body></Card>
+              </div>
           </div>
         </div>
       )}
