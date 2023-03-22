@@ -1,100 +1,95 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
-const jwt =  require('jsonwebtoken');
+const mongoose = require('mongoose')
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
 
 const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 
-    name: {
-        type: String,
-        required: [true, "Name is Required"],
-    },
+  name: {
+    type: String,
+    required: [true, 'Name is Required'],
+  },
 
-    roll_no: {
-        type: String,
-        required: [true, "Roll Number is required"],
-        unique: true,
-    },
+  roll_no: {
+    type: String,
+    required: [true, 'Roll Number is required'],
+    unique: true,
+  },
 
-    academic_program: {
-        type: String,
-        default: "Bachelor of Technology (BTech)"
-    },
+  academic_program: {
+    type: String,
+    default: 'Bachelor of Technology (BTech)',
+  },
 
-    department: {
-        type: String,
-        required: [true, "Department is required"],
-    },
+  department: {
+    type: String,
+    required: [true, 'Department is required'],
+  },
 
-    contact_details: {
-        type: String,
-        required: [true, "Contact_Details is required"],
-    },
+  contact_details: {
+    type: String,
+    required: [true, 'Contact_Details is required'],
+  },
 
-    alternate_contact_details: {
-        type: String,
-        required: [true, "Alternate Contact Details is required"]
-    },
+  alternate_contact_details: {
+    type: String,
+    required: [true, 'Alternate Contact Details is required'],
+  },
 
-    personal_email_id: {
-        type: String,
-        // required: [true, "Department is required"],
-        // unique: true,
-    },
+  personal_email_id: {
+    type: String,
+    // required: [true, "Department is required"],
+    // unique: true,
+  },
 
-    address: {
-        type: String,
-    },
+  address: {
+    type: String,
+  },
 
-    current_company: {
-        type: String,
-    },
+  current_company: {
+    type: String,
+  },
 
-    designation: {
-        type: String,
-    },
+  designation: {
+    type: String,
+  },
 
-    about: {
-        type: String,
-        required: true,
-    },
+  about: {
+    type: String,
+    required: true,
+  },
 
-    profile_img: {
-        type: String,
-        // required: [true, "Profile_image is required"],
-    },
+  profile_img: {
+    type: String,
+    // required: [true, "Profile_image is required"],
+  },
 
-    one_step_verified: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
+  one_step_verified: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 
-    two_step_verified: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
+  two_step_verified: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 
-    phoneOTP: String,
-
-    
-}
-);
+  phoneOTP: String,
+})
 
 userSchema.methods.generateVerificationToken = function () {
-    const user = this;
-    const verificationToken = jwt.sign(
-        {ID: user._id},
-        process.env.SECRET,
-        {expiresIn: "7d"}
-    );
+  const user = this
+  const verificationToken = jwt.sign({ ID: user._id }, process.env.SECRET, {
+    expiresIn: '7d',
+  })
 
-    return verificationToken;
+  return verificationToken
 }
 
-module.exports= mongoose.model("Users", userSchema);
+module.exports = mongoose.model('Users', userSchema)

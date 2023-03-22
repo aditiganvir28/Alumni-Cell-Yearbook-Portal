@@ -1,49 +1,47 @@
-const Auth = require("../models/authModel");
+const Auth = require('../models/authModel')
 const asyncHandler = require('express-async-handler')
 
-const getAllusers = asyncHandler(async(rq,res) => {
-    //Get all users from mongodb
-        const auths = await Auth.find().lean();
-        
-    // if no users
-    if(!auths?.length){
-        return res.send({message:"No users found"})
-    }
-    res.json(auths);
+const getAllusers = asyncHandler(async (rq, res) => {
+  //Get all users from mongodb
+  const auths = await Auth.find().lean()
+
+  // if no users
+  if (!auths?.length) {
+    return res.send({ message: 'No users found' })
+  }
+  res.json(auths)
 })
 
-const createUsers = asyncHandler(async(req,res) => {
-    console.log("hello");
-    const {email, name} = req.body;
+const createUsers = asyncHandler(async (req, res) => {
+  console.log('hello')
+  const { email, name } = req.body
 
+  //Create and store user
+  const auths = await Auth.create({ email, name })
 
-    //Create and store user
-    const auths = await Auth.create({email, name});
-
-    if(auths){
-        //created
-        res.send({message:"New User Created"});
-    }else{
-        res.send({message:"Invalid user data recieved"});
-    }
+  if (auths) {
+    //created
+    res.send({ message: 'New User Created' })
+  } else {
+    res.send({ message: 'Invalid user data recieved' })
+  }
 })
 
-const checkAuth = asyncHandler(async (req,res)=>{
-    const email = req.body.email;
+//Check if the user logged in second time or first time
+const checkAuth = asyncHandler(async (req, res) => {
+  const email = req.body.email
 
-    const User = await Auth.find({email:email}).exec();
+  const User = await Auth.find({ email: email }).exec()
 
-    if(!User.length){
-        res.send({message:"false"})
-    }
-    else{
-        res.send({message:"true"});
-    }
+  if (!User.length) {
+    res.send({ message: 'false' })
+  } else {
+    res.send({ message: 'true' })
+  }
 })
-
 
 module.exports = {
-    getAllusers,
-    createUsers,
-    checkAuth
+  getAllusers,
+  createUsers,
+  checkAuth,
 }
