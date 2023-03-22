@@ -32,9 +32,9 @@ function Homepage() {
     Load()
   }, [])
 
-  const line1 = 'WELCOME TO THE'
-  const line2 = "YEARBOOK PORTAL '23"
-  const line3 = 'OF IIT INDORE ...'
+  // const line1 = 'WELCOME TO THE'
+  // const line2 = "YEARBOOK PORTAL '23"
+  // const line3 = 'OF IIT INDORE ...'
 
   const sentence = {
     hidden: { opacity: 1 },
