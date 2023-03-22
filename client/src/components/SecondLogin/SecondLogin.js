@@ -83,102 +83,124 @@ const SecondLogin = () => {
     window.location.href = '/edit'
   }
 
-    return (
-        <>
-        {loading &&
-            <div className='spinner'>
-            <span class="loader"></span>
+  return (
+    <>
+      {loading && (
+        <div className="spinner">
+          <span class="loader"></span>
+        </div>
+      )}
+      {!loading && (
+        <div className="containersl">
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"
+          ></link>
+          <style>
+            @import
+            url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+          </style>
+          <div className="container2">
+            <div className="comments">
+              <div>
+                <h1 id="cmt">Approved Comments</h1>
+              </div>
+              <div id="commentsscroll">
+                {approvedComments.map((val) => (
+                  <div id="comment">
+                    <p id="commentp">{val.comment}</p>
+                    <p id="commentby">-{val.user_name}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            }
-        {!loading && <div className='containersl'>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"></link>
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
-
-            </style>
-            <div className="container2">
-                <div className="comments">
-                    <div>
-                        <h1 id='cmt'>Approved Comments</h1>
-                    </div>
-                    <div id='commentsscroll'>
-                        {approvedComments.map((val)=>(
-                            <div id='comment'>
-                            <p id='commentp'>{val.comment}</p>
-                            <p id='commentby'>-{val.user_name}</p>
-                        </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="profile">
-                    <span className="dotsl">
-                        {/* <img id = "ip" src={profile.profile_img}/> */}
-                        <img className='ipp' id= "ip" src={profile.profile_img}/>
-                    </span>
-                    <br></br><br></br>
-                    <div className='about1'>
-                        <h2>{profile.name}</h2>
-                        <h3 style={{color:"white"}}>Roll No: {profile.roll_no}</h3>
-                        <h3 style={{color:"white"}}>{profile.academic_program}, {profile.department}</h3>
-                        <h3 style={{color:"white"}}>{profile.current_company}, {profile.designation}</h3>
-                        <h3 style={{color:"white"}}>{profile.about}</h3>
-                    </div>
-                </div>
+            <div className="profile">
+              <span className="dotsl">
+                {/* <img id = "ip" src={profile.profile_img}/> */}
+                <img className="ipp" id="ip" src={profile.profile_img} />
+              </span>
+              <br></br>
+              <br></br>
+              <div className="about1">
+                <h2>{profile.name}</h2>
+                <h3 style={{ color: 'white' }}>Roll No: {profile.roll_no}</h3>
+                <h3 style={{ color: 'white' }}>
+                  {profile.academic_program}, {profile.department}
+                </h3>
+                <h3 style={{ color: 'white' }}>
+                  {profile.current_company}, {profile.designation}
+                </h3>
+                <h3 style={{ color: 'white' }}>{profile.about}</h3>
+              </div>
             </div>
-            <div className="edit">
-                <button className='button'style={{width:'30%', color:"white"}} onClick = {editProfile} id='edit'>EDIT YOUR PROFILE</button>
+          </div>
+          <div className="edit">
+            <button
+              className="button"
+              style={{ width: '30%', color: 'white' }}
+              onClick={editProfile}
+              id="edit"
+            >
+              EDIT YOUR PROFILE
+            </button>
+          </div>
+          <div className="container2">
+            <div className="comments2">
+              <h1 id="cmt">My Comments</h1>
+
+              <div id="commentsscroll">
+                {myComments.map((val) => (
+                  <div id="comment">
+                    <p id="commentp">{val.comment}</p>
+                    <p id="commentby">-{val.friend_name}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="container2">
-                <div className="comments2">
-                    <h1 id='cmt'>My Comments</h1>
-                
-                <div id='commentsscroll'>
-                        {myComments.map((val)=>(
-                            <div id='comment'>
-                            <p id='commentp'>{val.comment}</p>
-                            <p id='commentby'>-{val.friend_name}</p>
-                        </div>
-                        ))}
-                        </div>
-                        </div>
-                <div className="comments3" id='new' >
-                    <h1 id='cmt'>New Comments</h1>
-                    {/* <h1 style={{ display : "inline"}}>..................</h1> */}
-                    <ul style={{display: "block"}}>
-                        {
-                          setState(true)
-                          setTimeout(() => {
-                            setState(false)
-                          }, 60000)
+            <div className="comments3" id="new">
+              <h1 id="cmt">New Comments</h1>
+              {/* <h1 style={{ display : "inline"}}>..................</h1> */}
+              <ul style={{ display: 'block' }}>
+                {newComments.map((val, index) => (
+                  <li id="comment5">
+                    <p className="newComment">{val.comment}</p>
+                    <p className="newCommentUserName"> - {val.user_name}</p>
+                    <button
+                      id="check"
+                      disabled={state}
+                      onClick={(e) => {
+                        setState(true)
+                        setTimeout(() => {
+                          setState(false)
+                        }, 60000)
 
-                          axios
-                            .post('http://localhost:5000/approvedComments', {
-                              friend_email: user.email,
-                              user_email: val.user_email,
-                              user_name: val.user_name,
-                              comment: val.comment,
-                            })
-                            .then((res) => {
-                              console.log(res.data.message)
-                            })
-                            .catch((err) => {
-                              console.log(err)
-                            })
+                        axios
+                          .post('http://localhost:5000/approvedComments', {
+                            friend_email: user.email,
+                            user_email: val.user_email,
+                            user_name: val.user_name,
+                            comment: val.comment,
+                          })
+                          .then((res) => {
+                            console.log(res.data.message)
+                          })
+                          .catch((err) => {
+                            console.log(err)
+                          })
 
-                          axios
-                            .post('http://localhost:5000/deleteComments', {
-                              friend_email: user.email,
-                              user_email: val.user_email,
-                              user_name: val.user_name,
-                              comment: val.comment,
-                            })
-                            .then((res) => {
-                              console.log(res.data)
-                            })
-                            .catch((err) => {
-                              console.log(err)
-                            })
-                        }
+                        axios
+                          .post('http://localhost:5000/deleteComments', {
+                            friend_email: user.email,
+                            user_email: val.user_email,
+                            user_name: val.user_name,
+                            comment: val.comment,
+                          })
+                          .then((res) => {
+                            console.log(res.data)
+                          })
+                          .catch((err) => {
+                            console.log(err)
+                          })
                       }}
                     >
                       <i
@@ -236,13 +258,13 @@ const SecondLogin = () => {
                 ))}
               </ul>
             </div>
-          </div>
 
-          <div
-            style={{
-              height: '50px',
-            }}
-          ></div>
+            <div
+              style={{
+                height: '50px',
+              }}
+            ></div>
+          </div>
         </div>
       )}
     </>
