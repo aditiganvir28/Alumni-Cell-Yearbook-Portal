@@ -476,7 +476,7 @@ function Homepage() {
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, type: 'spring', stiffness: 100 }}
-                  className="flex w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-white justify-center items-center rounded-xl"
+                  className="flex w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-gradient-to-br from-yellow-200 via-yellow-400 to-yellow-700 justify-center items-center rounded-xl"
                 >
                   <h1 className="text-black text-center">Yearbook 2022</h1>
                 </motion.div>
@@ -494,7 +494,7 @@ function Homepage() {
                 <h1 className="text-white text-center z-0">Coming Soon</h1>
                 <motion.div
                   whileHover={{ transition: { duration: 0.4 }, opacity: 0 }}
-                  className="absolute rounded-xl w-full h-full z-10 bg-white items-center justify-center flex"
+                  className="absolute rounded-xl w-full h-full z-10 bg-gradient-to-tl from-yellow-200 via-yellow-400 to-yellow-700 items-center justify-center flex"
                 >
                   <h1 className="text-black text-center z-10">
                     Alumni Magazine
