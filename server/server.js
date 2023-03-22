@@ -52,7 +52,7 @@ app.listen(port,(err) =>{
     }
 })
 
-mongoose.connect("mongodb://0.0.0.0:27017/yearbook", {
+mongoose.connect("mongodb+srv://Ayush:Ayush2003@cluster0.3gnxxme.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
