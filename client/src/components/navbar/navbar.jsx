@@ -10,18 +10,14 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
   Button,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, authData, setAuthData, loading, setLoading, loadingSpinner, fill, setFill} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -29,15 +25,16 @@ const Navbar = () => {
   const [wordentered, setWordentered] = useState("");
   const [wordEnteredList, setWordEnteredList] = useState([]);
   const { result, setResult } = useContext(LoginContext);
-  // const [isActive, setIsActive] = useState(false);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
   const [profileIcon, setProfileIcon] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
   const [verified, setVerified] = useState(false);
+  const [profile, setProfile] = useState({});
 
   const alumniEmail= alumniData; //geeting all the alumnis data
 
+  //find if a student logs in or alumni and whether the alumni is two step verified
   useEffect(()=>{
     if(alumniEmail.includes(user.email)){
       axios.post("http://localhost:5000/findAUser",{
@@ -130,10 +127,22 @@ useEffect(()=>{
       searchword: searchword
     }).then((res) => {
       setResult(res.data);
-      // console.log(res.data);
+      console.log(res.data);
     }).catch((err) => {
       console.log(err)
     })
+  })
+
+  //Get the data to be displayed on the profile
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/profile', {
+        email: user.email,
+      })
+      .then((res) => {
+        setProfile(res.data.User[0])
+        console.log(res.data.User[0])
+      })
   })
 
   const searchAWord = (event) => {
@@ -194,7 +203,7 @@ useEffect(()=>{
                       setDisplay(false);
                       e.target.value="";
                       setTimeout(()=>{
-                        navigate('/comment')
+                        navigate(`/comment/${result[0]._id}/${result[0].name}/${result[0].roll_no}`)
                       },1000)
                       
                     }}><p>{val.name}</p>
@@ -207,12 +216,11 @@ useEffect(()=>{
                   </div>
                   {profileIcon ?
                   <Menu>
-                    <MenuButton as={Button} w='29%' ml = {2}  rightIcon={<ChevronDownIcon /> }>
-                    <img src="../../../images/profile.jpg" alt="" id='profilepic' />
-                    </MenuButton>
-                    <MenuList>
-                      <Link to="/profile"><MenuItem >My Profile</MenuItem></Link>
-                      <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
+                          <MenuButton as={Button} w='29%' ml={2} rightIcon={<ChevronDownIcon />}>
+                            <img src="../../../images/profile.jpg" alt="" id='profilepic' />
+                          </MenuButton>
+                          <MenuList>
+                            <><Link to={`profile/${profile._id}/${profile.name}/${profile.roll_no}`}><MenuItem>My Profile</MenuItem></Link></><MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                     </MenuList>
                   </Menu> :
                   <button id='logout' onClick={handleLogout}>Sign Out</button>

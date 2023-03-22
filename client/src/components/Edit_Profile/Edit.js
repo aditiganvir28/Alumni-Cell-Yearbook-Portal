@@ -1,49 +1,49 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./Edit.scss";
-import { useLocation } from "react-router-dom";
-import { LoginContext } from "../../helpers/Context";
-import { useContext } from "react";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import './Edit.scss'
+import { useLocation } from 'react-router-dom'
+import { LoginContext } from '../../helpers/Context'
+import { useContext } from 'react'
 
-var temp_USER = {};
+var temp_USER = {}
 function Edit(props) {
-  const { user, loading, setLoading } = useContext(LoginContext);
-  const [message, setMessage] = useState("");
-  const [imageSelected, setImageSelected] = useState("gfjebwfbweif");
-  const [imageUrl, setImageUrl] = useState("");
-  const [verify, setVerify] = useState(false);
-  const [imageUploaded, setImageUploaded] = useState(false);
+  const { user, loading, setLoading } = useContext(LoginContext)
+  const [message, setMessage] = useState('')
+  const [imageSelected, setImageSelected] = useState('gfjebwfbweif')
+  const [imageUrl, setImageUrl] = useState('')
+  const [verify, setVerify] = useState(false)
+  const [imageUploaded, setImageUploaded] = useState(false)
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1000));
+      await new Promise((r) => setTimeout(r, 1000))
 
-      setLoading((loading) => !loading);
-    };
+      setLoading((loading) => !loading)
+    }
 
-    Load();
-  }, []);
+    Load()
+  }, [])
 
   const uploadImage = () => {
-    console.log(imageSelected);
-    const formData = new FormData();
-    formData.append("file", imageSelected);
-    formData.append("upload_preset", "profile_image");
-    console.log(formData);
+    console.log(imageSelected)
+    const formData = new FormData()
+    formData.append('file', imageSelected)
+    formData.append('upload_preset', 'profile_image')
+    console.log(formData)
 
     axios
-      .post("https://api.cloudinary.com/v1_1/dheskw46y/image/upload", formData)
+      .post('https://api.cloudinary.com/v1_1/dheskw46y/image/upload', formData)
       .then((res) => {
-        console.log(res.data.url);
-        setImageUrl(res.data.url);
-        setImageUploaded(true);
-      });
-  };
+        console.log(res.data.url)
+        setImageUrl(res.data.url)
+        setImageUploaded(true)
+      })
+  }
   // Getting User Data From Backend
   useEffect(() => {
     axios
-      .post("http://localhost:5000/profile", {
+      .post('http://localhost:5000/profile', {
         email: user.email,
       })
       .then((res) => {
@@ -51,21 +51,20 @@ function Edit(props) {
         // temp_USER = res.data.User[0];
         // console.log(temp_USER);
 
-        setUserData(res.data.User[0]);
+        setUserData(res.data.User[0])
         // setImageUrl(temp_USER.profile_img);
-        setImageUrl(res.data.User[0].profile_img);
-        console.log(userData);
-      });
-  }, []);
+        setImageUrl(res.data.User[0].profile_img)
+        console.log(userData)
+      })
+  }, [])
 
-
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({})
 
   //sending data to store in the database
 
   const onSubmit = () => {
     axios
-      .post("http://localhost:5000/userData", {
+      .post('http://localhost:5000/userData', {
         email: user.email,
         name: userData.name,
         roll_no: userData.roll_no,
@@ -81,29 +80,32 @@ function Edit(props) {
         profile_img: imageUrl,
       })
       .then((res) => {
-        console.log(res.data.message);
-        setMessage(res.data.message);
-        setVerify(true);
+        console.log(res.data.message)
+        setMessage(res.data.message)
+        setVerify(true)
       })
       .catch((err) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   const setOptionValue = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
+    setUserData({ ...userData, [e.target.name]: e.target.value })
+  }
 
-  const resendMail = () =>{
-    console.log("yeah")
-    axios.post("http://localhost:5000/resendMail",{
-    userId: user.email,
-    personalMailId:userData.personal_email_id
-  }).then((res)=>{
-      console.log(res);
-    }).catch((err)=>{
-      console.log(err);
-    })
+  const resendMail = () => {
+    console.log('yeah')
+    axios
+      .post('http://localhost:5000/resendMail', {
+        userId: user.email,
+        personalMailId: userData.personal_email_id,
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   //Get the data for edit profile
@@ -282,11 +284,29 @@ function Edit(props) {
               />
               <br />
               <p id="ques">QUESTION 1</p>
-          <input type="text" placeholder="Write your answer in about 20-30 words" size="60" name = "ques1" value={userData.about} onChange={(e) =>
-              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+              <input
+                type="text"
+                placeholder="Write your answer in about 20-30 words"
+                size="60"
+                name="ques1"
+                value={userData.about}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br />
               <p id="ques">QUESTION 2</p>
-          <input type="text" placeholder="Write your answer in about 20-30 words" size="60" name = "ques2" value={userData.about} onChange={(e) =>
-              setUserData({ ...userData, [e.target.name]: e.target.value })}/><br/>
+              <input
+                type="text"
+                placeholder="Write your answer in about 20-30 words"
+                size="60"
+                name="ques2"
+                value={userData.about}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br />
               {verify && <h2>{message}</h2>}
               <button className="submit1" onClick={onSubmit}>
                 Submit
@@ -310,21 +330,25 @@ function Edit(props) {
               <input
                 type="file"
                 onChange={(event) => {
-                  setImageSelected(event.target.files[0]);
+                  setImageSelected(event.target.files[0])
                 }}
               />
-              <button id='upld' onClick={uploadImage} style={{ color: "white" }}>
+              <button
+                id="upld"
+                onClick={uploadImage}
+                style={{ color: 'white' }}
+              >
                 Upload Image
               </button>
               {imageUploaded && (
-                <h3 style={{ color: "white" }}>Image Uploaded</h3>
+                <h3 style={{ color: 'white' }}>Image Uploaded</h3>
               )}
             </div>
           </div>
         </div>
       )}
     </>
-  );
+  )
 }
 
-export default Edit;
+export default Edit
