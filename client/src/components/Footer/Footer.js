@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './Footer.scss'
 function Footer() {
   return (
-    <div>
+    <div className='relative'>
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"
@@ -86,6 +86,10 @@ function Footer() {
                 style={{ display: 'inline' }}
               ></a>
             </div>
+          </div>
+          <div className='flex flex-col lg:flex-row space-y-8 space-x-8 absolute bottom-16 right-8'>
+            <img src="images/IITI.png" className='w-12 mt-8 h-12'></img>
+            <img src="images/ACR.jfif" className='w-12 h-12'></img>
           </div>
         </div>
       </div>
