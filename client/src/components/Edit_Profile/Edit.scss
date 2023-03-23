@@ -3,6 +3,8 @@ body{
 }
 .container {
     font-family: 'Quantico', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
 }
 .header{
     align-items: center;
@@ -64,11 +66,13 @@ img{
 }
 input {
     /* border-radius: 10px; */
-    width: 500;
+    width: 95%;
     background-color: #3E185C;
     color: white;      
     padding: 10px;
-    margin: 0 0 20px 0;
+    // margin: 0 0 20px 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .dot {
     margin: 10px;
@@ -108,11 +112,11 @@ h2{
 .left {    
     // position: absolute;
     display: block;
-    padding-bottom: 5%;
-    // padding-left: 70px; 
+    padding: 4%;
     background-color: #210735;    
     height: fit-content;
     width: 50%;
+    margin-left: 0%;
 }
 .description {
     background-color: #3E065F;
@@ -164,6 +168,9 @@ h2{
     background-color: #3E185C;
     margin-bottom: 2%;
 }
+.container2 {
+    margin: 2%;
+}
 @media (max-width: 600px) {
     .container2, .navbar, .container4 {   
       flex-direction: column;
@@ -178,9 +185,20 @@ h2{
     display: inline;
 }
 select {
-    width: 73%;
+    width: 95%;
     background-color: #3E185C;
     color: white;      
     padding: 10px;
     margin-bottom: 2%;
+}
+
+@media (max-width: 1280px) {
+    .left {
+        width: 90%;
+        margin: auto;
+    }
+    .right {
+        width: 90%;
+        margin: 1%;
+    }
 }
