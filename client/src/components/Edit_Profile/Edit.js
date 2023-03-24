@@ -1,23 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import './Edit.scss'
-import { useLocation } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
-import { useContext } from 'react'
+import './Edit.scss'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
-var temp_USER = {}
-function Edit(props) {
+// const temp_USER = {};
+const Edit = () => {
   const { user, loading, setLoading } = useContext(LoginContext)
   const [message, setMessage] = useState('')
   const [imageSelected, setImageSelected] = useState('gfjebwfbweif')
   const [imageUrl, setImageUrl] = useState('')
   const [verify, setVerify] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)
+  const [userData, setUserData] = useState({})
+
+  // const email = user.email;
+  const [email, setEmail] = useState(user.email)
+  useEffect(() => {
+    setEmail(user.email)
+    // console.log(email);
+  })
 
   useEffect(() => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1000))
+      await new Promise((r) => setTimeout(r, 2500))
 
       setLoading((loading) => !loading)
     }
@@ -40,49 +48,106 @@ function Edit(props) {
         setImageUploaded(true)
       })
   }
-  // Getting User Data From Backend
+
+  const [userPEmailOnLoad, setUserPEmailOnLoad] = useState('')
+  const [userContactOnLoad, setUserContactOnLoad] = useState('')
+  const [changes, setChanges] = useState(false)
+
   useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        // console.log(res.data.User[0]);
-        // temp_USER = res.data.User[0];
-        // console.log(temp_USER);
+    if (
+      userPEmailOnLoad !== userData.personal_email_id ||
+      userContactOnLoad !== userData.contact_details
+    ) {
+      setChanges(true)
+    } else {
+      setChanges(false)
+    }
+  })
 
-        setUserData(res.data.User[0])
-        // setImageUrl(temp_USER.profile_img);
-        setImageUrl(res.data.User[0].profile_img)
-        console.log(userData)
-      })
-  }, [])
+  // Getting User Data From Backend
+  // useEffect(()=>{
+  //   const getUserData = async() => {axios.post('http://localhost:5000/profile', {
+  //     email: email
+  //   }).then((res)=>{
+  //     console.log(res.data.User[0]);
+  //     setUserData(res.data.User[0]);
+  //     setImageUrl(res.data.User[0].profile_img);
+  //   })}
+  //   // getUserData();
+  //   const timeoutId = setTimeout(() => {
+  //     getUserData();
+  //   }, 2500); // delay execution by 1 second
 
-  const [userData, setUserData] = useState({})
+  //   return () => clearTimeout(timeoutId);
+
+  // }, [])
+
+  // ***************************************
+  useEffect(() => {
+    if (user.email !== undefined) {
+      const getUserData = async () => {
+        axios
+          .post('http://localhost:5000/profile', {
+            email: user.email, // use user.email directly instead of email state variable
+          })
+          .then((res) => {
+            // console.log(res.data.User[0]);
+            setUserData(res.data.User[0])
+            setImageUrl(res.data.User[0].profile_img)
+            setUserPEmailOnLoad(res.data.User[0].personal_email_id)
+            setUserContactOnLoad(res.data.User[0].contact_details)
+          })
+      }
+      getUserData()
+    }
+  }, [user.email])
+
+  // *****************************************************************
+
+  const navigate = useNavigate()
 
   //sending data to store in the database
 
-  const onSubmit = () => {
+  const [one_step_verified, setOne_step_verified] = useState(true)
+  const [two_step_verified, settwo_step_verified] = useState(true)
+
+  const onUpdate = () => {
+    if (userPEmailOnLoad !== userData.personal_email_id) {
+      setOne_step_verified(false)
+    }
+    if (userContactOnLoad !== userData.contact_details) {
+      settwo_step_verified(false)
+    }
     axios
-      .post('http://localhost:5000/userData', {
-        email: user.email,
+      .put('http://localhost:5000/updateUser', {
+        email: email,
         name: userData.name,
         roll_no: userData.roll_no,
         academic_program: userData.academic_program,
         department: userData.department,
         personal_email_id: userData.personal_email_id,
         contact_details: userData.contact_details,
-        alternate_contact_details: userData.contact_details,
-        address: userData.contact_details,
+        alternate_contact_details: userData.alternate_contact_details,
+        address: userData.address,
         current_company: userData.current_company,
         designation: userData.designation,
         about: userData.about,
         profile_img: imageUrl,
+        one_step_verified: one_step_verified,
+        two_step_verified: two_step_verified,
       })
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
-        setVerify(true)
+        // setMessage("Your Profile has been updated successfully");
+        if (message === 'User data updated successfully') {
+          setVerify(true)
+          const timetonavigate = setTimeout(() => {
+            navigate('/profile')
+          }, 2000) // delay execution by 2 second
+
+          return () => clearTimeout(timetonavigate)
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -107,17 +172,6 @@ function Edit(props) {
         console.log(err)
       })
   }
-
-  //Get the data for edit profile
-  // useEffect(()=>{
-  //   axios.post('http://localhost:5000/profile', {
-  //     email: user.email
-  //   }).then((res)=>{
-  //     // console.log(res.data);
-  //     // setUserData(...userData, res.data);
-  //     setUserData({...userData, })
-  //   })
-  // })
 
   return (
     <>
@@ -283,35 +337,11 @@ function Edit(props) {
                 }
               />
               <br />
-              <p id="ques">QUESTION 1</p>
-              <input
-                type="text"
-                placeholder="Write your answer in about 20-30 words"
-                size="60"
-                name="ques1"
-                value={userData.about}
-                onChange={(e) =>
-                  setUserData({ ...userData, [e.target.name]: e.target.value })
-                }
-              />
-              <br />
-              <p id="ques">QUESTION 2</p>
-              <input
-                type="text"
-                placeholder="Write your answer in about 20-30 words"
-                size="60"
-                name="ques2"
-                value={userData.about}
-                onChange={(e) =>
-                  setUserData({ ...userData, [e.target.name]: e.target.value })
-                }
-              />
-              <br />
               {verify && <h2>{message}</h2>}
-              <button className="submit1" onClick={onSubmit}>
-                Submit
+              <button className="submit1" onClick={onUpdate}>
+                Update
               </button>
-              {verify && (
+              {verify && changes && (
                 <button className="submit1" onClick={resendMail}>
                   Resend Mail
                 </button>
@@ -333,11 +363,7 @@ function Edit(props) {
                   setImageSelected(event.target.files[0])
                 }}
               />
-              <button
-                id="upld"
-                onClick={uploadImage}
-                style={{ color: 'white' }}
-              >
+              <button onClick={uploadImage} style={{ color: 'white' }}>
                 Upload Image
               </button>
               {imageUploaded && (

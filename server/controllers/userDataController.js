@@ -284,42 +284,58 @@ const resendMail = asyncHandler(async (req, res) => {
 })
 
 //Upadte users data
-const updateUserData = asyncHandler(async (req, res) => {
+const updateUser = asyncHandler(async (req, res) => {
   const {
     email,
     name,
     roll_no,
     academic_program,
     department,
-    contact_details,
     personal_email_id,
+    contact_details,
+    alternate_contact_details,
+    address,
     current_company,
     designation,
     about,
     profile_img,
   } = req.body
 
-  //Confirm data
-  // if(!email || !name || !roll_no || !academic_program || !department || !contact_details || !personal_email_id || !designation || !about || !profile_img){
-  //     return res.status(400).json({meassage: 'All fields are required'})
-  // }
+  if (
+    !email ||
+    !name ||
+    !roll_no ||
+    !department ||
+    !contact_details ||
+    !alternate_contact_details ||
+    !address ||
+    !personal_email_id ||
+    !designation ||
+    !about ||
+    !profile_img
+  ) {
+    return res.send({ message: 'All fields are required' })
+  }
 
-  const userData = await Users.findById(user_id).exec()
+  const user = await Users.findOne({ email }) // find the user in the database by email
 
-  userData.name = name
-  userData.roll_no = roll_no
-  userData.academic_program = academic_program
-  userData.department = department
-  userData.contact_details = contact_details
-  userData.personal_email_id = personal_email_id
-  userData.current_company = current_company
-  userData.designation = designation
-  userData.about = about
-  userData.profile_img = profile_img
+  // update user data
+  user.name = name
+  user.roll_no = roll_no
+  user.academic_program = academic_program
+  user.department = department
+  user.personal_email_id = personal_email_id
+  user.contact_details = contact_details
+  user.alternate_contact_details = alternate_contact_details
+  user.address = address
+  user.current_company = current_company
+  user.designation = designation
+  user.about = about
+  user.profile_img = profile_img
 
-  const updatedUserData = await Users.save()
+  await user.save() // save the updated user data
 
-  res.json('Your data is updated')
+  res.status(200).json({ message: 'User data updated successfully' })
 })
 
 //find a user who logged in in user's data
@@ -754,7 +770,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 module.exports = {
   getUsersData,
   createUsersData,
-  updateUserData,
+  updateUser,
   verify,
   getProfileData,
   getWordEntered,
