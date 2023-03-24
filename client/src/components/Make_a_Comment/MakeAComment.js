@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import alumniData from '../navbar/akumniData.json'
 
 const MakeAComment = () => {
-  const { result, user } = useContext(LoginContext)
+  const { result, user, profile, setProfile, setResult } = useContext(
+    LoginContext,
+  )
   const [userData, setUserData] = useState({})
   const [comment, setComment] = useState()
   const { loading, setLoading } = useContext(LoginContext)
@@ -24,7 +26,7 @@ const MakeAComment = () => {
       setIsStudent(true)
     }
   })
-
+  console.log(result)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -48,6 +50,16 @@ const MakeAComment = () => {
         setUserData(res.data.User)
       })
   })
+
+  //After refreshing the page user is still signed in
+  useEffect(() => {
+    if (window.localStorage.getItem('searchAlumni') !== null) {
+      const searchAlumni = window.localStorage.getItem('searchAlumni')
+      if (searchAlumni !== null) {
+        setResult(JSON.parse(searchAlumni))
+      }
+    }
+  }, [])
 
   //Add comment in the comment section of user who makes a comment
   //and new comment of comment section on whom the comment is being made
@@ -100,15 +112,16 @@ const MakeAComment = () => {
     if (isStudent === true) {
       navigate('/')
     } else {
-      navigate('/profile')
+      navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
     }
+    window.localStorage.removeItem('searchAlumni')
   }
 
   //Getting all the approved comments to be displayed in the approved section
   useEffect(() => {
     axios
       .post('http://localhost:5000/getApprovedComments', {
-        friend_email: user.email,
+        friend_email: result.email,
       })
       .then((res) => {
         setApprovedComments(res.data[0].comments)

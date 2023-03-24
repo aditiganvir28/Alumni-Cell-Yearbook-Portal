@@ -5,17 +5,19 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const SecondLogin = () => {
-  const { user, loading, setLoading } = useContext(LoginContext)
+  const { user, loading, setLoading, profile, setProfile } = useContext(
+    LoginContext,
+  )
   const [myComments, setMyComments] = useState([])
   const [newComments, setNewComments] = useState([])
   const [approvedComments, setApprovedComments] = useState([])
-  const [profile, setProfile] = useState({})
+  // const [profile, setProfile] = useState({})
   const [state, setState] = useState(false)
 
   useEffect(() => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 2500))
+      await new Promise((r) => setTimeout(r, 3500))
 
       setLoading((loading) => !loading)
     }
@@ -24,16 +26,16 @@ const SecondLogin = () => {
   }, [])
 
   //Get the data to be displayed on the profile
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        setProfile(res.data.User[0])
-        console.log(res.data.User[0])
-      })
-  })
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/profile', {
+  //       email: user.email,
+  //     })
+  //     .then((res) => {
+  //       setProfile(res.data.User[0])
+  //       console.log(res.data.User[0])
+  //     })
+  // })
 
   //Getting the myComment to be dispalyed in the myComments Section
 

@@ -52,6 +52,8 @@ const createUsersData = asyncHandler(async (req, res) => {
     designation,
     about,
     profile_img,
+    question_1,
+    question_2,
   } = req.body
 
   console.log(req.body)
@@ -68,7 +70,9 @@ const createUsersData = asyncHandler(async (req, res) => {
     !personal_email_id ||
     !designation ||
     !about ||
-    !profile_img
+    !profile_img ||
+    !question_1 ||
+    !question_2
   ) {
     return res.send({ message: 'All fields are required' })
   }
@@ -102,11 +106,13 @@ const createUsersData = asyncHandler(async (req, res) => {
     designation,
     about,
     profile_img,
+    question_1,
+    question_2,
   })
 
   if (usersData) {
     //created
-    res.send({ message: `Sent a verification email to ${personal_email_id}` })
+    res.send({ message: `Sent a verification email to your personal email id` })
   } else {
     res.send({ message: 'Invalid Userdata Recieved' })
   }
@@ -136,13 +142,13 @@ const createUsersData = asyncHandler(async (req, res) => {
     usersData.phoneOTP = otp
     await usersData.save()
 
-    const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
-    const authToken = '6cce98e7ef4d627822b3e5c47d5b43db'
+    const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
+    const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
     const client = require('twilio')(accountSid, authToken)
     client.messages
       .create({
+        messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
         body: `Your otp is ${otp}`,
-        from: '+15074426876',
         to: usersData.contact_details,
       })
       .then((message) => console.log(message.sid))

@@ -80,6 +80,16 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
 
+  question_1: {
+    type: String,
+    required: true,
+  },
+
+  question_2: {
+    type: String,
+    required: true,
+  },
+
   phoneOTP: String,
 })
 

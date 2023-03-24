@@ -30,6 +30,7 @@ const App = ({ location }) => {
   const [loading, setLoading] = useState(true)
   const [fill, setFill] = useState(false)
   const [profile, setProfile] = useState({})
+  const [allUsers, setAllUsuers] = useState([])
 
   //getting all alumnis from json
   const alumniEmail = alumniData //geeting all the alumnis data
@@ -64,6 +65,18 @@ const App = ({ location }) => {
 
     Load()
   }
+  //getting all the users who have made their profile
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/getUsersData')
+      .then((res) => {
+        // console.log(res.data)
+        setAllUsuers(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  })
 
   //getting all users who have already signed in
   useEffect(() => {
@@ -71,7 +84,7 @@ const App = ({ location }) => {
       .get('http://localhost:5000/auth')
       .then((res) => {
         setAuthData(res.data)
-        console.log(authData)
+        // console.log(authData)
       })
       .catch((err) => {
         console.log(err)
@@ -86,7 +99,7 @@ const App = ({ location }) => {
       })
       .then((res) => {
         setProfile(res.data.User[0])
-        console.log(res.data.User[0])
+        // console.log(res.data.User[0])
       })
   })
 
@@ -120,7 +133,7 @@ const App = ({ location }) => {
           email: userObject.email,
         })
         .then((res) => {
-          console.log(res.data.message)
+          // console.log(res.data.message)
           //If the user already exists in the auth model
           if (res.data.message === 'true') {
             //if the user is a lumni
@@ -134,7 +147,7 @@ const App = ({ location }) => {
                   if (res.data.message === 'User Found') {
                     //if the user is verified
                     if (res.data.User[0].two_step_verified === true) {
-                      console.log('verified')
+                      // console.log('verified')
                       setFill(true)
                       navigate(
                         `/profile/${profile._id}/${profile.name}/${token}`,
@@ -147,7 +160,7 @@ const App = ({ location }) => {
                           email: userObject.email,
                         })
                         .then((res) => {
-                          console.log(res.data.message)
+                          // console.log(res.data.message)
                         })
                         .catch((err) => {
                           console.log(err)
@@ -219,11 +232,14 @@ const App = ({ location }) => {
         loadingSpinner,
         fill,
         setFill,
+        profile,
+        setProfile,
+        allUsers,
       }}
     >
       <div className="App overflow-x-hidden">
         {window.location.pathname !== '/fill/:userId' &&
-          window.location.pathname !== '/otpVerification' &&
+          window.location.pathname !== '/otpVerification/:userId' &&
           window.location.pathname !== '/error' && <Navbar />}
         <Routes>
           <Route exact path="/" element={<Homepage />} />

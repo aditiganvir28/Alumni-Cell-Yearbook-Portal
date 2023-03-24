@@ -5,9 +5,15 @@ import { LoginContext } from '../../helpers/Context'
 import { useContext } from 'react'
 
 function Fill(props) {
-  const { user, loading, setLoading, loggedin, setLoggedin } = useContext(
-    LoginContext,
-  )
+  const {
+    user,
+    loading,
+    setLoading,
+    loggedin,
+    setLoggedin,
+    profile,
+    setProfile,
+  } = useContext(LoginContext)
   const [message, setMessage] = useState('')
   const [imageSelected, setImageSelected] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -59,6 +65,8 @@ function Fill(props) {
     current_company: '',
     designation: '',
     about: '',
+    question_1: '',
+    question_2: '',
   })
 
   //sending data to store in the database
@@ -79,6 +87,8 @@ function Fill(props) {
         designation: userData.designation,
         about: userData.about,
         profile_img: imageUrl,
+        question_1: userData.question_1,
+        question_2: userData.question_2,
       })
       .then((res) => {
         console.log(res.data.message)
@@ -283,25 +293,31 @@ function Fill(props) {
                 }
               />
               <br />
-              <p id="ques"><div id='disc'>Q1.</div> What will you miss the most after graduating?</p>
+              <p id="ques">
+                <div id="disc">Q1.</div> What will you miss the most after
+                graduating?
+              </p>
               <input
                 type="text"
                 placeholder="Write your answer in about 20-30 words"
                 size="60"
-                name="ques1"
-                value={userData.about}
+                name="question_1"
+                value={userData.question_1}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }
               />
               <br />
-              <p id="ques">Q2. If you had the power to implement a change in college, what would it be?</p>
+              <p id="ques">
+                Q2. If you had the power to implement a change in college, what
+                would it be?
+              </p>
               <input
                 type="text"
                 placeholder="Write your answer in about 20-30 words"
                 size="60"
-                name="ques2"
-                value={userData.about}
+                name="question_2"
+                value={userData.question_2}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }
@@ -328,17 +344,35 @@ function Fill(props) {
               </div>
             </div>
             <div className="right">
-        <span className="dot">
-            <img id='ip'src={imageUrl}/>
-          </span>
-          <br/>
-          <h4 id='disclaimer'><div className="disc">Disclaimer:</div> This picture will be printed in the yearbook.</h4>
-          <input type="file" onChange={(event)=>{setImageSelected(event.target.files[0])}}/>
-          <button id='upld'onClick = {uploadImage} style={{color:"white"}}>Upload Image</button>
-          {upload && 
-          <h3 style={{color:"white"}}>{imageUploaded? 'Image Uploaded': 'Wait... while image is uploading'}</h3>
-          } 
-    </div>
+              <span className="dot">
+                <img id="ip" src={imageUrl} />
+              </span>
+              <br />
+              <h4 id="disclaimer">
+                <div className="disc">Disclaimer:</div> This picture will be
+                printed in the yearbook.
+              </h4>
+              <input
+                type="file"
+                onChange={(event) => {
+                  setImageSelected(event.target.files[0])
+                }}
+              />
+              <button
+                id="upld"
+                onClick={uploadImage}
+                style={{ color: 'white' }}
+              >
+                Upload Image
+              </button>
+              {upload && (
+                <h3 style={{ color: 'white' }}>
+                  {imageUploaded
+                    ? 'Image Uploaded'
+                    : 'Wait... while image is uploading'}
+                </h3>
+              )}
+            </div>
           </div>
         </div>
       )}
