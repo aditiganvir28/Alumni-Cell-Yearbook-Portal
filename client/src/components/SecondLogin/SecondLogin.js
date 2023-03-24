@@ -169,7 +169,7 @@ const SecondLogin = () => {
                 <h3 style={{ color: 'white' }}>{profile.about}</h3>
               </div>
               <div className="edit">
-                <div style={{ width: '50%' }}>
+                {/* <div style={{ width: '50%' }}> */}
                   <button
                     className="button"
                     style={{ width: '30%', color: 'white' }}
@@ -178,8 +178,7 @@ const SecondLogin = () => {
                   >
                     EDIT YOUR PROFILE
                   </button>
-                </div>
-                {/* <div style={{ display: 'block', width: '50%' }}> */}
+                {/* </div> */}
                   <input
                     type="file"
                     id="memo"
@@ -191,7 +190,6 @@ const SecondLogin = () => {
                     Upload Memories Image
                   </button>
                   {imageUploaded && imageadded && <p>{message}</p>}
-                {/* </div> */}
               </div>
             </div>
           </div>
