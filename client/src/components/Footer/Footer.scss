@@ -2,7 +2,7 @@
 .body{
     background-color: #160923;
 }
-.container2 {
+.container2f {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -17,6 +17,8 @@
     width: 40%;
     color: white;
     font-size: large;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 .footer-item p{
     color: white;
@@ -41,14 +43,15 @@
 }
 .footer-item1 {
     text-align: left;
-    padding: 90px;
-    padding-left: 0.1%;
+    // padding: 90px;
+    padding-left: 1%;
+    padding-top: 5%;
     width: 30%;
     font-size: large;
 }
 .footer-item2 {
     text-align: left;
-    padding-top: 90px;
+    padding-top: 5%;
     // padding-left: 1px;
     // padding-left: 1%;
     width: 20%;
@@ -81,23 +84,33 @@
 // responsive shit
 
 @media (max-width:950px){
-    .container2{
+    .container2f{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
         width: 100%;
         padding: 0px;
+        // margin-left: 10%;
     }
     .footer-item{
         width: 100%;
+        // text-align: center;
     }
     .footer-item1{
         width: 100%;
+        // text-align: center;
+        padding-top: 25%;
     }
     .footer-item2{
         width: 100%;
+        // text-align: start;
+        padding-top: 25%;
     }
     .footer-item #line{
+        text-align: center;
+    }
+    .footer-item p{
         text-align: center;
     }
     .alumni-footer{
@@ -105,6 +118,10 @@
     }
     .iconnn{
         display: none !important;
+    }
+    .end{
+        padding-left: 5%;
+        text-align: center;
     }
     .tt{
         width: 73%;

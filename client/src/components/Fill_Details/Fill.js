@@ -272,9 +272,11 @@ function Fill(props) {
                 }
               />
               <br />
+              {/* <p id="ques">About Me</p> */}
               <input
                 type="text"
-                placeholder="About Me"
+                maxLength={350}
+                placeholder="About Me (50-60 words)"
                 size="60"
                 name="about"
                 value={userData.about}
@@ -286,10 +288,11 @@ function Fill(props) {
               <p id="ques"><div id='disc'>Q1.</div> What will you miss the most after graduating?</p>
               <input
                 type="text"
+                maxLength={200}
                 placeholder="Write your answer in about 20-30 words"
                 size="60"
                 name="ques1"
-                value={userData.about}
+                // value={userData.about}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }
@@ -297,11 +300,12 @@ function Fill(props) {
               <br />
               <p id="ques">Q2. If you had the power to implement a change in college, what would it be?</p>
               <input
+                maxLength={200}
                 type="text"
                 placeholder="Write your answer in about 20-30 words"
                 size="60"
                 name="ques2"
-                value={userData.about}
+                // value={userData.about}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }

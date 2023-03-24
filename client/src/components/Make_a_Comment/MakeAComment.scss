@@ -53,8 +53,8 @@ li{
 
 
 .dot {
-    width: 400px;
-    height: 400px;
+    width: 60% !important;
+    height: 60%;
     background-color: #3E065F;
     border-radius: 50%;
     display: flex;
@@ -72,8 +72,9 @@ li{
 
 .left1 {
     // display: block;
-    padding-left: 30px;
+    padding-left: 2%;
     width: 45%;
+    display: flex;
 }
 
 .description {

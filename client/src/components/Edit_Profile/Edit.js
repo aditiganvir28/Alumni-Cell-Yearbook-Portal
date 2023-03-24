@@ -328,7 +328,7 @@ function Edit(props) {
                 printed in the yearbook.
               </h4>
               <input
-                type="file"
+                type="file" id='imgip'
                 onChange={(event) => {
                   setImageSelected(event.target.files[0])
                 }}
