@@ -18,7 +18,7 @@ import { json } from 'react-router';
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, profile, allUsers} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading, profile, allUsers, verified, setVerified} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -30,7 +30,7 @@ const Navbar = () => {
   const [display, setDisplay] = useState(false);
   const [profileIcon, setProfileIcon] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
-  const [verified, setVerified] = useState(false);
+  // const [verified, setVerified] = useState(false);
   // const [profile, setProfile] = useState({});
 
   const alumniEmail= alumniData; //geeting all the alumnis data

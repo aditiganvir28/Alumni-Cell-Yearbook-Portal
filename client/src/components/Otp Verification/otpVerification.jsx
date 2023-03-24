@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./otpverification.scss";
 
 const OtpVerification = () =>{
-    const {loggedin, setLoggedin, fill, setFill,user, setUser} = useContext(LoginContext);
+    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified} = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
     const [state, setState] = useState(false);
@@ -61,7 +61,8 @@ const OtpVerification = () =>{
             if(res.data==="Mobile number verified"){
                 navigate(`/profile/${profile._id}/${profile.name}/${token}`);
                 setFill(true);
-                // window.location.reload();
+                setVerified(true);
+                window.location.reload();
             }
             else{
                 setMessage(res.data);

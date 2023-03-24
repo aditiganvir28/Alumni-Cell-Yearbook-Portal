@@ -14,8 +14,8 @@ const fast2sms = require('fast-two-sms')
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'sonih6664@gmail.com',
-    pass: 'zonxexpoudhsqytv',
+    user: 'yearbookiiti@gmail.com',
+    pass: 'ukminlnnlztqdaqu',
   },
 })
 

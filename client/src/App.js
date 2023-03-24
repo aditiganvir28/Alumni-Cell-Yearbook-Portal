@@ -31,6 +31,7 @@ const App = ({ location }) => {
   const [fill, setFill] = useState(false)
   const [profile, setProfile] = useState({})
   const [allUsers, setAllUsuers] = useState([])
+  const [verified, setVerified] = useState(false)
 
   //getting all alumnis from json
   const alumniEmail = alumniData //geeting all the alumnis data
@@ -235,6 +236,8 @@ const App = ({ location }) => {
         profile,
         setProfile,
         allUsers,
+        verified,
+        setVerified,
       }}
     >
       <div className="App overflow-x-hidden">

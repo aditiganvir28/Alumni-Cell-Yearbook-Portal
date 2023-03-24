@@ -149,7 +149,7 @@ const MakeAComment = () => {
               <span className="dot">
                 {result.length && <img id="ip" src={result[0].profile_img} />}
               </span>
-              {result.length && (
+              {/* {result.length && (
                 <div className="description" id="desc">
                   <h2>{result[0].name}</h2>
 
@@ -164,7 +164,15 @@ const MakeAComment = () => {
                   </h3>
                   <h3 style={{ color: 'white' }}>{result[0].about}</h3>
                 </div>
-              )}
+              )} */}
+              <div className="description" id="desc">
+                <h2>Name</h2>
+
+                <h3 style={{ color: 'white' }}>Roll No: 12345678</h3>
+                <h3 style={{ color: 'white' }}>BTech, CSE</h3>
+                <h3 style={{ color: 'white' }}>Company, designation</h3>
+                <h3 style={{ color: 'white' }}>{result[0].about}</h3>
+              </div>
             </div>
             <div className="right1">
               <h1 id="make">Make a Comment</h1>

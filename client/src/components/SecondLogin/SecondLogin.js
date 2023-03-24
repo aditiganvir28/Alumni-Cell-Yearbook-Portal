@@ -13,6 +13,10 @@ const SecondLogin = () => {
   const [approvedComments, setApprovedComments] = useState([])
   // const [profile, setProfile] = useState({})
   const [state, setState] = useState(false)
+  const [uploaded, setUploaded] = useState(false)
+  const [imageUploaded, setImageUploaded] = useState(false)
+  const [imageSelected, setImageSelected] = useState(false)
+  const [imageUrl, setImageUrl] = useState('')
 
   useEffect(() => {
     setLoading(true)
@@ -25,17 +29,22 @@ const SecondLogin = () => {
     Load()
   }, [])
 
-  //Get the data to be displayed on the profile
-  // useEffect(() => {
-  //   axios
-  //     .post('http://localhost:5000/profile', {
-  //       email: user.email,
-  //     })
-  //     .then((res) => {
-  //       setProfile(res.data.User[0])
-  //       console.log(res.data.User[0])
-  //     })
-  // })
+  const uploadImage = () => {
+    setUploaded(true)
+    console.log(imageSelected)
+    const formData = new FormData()
+    formData.append('file', imageSelected)
+    formData.append('upload_preset', 'memories_image')
+    console.log(formData)
+
+    axios
+      .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
+      .then((res) => {
+        console.log(res.data.url)
+        setImageUrl(res.data.url)
+        setImageUploaded(true)
+      })
+  }
 
   //Getting the myComment to be dispalyed in the myComments Section
 
@@ -146,8 +155,16 @@ const SecondLogin = () => {
                 >
                   EDIT YOUR PROFILE
                 </button>
-                <input type="file" id='memo'></input>
-                <button id='upld2'>Upload Memories Image</button>
+                <input
+                  type="file"
+                  id="memo"
+                  onChange={(event) => {
+                    setImageSelected(event.target.files[0])
+                  }}
+                ></input>
+                <button id="upld2" onClick={uploadImage}>
+                  Upload Memories Image
+                </button>
               </div>
             </div>
           </div>

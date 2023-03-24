@@ -41,11 +41,11 @@ function Fill(props) {
     console.log(imageSelected)
     const formData = new FormData()
     formData.append('file', imageSelected)
-    formData.append('upload_preset', 'profile_image')
+    formData.append('upload_preset', 'profile_img')
     console.log(formData)
 
     axios
-      .post('https://api.cloudinary.com/v1_1/dheskw46y/image/upload', formData)
+      .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
       .then((res) => {
         console.log(res.data.url)
         setImageUrl(res.data.url)
