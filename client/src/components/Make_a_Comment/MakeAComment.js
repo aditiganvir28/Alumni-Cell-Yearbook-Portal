@@ -48,19 +48,19 @@ const MakeAComment = () => {
         email: user.email,
       })
       .then((res) => {
-        setUserData(res.data.User)
+        setUserData(res.data.User[0])
       })
   })
 
   //After refreshing the page user is still signed in
-  useEffect(() => {
-    if (window.localStorage.getItem('searchAlumni') !== null) {
-      const searchAlumni = window.localStorage.getItem('searchAlumni')
-      if (searchAlumni !== null) {
-        setResult(JSON.parse(searchAlumni))
-      }
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (window.localStorage.getItem('searchAlumni') !== null) {
+  //     const searchAlumni = window.localStorage.getItem('searchAlumni')
+  //     if (searchAlumni !== null) {
+  //       setResult(JSON.parse(searchAlumni))
+  //     }
+  //   }
+  // }, [])
 
   //Add comment in the comment section of user who makes a comment
   //and new comment of comment section on whom the comment is being made
@@ -125,7 +125,7 @@ const MakeAComment = () => {
         friend_email: result.email,
       })
       .then((res) => {
-        setApprovedComments(res.data[0].comments)
+        setApprovedComments(res.data.comments)
       })
       .catch((err) => {
         console.log(err)
@@ -173,7 +173,7 @@ const MakeAComment = () => {
                 <h3 style={{ color: 'white' }}>Roll No: 12345678</h3>
                 <h3 style={{ color: 'white' }}>BTech, CSE</h3>
                 <h3 style={{ color: 'white' }}>Company, designation</h3>
-                <h3 style={{ color: 'white' }}>{result[0].about}</h3>
+                <h3 style={{ color: 'white' }}></h3>
               </div>
             </div>
             <div className="right1">
@@ -208,26 +208,194 @@ const MakeAComment = () => {
               <h1 id="make">Approved Comments</h1>
             </div>
             <div id="cards-container">
-              {approvedComments.map((val) => (
-                <Card
-                  style={{
-                    width: '18rem',
-                    height: '11rem',
-                    margin: '1rem',
-                    overflow: 'auto',
-                  }}
-                >
-                  <Card.Img variant="top" />
-                  <Card.Body>
-                    <Card.Text style={{ paddingBottom: '1rem' }}>
-                      {val.comment}
-                    </Card.Text>
-                    <p id="name" style={{ paddingBottom: '0rem' }}>
-                      -{val.user_name}
-                    </p>
-                  </Card.Body>
-                </Card>
-              ))}
+              {/* {approvedComments.map((val) => ( 
+                // <Card
+                //   style={{
+                //     width: '18rem',
+                //     height: '11rem',
+                //     margin: '1rem',
+                //     overflow: 'auto',
+                //   }}
+                // >
+                //   <Card.Img variant="top" />
+                //   <Card.Body>
+                //     <Card.Text style={{ paddingBottom: '1rem' }}>
+                //       {val.comment}
+                //     </Card.Text>
+                //     <p id="name" style={{ paddingBottom: '0rem' }}>
+                //       -{val.user_name}
+                //     </p>
+                //   </Card.Body>
+              // </Card> */}
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              <Card
+                style={{
+                  width: '18rem',
+                  height: '11rem',
+                  margin: '1rem',
+                  overflow: 'auto',
+                }}
+              >
+                <Card.Img variant="top" />
+                <Card.Body>
+                  <Card.Text style={{ paddingBottom: '1rem' }}>
+                    {/* {val.comment} */}
+                    Comment..........
+                  </Card.Text>
+                  <p id="name" style={{ paddingBottom: '0rem' }}>
+                    {/* -{val.user_name} */}
+                    -By
+                  </p>
+                </Card.Body>
+              </Card>
+
+              {/* ))} */}
             </div>
           </div>
         </div>

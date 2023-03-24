@@ -21,6 +21,8 @@ const SecondLogin = () => {
   const [message, setMessage] = useState('')
   const [imageadded, setImageadded] = useState(false)
 
+  console.log(profile)
+
   useEffect(() => {
     setLoading(true)
     const Load = async () => {
