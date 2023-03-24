@@ -328,10 +328,42 @@ const Edit = () => {
               <br />
               <input
                 type="text"
-                placeholder="About Me"
+                placeholder="About Me (50-60 words)"
                 size="60"
                 name="about"
                 value={userData.about}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br />
+              <p id="ques">
+                <div id="disc">Q1.</div> What will you miss the most after
+                graduating?
+              </p>
+              <input
+                type="text"
+                maxLength={200}
+                placeholder="Write your answer in about 20-30 words"
+                size="60"
+                name="question_1"
+                value={userData.question_1}
+                onChange={(e) =>
+                  setUserData({ ...userData, [e.target.name]: e.target.value })
+                }
+              />
+              <br/>
+              <p id="ques">
+                Q2. If you had the power to implement a change in college, what
+                would it be?
+              </p>
+              <input
+                maxLength={200}
+                type="text"
+                placeholder="Write your answer in about 20-30 words"
+                size="60"
+                name="question_2"
+                value={userData.question_2}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }
@@ -363,7 +395,7 @@ const Edit = () => {
                   setImageSelected(event.target.files[0])
                 }}
               />
-              <button onClick={uploadImage} style={{ color: 'white' }}>
+              <button id='upld'onClick={uploadImage} style={{ color: 'white' }}>
                 Upload Image
               </button>
               {imageUploaded && (

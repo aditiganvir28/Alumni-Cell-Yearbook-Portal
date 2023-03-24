@@ -177,7 +177,7 @@ const SecondLogin = () => {
                     EDIT YOUR PROFILE
                   </button>
                 </div>
-                <div style={{ display: 'block', width: '50%' }}>
+                {/* <div style={{ display: 'block', width: '50%' }}> */}
                   <input
                     type="file"
                     id="memo"
@@ -189,7 +189,7 @@ const SecondLogin = () => {
                     Upload Memories Image
                   </button>
                   {imageUploaded && imageadded && <p>{message}</p>}
-                </div>
+                {/* </div> */}
               </div>
             </div>
           </div>

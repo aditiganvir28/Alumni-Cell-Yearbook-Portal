@@ -173,7 +173,7 @@ function Fill(props) {
                 name="academic_program"
                 id=""
                 defaultValue={userData.academic_program}
-                style={{ width: '78%' }}
+                // style={{ width: '78%' }}
                 onChange={setOptionValue}
               >
                 <option value="" name="Academic Program" selected disabled>
@@ -358,6 +358,7 @@ function Fill(props) {
               </h4>
               <input
                 type="file"
+                id='imgip'
                 onChange={(event) => {
                   setImageSelected(event.target.files[0])
                 }}
