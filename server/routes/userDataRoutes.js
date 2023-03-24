@@ -6,7 +6,6 @@ router
   .route('/userData')
   .get(userDataController.getUsersData)
   .post(userDataController.createUsersData)
-  .put(userDataController.updateUserData)
 
 router.get('/verify/:id', userDataController.verify)
 router.post('/profile', userDataController.getProfileData)

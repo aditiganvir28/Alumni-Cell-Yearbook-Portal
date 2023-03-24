@@ -13,11 +13,12 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { json } from 'react-router';
 
 
 const Navbar = () => {
 
-  const { loggedin, setLoggedin, user, setUser, setLoading} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading, profile, allUsers, verified, setVerified} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -29,10 +30,24 @@ const Navbar = () => {
   const [display, setDisplay] = useState(false);
   const [profileIcon, setProfileIcon] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
-  const [verified, setVerified] = useState(false);
-  const [profile, setProfile] = useState({});
+  // const [verified, setVerified] = useState(false);
+  // const [profile, setProfile] = useState({});
 
   const alumniEmail= alumniData; //geeting all the alumnis data
+
+  //Use ReactFilter
+  const filteredPersons = allUsers.filter(
+    person => {
+      return (
+        person
+        .name
+        .toLowerCase()
+        .includes(wordentered.toLowerCase())
+      );
+    }
+  );
+
+  console.log(filteredPersons);
 
   //find if a student logs in or alumni and whether the alumni is two step verified
   useEffect(()=>{
@@ -77,6 +92,7 @@ const Navbar = () => {
   const handleLogout =() =>{
       setUser({});
       window.localStorage.removeItem('user');
+      window.localStorage.removeItem('searchAlumni');
       setLoggedin(false);
       setProfileIcon(false);
       window.localStorage.setItem('loggedin', false)
@@ -127,26 +143,16 @@ useEffect(()=>{
       searchword: searchword
     }).then((res) => {
       setResult(res.data);
-      console.log(res.data);
+      window.localStorage.setItem('searchAlumni', JSON.stringify(result))
+      // console.log(res.data);
     }).catch((err) => {
       console.log(err)
     })
   })
 
-  //Get the data to be displayed on the profile
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        setProfile(res.data.User[0])
-        console.log(res.data.User[0])
-      })
-  })
-
   const searchAWord = (event) => {
     setWordentered(event.target.value);
+    setInputValue(event.target.value);
   }
 
   useEffect(() => {
@@ -155,6 +161,7 @@ useEffect(()=>{
     }).then((res) => {
       // console.log(res.data);
       setWordEnteredList(res.data);
+
     }).catch((err) => {
       console.log(err);
     })
@@ -188,7 +195,7 @@ useEffect(()=>{
                       searchAWord(e);
                       (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                       // onEnter();
-                    }} value= {inputValue}/>
+                    }} value={inputValue}/>
                     {wordEnteredList.length===0 && 
                     <ul>
                       <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}>No User Found</button></li>

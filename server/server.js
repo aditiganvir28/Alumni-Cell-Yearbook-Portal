@@ -52,7 +52,7 @@ app.listen(port, (err) => {
 
 mongoose
   .connect(
-    'mongodb+srv://Ayush:Ayush2003@cluster0.3gnxxme.mongodb.net/?retryWrites=true&w=majority',
+    'mongodb+srv://alumnicell:yearbookportal@yearbook.ynwmaxb.mongodb.net/test',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
