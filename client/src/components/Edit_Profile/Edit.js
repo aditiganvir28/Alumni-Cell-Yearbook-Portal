@@ -271,6 +271,9 @@ const Edit = () => {
                 }
               />
               <br />
+              <p id="ques">
+                Enter +91 before your contact number:
+              </p>
               <input
                 type="text"
                 placeholder="Contact Number*"
@@ -282,6 +285,9 @@ const Edit = () => {
                 }
               />
               <br />
+              <p id="ques">
+                Enter +91 before your contact number:
+              </p>
               <input
                 type="text"
                 placeholder="Alternate Contact Number*"
