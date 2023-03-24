@@ -26,5 +26,6 @@ router.post('/resendOTP', userDataController.resendOTP)
 router.post('/resendMail', userDataController.resendMail)
 router.post('/deleteComments', userDataController.deleteComments)
 router.post('/deleteUser', userDataController.deleteUser)
+router.put('/updateUser', userDataController.updateUser)
 
 module.exports = router

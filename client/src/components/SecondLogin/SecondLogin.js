@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const SecondLogin = () => {
   const { user, loading, setLoading } = useContext(LoginContext)
@@ -78,9 +79,11 @@ const SecondLogin = () => {
       })
   })
 
-  // redirecting to fill page for editing the profile
+  // redirecting to edit page for editing the profile
+  const navigate = useNavigate()
   const editProfile = () => {
-    window.location.href = '/edit'
+    // window.location.href = '/edit';
+    navigate('/edit')
   }
 
   return (
@@ -100,7 +103,7 @@ const SecondLogin = () => {
             @import
             url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
           </style>
-          <div className="container2">
+          <div className="container2sl">
             <div className="comments">
               <div>
                 <h1 id="cmt">Approved Comments</h1>
@@ -115,10 +118,10 @@ const SecondLogin = () => {
               </div>
             </div>
             <div className="profile">
-              <span className="dotsl">
+              <div className="dotsl">
                 {/* <img id = "ip" src={profile.profile_img}/> */}
                 <img className="ipp" id="ip" src={profile.profile_img} />
-              </span>
+              </div>
               <br></br>
               <br></br>
               <div className="about1">
@@ -132,19 +135,20 @@ const SecondLogin = () => {
                 </h3>
                 <h3 style={{ color: 'white' }}>{profile.about}</h3>
               </div>
+              <div className="edit">
+                <button
+                  className="button"
+                  style={{ width: '30%', color: 'white' }}
+                  onClick={editProfile}
+                  id="edit"
+                >
+                  EDIT YOUR PROFILE
+                </button>
+              </div>
             </div>
           </div>
-          <div className="edit">
-            <button
-              className="button"
-              style={{ width: '30%', color: 'white' }}
-              onClick={editProfile}
-              id="edit"
-            >
-              EDIT YOUR PROFILE
-            </button>
-          </div>
-          <div className="container2">
+
+          <div className="container2sl">
             <div className="comments2">
               <h1 id="cmt">My Comments</h1>
 
@@ -157,7 +161,7 @@ const SecondLogin = () => {
                 ))}
               </div>
             </div>
-            <div className="comments3" id="new">
+            <div className="comments3">
               <h1 id="cmt">New Comments</h1>
               {/* <h1 style={{ display : "inline"}}>..................</h1> */}
               <ul style={{ display: 'block' }}>
