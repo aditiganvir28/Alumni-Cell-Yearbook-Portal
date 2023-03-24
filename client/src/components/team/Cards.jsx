@@ -31,7 +31,7 @@ function Cards() {
           {Members.map((member) => {
             return (
               <Card post={member} key={member.Name} style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={member.img} />
+                <Card.Img id='photo'variant="top" src={member.img} />
                 <Card.Body>
                   <Card.Title>{member.Name}</Card.Title>
                   <Card.Text>{member.Desc}</Card.Text>

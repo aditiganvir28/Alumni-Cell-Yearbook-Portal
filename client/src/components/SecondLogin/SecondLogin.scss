@@ -50,7 +50,7 @@ li{
     border-radius: 20px;
     width: 80vh;
     height: 90vh;
-    // margin-left: 3%;
+    margin-left: 3%;
     text-align: left;
     margin-bottom: 1%;
     overflow-y: auto;
@@ -285,7 +285,12 @@ li{
         margin-left: 3%;
         // margin-left: 0%;
     }
-    .comments, .comments2, .comments3{
+    .comments{
+        margin-top: 3%;
+        margin-left: 3%;
+        // margin-left: 0%;
+    }
+    .comments,.comments2, .comments3{
         width: 90%;
         padding: 1%;
         margin-left: 0%;
@@ -294,6 +299,7 @@ li{
     .edit{
         display: flex;
         margin-left: 0%;
+        width: 100%;
     }
     .dotsl{
         flex-flow: column;
