@@ -82,8 +82,8 @@ li{
 }
 
 .dotsl {
-    width: 30vh;
-    height: 30vh;
+    width: 50vh;
+    height: 50vh;
     background-color: #3E065F;
     border-radius: 50%;
     display: flex;
@@ -290,8 +290,8 @@ li{
     }
     .dotsl{
         flex-flow: column;
-        min-height: 25vh;
-        min-width: 25vh;
+        height: 40vh;
+        width: 40vh;
     }
     
 }

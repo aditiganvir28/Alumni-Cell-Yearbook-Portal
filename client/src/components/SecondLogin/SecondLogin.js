@@ -144,6 +144,8 @@ const SecondLogin = () => {
                 >
                   EDIT YOUR PROFILE
                 </button>
+                <input type="file" id='memo'></input>
+                <button id='upld2'>Upload Memories Image</button>
               </div>
             </div>
           </div>
