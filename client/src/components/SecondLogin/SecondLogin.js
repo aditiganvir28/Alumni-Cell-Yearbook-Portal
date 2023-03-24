@@ -17,6 +17,8 @@ const SecondLogin = () => {
   const [imageUploaded, setImageUploaded] = useState(false)
   const [imageSelected, setImageSelected] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
+  const [message, setMessage] = useState('')
+  const [imageadded, setImageadded] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -29,7 +31,7 @@ const SecondLogin = () => {
     Load()
   }, [])
 
-  const uploadImage = () => {
+  const uploadImage = async () => {
     setUploaded(true)
     console.log(imageSelected)
     const formData = new FormData()
@@ -37,58 +39,74 @@ const SecondLogin = () => {
     formData.append('upload_preset', 'memories_image')
     console.log(formData)
 
-    axios
+    await axios
       .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
       .then((res) => {
         console.log(res.data.url)
         setImageUrl(res.data.url)
         setImageUploaded(true)
       })
+    if (imageUploaded) {
+      axios
+        .post('http://localhost:5000/memories_image', {
+          user_email: profile.email,
+          name: profile.name,
+          memory_img: imageUrl,
+        })
+        .then((res) => {
+          console.log(res.data)
+          setMessage(res.data.message)
+          setImageadded(true)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
 
   //Getting the myComment to be dispalyed in the myComments Section
 
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/getmyComments', {
-        user_email: user.email,
-      })
-      .then((res) => {
-        setMyComments(res.data[0].comment)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  })
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/getmyComments', {
+  //       user_email: user.email,
+  //     })
+  //     .then((res) => {
+  //       setMyComments(res.data[0].comment)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // })
 
   //Getting all the newComments to be displayed in the newComments Section
 
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/getNewComments', {
-        friend_email: user.email,
-      })
-      .then((res) => {
-        setNewComments(res.data[0].comments)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  })
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/getNewComments', {
+  //       friend_email: user.email,
+  //     })
+  //     .then((res) => {
+  //       setNewComments(res.data[0].comments)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // })
 
   //Getting all the approved comments to be displayed in the approved section
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/getApprovedComments', {
-        friend_email: user.email,
-      })
-      .then((res) => {
-        setApprovedComments(res.data[0].comments)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  })
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/getApprovedComments', {
+  //       friend_email: user.email,
+  //     })
+  //     .then((res) => {
+  //       setApprovedComments(res.data[0].comments)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // })
 
   // redirecting to edit page for editing the profile
   const navigate = useNavigate()
@@ -147,24 +165,29 @@ const SecondLogin = () => {
                 <h3 style={{ color: 'white' }}>{profile.about}</h3>
               </div>
               <div className="edit">
-                <button
-                  className="button"
-                  style={{ width: '30%', color: 'white' }}
-                  onClick={editProfile}
-                  id="edit"
-                >
-                  EDIT YOUR PROFILE
-                </button>
-                <input
-                  type="file"
-                  id="memo"
-                  onChange={(event) => {
-                    setImageSelected(event.target.files[0])
-                  }}
-                ></input>
-                <button id="upld2" onClick={uploadImage}>
-                  Upload Memories Image
-                </button>
+                <div style={{ width: '50%' }}>
+                  <button
+                    className="button"
+                    style={{ width: '30%', color: 'white' }}
+                    onClick={editProfile}
+                    id="edit"
+                  >
+                    EDIT YOUR PROFILE
+                  </button>
+                </div>
+                <div style={{ display: 'block', width: '50%' }}>
+                  <input
+                    type="file"
+                    id="memo"
+                    onChange={(event) => {
+                      setImageSelected(event.target.files[0])
+                    }}
+                  ></input>
+                  <button id="upld2" onClick={uploadImage}>
+                    Upload Memories Image
+                  </button>
+                  {imageUploaded && imageadded && <p>{message}</p>}
+                </div>
               </div>
             </div>
           </div>

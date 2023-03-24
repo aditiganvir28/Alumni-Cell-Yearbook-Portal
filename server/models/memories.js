@@ -6,12 +6,10 @@ const memoriesSchema = new mongoose.Schema({
   },
 
   name: {
-    tyoe: String,
-  },
-
-  memory_img: {
     type: String,
   },
+
+  memory_img: [],
 })
 
 module.exports = mongoose.model('Memories', memoriesSchema)

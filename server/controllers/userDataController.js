@@ -8,7 +8,7 @@ const MyComments = require('../models/my_comments')
 const NewComments = require('../models/new_comments')
 const ApprovedCommetns = require('../models/approved_comments')
 const RejectedComments = require('../models/rejected_comments')
-const fast2sms = require('fast-two-sms')
+const Memories = require('../models/memories')
 
 //Api to set up sender to send a mail
 const transporter = nodemailer.createTransport({
@@ -773,6 +773,38 @@ const deleteUser = asyncHandler(async (req, res) => {
   // return res.send({message: "User deleted"});
 })
 
+//Memories_Image
+const memory_img = asyncHandler(async (req, res) => {
+  const user_email = req.body.user_email
+  const name = req.body.name
+  const memory_img = req.body.memory_img
+
+  const User = await Memories.find({ user_email: user_email }).exec()
+  try {
+    if (!User?.length) {
+      const NewUser = await Memories.create({ user_email, name })
+      const addImage = await Memories.findOneAndUpdate(
+        { _id: NewUser._id },
+        { $push: { memory_img: memory_img } },
+      )
+
+      return res.send({ message: 'Image Uploaded Successfully' })
+    }
+    try {
+      const addImage = await Memories.findOneAndUpdate(
+        { _id: User[0]._id },
+        { $push: { memory_img: memory_img } },
+      )
+    } catch (err) {
+      console.log(err)
+    }
+
+    return res.send({ message: 'Image Upload Successfully' })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 module.exports = {
   getUsersData,
   createUsersData,
@@ -795,4 +827,5 @@ module.exports = {
   resendMail,
   deleteComments,
   deleteUser,
+  memory_img,
 }
