@@ -138,34 +138,34 @@ useEffect(()=>{
 })
 
   // Search Engine Functions
-  // useEffect(() => {
-  //   axios.post('http://localhost:5000/searchword', {
-  //     searchword: searchword
-  //   }).then((res) => {
-  //     setResult(res.data);
-  //     window.localStorage.setItem('searchAlumni', JSON.stringify(result))
-  //     // console.log(res.data);
-  //   }).catch((err) => {
-  //     console.log(err)
-  //   })
-  // })
+  useEffect(() => {
+    axios.post('http://localhost:5000/searchword', {
+      searchword: searchword
+    }).then((res) => {
+      setResult(res.data);
+      window.localStorage.setItem('searchAlumni', JSON.stringify(result))
+      // console.log(res.data);
+    }).catch((err) => {
+      console.log(err)
+    })
+  })
 
   const searchAWord = (event) => {
     setWordentered(event.target.value);
     setInputValue(event.target.value);
   }
 
-  // useEffect(() => {
-  //   axios.post('http://localhost:5000/wordEntered', {
-  //     wordentered: wordentered
-  //   }).then((res) => {
-  //     // console.log(res.data);
-  //     setWordEnteredList(res.data);
+  useEffect(() => {
+    axios.post('http://localhost:5000/wordEntered', {
+      wordentered: wordentered
+    }).then((res) => {
+      // console.log(res.data);
+      setWordEnteredList(res.data);
 
-  //   }).catch((err) => {
-  //     console.log(err);
-  //   })
-  // })
+    }).catch((err) => {
+      console.log(err);
+    })
+  })
 
   return(
     <>
