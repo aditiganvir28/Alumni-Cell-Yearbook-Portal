@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import './About.scss'
 import { LoginContext } from '../../helpers/Context.js'
+import Navbar from '../navbar/navbar'
 
 function About() {
   const { loading, setLoading } = useContext(LoginContext)
@@ -25,6 +26,7 @@ function About() {
   }
   return (
     <>
+      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>

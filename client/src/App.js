@@ -241,9 +241,9 @@ const App = ({ location }) => {
       }}
     >
       <div className="App overflow-x-hidden">
-        {window.location.pathname !== '/fill/:userId' &&
+        {/* {window.location.pathname !== '/fill/:userId' &&
           window.location.pathname !== '/otpVerification/:userId' &&
-          window.location.pathname !== '/error' && <Navbar />}
+          window.location.pathname !== '*' && <Navbar />} */}
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/fill/:userId" element={<Fill />} />
@@ -265,7 +265,7 @@ const App = ({ location }) => {
             path="/otpVerification/:userId"
             element={<OtpVerification />}
           />
-          <Route exact path="/error" element={<Error />} />
+          <Route exact path="*" element={<Error />} />
         </Routes>
 
         {!loading && <Footer />}

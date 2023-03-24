@@ -62,6 +62,7 @@ const OtpVerification = () =>{
                 navigate(`/profile/${profile._id}/${profile.name}/${token}`);
                 setFill(true);
                 setVerified(true);
+                setLoggedin(true);
                 window.location.reload();
             }
             else{

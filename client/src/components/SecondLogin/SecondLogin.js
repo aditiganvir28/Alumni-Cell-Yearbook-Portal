@@ -3,6 +3,7 @@ import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import Navbar from '../navbar/navbar'
 
 const SecondLogin = () => {
   const { user, loading, setLoading, profile, setProfile } = useContext(
@@ -66,47 +67,47 @@ const SecondLogin = () => {
 
   //Getting the myComment to be dispalyed in the myComments Section
 
-  // useEffect(() => {
-  //   axios
-  //     .post('http://localhost:5000/getmyComments', {
-  //       user_email: user.email,
-  //     })
-  //     .then((res) => {
-  //       setMyComments(res.data[0].comment)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // })
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/getmyComments', {
+        user_email: user.email,
+      })
+      .then((res) => {
+        setMyComments(res.data[0].comment)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  })
 
   //Getting all the newComments to be displayed in the newComments Section
 
-  // useEffect(() => {
-  //   axios
-  //     .post('http://localhost:5000/getNewComments', {
-  //       friend_email: user.email,
-  //     })
-  //     .then((res) => {
-  //       setNewComments(res.data[0].comments)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // })
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/getNewComments', {
+        friend_email: user.email,
+      })
+      .then((res) => {
+        setNewComments(res.data[0].comments)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  })
 
   //Getting all the approved comments to be displayed in the approved section
-  // useEffect(() => {
-  //   axios
-  //     .post('http://localhost:5000/getApprovedComments', {
-  //       friend_email: user.email,
-  //     })
-  //     .then((res) => {
-  //       setApprovedComments(res.data[0].comments)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // })
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/getApprovedComments', {
+        friend_email: user.email,
+      })
+      .then((res) => {
+        setApprovedComments(res.data[0].comments)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  })
 
   // redirecting to edit page for editing the profile
   const navigate = useNavigate()
@@ -117,6 +118,7 @@ const SecondLogin = () => {
 
   return (
     <>
+      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>

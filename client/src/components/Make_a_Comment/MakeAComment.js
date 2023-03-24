@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import alumniData from '../navbar/akumniData.json'
+import Navbar from '../navbar/navbar'
 
 const MakeAComment = () => {
   const { result, user, profile, setProfile, setResult } = useContext(
@@ -133,6 +134,7 @@ const MakeAComment = () => {
 
   return (
     <>
+      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>

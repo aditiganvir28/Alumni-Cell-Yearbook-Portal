@@ -17,6 +17,7 @@ import Step_3 from './images/Step_3.png'
 import Step_4 from './images/Step_4.png'
 import Step_5 from './images/Step_5.png'
 import Yearbook from './images/Yearbook2022.pdf'
+import Navbar from '../navbar/navbar'
 
 function Homepage() {
   const { loading, setLoading } = useContext(LoginContext)
@@ -56,6 +57,7 @@ function Homepage() {
   }
   return (
     <>
+      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>
