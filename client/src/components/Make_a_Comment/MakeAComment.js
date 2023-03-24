@@ -147,11 +147,12 @@ const MakeAComment = () => {
             url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
           </style>
           <div className="container2">
-            <div className="left1">
-              <span className="dot">
+            <div className="left1" id="named">
+              <div className="dota">
                 {result.length && <img id="ip" src={result[0].profile_img} />}
-              </span>
-              {/* {result.length && (
+              </div>
+              {/* console.log(result);
+              {result.length && (
                 <div className="description" id="desc">
                   <h2>{result[0].name}</h2>
 
@@ -211,7 +212,7 @@ const MakeAComment = () => {
               {/* {approvedComments.map((val) => ( 
                 // <Card
                 //   style={{
-                //     width: '18rem',
+                //     minWidth: '18rem',
                 //     height: '11rem',
                 //     margin: '1rem',
                 //     overflow: 'auto',
@@ -229,7 +230,7 @@ const MakeAComment = () => {
               // </Card> */}
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',
@@ -250,7 +251,7 @@ const MakeAComment = () => {
 
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',
@@ -271,7 +272,7 @@ const MakeAComment = () => {
 
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',
@@ -292,7 +293,7 @@ const MakeAComment = () => {
 
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',
@@ -313,7 +314,7 @@ const MakeAComment = () => {
 
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',
@@ -334,7 +335,7 @@ const MakeAComment = () => {
 
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',
@@ -355,7 +356,7 @@ const MakeAComment = () => {
 
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',
@@ -376,7 +377,7 @@ const MakeAComment = () => {
 
               <Card
                 style={{
-                  width: '18rem',
+                  minWidth: '18rem',
                   height: '11rem',
                   margin: '1rem',
                   overflow: 'auto',

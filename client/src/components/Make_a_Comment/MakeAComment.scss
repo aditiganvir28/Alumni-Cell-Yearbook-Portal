@@ -46,54 +46,61 @@ li{
     width: 40px;
     height: 40px;
 }
-.left1 #named{
+.left1#named{
+    align-items: center;
     font-size: x-large !important;
     text-align: center;
+    flex-direction: column;
 }
 
 
-.dot {
-    width: 60% !important;
-    height: 60%;
+.dota {
+    width: 50vw;
+    height: 50vw;
+    max-width: 30vh;
+    max-height: 30vh;
     background-color: #3E065F;
     border-radius: 50%;
     display: flex;
+    margin-top:5vh;
+    margin-bottom: 5vh;
+    #ip{
+        display: flex;
+        width: 100%;
+        border-radius: 50%;
+        padding: 1%;
+        
+    }
     /* margin-left: 90px; */
 }
 .container2 {
     display: flex;
     margin-left: 60px;
 }
-// h1 {
-//     color: white;
-//     font-size: 30px;
-//     padding: 10px;
-// }
+
 
 .left1 {
     // display: block;
     padding-left: 2%;
     width: 45%;
     display: flex;
+    
 }
 
 .description {
     background-color: #3E065F;
     border: none;
+    display: flex;
+    flex-direction: column;
+    
     border-radius: 20px;
-    margin-bottom: 20px;
 }
 .description h1{
     font-size: x-large;
     padding: 10%;
 }
 
-.dot #ip{
-    display: flex;
-    width: 100%;
-    border-radius: 50%;
-    padding: 1%;
-}
+
 
 .right1 {
     margin-right: 1%;
@@ -180,4 +187,19 @@ input {
       &::-webkit-scrollbar-thumb:hover {
         background: #555;
       }
+}
+
+@media screen and (max-width: 1250px){
+    .container2{
+        flex-direction: column;
+        align-items: center;
+        padding: 0%;
+    }
+    .left1, .right1{
+        width: 85%;
+    }
+    .right1{
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
 }
