@@ -282,9 +282,11 @@ function Fill(props) {
                 }
               />
               <br />
+              {/* <p id="ques">About Me</p> */}
               <input
                 type="text"
-                placeholder="About Me"
+                maxLength={350}
+                placeholder="About Me (50-60 words)"
                 size="60"
                 name="about"
                 value={userData.about}
@@ -299,6 +301,7 @@ function Fill(props) {
               </p>
               <input
                 type="text"
+                maxLength={200}
                 placeholder="Write your answer in about 20-30 words"
                 size="60"
                 name="question_1"
@@ -313,6 +316,7 @@ function Fill(props) {
                 would it be?
               </p>
               <input
+                maxLength={200}
                 type="text"
                 placeholder="Write your answer in about 20-30 words"
                 size="60"
