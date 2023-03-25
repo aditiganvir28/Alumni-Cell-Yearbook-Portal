@@ -50,6 +50,9 @@ function Fill(props) {
         console.log(res.data.url)
         setImageUrl(res.data.url)
         setImageUploaded(true)
+        setTimeout(() => {
+          setImageUploaded(false)
+        }, 30000)
       })
   }
 
@@ -72,6 +75,11 @@ function Fill(props) {
   //sending data to store in the database
 
   const onSubmit = () => {
+    setState(true)
+    setTimeout(() => {
+      setState(false)
+    }, 8000)
+
     axios
       .post('http://localhost:5000/userData', {
         email: user.email,
@@ -99,6 +107,9 @@ function Fill(props) {
           'Sent a verification email to your personal email id'
         )
           setVeriify2(true)
+        setTimeout(() => {
+          setMessage('')
+        }, 8000)
       })
       .catch((err) => {
         console.log(err)
@@ -109,7 +120,7 @@ function Fill(props) {
     setState(true)
     setTimeout(() => {
       setState(false)
-    }, 60000)
+    }, 8000)
 
     axios
       .post('http://localhost:5000/resendMail', {
@@ -227,9 +238,7 @@ function Fill(props) {
                 }
               />
               <br />
-              <p id="ques">
-                Enter +91 before your contact number:
-              </p>
+              <p id="ques">Enter +91 before your contact number:</p>
               <input
                 type="text"
                 placeholder="Contact Number*"
@@ -241,9 +250,7 @@ function Fill(props) {
                 }
               />
               <br />
-              <p id="ques">
-                Enter +91 before your contact number:
-              </p>
+              <p id="ques">Enter +91 before your contact number:</p>
               <input
                 type="text"
                 placeholder="Alternate Contact Number*"
@@ -335,7 +342,13 @@ function Fill(props) {
               <br />
               <div id="emailver">
                 {!verify2 && (
-                  <button className="submit1" onClick={onSubmit} id="sub5">
+                  <button
+                    className="submit1"
+                    onClick={onSubmit}
+                    id="sub5"
+                    disabled={state}
+                    style={{ background: state ? '#838080' : '#3E185C' }}
+                  >
                     Submit
                   </button>
                 )}
@@ -364,7 +377,7 @@ function Fill(props) {
               </h4>
               <input
                 type="file"
-                id='imgip'
+                id="imgip"
                 onChange={(event) => {
                   setImageSelected(event.target.files[0])
                 }}
