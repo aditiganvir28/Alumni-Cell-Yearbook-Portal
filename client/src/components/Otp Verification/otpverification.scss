@@ -1,7 +1,7 @@
 .container-otp{
     display: flex;
     margin-left: 40%;
-    margin-top: 2%;
+    // margin-top: 2%;
 }
 .resend{
     display: flex;
@@ -21,11 +21,18 @@
     border-color: black;
     border-radius: 10px;
     // margin-left: 5%;
-    width: 10%;
-    background-color: #4d1a6c;
+    // width: 10%;
+    // background-color: #4d1a6c;
     color: white;
     height: fit-content;
     font-weight: bolder;
+}
+#submit{
+    width: fit-content;
+    background-color: #4d1a6c;
+    border-radius: 10px;
+    border: 1px solid white;
+    margin-left: 10%;
 }
 #otp{
     display: flex;
@@ -37,7 +44,7 @@
     color: white;
     font-size: 40px;
     display: flex;
-    margin-top: 10%;
+    margin-top: 2%;
     margin-left: 5%;
 }
 
@@ -52,4 +59,22 @@
     color: black;
     background-color: #D8D8D8;
     font-weight: bolder;
+}
+@media screen and (max-width: 1250px){
+    .container-otp{
+        flex-direction: column;
+        align-items: center;
+        padding: 5%;
+        margin-left: 5%;
+    }
+    #otp{
+        align-items: center;
+        // margin-left: 1%;
+    }
+    .resend{
+        margin-bottom: 5%;
+    }
+    #submit{
+        margin-left: 0%;
+    }
 }
