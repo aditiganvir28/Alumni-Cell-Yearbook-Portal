@@ -55,14 +55,12 @@ li{
 
 
 .dota {
-    width: 50vw;
-    height: 50vw;
-    max-width: 30vh;
-    max-height: 30vh;
+    width: 50vh;
+    height: 50vh;
     background-color: #3E065F;
     border-radius: 50%;
     display: flex;
-    margin-top:5vh;
+    margin-top: 2vh;
     margin-bottom: 5vh;
     #ip{
         display: flex;
@@ -92,7 +90,6 @@ li{
     border: none;
     display: flex;
     flex-direction: column;
-    
     border-radius: 20px;
 }
 .description h1{
@@ -155,9 +152,10 @@ input {
 }
 #desc {
     width: 80%;
-    align-self: center;
-    padding: 4%;
+    // align-self: center;
+    padding: 2%;
     overflow: auto;
+    border: 1px solid white;
 }
 
 #cards-container {
@@ -201,5 +199,9 @@ input {
     .right1{
         margin-left: 2vw;
         margin-right: 2vw;
+    }
+    .dota{
+        max-width: 30vh;
+        max-height: 30vh;
     }
 }
