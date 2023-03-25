@@ -61,7 +61,7 @@ function About() {
                     the coming years.{' '}
                   </p>
                   <p>
-                    Please reach us at:<br></br>E-Mail: alumnicell@iiti.ac.in
+                    Please reach us at<br></br>E-Mail: alumnicell@iiti.ac.in
                     <br></br>Enjoy commenting!<br></br>Regards,<br></br>The
                     Alumni Cell,<br></br>Indian Institute of Technology Indore
                     <br></br>
@@ -71,15 +71,17 @@ function About() {
                 <div className="message" id="dean">
                   <h1 id="msg">Message from Dean</h1>
                   <p id="para-msg">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sapiente doloribus quaerat mollitia dolorem expedita labore
-                    sint quam temporibus suscipit porro distinctio, delectus,
-                    incidunt, accusamus architecto soluta corrupti atque totam
-                    nesciunt Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Sint, est at dolore eligendi reprehenderit, aperiam
-                    perferendis explicabo corrupti architecto dignissimos
-                    ratione Perferendis aperiam quo corporis explicabo sit at
-                    rem culpa
+                  Dear Class of 2023,<br/><br/>
+                  I extend a sincere congratulations and best of luck to the Class of 2022. While
+                  your days as a student have come to an end, your connection to IIT Indore lasts
+                  for a lifetime. Take advantage of the opportunities provided by our global alumni
+                  network – leverage it and contribute to it.<br/>
+                  In the coming years, I urge that you not forget your alma mater, professors, and
+                  fellows. I encourage you to not only give back to the institute, but also keep us
+                  updated on the many achievements you will experience in your careers and
+                  personal lives. We will always take great pride in your achievements.<br/><br/>
+                  Take care and keep in touch,<br/>
+                  Congratulations once again!
                   </p>
                   <br></br>
                   <hr id="line2"></hr>
@@ -90,56 +92,47 @@ function About() {
                       <h1>Frequently Asked Questions (FAQs)</h1>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">lorem 1</div>
+                        <div class="label">- Would I be required to log in every time I access the yearbook portal?</div>
                         <div class="content">
-                          Lorem ipsum dolor, sit amet consectetur adipisicing
-                          elit. Sint laudantium dolor id aliquam eligendi nobis.
-                          Vel aspernatur ut dolorem. Deleniti laudantium a fuga
-                          accusantium eaque nostrum reiciendis quod sint quas?
+                        No. Once you set up your profile on the first log in, you would not be required to log in again every time you access the portal. 
+                        Just click on the ‘Profile’ button, and you’re good to go.
                         </div>
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">lorem 2</div>
+                        <div class="label">- Is two-step verification necessary for creating my profile?</div>
                         <div class="content">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Rerum porro sit harum reiciendis quibusdam
-                          deserunt praesentium aut cum? Adipisci perferendis
-                          quisquam reiciendis? Fugiat dolore suscipit tenetur
-                          est ipsam impedit doloremque?
+                        Yes. Two-step verification helps us ensure that it is truly you who is signing in. Without completing it, your profile will not be created on the portal.
                         </div>
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">lorem 3</div>
+                        <div class="label">- Can I navigate through the profiles of my batchmates?</div>
                         <div class="content">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Non explicabo consectetur quod voluptatem maxime
-                          ipsa iste maiores, blanditiis delectus qui adipisci
-                          eius? Ea earum amet temporibus doloribus beatae
-                          excepturi nesciunt.
+                        Yes, you can do that by typing their name in the search bar.
                         </div>
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">lorem 4</div>
+                        <div class="label">- Would I have to re-enter my details for the physical yearbook separately?</div>
                         <div class="content">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Vero, reiciendis suscipit aperiam vel
-                          consectetur aut explicabo sequi quos ab nam officiis
-                          quaerat nesciunt, itaque aliquam sapiente, dolorem
-                          dignissimos libero labore!
+                        No, your profile from the portal will be used for printing the yearbook. 
+                        Please ensure you fill in the required details accordingly. You can edit your profile once you’ve signed up on the portal. 
+                        However, after a particular date - of which you’ll be informed well in advance - your profile will be locked, and the same details would be used for printing.
                         </div>
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">lorem 5</div>
+                        <div class="label">- Can I edit my phone number and email id once it has been verified?</div>
                         <div class="content">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Incidunt sit, assumenda labore consequuntur
-                          possimus eius voluptas corrupti molestiae enim quidem
-                          corporis quia dolore. Tenetur porro commodi illum
-                          reiciendis, consequatur incidunt?
+                          No. In order to change either your phone number or email id, please reach out to the Alumni Cell Web Team.
+                        </div>
+                      </div>
+                      <hr></hr>
+                      <div class="containera">
+                        <div class="label">- Can I use slang / inappropriations in my comments?</div>
+                        <div class="content">
+                          No. The Alumni Cell reserves the full right to delete any comments which use foul or abusive language. Please refrain from doing so.
                         </div>
                       </div>
                       <hr></hr>

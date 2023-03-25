@@ -86,14 +86,15 @@ input {
     margin-right: auto;
 }
 .dot {
-    margin: 10px;
+    // margin-left: 10%;
+    margin-bottom: 0% !important;
     width: 350px;
     height: 350px;
     background-color: #3E065F;
     border-radius: 50%;
     display: flex;
-    margin-right: 90px;
-    
+    // margin-right: 90px;
+    margin: 10%;
 }
 #fill{
     width: 100%;

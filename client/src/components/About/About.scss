@@ -127,6 +127,9 @@ h1#about,p{
     position: relative;
     margin: 10px 10px;
   }
+  .accordion .content{
+    color: white;
+  }
   
   /* Positions the labels relative to the .container. Adds padding to the top and bottom and increases font size. Also makes its cursor a pointer */
   
@@ -134,6 +137,7 @@ h1#about,p{
     position: relative;
     padding: 10px 0;
     font-size: 30px;
+    font-weight: bolder;
     color: white;
     cursor: pointer;
   }
