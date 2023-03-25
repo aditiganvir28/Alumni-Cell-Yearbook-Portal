@@ -59,7 +59,7 @@ const App = ({ location }) => {
   const loadingSpinner = () => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 500))
+      await new Promise((r) => setTimeout(r, 1000))
 
       setLoading((loading) => !loading)
     }

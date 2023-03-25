@@ -50,13 +50,18 @@ const OtpVerification = () =>{
   },[])
 
     const navigate = useNavigate();
-    console.log(user);
+
     const otpVerify = (e) =>{
         e.preventDefault();
+        setState(true);
+        setTimeout(()=>{
+            setState(false)
+        }, 20000)
         axios.post('http://localhost:5000/verify',{
             phoneOTP: otp,
             userId: user.email
         }).then((res)=>{
+          
             console.log(res);
             if(res.data==="Mobile number verified"){
                 navigate(`/profile/${profile._id}/${profile.name}/${token}`);
@@ -65,9 +70,10 @@ const OtpVerification = () =>{
                 setLoggedin(true);
                 window.location.reload();
             }
-            else{
-                setMessage(res.data);
-            }
+            setMessage(res.data);
+        setTimeout(()=>{
+            setMessage("");
+        }, 20000)
         }).catch((err)=>{
             console.log(err);
         })
@@ -77,7 +83,7 @@ const OtpVerification = () =>{
         setState(true);
         setTimeout(()=>{
             setState(false)
-        }, 60000)
+        }, 20000)
         axios.post('http://localhost:5000/resendOTP',{
             phoneOTP: otp,
             userId: user.email
@@ -103,10 +109,11 @@ const OtpVerification = () =>{
             <input type="text" id='otp' onChange={(e)=>{setOtp(e.target.value)}}/>
             <div className={state? "resend-disabled" : "resend"}>
             <button onClick={resendOTP} disabled={state}>Resend OTP</button>
+            <p style={{color: "white"}}>{message}</p>
         </div>                      
         </form>
         <div className="submit">
-            <button onClick={otpVerify} id='submit'>Submit</button>
+            <button onClick={otpVerify} id='submit' disabled={state} style={{ background: state ? '#838080' : '#3E185C' }}>Submit</button>
             </div>  
         </div>
         <br></br>

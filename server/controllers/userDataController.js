@@ -152,14 +152,24 @@ const createUsersData = asyncHandler(async (req, res) => {
     usersData.phoneOTP = otp
     await usersData.save()
 
-    const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
-    const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
+    // const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
+    // const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
+    // const client = require('twilio')(accountSid, authToken)
+    // client.messages
+    //   .create({
+    //     messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
+    //     body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
+    //     to: usersData.contact_details,
+    //   })
+    //   .then((message) => console.log(message.sid))
+    const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
+    const authToken = process.env.TWILIO_AUTH_TOKEN
     const client = require('twilio')(accountSid, authToken)
     client.messages
       .create({
-        messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
-        body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
-        to: usersData.contact_details,
+        body: `Your otp is ${otp}`,
+        from: '+15074426876',
+        to: '+919404584441',
       })
       .then((message) => console.log(message.sid))
   } catch (error) {
@@ -217,14 +227,24 @@ const resendOTP = asyncHandler(async (req, res) => {
     await user.save()
     console.log(user.phoneOTP)
 
-    const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
-    const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
+    // const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
+    // const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
+    // const client = require('twilio')(accountSid, authToken)
+    // client.messages
+    //   .create({
+    //     messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
+    //     body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
+    //     to: usersData.contact_details,
+    //   })
+    //   .then((message) => console.log(message.sid))
+    const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
+    const authToken = process.env.TWILIO_AUTH_TOKEN
     const client = require('twilio')(accountSid, authToken)
     client.messages
       .create({
-        messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
-        body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
-        to: usersData.contact_details,
+        body: `Your otp is ${otp}`,
+        from: '+15074426876',
+        to: '+919404584441',
       })
       .then((message) => console.log(message.sid))
   } catch (error) {

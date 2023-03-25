@@ -218,11 +218,6 @@ const SecondLogin = () => {
                       id="check"
                       disabled={state}
                       onClick={(e) => {
-                        setState(true)
-                        setTimeout(() => {
-                          setState(false)
-                        }, 60000)
-
                         axios
                           .post('http://localhost:5000/approvedComments', {
                             friend_email: user.email,
@@ -250,6 +245,11 @@ const SecondLogin = () => {
                           .catch((err) => {
                             console.log(err)
                           })
+
+                        setState(true)
+                        setTimeout(() => {
+                          setState(false)
+                        }, 20000)
                       }}
                     >
                       <i
@@ -264,11 +264,6 @@ const SecondLogin = () => {
                       onClick={(e) => {
                         {
                           e.preventDefault()
-
-                          setState(true)
-                          setTimeout(() => {
-                            setState(false)
-                          }, 60000)
 
                           axios
                             .post('http://localhost:5000/rejectedComments', {
@@ -298,6 +293,10 @@ const SecondLogin = () => {
                               console.log(err)
                             })
                         }
+                        setState(true)
+                        setTimeout(() => {
+                          setState(false)
+                        }, 20000)
                         // loadingSpinner();
                       }}
                     >

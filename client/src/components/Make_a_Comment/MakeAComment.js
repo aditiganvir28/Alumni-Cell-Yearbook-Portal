@@ -17,6 +17,7 @@ const MakeAComment = () => {
   const [name, setName] = useState('')
   const [isStudent, setIsStudent] = useState(false)
   const [approvedComments, setApprovedComments] = useState([])
+  const [state, setState] = useState(false)
 
   const alumniEmail = alumniData
 
@@ -64,8 +65,9 @@ const MakeAComment = () => {
 
   //Add comment in the comment section of user who makes a comment
   //and new comment of comment section on whom the comment is being made
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async () => {
+    // e.preventDefault()
+    console.log('reached')
     if (isStudent === false) {
       await axios
         .post('http://localhost:5000/myComments', {
@@ -110,6 +112,10 @@ const MakeAComment = () => {
           console.log(err)
         })
     }
+    // setState(true)
+    // setTimeout(() => {
+    //   setState(false)
+    // }, 20000)
     if (isStudent === true) {
       navigate('/')
     } else {
@@ -130,7 +136,7 @@ const MakeAComment = () => {
       .catch((err) => {
         console.log(err)
       })
-  })
+  }, [])
 
   return (
     <>
@@ -195,7 +201,12 @@ const MakeAComment = () => {
                   type="submit"
                   id="post"
                   onClick={handleSubmit}
-                  style={{ color: 'white', float: 'right' }}
+                  style={{
+                    color: 'white',
+                    float: 'right',
+                    background: state ? '#838080' : '#3E185C',
+                  }}
+                  // disabled={state}
                 >
                   POST!
                 </button>
