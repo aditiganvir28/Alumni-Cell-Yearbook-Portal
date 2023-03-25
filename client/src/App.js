@@ -20,6 +20,7 @@ import { useParams } from 'react-router'
 import jwt_decode from 'jwt-decode'
 import { LoginContext } from './helpers/Context'
 import axios from 'axios'
+import { Navbar_phone } from './components/Navbar_phone/Navbar_phone'
 
 const App = ({ location }) => {
   const [user, setUser] = useState({}) //the one who logged in
@@ -239,11 +240,12 @@ const App = ({ location }) => {
       }}
     >
       <div className="App overflow-x-hidden">
-        {window.location.pathname !== '/fill/:userId' &&
+        {/* {window.location.pathname !== '/fill/:userId' &&
           window.location.pathname !== '/otpVerification/:userId' &&
-          window.location.pathname !== '*' && <Navbar />}
+          window.location.pathname !== '*' && <Navbar />} */}
         <Routes>
           <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/nav" element={<Navbar_phone />} />
           <Route exact path="/fill/:userId" element={<Fill />} />
           <Route exact path="/edit" element={<Edit />} />
           <Route
