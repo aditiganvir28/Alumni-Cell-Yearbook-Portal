@@ -59,7 +59,7 @@ const App = ({ location }) => {
   const loadingSpinner = () => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1000))
+      await new Promise((r) => setTimeout(r, 500))
 
       setLoading((loading) => !loading)
     }
@@ -128,91 +128,89 @@ const App = ({ location }) => {
     document.getElementById('google-login').hidden = true
     console.log(userObject)
 
-    setTimeout(() => {
-      axios
-        .post('http://localhost:5000/checkAuth', {
-          email: userObject.email,
-        })
-        .then((res) => {
-          // console.log(res.data.message)
-          //If the user already exists in the auth model
-          if (res.data.message === 'true') {
-            //if the user is a lumni
-            if (alumniEmail.includes(userObject.email)) {
-              axios
-                .post('http://localhost:5000/findAUser', {
-                  email: userObject.email,
-                })
-                .then((res) => {
-                  //If the user had made his profile
-                  if (res.data.message === 'User Found') {
-                    //if the user is verified
-                    if (res.data.User[0].two_step_verified === true) {
-                      // console.log('verified')
-                      setFill(true)
-                      navigate(
-                        `/profile/${profile._id}/${profile.name}/${token}`,
-                      )
-                    }
-                    //if the user is not verified
-                    else {
-                      axios
-                        .post('http://localhost:5000/deleteUser', {
-                          email: userObject.email,
-                        })
-                        .then((res) => {
-                          // console.log(res.data.message)
-                        })
-                        .catch((err) => {
-                          console.log(err)
-                        })
-                      navigate(`/fill/${userObject.jti}`)
-                    }
-                    // if the user has not made the profile but already exists in the auth
-                    // then navigate user to fill page
-                  } else {
-                    navigate(`/fill/${userObject.jti}`)
-                  }
-                })
-              console.log('Second time sign in and alumni')
-            }
-            //If the user is student
-            else {
-              setFill(true)
-              navigate('/')
-              console.log('second time sign in and student')
-            }
-          }
-          //if signed in for the first time
-          else {
+    // setTimeout(() => {
+    axios
+      .post('http://localhost:5000/checkAuth', {
+        email: userObject.email,
+      })
+      .then((res) => {
+        // console.log(res.data.message)
+        //If the user already exists in the auth model
+        if (res.data.message === 'true') {
+          //if the user is a lumni
+          if (alumniEmail.includes(userObject.email)) {
             axios
-              .post('http://localhost:5000/auth', {
+              .post('http://localhost:5000/findAUser', {
                 email: userObject.email,
-                name: userObject.name,
               })
               .then((res) => {
-                console.log(res)
-                //If alumni
-                if (alumniEmail.includes(userObject.email)) {
-                  console.log('first time login and alumni')
+                //If the user had made his profile
+                if (res.data.message === 'User Found') {
+                  //if the user is verified
+                  if (res.data.User[0].two_step_verified === true) {
+                    // console.log('verified')
+                    setFill(true)
+                    navigate(`/profile/${profile._id}/${profile.name}/${token}`)
+                  }
+                  //if the user is not verified
+                  else {
+                    axios
+                      .post('http://localhost:5000/deleteUser', {
+                        email: userObject.email,
+                      })
+                      .then((res) => {
+                        // console.log(res.data.message)
+                      })
+                      .catch((err) => {
+                        console.log(err)
+                      })
+                    navigate(`/fill/${userObject.jti}`)
+                  }
+                  // if the user has not made the profile but already exists in the auth
+                  // then navigate user to fill page
+                } else {
                   navigate(`/fill/${userObject.jti}`)
                 }
-                //if student
-                else {
-                  setFill(true)
-                  navigate('/')
-                  console.log('first time login and student')
-                }
               })
-              .catch((err) => {
-                console.log(err)
-              })
+            console.log('Second time sign in and alumni')
           }
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }, 1000)
+          //If the user is student
+          else {
+            setFill(true)
+            navigate('/')
+            console.log('second time sign in and student')
+          }
+        }
+        //if signed in for the first time
+        else {
+          axios
+            .post('http://localhost:5000/auth', {
+              email: userObject.email,
+              name: userObject.name,
+            })
+            .then((res) => {
+              console.log(res)
+              //If alumni
+              if (alumniEmail.includes(userObject.email)) {
+                console.log('first time login and alumni')
+                navigate(`/fill/${userObject.jti}`)
+              }
+              //if student
+              else {
+                setFill(true)
+                navigate('/')
+                console.log('first time login and student')
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    // }, 1000)
   }
 
   return (
@@ -241,9 +239,9 @@ const App = ({ location }) => {
       }}
     >
       <div className="App overflow-x-hidden">
-        {/* {window.location.pathname !== '/fill/:userId' &&
+        {window.location.pathname !== '/fill/:userId' &&
           window.location.pathname !== '/otpVerification/:userId' &&
-          window.location.pathname !== '*' && <Navbar />} */}
+          window.location.pathname !== '*' && <Navbar />}
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/fill/:userId" element={<Fill />} />

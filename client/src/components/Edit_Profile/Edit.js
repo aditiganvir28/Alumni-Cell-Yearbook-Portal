@@ -6,14 +6,20 @@ import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 
 // const temp_USER = {};
-const Edit = () => {
+// const Edit = () => {
+//   const { user, loading, setLoading } = useContext(LoginContext)
+
+function Edit(props) {
   const { user, loading, setLoading } = useContext(LoginContext)
   const [message, setMessage] = useState('')
   const [imageSelected, setImageSelected] = useState('gfjebwfbweif')
   const [imageUrl, setImageUrl] = useState('')
   const [verify, setVerify] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)
+  const [upload, setUploaded] = useState(false)
   const [userData, setUserData] = useState({})
+  const [state, setState] = useState(false)
+  const [verify2, setVeriify2] = useState(false)
 
   // const email = user.email;
   const [email, setEmail] = useState(user.email)
@@ -34,10 +40,11 @@ const Edit = () => {
   }, [])
 
   const uploadImage = () => {
+    setUploaded(true)
     console.log(imageSelected)
     const formData = new FormData()
     formData.append('file', imageSelected)
-    formData.append('upload_preset', 'profile_image')
+    formData.append('upload_preset', 'profile_img')
     console.log(formData)
 
     axios
@@ -91,7 +98,7 @@ const Edit = () => {
             email: user.email, // use user.email directly instead of email state variable
           })
           .then((res) => {
-            // console.log(res.data.User[0]);
+            console.log(res.data.User[0])
             setUserData(res.data.User[0])
             setImageUrl(res.data.User[0].profile_img)
             setUserPEmailOnLoad(res.data.User[0].personal_email_id)
@@ -133,12 +140,19 @@ const Edit = () => {
         designation: userData.designation,
         about: userData.about,
         profile_img: imageUrl,
+        question_1: userData.question_1,
+        question_2: userData.question_2,
         one_step_verified: one_step_verified,
         two_step_verified: two_step_verified,
       })
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
+        if (
+          res.data.message ===
+          'Sent a verification email to your personal email id'
+        )
+          setVeriify2(true)
         // setMessage("Your Profile has been updated successfully");
         if (message === 'User data updated successfully') {
           setVerify(true)
@@ -159,7 +173,11 @@ const Edit = () => {
   }
 
   const resendMail = () => {
-    console.log('yeah')
+    setState(true)
+    setTimeout(() => {
+      setState(false)
+    }, 60000)
+
     axios
       .post('http://localhost:5000/resendMail', {
         userId: user.email,
@@ -181,7 +199,7 @@ const Edit = () => {
         </div>
       )}
       {!loading && (
-        <div className="container">
+        <div className="container_fill">
           <style>
             @import
             url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -190,7 +208,7 @@ const Edit = () => {
             <div className="left">
               <h2> </h2>
               <br />
-              <h1>Edit your Profile</h1>
+              <h1 id="fill">Edit your Profile</h1>
               <br />
               <input
                 type="text"
@@ -218,6 +236,7 @@ const Edit = () => {
                 name="academic_program"
                 id=""
                 defaultValue={userData.academic_program}
+                style={{ width: '78%' }}
                 onChange={setOptionValue}
               >
                 <option value="" name="Academic Program" selected disabled>
@@ -328,6 +347,7 @@ const Edit = () => {
               <br />
               <input
                 type="text"
+                maxLength={350}
                 placeholder="About Me (50-60 words)"
                 size="60"
                 name="about"
@@ -352,7 +372,7 @@ const Edit = () => {
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }
               />
-              <br/>
+              <br />
               <p id="ques">
                 Q2. If you had the power to implement a change in college, what
                 would it be?
@@ -369,15 +389,29 @@ const Edit = () => {
                 }
               />
               <br />
-              {verify && <h2>{message}</h2>}
-              <button className="submit1" onClick={onUpdate}>
-                Update
-              </button>
-              {verify && changes && (
-                <button className="submit1" onClick={resendMail}>
-                  Resend Mail
-                </button>
-              )}
+              {/* {verify && <h2>{message}</h2>} */}
+              <div id="emailver">
+                {/* <button className="submit1" onClick={onUpdate} id="sub5">
+                    Update
+                  </button> */}
+                {!verify2 && (
+                  <button className="submit1" onClick={onUpdate} id="sub5">
+                    Update
+                  </button>
+                )}
+                {verify && <h2 id="verificationmessage">{message}</h2>}
+                {verify2 && changes && (
+                  <button
+                    className="submit1"
+                    onClick={resendMail}
+                    disabled={state}
+                    id="sub5"
+                    style={{ color: state ? '#D8D8D8' : '#fec90ad9' }}
+                  >
+                    Resend Mail
+                  </button>
+                )}
+              </div>
             </div>
             <div className="right">
               <span className="dot">
@@ -390,16 +424,25 @@ const Edit = () => {
                 printed in the yearbook.
               </h4>
               <input
-                type="file" id='imgip'
+                type="file"
+                id="imgip"
                 onChange={(event) => {
                   setImageSelected(event.target.files[0])
                 }}
               />
-              <button id='upld'onClick={uploadImage} style={{ color: 'white' }}>
+              <button
+                id="upld"
+                onClick={uploadImage}
+                style={{ color: 'white' }}
+              >
                 Upload Image
               </button>
-              {imageUploaded && (
-                <h3 style={{ color: 'white' }}>Image Uploaded</h3>
+              {upload && (
+                <h3 style={{ color: 'white' }}>
+                  {imageUploaded
+                    ? 'Image Uploaded'
+                    : 'Wait... while image is uploading'}
+                </h3>
               )}
             </div>
           </div>

@@ -121,13 +121,12 @@ const Navbar = () => {
       return "links deactivate";
     }
   }
-  
-useEffect(()=>{
+
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
   }
-})
-  
+
+
 useEffect(()=>{
   if(alumniEmail.includes(user.email)){
     setIsStudent(false);
@@ -177,7 +176,7 @@ useEffect(()=>{
         <img src='/images/1.png' />
         <div className='navbar'>
           <ul onClick={handleNavopen} className={renderNav()}>
-            <Link id='av'to="/" onClick={()=>{setLoading(true)}}>HOME</Link>
+            <Link id='av'to="/">HOME</Link>
             <Link id='av' to="/about">ABOUT</Link>
             <Link id='av' to="/team">DEVELOPERS</Link>
 

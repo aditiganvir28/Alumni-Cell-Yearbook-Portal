@@ -57,7 +57,6 @@ function Homepage() {
   }
   return (
     <>
-      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>

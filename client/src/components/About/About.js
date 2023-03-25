@@ -26,7 +26,6 @@ function About() {
   }
   return (
     <>
-      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>

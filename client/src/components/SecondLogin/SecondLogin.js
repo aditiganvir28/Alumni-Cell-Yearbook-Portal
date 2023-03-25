@@ -120,7 +120,6 @@ const SecondLogin = () => {
 
   return (
     <>
-      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>
@@ -180,17 +179,17 @@ const SecondLogin = () => {
                   </button>
                 </div>
                 {/* <div style={{ display: 'block', width: '50%' }}> */}
-                  <input
-                    type="file"
-                    id="memo"
-                    onChange={(event) => {
-                      setImageSelected(event.target.files[0])
-                    }}
-                  ></input>
-                  <button id="upld2" onClick={uploadImage}>
-                    Upload Memories Image
-                  </button>
-                  {imageUploaded && imageadded && <p>{message}</p>}
+                <input
+                  type="file"
+                  id="memo"
+                  onChange={(event) => {
+                    setImageSelected(event.target.files[0])
+                  }}
+                ></input>
+                <button id="upld2" onClick={uploadImage}>
+                  Upload Memories Image
+                </button>
+                {imageUploaded && imageadded && <p>{message}</p>}
                 {/* </div> */}
               </div>
             </div>

@@ -126,11 +126,21 @@ const createUsersData = asyncHandler(async (req, res) => {
     transporter.sendMail({
       to: personal_email_id,
       subject: 'Verify Account',
-      html: `Click <a href='${url}'>here</a> to confirm your email.`,
-    })
-
-    return res.send({
-      message: `Sent a verification email to your personal email id`,
+      // html: `Click <a href='${url}'>here</a> to confirm your email.`,
+      html: `<p>Thank you for registering on the Yearbook Portal.
+      Please verify your registered email by clicking on the link below.
+      <a href='${url}'>Verify</a>
+      In case you enter the wrong OTP, you will have to sign in again and fill all the details.
+      It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
+      To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
+      <a href='#'>Whatsapp</a>
+      We also urge you to create your profile on the Alumni Portal by visiting
+      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a>
+      You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
+    <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
+    <p>Regards,<br>
+    The Alumni Cell,<br>
+    Indian Institute of Technology, Indore</p>`,
     })
   } catch (err) {
     console.log(err)
@@ -148,7 +158,7 @@ const createUsersData = asyncHandler(async (req, res) => {
     client.messages
       .create({
         messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
-        body: `Your otp is ${otp}`,
+        body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
         to: usersData.contact_details,
       })
       .then((message) => console.log(message.sid))
@@ -207,14 +217,14 @@ const resendOTP = asyncHandler(async (req, res) => {
     await user.save()
     console.log(user.phoneOTP)
 
-    const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
-    const authToken = '6cce98e7ef4d627822b3e5c47d5b43db'
+    const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
+    const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
     const client = require('twilio')(accountSid, authToken)
     client.messages
       .create({
-        body: `Your otp is ${otp}`,
-        from: '+15074426876',
-        to: user.contact_details,
+        messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
+        body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
+        to: usersData.contact_details,
       })
       .then((message) => console.log(message.sid))
   } catch (error) {
@@ -274,11 +284,25 @@ const resendMail = asyncHandler(async (req, res) => {
   try {
     //Email the user a unique verification link
     const url = `http://localhost:5000/verify/${verificationToken}`
-
+    console.log('Reaches')
     transporter.sendMail({
       to: personalMailId,
       subject: 'Verify Account',
-      html: `Click <a href='${url}'>here</a> to confirm your email.`,
+      // html: `Click <a href='${url}'>here</a> to confirm your email.`,
+      html: `<p>Thank you for registering on the Yearbook Portal.
+      Please verify your registered email by clicking on the link below.
+      <a href='${url}'>Verify</a>
+      In case you enter the wrong OTP, you will have to sign in again and fill all the details.
+      It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
+      To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
+      <a href='#'>Whatsapp</a>
+      We also urge you to create your profile on the Alumni Portal by visiting
+      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a>
+      You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
+    <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
+    <p>Regards,<br>
+    The Alumni Cell,<br>
+    Indian Institute of Technology, Indore</p>`,
     })
 
     return res.send({

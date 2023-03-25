@@ -134,7 +134,6 @@ const MakeAComment = () => {
 
   return (
     <>
-      <Navbar />
       {loading && (
         <div className="spinner">
           <span class="loader"></span>
