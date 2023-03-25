@@ -7,8 +7,18 @@ const authRoutes = require('./routes/authRoutes')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-
+const https=require('https');
+const fs=require('fs');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/yearbookportal-iiti.co.in/alumni cell.pem', 'utf8'); // key
+const credentials = {
+  key: privateKey,
+};
 const app = express()
+// app.use(express.static('public'));
+const httpsServer = https.createServer(credentials, app);
+httpsServer.listen('5000', () => {
+    console.log('listening on https://yearbookportal-iiti.co.in:5000');
+});
 
 const port = process.env.PORT || 5000
 
