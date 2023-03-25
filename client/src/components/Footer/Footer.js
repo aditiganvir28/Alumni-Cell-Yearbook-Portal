@@ -58,7 +58,7 @@ function Footer() {
             </p>
           </div>
         </div>
-        <div className="footer-item2 lg:mt-0 -mt-24">
+        <div className="footer-item2 lg:mt-0 -mt-24 mb-16 lg:mb-0">
           <h1 className="ml-8 lg:ml-0">Find Us On</h1>
           <br></br>
           <div className="flex flex-row ml-24 lg:ml-0 space-x-12 lg:space-x-0 w-1/4 lg:w-full">
@@ -87,7 +87,7 @@ function Footer() {
               ></a>
             </div>
           </div>
-          <div className='flex flex-col lg:flex-row space-y-8 space-x-8 absolute bottom-16 right-8'>
+          <div className='flex flex-row space-y-8 space-x-8 absolute bottom-0 lg:bottom-16 mb-16 lg:mb-0 right-8 mr-32 lg:mr-0'>
             <img src="images/IITI.png" className='w-12 mt-8 h-12'></img>
             <img src="images/ACR.jfif" className='w-12 h-12'></img>
           </div>
