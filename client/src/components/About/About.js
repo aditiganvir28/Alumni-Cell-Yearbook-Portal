@@ -72,7 +72,7 @@ function About() {
                   <h1 id="msg">Message from Dean</h1>
                   <p id="para-msg">
                   Dear Class of 2023,<br/><br/>
-                  I extend a sincere congratulations and best of luck to the Class of 2022. While
+                  I extend a sincere congratulations and best of luck to the Class of 2023. While
                   your days as a student have come to an end, your connection to IIT Indore lasts
                   for a lifetime. Take advantage of the opportunities provided by our global alumni
                   network – leverage it and contribute to it.<br/>
@@ -89,10 +89,10 @@ function About() {
                 <div className="faq">
                   <div class="accordion-body">
                     <div class="accordion">
-                      <h1>Frequently Asked Questions (FAQs)</h1>
+                      <h1 id='fa'>Frequently Asked Questions (FAQs)</h1>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">- Would I be required to log in every time I access the yearbook portal?</div>
+                        <div class="label"><div className="dash">&#62;</div> Would I be required to log in every time I access the yearbook portal?</div>
                         <div class="content">
                         No. Once you set up your profile on the first log in, you would not be required to log in again every time you access the portal. 
                         Just click on the ‘Profile’ button, and you’re good to go.
@@ -100,21 +100,21 @@ function About() {
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">- Is two-step verification necessary for creating my profile?</div>
+                        <div class="label"><div className="dash">&#62;</div> Is two-step verification necessary for creating my profile?</div>
                         <div class="content">
                         Yes. Two-step verification helps us ensure that it is truly you who is signing in. Without completing it, your profile will not be created on the portal.
                         </div>
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">- Can I navigate through the profiles of my batchmates?</div>
+                        <div class="label"><div className="dash">&#62;</div> Can I navigate through the profiles of my batchmates?</div>
                         <div class="content">
                         Yes, you can do that by typing their name in the search bar.
                         </div>
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">- Would I have to re-enter my details for the physical yearbook separately?</div>
+                        <div class="label"><div className="dash">&#62;</div> Would I have to re-enter my details for the physical yearbook separately?</div>
                         <div class="content">
                         No, your profile from the portal will be used for printing the yearbook. 
                         Please ensure you fill in the required details accordingly. You can edit your profile once you’ve signed up on the portal. 
@@ -123,19 +123,19 @@ function About() {
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">- Can I edit my phone number and email id once it has been verified?</div>
+                        <div class="label"><div className="dash">&#62;</div> Can I edit my phone number and email id once it has been verified?</div>
                         <div class="content">
                           No. In order to change either your phone number or email id, please reach out to the Alumni Cell Web Team.
                         </div>
                       </div>
                       <hr></hr>
                       <div class="containera">
-                        <div class="label">- Can I use slang / inappropriations in my comments?</div>
+                        <div class="label"><div className="dash">&#62;</div> Can I use slang / inappropriations in my comments?</div>
                         <div class="content">
                           No. The Alumni Cell reserves the full right to delete any comments which use foul or abusive language. Please refrain from doing so.
                         </div>
                       </div>
-                      <hr></hr>
+                      {/* <hr></hr> */}
                     </div>
                   </div>
                 </div>
