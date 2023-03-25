@@ -177,9 +177,9 @@ useEffect(()=>{
         <img src='/images/1.png' />
         <div className='navbar'>
           <ul onClick={handleNavopen} className={renderNav()}>
-            <Link to="/" onClick={()=>{setLoading(true)}}>HOME</Link>
-            <Link to="/about">ABOUT</Link>
-            <Link to="/team">DEVELOPERS</Link>
+            <Link id='av'to="/" onClick={()=>{setLoading(true)}}>HOME</Link>
+            <Link id='av' to="/about">ABOUT</Link>
+            <Link id='av' to="/team">DEVELOPERS</Link>
 
             
             <div id='google-login'>
@@ -227,7 +227,9 @@ useEffect(()=>{
                             <img src="../../../images/profile.jpg" alt="" id='profilepic' />
                           </MenuButton>
                           <MenuList>
-                            <><Link to={`profile/${profile._id}/${profile.name}/${profile.roll_no}`}><MenuItem>My Profile</MenuItem></Link></><MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
+                            <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${profile.roll_no}`}>
+                              <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
+                              <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                     </MenuList>
                   </Menu> :
                   <button id='logout' onClick={handleLogout}>Sign Out</button>
