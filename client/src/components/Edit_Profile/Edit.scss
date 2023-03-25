@@ -93,7 +93,7 @@ input {
     border-radius: 50%;
     display: flex;
     margin-right: 90px;
-    margin-left: 70px;
+    
 }
 #fill{
     width: 100%;
@@ -201,7 +201,7 @@ select {
     margin-bottom: 2%;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1150px) {
     .left {
         width: 90%;
         margin: auto;
