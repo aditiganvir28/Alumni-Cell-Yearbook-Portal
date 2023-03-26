@@ -5,6 +5,7 @@ import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
 import axios from 'axios';
 import alumniData from './akumniData.json'
+import { motion } from 'framer-motion'
 import {
   Menu,
   MenuButton,
@@ -18,6 +19,11 @@ import { json } from 'react-router';
 
 const Navbar = () => {
 
+  const variants = {
+    open: { y: 0, transition: {} },
+    closed: { y: "-96%" },
+  }
+
   const { loggedin, setLoggedin, user, setUser, setLoading, profile, allUsers, verified, setVerified} = useContext(LoginContext);
 
   const navigate = useNavigate();
@@ -30,6 +36,7 @@ const Navbar = () => {
   const [display, setDisplay] = useState(false);
   const [profileIcon, setProfileIcon] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
+  const [isOpen, setIsOpen] = useState(true)
   // const [verified, setVerified] = useState(false);
   // const [profile, setProfile] = useState({});
 
@@ -168,6 +175,7 @@ useEffect(()=>{
 
   return(
     <>
+    <div className='navbar-laptop'>
     <div className="overflow-x-hidden" id='abd'>
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
@@ -245,7 +253,67 @@ useEffect(()=>{
         </div>
       </div>
     </div>
+    </div>
+  
+    <>
+    <div className='navbar_phone'>
+      <motion.div className='flex flex-col justify-center items-center bg-[#180c1e] overflow-y-hidden'
+        animate={isOpen ? "open" : "closed"}
+        variants={variants}>
+        <div className='h-screen w-screen bg-[#4d1a6c] flex flex-col items-center justify-start pt-8'>
+          <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-16 rounded-xl'></img>
+          <motion.div className='absolute top-0 right-0 mt-8 mr-8 text-3xl' onClick={() => setIsOpen(isOpen => !isOpen)}>×</motion.div>
+          {loggedin &&
+            <div id='loggedIn' className='mt-24 mb-16'>
+              <div className="searchr" style={{ width: '100%', display: "flex" }}>
+                {(isStudent || verified) && <>
+                  <input type="text" placeholder="Search..." class="search" onChange={(e) => {
+                    searchAWord(e);
+                    (e.target.value === "") ? setDisplay(false) : setDisplay(true);
+                    // onEnter();
+                  }} value={inputValue} />
+                  {wordEnteredList.length === 0 &&
+                    <ul>
+                      <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }}>No User Found</button></li>
+                    </ul>}
+                  {wordEnteredList.length !== 0 &&
+                    <ul>
+                      {wordEnteredList.map((val, index) =>
+                      (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }} key={index} onClick={(e) => {
+                        e.preventDefault();
+                        setSearchword(val.email);
+                        setInputValue("");
+                        setDisplay(false);
+                        e.target.value = "";
+                        setTimeout(() => {
+                          navigate(`/comment/${result[0]._id}/${result[0].name}/${result[0].roll_no}`)
+                        }, 1000)
+
+                      }}><p>{val.name}</p>
+                        <p style={{ fontSize: "70%", fontStyle: "italic" }}>{val.academic_program}</p>
+                      </button></li>)
+                      )}
+                    </ul>
+                  }
+                </>}
+              </div>
+            </div>
+          }
+
+          <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mt-24 mb-24'}>Home</div></a>
+          <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>about</div></a>
+          <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>developers</div></a>
+          <a href='/'><div onClick={handleLogout} className={loggedin ? 'uppercase' : 'hidden'}>Logout</div></a>
+          <div id='google-login'>
+          </div>
+        </div>
+        <motion.div onClick={() => setIsOpen(isOpen => !isOpen)} className='w-full bg-[#180c1e] flex justify-center'><div className={isOpen ? 'hidden' : 'text-center -mt-2 pt-4 overflow-hidden w-12 h-12 text-xl rounded-full bg-[#4d1a6c]'}>∨</div></motion.div>
+      </motion.div>
+      </div>
     </>
+    </>
+
+
   
   )
 }
