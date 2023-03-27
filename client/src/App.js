@@ -240,9 +240,10 @@ const App = ({ location }) => {
       }}
     >
       <div className="App overflow-x-hidden">
-        {/* {window.location.pathname !== '/fill/:userId' &&
+        {window.location.pathname !== '/fill/:userId' &&
           window.location.pathname !== '/otpVerification/:userId' &&
-          window.location.pathname !== '*' && <Navbar />} */}
+          window.location.pathname !== '*' && <Navbar />}
+        {/* <Navbar_phone /> */}
         <Routes>
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/nav" element={<Navbar_phone />} />

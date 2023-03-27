@@ -237,3 +237,16 @@ i {
 MenuItem {
     background-color: #4d1a6c;
 }
+
+.navbar_phone{
+    display: none;
+}
+
+@media screen and (max-width: 992px){
+    .navbar-laptop{
+        display: none;
+    }
+    .navbar_phone{
+        display: block;
+    }
+}
