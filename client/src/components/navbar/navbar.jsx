@@ -24,7 +24,7 @@ const Navbar = () => {
     closed: { y: "-96%" },
   }
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner, isStudent, setIsStudent} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -34,7 +34,6 @@ const Navbar = () => {
   const { result, setResult } = useContext(LoginContext);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
-  const [isStudent, setIsStudent] = useState(false);
   const [isOpen, setIsOpen] = useState(true)
   const [example, setExample] = useState([]);
   const alumniEmail= alumniData; //geeting all the alumnis data
@@ -146,14 +145,13 @@ const Navbar = () => {
   }
 
 
-useEffect(()=>{
+
   if(alumniEmail.includes(user.email)){
     setIsStudent(false);
   }
   else{
     setIsStudent(true);
   }
-})
 
   const searchAWord = (event) => {
     setWordentered(event.target.value);
@@ -200,7 +198,7 @@ useEffect(()=>{
                     (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}} key={index} onClick={(e) => {
                       e.preventDefault();
                       window.localStorage.removeItem('searchedAlumni')
-                      // loadingSpinner2();
+                      // loadingSpinner();
                       setSearchword(val.email);
                       setInputValue("");
                       setDisplay(false);

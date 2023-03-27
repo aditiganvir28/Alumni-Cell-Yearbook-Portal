@@ -8,18 +8,15 @@ import alumniData from '../navbar/akumniData.json'
 import Navbar from '../navbar/navbar'
 
 const MakeAComment = () => {
-  const { result, user, profile, setProfile, setResult } = useContext(
+  const { result, user, profile, isStudent, setIsStudent } = useContext(
     LoginContext,
   )
-  console.log(result)
   const [userData, setUserData] = useState({})
   const [comment, setComment] = useState()
   const { loading, setLoading } = useContext(LoginContext)
-  const [name, setName] = useState('')
-  const [isStudent, setIsStudent] = useState(false)
   const [approvedComments, setApprovedComments] = useState([])
   const [state, setState] = useState(false)
-
+  console.log(result)
   const alumniEmail = alumniData
 
   useEffect(() => {
@@ -29,31 +26,31 @@ const MakeAComment = () => {
       setIsStudent(true)
     }
   })
-  console.log(result)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setLoading(true)
-    const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1000))
+  // useEffect(() => {
+  //   setLoading(true)
+  //   const Load = async () => {
+  //     await new Promise((r) => setTimeout(r, 1000))
 
-      setLoading((loading) => !loading)
-    }
+  //     setLoading((loading) => !loading)
+  //   }
 
-    Load()
-  }, [])
+  //   Load()
+  // }, [])
 
   //Add comment in the comment section of user who makes a comment
   //and new comment of comment section on whom the comment is being made
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log(isStudent)
     if (isStudent === false) {
       await axios
         .post('http://localhost:5000/myComments', {
           comment: comment,
           friend_email: result[0].email,
           friend_name: result[0].name,
-          user_email: userData[0].email,
+          user_email: profile.email,
         })
         .then((res) => {
           console.log(res.data.message)
@@ -80,8 +77,8 @@ const MakeAComment = () => {
       await axios
         .post('http://localhost:5000/newComments', {
           comment: comment,
-          user_email: userData[0].email,
-          user_name: userData[0].name,
+          user_email: profile.email,
+          user_name: profile.name,
           friend_email: result[0].email,
         })
         .then((res) => {
@@ -91,13 +88,14 @@ const MakeAComment = () => {
           console.log(err)
         })
     }
-    // setState(true)
-    // setTimeout(() => {
-    //   setState(false)
-    // }, 20000)
+    setState(true)
+    setTimeout(() => {
+      setState(false)
+    }, 20000)
     if (isStudent === true) {
       navigate('/')
     } else {
+      console.log('fuck')
       navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
     }
     window.localStorage.removeItem('searchAlumni')
@@ -135,23 +133,6 @@ const MakeAComment = () => {
               <div className="dota">
                 {result.length && <img id="ip" src={result[0].profile_img} />}
               </div>
-              {/* console.log(result);
-              {result.length && (
-                <div className="description" id="desc">
-                  <h2>{result[0].name}</h2>
-
-                  <h3 style={{ color: 'white' }}>
-                    Roll No: {result[0].roll_no}
-                  </h3>
-                  <h3 style={{ color: 'white' }}>
-                    {result[0].academic_program}, {result[0].department}
-                  </h3>
-                  <h3 style={{ color: 'white' }}>
-                     {result[0].academic_program}, {result[0].department}
-                  </h3>
-                  <h3 style={{ color: 'white' }}>{result[0].about}</h3>
-                </div>
-              )} */}
               {result.length && (
                 <div className="description" id="desc">
                   <h2>{result[0].name}</h2>
@@ -195,7 +176,7 @@ const MakeAComment = () => {
                     float: 'right',
                     background: state ? '#838080' : '#3E185C',
                   }}
-                  // disabled={state}
+                  disabled={state}
                 >
                   POST!
                 </button>

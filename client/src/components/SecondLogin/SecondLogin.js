@@ -3,7 +3,6 @@ import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../navbar/navbar'
 
 const SecondLogin = () => {
   const { user, loading, setLoading, profile, setProfile } = useContext(
@@ -12,7 +11,6 @@ const SecondLogin = () => {
   const [myComments, setMyComments] = useState([])
   const [newComments, setNewComments] = useState([])
   const [approvedComments, setApprovedComments] = useState([])
-  // const [profile, setProfile] = useState({})
   const [state, setState] = useState(false)
   const [uploaded, setUploaded] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)

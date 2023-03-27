@@ -34,6 +34,7 @@ const App = ({ location }) => {
   const [allUsers, setAllUsuers] = useState([])
   const [verified, setVerified] = useState(false)
   const [profileIcon, setProfileIcon] = useState(false)
+  const [isStudent, setIsStudent] = useState(false)
   const [userData, setUserData] = useState({
     name_: '',
     roll_no: '',
@@ -118,8 +119,6 @@ const App = ({ location }) => {
     return rand() + rand()
   }
 
-  console.log(token())
-
   //Callback Function after logging in
   async function handleCallbackResponse(response) {
     //getting all the data from google for the user who signs in
@@ -151,7 +150,6 @@ const App = ({ location }) => {
               .then((res) => {
                 //If the user had made his profile
                 if (res.data.message === 'User Found') {
-                  console.log(res.data)
                   //if the user is verified
                   if (res.data.User[0].two_step_verified === true) {
                     setProfileIcon(true)
@@ -251,6 +249,8 @@ const App = ({ location }) => {
         setProfileIcon,
         userData,
         setUserData,
+        isStudent,
+        setIsStudent,
       }}
     >
       <div className="App overflow-x-hidden">

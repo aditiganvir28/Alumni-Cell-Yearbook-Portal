@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import '@fontsource/quantico'
-import { useNavigate } from 'react-router'
 import { LoginContext } from '../../helpers/Context'
 import Lines from './images/lines.png'
 import Lines2 from './images/lines2.png'
@@ -17,8 +16,7 @@ import Step_3 from './images/Step_3.png'
 import Step_4 from './images/Step_4.png'
 import Step_5 from './images/Step_5.png'
 import Yearbook from './images/Yearbook2022.pdf'
-import Navbar from '../navbar/navbar'
-import yearbook from './images/yearbook.png' 
+
 function Homepage() {
   const { loading, setLoading } = useContext(LoginContext)
 
@@ -32,10 +30,6 @@ function Homepage() {
 
     Load()
   }, [])
-
-  // const line1 = 'WELCOME TO THE'
-  // const line2 = "YEARBOOK PORTAL '23"
-  // const line3 = 'OF IIT INDORE ...'
 
   const sentence = {
     hidden: { opacity: 1 },
@@ -135,10 +129,12 @@ function Homepage() {
                     delay: 0.3,
                   }}
                   className="w-3/4 h-64 rounded-xl"
-                ><img
-                  className="w-full h-full object-contain rounded-xl border-2"
-                  src={Step_1}
-                ></img></motion.div>
+                >
+                  <img
+                    className="w-full h-full object-contain rounded-xl border-2"
+                    src={Step_1}
+                  ></img>
+                </motion.div>
                 <motion.div
                   viewport={{ once: true }}
                   initial={{ opacity: 0, x: 100 }}
@@ -150,10 +146,12 @@ function Homepage() {
                     delay: 0.3,
                   }}
                   className="w-3/4 mt-4 h-64 rounded-xl"
-                ><img
-                  className="w-full h-full object-contain rounded-xl border-2"
-                  src={Step_2}
-                ></img></motion.div>
+                >
+                  <img
+                    className="w-full h-full object-contain rounded-xl border-2"
+                    src={Step_2}
+                  ></img>
+                </motion.div>
               </div>
               <div className="lg:mt-48 lg:-ml-32 lg:w-3/4 w-full">
                 <motion.h1
@@ -267,10 +265,12 @@ function Homepage() {
                       delay: 0.3,
                     }}
                     className="w-3/4 h-96 rounded-xl"
-                  ><img
-                  className="w-full h-full object-contain rounded-xl border-2"
-                  src={Step_3}
-                ></img></motion.div>
+                  >
+                    <img
+                      className="w-full h-full object-contain rounded-xl border-2"
+                      src={Step_3}
+                    ></img>
+                  </motion.div>
                 </div>
                 <motion.h1
                   viewport={{ once: true }}
@@ -432,14 +432,18 @@ function Homepage() {
                     }}
                     className="w-full lg:hidden flex flex-col items-center justify-center"
                   >
-                    <div className="w-3/4 h-64 rounded-xl"><img
-                  className="w-full h-full object-contain rounded-xl border-2"
-                  src={Step_4}
-                ></img></div>
-                    <div className="w-3/4 h-64 rounded-xl mt-4 bg-gray-800"><img
-                  className="w-full h-full object-contain rounded-xl border-2"
-                  src={Step_5}
-                ></img></div>
+                    <div className="w-3/4 h-64 rounded-xl">
+                      <img
+                        className="w-full h-full object-contain rounded-xl border-2"
+                        src={Step_4}
+                      ></img>
+                    </div>
+                    <div className="w-3/4 h-64 rounded-xl mt-4 bg-gray-800">
+                      <img
+                        className="w-full h-full object-contain rounded-xl border-2"
+                        src={Step_5}
+                      ></img>
+                    </div>
                   </motion.div>
                 </div>
                 <div className="flex flex-col w-full h-96 items-center justify-center">
@@ -493,8 +497,7 @@ function Homepage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, type: 'spring', stiffness: 100 }}
                   className="flex w-72 lg:mt-0 mt-8 lg:mb-0 mb-8 h-96 bg-gradient-to-br from-yellow-200 via-yellow-400 to-yellow-700 justify-center items-center rounded-xl bg-yearbook"
-                >
-                </motion.div>
+                ></motion.div>
               </a>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
@@ -508,7 +511,7 @@ function Homepage() {
                 ></img>
                 <h1 className="text-white text-center z-0">Coming Soon</h1>
                 <motion.div
-                  whileHover={{ transition: { duration: 0.4 }, opacity: 0 }} 
+                  whileHover={{ transition: { duration: 0.4 }, opacity: 0 }}
                   className="absolute rounded-xl w-full h-full z-10 bg-gradient-to-tl from-yellow-200 via-yellow-400 to-yellow-700 items-center justify-center flex"
                 >
                   <h1 className="text-black text-center z-10">
