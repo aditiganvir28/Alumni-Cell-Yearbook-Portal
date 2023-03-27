@@ -11,6 +11,7 @@ const MakeAComment = () => {
   const { result, user, profile, setProfile, setResult } = useContext(
     LoginContext,
   )
+  console.log(result)
   const [userData, setUserData] = useState({})
   const [comment, setComment] = useState()
   const { loading, setLoading } = useContext(LoginContext)
@@ -31,43 +32,21 @@ const MakeAComment = () => {
   console.log(result)
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   const Load = async () => {
-  //     await new Promise((r) => setTimeout(r, 1000))
-
-  //     setLoading((loading) => !loading)
-  //   }
-
-  //   Load()
-  // }, [])
-
-  //Get the data to be displayed on the profile
   useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        setUserData(res.data.User[0])
-      })
-  })
+    setLoading(true)
+    const Load = async () => {
+      await new Promise((r) => setTimeout(r, 1000))
 
-  //After refreshing the page user is still signed in
-  // useEffect(() => {
-  //   if (window.localStorage.getItem('searchAlumni') !== null) {
-  //     const searchAlumni = window.localStorage.getItem('searchAlumni')
-  //     if (searchAlumni !== null) {
-  //       setResult(JSON.parse(searchAlumni))
-  //     }
-  //   }
-  // }, [])
+      setLoading((loading) => !loading)
+    }
+
+    Load()
+  }, [])
 
   //Add comment in the comment section of user who makes a comment
   //and new comment of comment section on whom the comment is being made
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    console.log('reached')
+    e.preventDefault()
     if (isStudent === false) {
       await axios
         .post('http://localhost:5000/myComments', {

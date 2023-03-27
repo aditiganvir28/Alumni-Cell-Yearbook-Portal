@@ -135,7 +135,7 @@ const App = ({ location }) => {
     document.getElementById('google-login').hidden = true
     console.log(userObject)
 
-    axios
+    await axios
       .post('http://localhost:5000/checkAuth', {
         email: userObject.email,
       })
@@ -160,10 +160,7 @@ const App = ({ location }) => {
                     window.localStorage.setItem('verified', true)
                     window.localStorage.setItem('profileIcon', true)
                     const p = JSON.stringify(res.data.User[0])
-                    window.localStorage.setItem(
-                      'profile',
-                      JSON.parse(JSON.stringify(res.data.User[0])),
-                    )
+                    window.localStorage.setItem('profile', p)
                     navigate(`/`)
                   }
                   //if the user is not verified

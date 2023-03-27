@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import "./otpverification.scss";
 
 const OtpVerification = () =>{
-    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified, setProfileIcon, profileIcon, userData, setUserData} = useContext(LoginContext);
+    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified, setProfileIcon, profileIcon, userData, setUserData,profile, setProfile} = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
     const [state, setState] = useState(false);
-    const [profile, setProfile] = useState({});
+    // const [profile, setProfile] = useState({});
 
     const rand = () => {
         return Math.random().toString(36).substr(2);
@@ -22,15 +22,15 @@ const OtpVerification = () =>{
       console.log(token());
 
     //Get the data to be displayed on the profile
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        setProfile(res.data.User[0])
-      })
-  })
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/profile', {
+  //       email: user.email,
+  //     })
+  //     .then((res) => {
+  //       setProfile(res.data.User[0])
+  //     })
+  // })
 
     const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ const OtpVerification = () =>{
           
             console.log(res);
             if(res.data.message==="Mobile number verified"){
-                navigate(`/profile/${profile._id}/${profile.name}/${token}`);
+                
                 setFill(true);
                 setVerified(true);
                 setProfileIcon(true);
@@ -56,6 +56,7 @@ const OtpVerification = () =>{
                 window.localStorage.setItem('profileIcon', true)
                 window.localStorage.setItem('profile', JSON.parse(JSON.stringify(userData)))
                 window.location.reload();
+                navigate(`/profile/${profile._id}/${profile.name}/${token}`);
             }
             setMessage(res.data.message);
         setTimeout(()=>{

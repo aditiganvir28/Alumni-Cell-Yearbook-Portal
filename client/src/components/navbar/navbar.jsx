@@ -24,7 +24,7 @@ const Navbar = () => {
     closed: { y: "-96%" },
   }
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -34,25 +34,9 @@ const Navbar = () => {
   const { result, setResult } = useContext(LoginContext);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
-  const [profileIcon, setProfileIcon] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
   const [isOpen, setIsOpen] = useState(true)
   const [example, setExample] = useState([]);
-  // const [verified, setVerified] = useState(false);
-  const [profile, setProfile] = useState({});
-
-  //Get the data to be displayed on the profile
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        console.log(profile[0]);
-        setProfile(res.data.User)
-      })
-  })
-
   const alumniEmail= alumniData; //geeting all the alumnis data
 
   //Use ReactFilter
@@ -71,37 +55,18 @@ const Navbar = () => {
   setExample(filteredPersons);
   })
 
-
-
-  
-
-  //find if a student logs in or alumni and whether the alumni is two step verified
-  useEffect(()=>{
-    if(alumniEmail.includes(user.email)){
-      axios.post("http://localhost:5000/findAUser",{
-        email: user.email
-      }).then((res)=>{
-        // console.log(res.data);
-        if(res.data.message==="User Found"){
-          if(res.data.User[0].two_step_verified===true){
-            setProfileIcon(true);
-            setVerified(true);
-            document.getElementById('google-login').hidden=true;
-          }else{
-            setLoggedin(false);
-            document.getElementById('google-login').hidden=false;
-          }
-        }
-      })
-    }
-  })
-
   //After refreshing the page user is still signed in 
   useEffect(() => {
     if (window.localStorage.getItem('user') !== null) {
       const userLoggedIn = window.localStorage.getItem('user');
       if (userLoggedIn !== null) {
         setUser(JSON.parse(userLoggedIn));
+      }
+    }
+    if (window.localStorage.getItem('searchedAlumni') !== null) {
+      const salumni = window.localStorage.getItem('searchedAlumni');
+      if (salumni !== null) {
+        setResult(JSON.parse(salumni));
       }
     }
     const logged = (window.localStorage.getItem('loggedin'));
@@ -111,6 +76,21 @@ const Navbar = () => {
     else {
       setLoggedin(false);
     }
+
+    const profileI = (window.localStorage.getItem('profileIcon'));
+    if(profileI==="true"){
+      setProfileIcon(true);
+    }
+
+    const verify = (window.localStorage.getItem('verified'));
+    if(verify === 'true'){
+      setVerified(true);
+    }
+
+    const p = (window.localStorage.getItem('profile'));
+    if(verify==="true"){
+      setProfile(JSON.parse(p));
+    }
   },[])
 
   //Logout Function
@@ -118,6 +98,9 @@ const Navbar = () => {
       setUser({});
       window.localStorage.removeItem('user');
       window.localStorage.removeItem('searchAlumni');
+      window.localStorage.removeItem('profileIcon');
+      window.localStorage.removeItem('verified');
+      window.localStorage.removeItem('profile')
       setLoggedin(false);
       setProfileIcon(false);
       window.localStorage.setItem('loggedin', false)
@@ -172,20 +155,6 @@ useEffect(()=>{
   }
 })
 
-  // Search Engine Functions
-  useEffect(() => {
-    console.log("running")
-    console.log(searchword)
-    axios.post('http://localhost:5000/searchword', {
-      searchword: searchword
-    }).then((res) => {
-      console.log(res.data);
-      setResult(res.data);
-    }).catch((err) => {
-      console.log(err)
-    })
-  })
-
   const searchAWord = (event) => {
     setWordentered(event.target.value);
     setInputValue(event.target.value);
@@ -230,13 +199,25 @@ useEffect(()=>{
                     {example.map((val, index) =>
                     (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}} key={index} onClick={(e) => {
                       e.preventDefault();
-                      
+                      window.localStorage.removeItem('searchedAlumni')
                       // loadingSpinner2();
                       setSearchword(val.email);
                       setInputValue("");
                       setDisplay(false);
                       e.target.value="";
-                      navigate(`/comment/${result[0]._id}/${result[0].name}/${result[0].roll_no}`)
+                      axios.post('http://localhost:5000/searchword', {
+                            searchword: val.email
+                          }).then((res) => {
+                          console.log(res.data);
+                          setResult(res.data);
+                          window.localStorage.setItem('searchedAlumni', JSON.stringify(res.data));
+      
+                          }).catch((err) => {
+                          console.log(err)
+                          })
+    navigate(`/comment/${val._id}/${val.name}/${val.roll_no}`)
+    loadingSpinner();
+                      
                       // setTimeout(()=>{
                         
                       // },500)
@@ -255,7 +236,7 @@ useEffect(()=>{
                             <img src="../../../images/profile.jpg" alt="" id='profilepic' />
                           </MenuButton>
                           <MenuList>
-                            <><Link id='avl' to={`profile/${profile[0]._id}/${profile[0].name}/${profile[0].roll_no}`}>
+                            <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${profile.roll_no}`}>
                               <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
                               <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                     </MenuList>
