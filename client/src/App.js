@@ -33,6 +33,22 @@ const App = ({ location }) => {
   const [profile, setProfile] = useState({})
   const [allUsers, setAllUsuers] = useState([])
   const [verified, setVerified] = useState(false)
+  const [profileIcon, setProfileIcon] = useState(false)
+  const [userData, setUserData] = useState({
+    name_: '',
+    roll_no: '',
+    academic_program: '',
+    department: '',
+    personal_email_id: '',
+    contact_details: '',
+    alternate_contact_details: '',
+    address: '',
+    current_company: '',
+    designation: '',
+    about: '',
+    question_1: '',
+    question_2: '',
+  })
 
   //getting all alumnis from json
   const alumniEmail = alumniData //geeting all the alumnis data
@@ -67,6 +83,7 @@ const App = ({ location }) => {
 
     Load()
   }
+
   //getting all the users who have made their profile
   useEffect(() => {
     axios
@@ -78,7 +95,7 @@ const App = ({ location }) => {
       .catch((err) => {
         console.log(err)
       })
-  })
+  }, [])
 
   //getting all users who have already signed in
   useEffect(() => {
@@ -92,17 +109,6 @@ const App = ({ location }) => {
         console.log(err)
       })
   }, [])
-
-  //Get the data to be displayed on the profile
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        setProfile(res.data.User)
-      })
-  })
 
   const rand = () => {
     return Math.random().toString(36).substr(2)
@@ -121,6 +127,7 @@ const App = ({ location }) => {
     setUser(userObject)
     setLoggedin(true)
     loadingSpinner()
+
     //Storing the users data in the localStorage
     window.localStorage.setItem('user', JSON.stringify(userObject))
     window.localStorage.setItem('loggedin', true)
@@ -128,13 +135,11 @@ const App = ({ location }) => {
     document.getElementById('google-login').hidden = true
     console.log(userObject)
 
-    // setTimeout(() => {
-    axios
+    await axios
       .post('http://localhost:5000/checkAuth', {
         email: userObject.email,
       })
       .then((res) => {
-        // console.log(res.data.message)
         //If the user already exists in the auth model
         if (res.data.message === 'true') {
           //if the user is a lumni
@@ -146,10 +151,16 @@ const App = ({ location }) => {
               .then((res) => {
                 //If the user had made his profile
                 if (res.data.message === 'User Found') {
+                  console.log(res.data)
                   //if the user is verified
                   if (res.data.User[0].two_step_verified === true) {
-                    // console.log('verified')
-                    setFill(true)
+                    setProfileIcon(true)
+                    setVerified(true)
+                    setProfile(res.data.User[0])
+                    window.localStorage.setItem('verified', true)
+                    window.localStorage.setItem('profileIcon', true)
+                    const p = JSON.stringify(res.data.User[0])
+                    window.localStorage.setItem('profile', p)
                     navigate(`/`)
                   }
                   //if the user is not verified
@@ -210,7 +221,6 @@ const App = ({ location }) => {
       .catch((err) => {
         console.log(err)
       })
-    // }, 1000)
   }
 
   return (
@@ -236,6 +246,11 @@ const App = ({ location }) => {
         allUsers,
         verified,
         setVerified,
+        profileIcon,
+        verified,
+        setProfileIcon,
+        userData,
+        setUserData,
       }}
     >
       <div className="App overflow-x-hidden">

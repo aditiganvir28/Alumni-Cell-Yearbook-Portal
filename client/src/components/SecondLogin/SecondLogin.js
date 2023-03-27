@@ -152,23 +152,21 @@ const SecondLogin = () => {
             </div>
             <div className="profile">
               <div className="dotsl">
-                {/* <img id = "ip" src={profile.profile_img}/> alt='err'*/}
-                <img className="ipp" id="ip" src={profile[0].profile_img} alt='err'/>
+                {/* <img id = "ip" src={profile.profile_img}/> */}
+                <img className="ipp" id="ip" src={profile.profile_img} />
               </div>
               <br></br>
               <br></br>
               <div className="about1">
-                <h2>{profile[0].name}</h2>
+                <h2>{profile.name}</h2>
+                <h3 style={{ color: 'white' }}>Roll No: {profile.roll_no}</h3>
                 <h3 style={{ color: 'white' }}>
-                  Roll No: {profile[0].roll_no}
+                  {profile.academic_program}, {profile.department}
                 </h3>
                 <h3 style={{ color: 'white' }}>
-                  {profile[0].academic_program}, {profile[0].department}
+                  {profile.current_company}, {profile.designation}
                 </h3>
-                <h3 style={{ color: 'white' }}>
-                  {profile[0].current_company}, {profile[0].designation}
-                </h3>
-                <h3 style={{ color: 'white' }}>{profile[0].about}</h3>
+                <h3 style={{ color: 'white' }}>{profile.about}</h3>
               </div>
               <div className="edit">
                 {/* <div style={{ width: '50%' }}> */}

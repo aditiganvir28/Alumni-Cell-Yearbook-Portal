@@ -5,14 +5,11 @@ import { useNavigate } from "react-router-dom";
 import "./otpverification.scss";
 
 const OtpVerification = () =>{
-    const {setLoggedin, 
-          // fill, 
-          // loggedin,
-          setFill,user, setUser, setVerified} = useContext(LoginContext);
+    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified, setProfileIcon, profileIcon, userData, setUserData,profile, setProfile} = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
     const [state, setState] = useState(false);
-    const [profile, setProfile] = useState({});
+    // const [profile, setProfile] = useState({});
 
     const rand = () => {
         return Math.random().toString(36).substr(2);
@@ -25,32 +22,15 @@ const OtpVerification = () =>{
       console.log(token());
 
     //Get the data to be displayed on the profile
-  useEffect(() => {
-    axios
-      .post('http://localhost:5000/profile', {
-        email: user.email,
-      })
-      .then((res) => {
-        setProfile(res.data.User[0])
-      })
-  })
-
-     //After refreshing the page user is still signed in 
-  useEffect(() => {
-    if (window.localStorage.getItem('user') !== null) {
-      const userLoggedIn = window.localStorage.getItem('user');
-      if (userLoggedIn !== null) {
-        setUser(JSON.parse(userLoggedIn));
-      }
-    }
-    const logged = (window.localStorage.getItem('loggedin'));
-    if (logged === "true") {
-      setLoggedin(true);
-    }
-    else {
-      setLoggedin(false);
-    }
-  },[])
+  // useEffect(() => {
+  //   axios
+  //     .post('http://localhost:5000/profile', {
+  //       email: user.email,
+  //     })
+  //     .then((res) => {
+  //       setProfile(res.data.User[0])
+  //     })
+  // })
 
     const navigate = useNavigate();
 
@@ -67,11 +47,16 @@ const OtpVerification = () =>{
           
             console.log(res);
             if(res.data.message==="Mobile number verified"){
-                navigate(`/profile/${profile._id}/${profile.name}/${token}`);
+                
                 setFill(true);
                 setVerified(true);
+                setProfileIcon(true);
                 setLoggedin(true);
+                window.localStorage.setItem('verified', true)
+                window.localStorage.setItem('profileIcon', true)
+                window.localStorage.setItem('profile', JSON.parse(JSON.stringify(userData)))
                 window.location.reload();
+                navigate(`/profile/${profile._id}/${profile.name}/${token}`);
             }
             setMessage(res.data.message);
         setTimeout(()=>{
