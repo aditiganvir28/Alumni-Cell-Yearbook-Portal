@@ -5,7 +5,10 @@ import { useNavigate } from "react-router-dom";
 import "./otpverification.scss";
 
 const OtpVerification = () =>{
-    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified} = useContext(LoginContext);
+    const {setLoggedin, 
+          // fill, 
+          // loggedin,
+          setFill,user, setUser, setVerified} = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
     const [state, setState] = useState(false);

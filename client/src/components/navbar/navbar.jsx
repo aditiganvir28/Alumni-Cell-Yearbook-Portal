@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useRouteLoaderData } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
+// import { useRouteLoaderData } from "react-router-dom";
 import './Navbar.scss';
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
@@ -14,7 +15,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
-import { json } from 'react-router';
+// import { json } from 'react-router';
 
 
 const Navbar = () => {
@@ -24,13 +25,16 @@ const Navbar = () => {
     closed: { y: "-96%" },
   }
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, 
+    // setLoading, 
+    allUsers, verified, setVerified} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
   const [searchword, setSearchword] = useState("");
   const [wordentered, setWordentered] = useState("");
-  const [wordEnteredList, setWordEnteredList] = useState([]);
+  const [wordEnteredList] = useState([]);
+  // const [setWordEnteredList] = useState([]);
   const { result, setResult } = useContext(LoginContext);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
@@ -147,16 +151,16 @@ const Navbar = () => {
     }
   }
 
-  const loadingSpinner2 = () => {
-    setLoading(true)
-    const Load = async () => {
-      await new Promise((r) => setTimeout(r, 30000))
+  // const loadingSpinner2 = () => {
+  //   setLoading(true)
+  //   const Load = async () => {
+  //     await new Promise((r) => setTimeout(r, 30000))
 
-      setLoading((loading) => !loading)
-    }
+  //     setLoading((loading) => !loading)
+  //   }
 
-    Load()
-  }
+  //   Load()
+  // }
 
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
@@ -199,7 +203,7 @@ useEffect(()=>{
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
       <div className='header22'>
-        <img src='/images/1.png' />
+        <img src='/images/1.png' alt='err'/>
         <div className='navbar'>
           <ul onClick={handleNavopen} className={renderNav()}>
             <Link id='av'to="/">HOME</Link>
@@ -282,7 +286,7 @@ useEffect(()=>{
         animate={isOpen ? "open" : "closed"}
         variants={variants}>
         <div className='h-screen w-screen bg-[#4d1a6c] flex flex-col items-center justify-start pt-8'>
-          <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-16 rounded-xl'></img>
+          <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-16 rounded-xl' alt='err'></img>
           <motion.div className='absolute top-0 right-0 mt-8 mr-8 text-3xl' onClick={() => setIsOpen(isOpen => !isOpen)}>×</motion.div>
           {loggedin &&
             <div id='loggedIn' className='mt-24 mb-16'>

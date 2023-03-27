@@ -1,11 +1,11 @@
 import Members from "./members";
-import React, { Component, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 // import loadingSpinner from "../Homepage/images/808.gif";
 import "./Cards.scss";
 import { LoginContext } from "../../helpers/Context";
-import Navbar from '../navbar/navbar'
+// import Navbar from '../navbar/navbar'
 function Cards() {
   const { loading, setLoading } = useContext(LoginContext);
 

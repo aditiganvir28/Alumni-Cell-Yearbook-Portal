@@ -1,23 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
 import './MakeAComment.scss'
-import Card from 'react-bootstrap/Card'
+// import Card from 'react-bootstrap/Card'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import alumniData from '../navbar/akumniData.json'
-import Navbar from '../navbar/navbar'
+// import Navbar from '../navbar/navbar'
 
 const MakeAComment = () => {
-  const { result, user, profile, setProfile, setResult } = useContext(
+  const { result,
+    // setResult,
+    user, 
+    // setProfile,
+    profile } = useContext(
     LoginContext,
   )
   const [userData, setUserData] = useState({})
   const [comment, setComment] = useState()
-  const { loading, setLoading } = useContext(LoginContext)
-  const [name, setName] = useState('')
+  const { loading } = useContext(LoginContext)
+  // const { setLoading } = useContext(LoginContext)
+  // const [name, setName] = useState('')
   const [isStudent, setIsStudent] = useState(false)
-  const [approvedComments, setApprovedComments] = useState([])
-  const [state, setState] = useState(false)
+  const [
+    // approvedComments, 
+    setApprovedComments] = useState([])
+  const [state] = useState(false)
+  // const [setState] = useState(false)
 
   const alumniEmail = alumniData
 
@@ -154,7 +162,7 @@ const MakeAComment = () => {
           <div className="container2">
             <div className="left1" id="named">
               <div className="dota">
-                {result.length && <img id="ip" src={result[0].profile_img} />}
+                {result.length && <img id="ip" src={result[0].profile_img} alt='err' />}
               </div>
               {/* console.log(result);
               {result.length && (

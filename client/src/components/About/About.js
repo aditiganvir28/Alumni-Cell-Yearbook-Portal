@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import './About.scss'
 import { LoginContext } from '../../helpers/Context.js'
-import Navbar from '../navbar/navbar'
+// import Navbar from '../navbar/navbar'
 
 function About() {
   const { loading, setLoading } = useContext(LoginContext)

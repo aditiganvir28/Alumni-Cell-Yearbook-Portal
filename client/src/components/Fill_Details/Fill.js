@@ -9,10 +9,10 @@ function Fill(props) {
     user,
     loading,
     setLoading,
-    loggedin,
-    setLoggedin,
-    profile,
-    setProfile,
+    // loggedin,
+    // setLoggedin,
+    // profile,
+    // setProfile,
   } = useContext(LoginContext)
   const [message, setMessage] = useState('')
   const [imageSelected, setImageSelected] = useState('')
@@ -371,7 +371,7 @@ function Fill(props) {
             </div>
             <div className="right">
               <span className="dot">
-                <img id="ip" src={imageUrl} />
+                <img id="ip" src={imageUrl} alt='err'/>
               </span>
               <br />
               <h4 id="disclaimer">

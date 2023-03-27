@@ -3,10 +3,10 @@ import { LoginContext } from '../../helpers/Context'
 import './SecondLogin.scss'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import Navbar from '../navbar/navbar'
+// import Navbar from '../navbar/navbar'
 
 const SecondLogin = () => {
-  const { user, loading, setLoading, profile, setProfile } = useContext(
+  const { user, loading, setLoading, profile } = useContext(
     LoginContext,
   )
   const [myComments, setMyComments] = useState([])
@@ -14,7 +14,8 @@ const SecondLogin = () => {
   const [approvedComments, setApprovedComments] = useState([])
   // const [profile, setProfile] = useState({})
   const [state, setState] = useState(false)
-  const [uploaded, setUploaded] = useState(false)
+  const [setUploaded] = useState(false)
+  // const [uploaded] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)
   const [imageSelected, setImageSelected] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
@@ -151,8 +152,8 @@ const SecondLogin = () => {
             </div>
             <div className="profile">
               <div className="dotsl">
-                {/* <img id = "ip" src={profile.profile_img}/> */}
-                <img className="ipp" id="ip" src={profile[0].profile_img} />
+                {/* <img id = "ip" src={profile.profile_img}/> alt='err'*/}
+                <img className="ipp" id="ip" src={profile[0].profile_img} alt='err'/>
               </div>
               <br></br>
               <br></br>
