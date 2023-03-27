@@ -63,14 +63,14 @@ const OtpVerification = () =>{
         }).then((res)=>{
           
             console.log(res);
-            if(res.data==="Mobile number verified"){
+            if(res.data.message==="Mobile number verified"){
                 navigate(`/profile/${profile._id}/${profile.name}/${token}`);
                 setFill(true);
                 setVerified(true);
                 setLoggedin(true);
                 window.location.reload();
             }
-            setMessage(res.data);
+            setMessage(res.data.message);
         setTimeout(()=>{
             setMessage("");
         }, 20000)
@@ -109,8 +109,9 @@ const OtpVerification = () =>{
             <input type="text" id='otp' onChange={(e)=>{setOtp(e.target.value)}}/>
             <div className={state? "resend-disabled" : "resend"}>
             <button onClick={resendOTP} disabled={state}>Resend OTP</button>
-            <p style={{color: "white"}}>{message}</p>
-        </div>                      
+            
+        </div>  
+        <p style={{color: "red"}}>{message}</p>                    
         </form>
         <div className="submit">
             <button onClick={otpVerify} id='submit' disabled={state} style={{ background: state ? '#838080' : '#3E185C' }}>Submit</button>

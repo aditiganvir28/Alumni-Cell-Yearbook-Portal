@@ -24,7 +24,7 @@ const Navbar = () => {
     closed: { y: "-96%" },
   }
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, profile, allUsers, verified, setVerified} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -37,24 +37,43 @@ const Navbar = () => {
   const [profileIcon, setProfileIcon] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
   const [isOpen, setIsOpen] = useState(true)
+  const [example, setExample] = useState([]);
   // const [verified, setVerified] = useState(false);
-  // const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState({});
+
+  //Get the data to be displayed on the profile
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/profile', {
+        email: user.email,
+      })
+      .then((res) => {
+        console.log(profile[0]);
+        setProfile(res.data.User)
+      })
+  })
 
   const alumniEmail= alumniData; //geeting all the alumnis data
 
   //Use ReactFilter
-  const filteredPersons = allUsers.filter(
+  var filteredPersons= []
+  useEffect(()=>{
+  filteredPersons = allUsers.filter(
     person => {
       return (
         person
         .name
         .toLowerCase()
-        .includes(wordentered.toLowerCase())
+        .startsWith(wordentered.toLowerCase())
       );
     }
   );
+  setExample(filteredPersons);
+  })
 
-  console.log(filteredPersons);
+
+
+  
 
   //find if a student logs in or alumni and whether the alumni is two step verified
   useEffect(()=>{
@@ -67,15 +86,14 @@ const Navbar = () => {
           if(res.data.User[0].two_step_verified===true){
             setProfileIcon(true);
             setVerified(true);
-            window.getElementById('google-login').hidden=true;
+            document.getElementById('google-login').hidden=true;
           }else{
             setLoggedin(false);
-            window.getElementById('google-login').hidden=false;
+            document.getElementById('google-login').hidden=false;
           }
         }
       })
     }
-   
   })
 
   //After refreshing the page user is still signed in 
@@ -129,6 +147,17 @@ const Navbar = () => {
     }
   }
 
+  const loadingSpinner2 = () => {
+    setLoading(true)
+    const Load = async () => {
+      await new Promise((r) => setTimeout(r, 30000))
+
+      setLoading((loading) => !loading)
+    }
+
+    Load()
+  }
+
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
   }
@@ -145,12 +174,13 @@ useEffect(()=>{
 
   // Search Engine Functions
   useEffect(() => {
+    console.log("running")
+    console.log(searchword)
     axios.post('http://localhost:5000/searchword', {
       searchword: searchword
     }).then((res) => {
+      console.log(res.data);
       setResult(res.data);
-      window.localStorage.setItem('searchAlumni', JSON.stringify(result))
-      // console.log(res.data);
     }).catch((err) => {
       console.log(err)
     })
@@ -160,18 +190,6 @@ useEffect(()=>{
     setWordentered(event.target.value);
     setInputValue(event.target.value);
   }
-
-  useEffect(() => {
-    axios.post('http://localhost:5000/wordEntered', {
-      wordentered: wordentered
-    }).then((res) => {
-      // console.log(res.data);
-      setWordEnteredList(res.data);
-
-    }).catch((err) => {
-      console.log(err);
-    })
-  })
 
   return(
     <>
@@ -207,18 +225,21 @@ useEffect(()=>{
                     <ul>
                       <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}>No User Found</button></li>
                       </ul>}
-                    {wordEnteredList.length!==0 && 
+                    {example.length!==0 && 
                     <ul>
-                    {wordEnteredList.map((val, index) =>
+                    {example.map((val, index) =>
                     (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}} key={index} onClick={(e) => {
                       e.preventDefault();
+                      
+                      // loadingSpinner2();
                       setSearchword(val.email);
                       setInputValue("");
                       setDisplay(false);
                       e.target.value="";
-                      setTimeout(()=>{
-                        navigate(`/comment/${result[0]._id}/${result[0].name}/${result[0].roll_no}`)
-                      },1000)
+                      navigate(`/comment/${result[0]._id}/${result[0].name}/${result[0].roll_no}`)
+                      // setTimeout(()=>{
+                        
+                      // },500)
                       
                     }}><p>{val.name}</p>
                       <p style={{fontSize: "70%", fontStyle: "italic"}}>{val.academic_program}</p>
@@ -234,7 +255,7 @@ useEffect(()=>{
                             <img src="../../../images/profile.jpg" alt="" id='profilepic' />
                           </MenuButton>
                           <MenuList>
-                            <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${profile.roll_no}`}>
+                            <><Link id='avl' to={`profile/${profile[0]._id}/${profile[0].name}/${profile[0].roll_no}`}>
                               <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
                               <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                     </MenuList>

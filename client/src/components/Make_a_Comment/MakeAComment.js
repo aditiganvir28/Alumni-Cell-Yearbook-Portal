@@ -31,16 +31,16 @@ const MakeAComment = () => {
   console.log(result)
   const navigate = useNavigate()
 
-  useEffect(() => {
-    setLoading(true)
-    const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1000))
+  // useEffect(() => {
+  //   setLoading(true)
+  //   const Load = async () => {
+  //     await new Promise((r) => setTimeout(r, 1000))
 
-      setLoading((loading) => !loading)
-    }
+  //     setLoading((loading) => !loading)
+  //   }
 
-    Load()
-  }, [])
+  //   Load()
+  // }, [])
 
   //Get the data to be displayed on the profile
   useEffect(() => {
@@ -65,8 +65,8 @@ const MakeAComment = () => {
 
   //Add comment in the comment section of user who makes a comment
   //and new comment of comment section on whom the comment is being made
-  const handleSubmit = async () => {
-    // e.preventDefault()
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
     console.log('reached')
     if (isStudent === false) {
       await axios
@@ -168,20 +168,30 @@ const MakeAComment = () => {
                     {result[0].academic_program}, {result[0].department}
                   </h3>
                   <h3 style={{ color: 'white' }}>
-                    {result[0].current_company}, {result[0].designation}
+                     {result[0].academic_program}, {result[0].department}
                   </h3>
                   <h3 style={{ color: 'white' }}>{result[0].about}</h3>
                 </div>
               )} */}
-              <div className="description" id="desc">
-                <h2>Name</h2>
+              {result.length && (
+                <div className="description" id="desc">
+                  <h2>{result[0].name}</h2>
 
-                <h3 style={{ color: 'white' }}>Roll No: 12345678</h3>
-                <h3 style={{ color: 'white' }}>BTech, CSE</h3>
-                <h3 style={{ color: 'white' }}>Company, designation</h3>
-                <h3 style={{ color: 'white' }}></h3>
-              </div>
+                  <h3 style={{ color: 'white' }}>
+                    Roll No: {result[0].roll_no}
+                  </h3>
+                  <h3 style={{ color: 'white' }}>
+                    {' '}
+                    {result[0].academic_program}, {result[0].department}
+                  </h3>
+                  <h3 style={{ color: 'white' }}>
+                    {result[0].academic_program}, {result[0].department}
+                  </h3>
+                  <h3 style={{ color: 'white' }}>{result[0].about}</h3>
+                </div>
+              )}
             </div>
+
             <div className="right1">
               <h1 id="make">Make a Comment</h1>
               <form>
@@ -219,194 +229,28 @@ const MakeAComment = () => {
               <h1 id="make">Approved Comments</h1>
             </div>
             <div id="cards-container">
-              {/* {approvedComments.map((val) => ( 
-                // <Card
-                //   style={{
-                //     minWidth: '18rem',
-                //     height: '11rem',
-                //     margin: '1rem',
-                //     overflow: 'auto',
-                //   }}
-                // >
-                //   <Card.Img variant="top" />
-                //   <Card.Body>
-                //     <Card.Text style={{ paddingBottom: '1rem' }}>
-                //       {val.comment}
-                //     </Card.Text>
-                //     <p id="name" style={{ paddingBottom: '0rem' }}>
-                //       -{val.user_name}
-                //     </p>
-                //   </Card.Body>
-              // </Card> */}
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              <Card
-                style={{
-                  minWidth: '18rem',
-                  height: '11rem',
-                  margin: '1rem',
-                  overflow: 'auto',
-                }}
-              >
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Text style={{ paddingBottom: '1rem' }}>
-                    {/* {val.comment} */}
-                    Comment..........
-                  </Card.Text>
-                  <p id="name" style={{ paddingBottom: '0rem' }}>
-                    {/* -{val.user_name} */}
-                    -By
-                  </p>
-                </Card.Body>
-              </Card>
-
-              {/* ))} */}
+              {/* {approvedComments.map((val) => (
+                <Card
+                  style={{
+                    minWidth: '18rem',
+                    height: '11rem',
+                    margin: '1rem',
+                    overflow: 'auto',
+                  }}
+                >
+                  <Card.Img variant="top" />
+                  <Card.Body>
+                    <Card.Text style={{ paddingBottom: '1rem' }}>
+                      {val.comment}
+                      Comment..........
+                    </Card.Text>
+                    <p id="name" style={{ paddingBottom: '0rem' }}>
+                      -{val.user_name}
+                      -By
+                    </p>
+                  </Card.Body>
+                </Card>
+              ))} */}
             </div>
           </div>
         </div>

@@ -27,5 +27,6 @@ router.post('/deleteComments', userDataController.deleteComments)
 router.post('/deleteUser', userDataController.deleteUser)
 router.put('/updateUser', userDataController.updateUser)
 router.post('/memories_image', userDataController.memory_img)
+router.get('/getUsersData', userDataController.getUsersData)
 
 module.exports = router
