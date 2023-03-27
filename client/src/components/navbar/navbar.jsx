@@ -259,7 +259,7 @@ const Navbar = () => {
     </div>
   
     <>
-    <div className='navbar_phone'>
+    <div className='navbar_phone absolute z-10'>
       <motion.div className='flex flex-col justify-center items-center bg-[#180c1e] overflow-y-hidden'
         animate={isOpen ? "open" : "closed"}
         variants={variants}>
