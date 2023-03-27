@@ -25,11 +25,14 @@ const Navbar = () => {
     closed: { y: "-96%" },
   }
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, 
+    // setLoading, 
+    allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
-  const [searchword, setSearchword] = useState("");
+  const [setSearchword] = useState("");
+  // const [searchword] = useState("");
   const [wordentered, setWordentered] = useState("");
   const [wordEnteredList] = useState([]);
   // const [setWordEnteredList] = useState([]);

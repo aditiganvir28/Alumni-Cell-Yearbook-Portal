@@ -16,10 +16,11 @@ const MakeAComment = () => {
     LoginContext,
   )
   console.log(result)
-  const [userData, setUserData] = useState({})
+  const [userData] = useState({})
+  // const [userData, setUserData] = useState({})
   const [comment, setComment] = useState()
   const { loading } = useContext(LoginContext)
-  // const { setLoading } = useContext(LoginContext)
+  const { setLoading } = useContext(LoginContext)
   // const [name, setName] = useState('')
   const [isStudent, setIsStudent] = useState(false)
   const [
