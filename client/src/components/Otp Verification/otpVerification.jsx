@@ -1,11 +1,24 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
+// import { useContext, useState, useEffect } from "react";
 import { LoginContext } from "../../helpers/Context";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./otpverification.scss";
 
 const OtpVerification = () =>{
-    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified, setProfileIcon, profileIcon, userData, setUserData,profile, setProfile} = useContext(LoginContext);
+    const {
+      // loggedin, 
+      setLoggedin, 
+      // fill, 
+      setFill,user, 
+      // setUser, 
+      setVerified, setProfileIcon, 
+      // profileIcon, 
+      userData, 
+      // setUserData,
+      profile, 
+      // setProfile
+    } = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
     const [state, setState] = useState(false);

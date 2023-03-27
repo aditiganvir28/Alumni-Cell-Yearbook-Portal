@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+// import { useEffect } from 'react'
 import './Footer.scss'
 function Footer() {
   return (
@@ -8,8 +9,7 @@ function Footer() {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"
       ></link>
       <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
       <div className="container2f" id="abd1">
         <div className="footer-item">
@@ -88,8 +88,8 @@ function Footer() {
             </div>
           </div>
           <div className='flex flex-row space-y-8 space-x-8 absolute bottom-0 lg:bottom-16 mb-16 lg:mb-0 right-8 mr-32 lg:mr-0'>
-            <img src="images/IITI.png" className='w-12 mt-8 h-12'></img>
-            <img src="images/ACR.jfif" className='w-12 h-12'></img>
+            <img src="images/IITI.png" className='w-12 mt-8 h-12' alt='iiti logo'></img>
+            <img src="images/ACR.jfif" className='w-12 h-12' alt='acr logo'></img>
           </div>
         </div>
       </div>

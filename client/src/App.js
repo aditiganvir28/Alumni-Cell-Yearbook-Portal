@@ -16,7 +16,7 @@ import Error from './components/Error/Error'
 import alumniData from './components/navbar/akumniData.json'
 
 import { Route, Routes, useNavigate } from 'react-router-dom'
-import { useParams } from 'react-router'
+// import { useParams } from 'react-router'
 import jwt_decode from 'jwt-decode'
 import { LoginContext } from './helpers/Context'
 import axios from 'axios'

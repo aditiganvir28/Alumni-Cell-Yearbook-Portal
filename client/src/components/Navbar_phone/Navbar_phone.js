@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useRouteLoaderData } from "react-router-dom";
+import { 
+  // Link, 
+  // useRouteLoaderData,
+  useNavigate} from "react-router-dom";
 import { LoginContext } from '../../helpers/Context';
 import { useContext } from 'react';
 import axios from 'axios';
@@ -14,17 +17,21 @@ export function Navbar_phone() {
   }
 
   const [isOpen, setIsOpen] = useState(true)
-  const { loggedin, setLoggedin, user, setUser, setLoading, profile, allUsers, verified, setVerified } = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, 
+    // setLoading, 
+    // profile, 
+    allUsers, verified, setVerified } = useContext(LoginContext);
 
   const navigate = useNavigate();
-  const [navOpen, setNavopen] = useState(false);
+  // const [navOpen, setNavopen] = useState(false);
   const [searchword, setSearchword] = useState("");
   const [wordentered, setWordentered] = useState("");
   const [wordEnteredList, setWordEnteredList] = useState([]);
   const { result, setResult } = useContext(LoginContext);
   const [inputValue, setInputValue] = useState();
   const [display, setDisplay] = useState(false);
-  const [profileIcon, setProfileIcon] = useState(false);
+  const [setProfileIcon] = useState(false);
+  // const [profileIcon] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
   // const [verified, setVerified] = useState(false);
   // const [profile, setProfile] = useState({});
@@ -99,24 +106,24 @@ export function Navbar_phone() {
   }
 
   //adding sidebar on smaller screens
-  const handleNavbar = () => {
-    setNavopen(!navOpen)
-  };
-  const handleDropdownclick = (e) => {
-    e.stopPropagation();
-  };
-  const handleNavopen = () => {
-    if (navOpen) {
-      setNavopen(!navOpen)
-    }
-  };
-  const renderNav = () => {
-    if (navOpen) {
-      return "links active"
-    } else {
-      return "links deactivate";
-    }
-  }
+  // const handleNavbar = () => {
+  //   setNavopen(!navOpen)
+  // };
+  // const handleDropdownclick = (e) => {
+  //   e.stopPropagation();
+  // };
+  // const handleNavopen = () => {
+  //   if (navOpen) {
+  //     setNavopen(!navOpen)
+  //   }
+  // };
+  // const renderNav = () => {
+  //   if (navOpen) {
+  //     return "links active"
+  //   } else {
+  //     return "links deactivate";
+  //   }
+  // }
 
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
@@ -169,7 +176,7 @@ export function Navbar_phone() {
         animate={isOpen ? "open" : "closed"}
         variants={variants}>
         <div className='h-screen w-screen bg-[#4d1a6c] flex flex-col items-center justify-start pt-8'>
-          <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-16 rounded-xl'></img>
+          <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-16 rounded-xl' alt='error'></img>
           <motion.div className='absolute top-0 right-0 mt-8 mr-8 text-3xl' onClick={() => setIsOpen(isOpen => !isOpen)}>×</motion.div>
           {loggedin &&
             <div id='loggedIn' className='mt-24 mb-16'>

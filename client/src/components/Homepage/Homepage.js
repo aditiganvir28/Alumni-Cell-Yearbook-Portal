@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import '@fontsource/quantico'
+import { useNavigate } from 'react-router'
 import { LoginContext } from '../../helpers/Context'
 import Lines from './images/lines.png'
 import Lines2 from './images/lines2.png'
@@ -10,13 +11,14 @@ import People from './images/people1.png'
 import UC from './images/UC.gif'
 import { motion } from 'framer-motion'
 import Step_1 from './images/Step_1.png'
-import step_22 from './images/step_22.png'
+// import step_22 from './images/step_22.png'
 import Step_2 from './images/Step_2.png'
 import Step_3 from './images/Step_3.png'
 import Step_4 from './images/Step_4.png'
 import Step_5 from './images/Step_5.png'
 import Yearbook from './images/Yearbook2022.pdf'
-
+import Navbar from '../navbar/navbar'
+import yearbook from './images/yearbook.png'
 function Homepage() {
   const { loading, setLoading } = useContext(LoginContext)
 
@@ -31,24 +33,24 @@ function Homepage() {
     Load()
   }, [])
 
-  const sentence = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.5,
-        staggerChildren: 0.08,
-      },
-    },
-  }
+  // const sentence = {
+  //   hidden: { opacity: 1 },
+  //   visible: {
+  //     opacity: 1,
+  //     transition: {
+  //       delay: 0.5,
+  //       staggerChildren: 0.08,
+  //     },
+  //   },
+  // }
 
-  const letter = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-    },
-  }
+  // const letter = {
+  //   hidden: { opacity: 0, y: 50 },
+  //   visible: {
+  //     opacity: 1,
+  //     y: 0,
+  //   },
+  // }
   return (
     <>
       {loading && (
@@ -80,7 +82,7 @@ function Homepage() {
                   This is your new memories page!
                 </div>
                 <div className="h-96 w-96 rounded-full mt-12 lg:mb-0 mb-12">
-                  <img src={People} className="w-full"></img>
+                  <img src={People} className="w-full" alt="Error"></img>
                 </div>
               </div>
             </div>
@@ -115,6 +117,7 @@ function Homepage() {
                 <img
                   className="ml-16 lg:w-32 object-contain z-10 rounded-none"
                   src={Lines}
+                  alt="err"
                 ></img>
               </motion.div>
               <div className="flex w-full lg:hidden flex-col items-center justify-center">
@@ -201,6 +204,7 @@ function Homepage() {
               >
                 <img
                   className="w-full h-full object-contain rounded-xl border-2"
+                  alt="err"
                   src={Step_1}
                 ></img>
               </motion.div>
@@ -218,6 +222,7 @@ function Homepage() {
               >
                 <img
                   className="w-full h-full object-contain rounded-xl"
+                  alt="err"
                   src={Step_2}
                 ></img>
               </motion.div>
@@ -249,6 +254,7 @@ function Homepage() {
               >
                 <img
                   className="ml-14 w-16 object-contain z-10 rounded-none"
+                  alt="err"
                   src={Lines2}
                 ></img>
               </motion.div>
@@ -318,6 +324,7 @@ function Homepage() {
               >
                 <img
                   className="w-full h-full object-cover rounded-xl"
+                  alt="err"
                   src={Step_3}
                 ></img>
               </motion.div>
@@ -349,6 +356,7 @@ function Homepage() {
               >
                 <img
                   className="ml-14 w-8 object-contain z-10 rounded-none"
+                  alt="err"
                   src={Lines3}
                 ></img>
               </motion.div>
@@ -400,6 +408,7 @@ function Homepage() {
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl border-2"
+                      alt="err"
                       src={Step_4}
                     ></img>
                   </motion.div>
@@ -417,6 +426,7 @@ function Homepage() {
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl"
+                      alt="err"
                       src={Step_5}
                     ></img>
                   </motion.div>
@@ -508,6 +518,7 @@ function Homepage() {
                 <img
                   src={UC}
                   className="w-48 h-48 rounded-full object-cover my-12"
+                  alt="err"
                 ></img>
                 <h1 className="text-white text-center z-0">Coming Soon</h1>
                 <motion.div

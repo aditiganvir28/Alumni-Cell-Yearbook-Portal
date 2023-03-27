@@ -375,7 +375,7 @@ function Fill(props) {
             </div>
             <div className="right">
               <span className="dot">
-                <img id="ip" src={imageUrl} />
+                <img id="ip" src={imageUrl} alt='err'/>
               </span>
               <br />
               <h4 id="disclaimer">

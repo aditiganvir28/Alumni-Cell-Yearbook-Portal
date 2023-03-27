@@ -5,14 +5,13 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const SecondLogin = () => {
-  const { user, loading, setLoading, profile, setProfile } = useContext(
-    LoginContext,
-  )
+  const { user, loading, setLoading, profile } = useContext(LoginContext)
   const [myComments, setMyComments] = useState([])
   const [newComments, setNewComments] = useState([])
   const [approvedComments, setApprovedComments] = useState([])
   const [state, setState] = useState(false)
-  const [uploaded, setUploaded] = useState(false)
+  const [setUploaded] = useState(false)
+  // const [uploaded] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)
   const [imageSelected, setImageSelected] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
