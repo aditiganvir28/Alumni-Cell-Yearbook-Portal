@@ -118,6 +118,11 @@ li{
     // color: black;
     // font-weight: bolder;
 }
+#upld2 :hover{
+    background-color: #fec80a !important;
+    color: black !important;
+    border: 1px solid black !important;
+}
 .profile {
     align-items: center;
     padding-right: 2%;
@@ -168,6 +173,9 @@ li{
     color: black !important;
     font-weight: bolder;
     height: fit-content;
+}
+#edit :hover{
+    border: 1px solid white;
 }
 
 // .footer-item {

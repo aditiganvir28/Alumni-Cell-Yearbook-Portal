@@ -279,7 +279,7 @@ function Edit(props) {
                 }
               />
               <br />
-              <input
+              {/* <input
                 type="text"
                 placeholder="Personal Email ID*"
                 size="60"
@@ -317,7 +317,7 @@ function Edit(props) {
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }
               />
-              <br />
+              <br /> */}
               <input
                 type="text"
                 placeholder="Address*"

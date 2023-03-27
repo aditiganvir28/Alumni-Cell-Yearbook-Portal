@@ -227,6 +227,9 @@ function Fill(props) {
                 }
               />
               <br />
+              <h4 id="disclaimer">
+                <div className="disc">Disclaimer:</div> You cannot edit your <strong>Email ID</strong> and <strong>Contact Numbers</strong> later on.
+              </h4>
               <input
                 type="text"
                 placeholder="Personal Email ID*"
@@ -299,7 +302,7 @@ function Fill(props) {
               <input
                 type="text"
                 maxLength={350}
-                placeholder="About Me (50-60 words)"
+                placeholder="About Me* (50-60 words)"
                 size="60"
                 name="about"
                 value={userData.about}
@@ -310,7 +313,7 @@ function Fill(props) {
               <br />
               <p id="ques">
                 <div id="disc">Q1.</div> What will you miss the most after
-                graduating?
+                graduating?*
               </p>
               <input
                 type="text"
@@ -326,7 +329,7 @@ function Fill(props) {
               <br />
               <p id="ques">
                 Q2. If you had the power to implement a change in college, what
-                would it be?
+                would it be?*
               </p>
               <input
                 maxLength={200}
