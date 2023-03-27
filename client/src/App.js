@@ -60,7 +60,7 @@ const App = ({ location }) => {
   const loadingSpinner = () => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1000))
+      await new Promise((r) => setTimeout(r, 1300))
 
       setLoading((loading) => !loading)
     }
@@ -72,7 +72,7 @@ const App = ({ location }) => {
     axios
       .get('http://localhost:5000/getUsersData')
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data)
         setAllUsuers(res.data)
       })
       .catch((err) => {
@@ -100,8 +100,7 @@ const App = ({ location }) => {
         email: user.email,
       })
       .then((res) => {
-        setProfile(res.data.User[0])
-        // console.log(res.data.User[0])
+        setProfile(res.data.User)
       })
   })
 
@@ -151,7 +150,7 @@ const App = ({ location }) => {
                   if (res.data.User[0].two_step_verified === true) {
                     // console.log('verified')
                     setFill(true)
-                    navigate(`/profile/${profile._id}/${profile.name}/${token}`)
+                    navigate(`/`)
                   }
                   //if the user is not verified
                   else {

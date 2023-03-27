@@ -32,7 +32,6 @@ const getUsersData = asyncHandler(async (req, res) => {
   if (!User?.length) {
     return res.send({ message: 'No userData found' })
   }
-
   return res.send(User)
 })
 
@@ -128,14 +127,14 @@ const createUsersData = asyncHandler(async (req, res) => {
       subject: 'Verify Account',
       // html: `Click <a href='${url}'>here</a> to confirm your email.`,
       html: `<p>Thank you for registering on the Yearbook Portal.
-      Please verify your registered email by clicking on the link below.
-      <a href='${url}'>Verify</a>
+      Please verify your registered email by clicking on the link below
+      <a href='${url}'>Verify</a><br>
       In case you enter the wrong OTP, you will have to sign in again and fill all the details.
       It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
       To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-      <a href='#'>Whatsapp</a>
+      <a href='#'>Whatsapp</a><br>
       We also urge you to create your profile on the Alumni Portal by visiting
-      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a>
+      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
       You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
     <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
     <p>Regards,<br>
@@ -200,7 +199,7 @@ verifyPhoneOtp = async (req, res, next) => {
     user.phoneOTP = ''
     user.two_step_verified = true
     await user.save()
-    res.send('Mobile number verified')
+    res.send({ message: 'Mobile number verified' })
     // return res.redirect('http://localhost:3000/')
   } catch (error) {
     next(error)
