@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./otpverification.scss";
 
 const OtpVerification = () =>{
-    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified} = useContext(LoginContext);
+    const {loggedin, setLoggedin, fill, setFill,user, setUser, setVerified, setProfileIcon, profileIcon, userData, setUserData} = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
     const [state, setState] = useState(false);
@@ -32,23 +32,6 @@ const OtpVerification = () =>{
       })
   })
 
-     //After refreshing the page user is still signed in 
-  useEffect(() => {
-    if (window.localStorage.getItem('user') !== null) {
-      const userLoggedIn = window.localStorage.getItem('user');
-      if (userLoggedIn !== null) {
-        setUser(JSON.parse(userLoggedIn));
-      }
-    }
-    const logged = (window.localStorage.getItem('loggedin'));
-    if (logged === "true") {
-      setLoggedin(true);
-    }
-    else {
-      setLoggedin(false);
-    }
-  },[])
-
     const navigate = useNavigate();
 
     const otpVerify = (e) =>{
@@ -67,7 +50,11 @@ const OtpVerification = () =>{
                 navigate(`/profile/${profile._id}/${profile.name}/${token}`);
                 setFill(true);
                 setVerified(true);
+                setProfileIcon(true);
                 setLoggedin(true);
+                window.localStorage.setItem('verified', true)
+                window.localStorage.setItem('profileIcon', true)
+                window.localStorage.setItem('profile', JSON.parse(JSON.stringify(userData)))
                 window.location.reload();
             }
             setMessage(res.data.message);
