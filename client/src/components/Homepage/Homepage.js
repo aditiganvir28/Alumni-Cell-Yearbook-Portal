@@ -52,7 +52,7 @@ function Homepage() {
   //   },
   // }
   return (
-    <>
+    <div className='z-10'>
       {loading && (
         <div className="spinner">
           <span class="loader"></span>
@@ -574,7 +574,7 @@ function Homepage() {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 
