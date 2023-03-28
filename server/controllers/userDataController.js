@@ -170,16 +170,16 @@ const createUsersData = asyncHandler(async (req, res) => {
     //     to: usersData.contact_details,
     //   })
     //   .then((message) => console.log(message.sid))
-    const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
-    const authToken = process.env.TWILIO_AUTH_TOKEN
-    const client = require('twilio')(accountSid, authToken)
-    client.messages
-      .create({
-        body: `Your otp is ${otp}`,
-        from: '+15074426876',
-        to: '+919404584441',
-      })
-      .then((message) => console.log(message.sid))
+    // const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
+    // const authToken = '6cce98e7ef4d627822b3e5c47d5b43db'
+    // const client = require('twilio')(accountSid, authToken)
+    // client.messages
+    //   .create({
+    //     body: `Your otp is ${otp}`,
+    //     from: '+15074426876',
+    //     to: usersData.contact_details,
+    //   })
+    //   .then((message) => console.log(message.sid))
   } catch (error) {
     console.log(error)
   }
@@ -208,7 +208,7 @@ verifyPhoneOtp = async (req, res, next) => {
     user.phoneOTP = ''
     user.two_step_verified = true
     await user.save()
-    res.send({ message: 'Mobile number verified' })
+    res.send({ message: 'Mobile number verified', user })
     // return res.redirect('http://localhost:3000/')
   } catch (error) {
     next(error)
@@ -246,13 +246,13 @@ const resendOTP = asyncHandler(async (req, res) => {
     //   })
     //   .then((message) => console.log(message.sid))
     const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
-    const authToken = process.env.TWILIO_AUTH_TOKEN
+    const authToken = '6cce98e7ef4d627822b3e5c47d5b43db'
     const client = require('twilio')(accountSid, authToken)
     client.messages
       .create({
         body: `Your otp is ${otp}`,
         from: '+15074426876',
-        to: '+919404584441',
+        to: user.contact_details,
       })
       .then((message) => console.log(message.sid))
   } catch (error) {
@@ -663,6 +663,8 @@ const approvedComments = asyncHandler(async (req, res) => {
       }
     },
   )
+
+  console.log('comment approved')
 })
 
 ////Adding the rejected comments to the rejected table and delete it from the newComments table

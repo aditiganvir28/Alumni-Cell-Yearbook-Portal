@@ -18,8 +18,6 @@ const SecondLogin = () => {
   const [message, setMessage] = useState('')
   const [imageadded, setImageadded] = useState(false)
 
-  console.log(profile)
-
   useEffect(() => {
     setLoading(true)
     const Load = async () => {
@@ -30,6 +28,17 @@ const SecondLogin = () => {
 
     Load()
   }, [])
+
+  const loadingSpinner3 = () => {
+    setLoading(true)
+    const Load = async () => {
+      await new Promise((r) => setTimeout(r, 5000))
+
+      setLoading((loading) => !loading)
+    }
+
+    Load()
+  }
 
   const uploadImage = async () => {
     setUploaded(true)
@@ -214,8 +223,11 @@ const SecondLogin = () => {
                     <button
                       id="check"
                       disabled={state}
-                      onClick={(e) => {
-                        axios
+                      style={{
+                        backgroundColor: state ? 'grey' : 'transparent',
+                      }}
+                      onClick={async (e) => {
+                        await axios
                           .post('http://localhost:5000/approvedComments', {
                             friend_email: user.email,
                             user_email: val.user_email,
@@ -229,7 +241,7 @@ const SecondLogin = () => {
                             console.log(err)
                           })
 
-                        axios
+                        await axios
                           .post('http://localhost:5000/deleteComments', {
                             friend_email: user.email,
                             user_email: val.user_email,
@@ -247,6 +259,8 @@ const SecondLogin = () => {
                         setTimeout(() => {
                           setState(false)
                         }, 20000)
+
+                        loadingSpinner3()
                       }}
                     >
                       <i
@@ -258,7 +272,10 @@ const SecondLogin = () => {
                     <button
                       id="check"
                       disabled={state}
-                      onClick={(e) => {
+                      style={{
+                        backgroundColor: state ? 'grey' : 'transparent',
+                      }}
+                      onClick={async (e) => {
                         {
                           e.preventDefault()
 

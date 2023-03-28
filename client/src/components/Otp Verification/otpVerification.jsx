@@ -17,7 +17,7 @@ const OtpVerification = () =>{
       userData, 
       // setUserData,
       profile, 
-      // setProfile
+      setProfile
     } = useContext(LoginContext);
     const [message, setMessage] = useState("");
     const [otp, setOtp] = useState("");
@@ -63,15 +63,17 @@ const token = (length) => {
           
             console.log(res);
             if(res.data.message==="Mobile number verified"){
-                
+                console.log(res.data);
                 setFill(true);
                 setVerified(true);
                 setProfileIcon(true);
                 setLoggedin(true);
                 window.localStorage.setItem('verified', true)
                 window.localStorage.setItem('profileIcon', true)
-                window.localStorage.setItem('profile', JSON.parse(JSON.stringify(userData)))
-                window.location.reload();
+                setProfile(res.data.user)
+                // const p = JSON.stringify(res.data.User[0])
+                window.localStorage.setItem('profile', JSON.stringify(res.data.user))
+                console.log(profile);
                 navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
             }
             setMessage(res.data.message);
