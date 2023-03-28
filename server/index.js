@@ -28,10 +28,19 @@ const port = process.env.PORT || 5000
 //To parse the incoming requests with JSON payloads we are using express.json()
 //which is a built-in middleware function in Express.
 
+// ADDING ENVIRENMENT VARIABLES
+mongodbLink = process.env.MONGODB_LINK;
+clientLink = process.env.CLIENT_LINK;
+// console.log(mongodbLink);
+// console.log(clientLink);
+
 //Middlewares
+
+
+
 app.use(
   cors({
-    origin: [`http://localhost:3000`],
+    origin: [clientLink],
     methods: ['GET', 'POST', 'UPDATE', 'PUT'],
     credentials: true,
   }),
@@ -62,7 +71,7 @@ app.listen(port, (err) => {
 
 mongoose
   .connect(
-    'mongodb+srv://alumnicell:yearbookportal@yearbook.ynwmaxb.mongodb.net/test',
+    mongodbLink,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

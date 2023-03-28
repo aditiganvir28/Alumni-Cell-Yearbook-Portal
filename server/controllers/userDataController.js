@@ -10,12 +10,20 @@ const ApprovedCommetns = require('../models/approved_comments')
 const RejectedComments = require('../models/rejected_comments')
 const Memories = require('../models/memories')
 
+// adding environment variable ****************
+const gmailUser = process.env.GMAIL_USER;
+const gmailPass = process.env.GMAIL_PASS;
+const serverLink = process.env.SERVER_LINK;
+const clientLink = process.env.CLIENT_LINK;
+
 //Api to set up sender to send a mail
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'yearbookiiti@gmail.com',
-    pass: 'ukminlnnlztqdaqu',
+    // user: 'yearbookiiti@gmail.com',
+    user: gmailUser,
+    // pass: 'ukminlnnlztqdaqu',
+    pass: gmailPass,
   },
 })
 
@@ -120,7 +128,8 @@ const createUsersData = asyncHandler(async (req, res) => {
   const verificationToken = usersData.generateVerificationToken()
   try {
     //Email the user a unique verification link
-    const url = `http://localhost:5000/verify/${verificationToken}`
+    // const url = `http://localhost:5000/verify/${verificationToken}`
+    const url = `${serverLink}/verify/${verificationToken}`
 
     transporter.sendMail({
       to: personal_email_id,
@@ -280,7 +289,7 @@ const verify = async (req, res) => {
     user.one_step_verified = true
     await user.save()
 
-    return res.redirect(`http://localhost:3000/otpVerification/${token}`)
+    return res.redirect(`${clientLink}/otpVerification/${token}`)
   } catch (err) {
     return res.status(500).send(err)
   }
@@ -302,7 +311,7 @@ const resendMail = asyncHandler(async (req, res) => {
   const verificationToken = user.generateVerificationToken()
   try {
     //Email the user a unique verification link
-    const url = `http://localhost:5000/verify/${verificationToken}`
+    const url = `${serverLink}/verify/${verificationToken}`
     console.log('Reaches')
     transporter.sendMail({
       to: personalMailId,
