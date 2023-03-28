@@ -27,16 +27,16 @@ function Fill(props) {
 
   console.log(user)
 
-  useEffect(() => {
-    setLoading(true)
-    const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1000))
+  // useEffect(() => {
+  //   setLoading(true)
+  //   const Load = async () => {
+  //     await new Promise((r) => setTimeout(r, 1000))
 
-      setLoading((loading) => !loading)
-    }
+  //     setLoading((loading) => !loading)
+  //   }
 
-    Load()
-  }, [])
+  //   Load()
+  // }, [])
 
   const uploadImage = () => {
     setUploaded(true)
@@ -85,7 +85,7 @@ function Fill(props) {
     axios
       .post('http://localhost:5000/userData', {
         email: user.email,
-        name: userData.name_,
+        name: userData.name,
         roll_no: userData.roll_no,
         academic_program: userData.academic_program,
         department: userData.department,
@@ -107,8 +107,10 @@ function Fill(props) {
         if (
           res.data.message ===
           'Sent a verification email to your personal email id'
-        )
+        ) {
           setVeriify2(true)
+          window.localStorage.setItem('userData', JSON.stringify(userData))
+        }
         setTimeout(() => {
           setMessage('')
         }, 8000)
@@ -164,7 +166,7 @@ function Fill(props) {
                 type="text"
                 placeholder="Name*"
                 size="60"
-                name="name_"
+                name="name"
                 value={userData.name}
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
@@ -375,7 +377,7 @@ function Fill(props) {
             </div>
             <div className="right">
               <span className="dot">
-                <img id="ip" src={imageUrl} alt='err'/>
+                <img id="ip" src={imageUrl} alt="err" />
               </span>
               <br />
               <h4 id="disclaimer">

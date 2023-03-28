@@ -28,7 +28,7 @@ const App = ({ location }) => {
   const [authData, setAuthData] = useState([]) //all the users wha have already logged in
   const [result, setResult] = useState({})
   const [isRegistered, setIsRegistered] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [fill, setFill] = useState(false)
   const [profile, setProfile] = useState({})
   const [allUsers, setAllUsuers] = useState([])
@@ -36,7 +36,7 @@ const App = ({ location }) => {
   const [profileIcon, setProfileIcon] = useState(false)
   const [isStudent, setIsStudent] = useState(false)
   const [userData, setUserData] = useState({
-    name_: '',
+    name: '',
     roll_no: '',
     academic_program: '',
     department: '',
@@ -77,7 +77,7 @@ const App = ({ location }) => {
   const loadingSpinner = () => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 1300))
+      await new Promise((r) => setTimeout(r, 500))
 
       setLoading((loading) => !loading)
     }

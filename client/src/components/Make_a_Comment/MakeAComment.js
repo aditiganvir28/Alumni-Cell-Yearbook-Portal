@@ -44,6 +44,10 @@ const MakeAComment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(isStudent)
+    setState(true)
+    setTimeout(() => {
+      setState(false)
+    }, 20000)
     if (isStudent === false) {
       await axios
         .post('http://localhost:5000/myComments', {
@@ -88,10 +92,7 @@ const MakeAComment = () => {
           console.log(err)
         })
     }
-    setState(true)
-    setTimeout(() => {
-      setState(false)
-    }, 20000)
+
     if (isStudent === true) {
       navigate('/')
     } else {

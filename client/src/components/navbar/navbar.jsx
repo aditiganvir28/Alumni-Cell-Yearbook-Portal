@@ -25,7 +25,7 @@ const Navbar = () => {
     closed: { y: "-96%" },
   }
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner, isStudent, setIsStudent} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner, isStudent, setIsStudent, setUserData, userData} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const [navOpen, setNavopen]= useState(false);
@@ -40,6 +40,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(true)
   const [example, setExample] = useState([]);
   const alumniEmail= alumniData; //geeting all the alumnis data
+
 
   //Use ReactFilter
   var filteredPersons= []
@@ -57,6 +58,18 @@ const Navbar = () => {
   setExample(filteredPersons);
   })
 
+  //loading spinner function
+  const loadingSpinner2 = () => {
+    setLoading(true)
+    const Load = async () => {
+      await new Promise((r) => setTimeout(r, 10000))
+
+      setLoading((loading) => !loading)
+    }
+
+    Load()
+  }
+
   //After refreshing the page user is still signed in 
   useEffect(() => {
     if (window.localStorage.getItem('user') !== null) {
@@ -69,6 +82,12 @@ const Navbar = () => {
       const salumni = window.localStorage.getItem('searchedAlumni');
       if (salumni !== null) {
         setResult(JSON.parse(salumni));
+      }
+    }
+    if (window.localStorage.getItem('userData') !== null) {
+      const u = window.localStorage.getItem('userData');
+      if (u !== null) {
+        setUserData(JSON.parse(u));
       }
     }
     const logged = (window.localStorage.getItem('loggedin'));
@@ -93,6 +112,8 @@ const Navbar = () => {
     if(verify==="true"){
       setProfile(JSON.parse(p));
     }
+
+    
   },[])
 
   //Logout Function
@@ -202,7 +223,6 @@ const Navbar = () => {
                       e.preventDefault();
                       window.localStorage.removeItem('searchedAlumni')
                       // loadingSpinner();
-                      setSearchword(val.email);
                       setInputValue("");
                       setDisplay(false);
                       e.target.value="";
@@ -212,18 +232,13 @@ const Navbar = () => {
                           console.log(res.data);
                           setResult(res.data);
                           window.localStorage.setItem('searchedAlumni', JSON.stringify(res.data));
-      
+                          
                           }).catch((err) => {
                           console.log(err)
                           })
-    navigate(`/comment/${val._id}/${val.name}/${val.roll_no}`)
-    loadingSpinner();
-                      
-                      // setTimeout(()=>{
-                        
-                      // },500)
-                      
-                    }}><p>{val.name}</p>
+                          navigate(`/comment/${val._id}/${val.name}/${val.roll_no}`)
+                          loadingSpinner2();
+                      }}><p>{val.name}</p>
                       <p style={{fontSize: "70%", fontStyle: "italic"}}>{val.academic_program}</p>
                     </button></li>)
                     )}
