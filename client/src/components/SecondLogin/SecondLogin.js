@@ -112,7 +112,7 @@ const SecondLogin = () => {
   const navigate = useNavigate()
   const editProfile = () => {
     // window.location.href = '/edit';
-    navigate('/edit')
+    navigate(`/edit/${profile._id}`)
   }
 
   return (

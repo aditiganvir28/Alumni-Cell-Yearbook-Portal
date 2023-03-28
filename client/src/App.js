@@ -262,7 +262,7 @@ const App = ({ location }) => {
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/nav" element={<Navbar_phone />} />
           <Route exact path="/fill/:userId" element={<Fill />} />
-          <Route exact path="/edit" element={<Edit />} />
+          <Route exact path="/edit/:userId" element={<Edit />} />
           <Route
             exact
             path="/profile/:_id/:name/:token"

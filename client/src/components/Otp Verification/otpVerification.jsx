@@ -24,15 +24,18 @@ const OtpVerification = () =>{
     const [state, setState] = useState(false);
     // const [profile, setProfile] = useState({});
 
-    const rand = () => {
-        return Math.random().toString(36).substr(2);
-      };
-      
-      const token = () => {
-        return rand() + rand();
-      };
-      
-      console.log(token());
+// token for profile
+const token = (length) => {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+  
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+  
+    return result;
+  };
 
     //Get the data to be displayed on the profile
   // useEffect(() => {
@@ -69,7 +72,7 @@ const OtpVerification = () =>{
                 window.localStorage.setItem('profileIcon', true)
                 window.localStorage.setItem('profile', JSON.parse(JSON.stringify(userData)))
                 window.location.reload();
-                navigate(`/profile/${profile._id}/${profile.name}/${token}`);
+                navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
             }
             setMessage(res.data.message);
         setTimeout(()=>{

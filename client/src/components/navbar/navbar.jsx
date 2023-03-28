@@ -132,6 +132,21 @@ const Navbar = () => {
     }
   }
 
+
+  // Token Generation 
+
+  const token = (length) => {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+  
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+  
+    return result;
+  };
+
   // const loadingSpinner2 = () => {
   //   setLoading(true)
   //   const Load = async () => {
@@ -237,7 +252,7 @@ const Navbar = () => {
                             <img src="../../../images/profile.jpg" alt="" id='profilepic' />
                           </MenuButton>
                           <MenuList>
-                            <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${profile.roll_no}`}>
+                            <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${token(32)}`}>
                               <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
                               <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                     </MenuList>

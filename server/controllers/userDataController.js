@@ -393,7 +393,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
   await user.save() // save the updated user data
 
-  res.status(200).json({ message: 'User data updated successfully' })
+  res.status(200).json({ message: 'User data updated successfully',user })
 })
 
 //find a user who logged in in user's data
