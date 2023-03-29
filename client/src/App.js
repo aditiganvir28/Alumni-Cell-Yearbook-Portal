@@ -62,7 +62,7 @@ const App = ({ location }) => {
     if (window.google) {
       google.accounts.id.initialize({
         client_id:
-          '279659903183-6ctccbqdo4skcudgca030m3uti3at58i.apps.googleusercontent.com',
+          '971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com',
         callback: handleCallbackResponse,
       })
       google.accounts.id.renderButton(document.getElementById('google-login'), {
@@ -88,7 +88,7 @@ const App = ({ location }) => {
   //getting all the users who have made their profile
   useEffect(() => {
     axios
-      .get('http://localhost:5000/getUsersData')
+      .get(process.env.REACT_APP_API_URL + '/getUsersData')
       .then((res) => {
         console.log(res.data)
         setAllUsuers(res.data)
@@ -101,7 +101,7 @@ const App = ({ location }) => {
   //getting all users who have already signed in
   useEffect(() => {
     axios
-      .get('http://localhost:5000/auth')
+      .get(process.env.REACT_APP_API_URL + '/auth')
       .then((res) => {
         setAuthData(res.data)
         // console.log(authData)
@@ -135,7 +135,7 @@ const App = ({ location }) => {
     console.log(userObject)
 
     await axios
-      .post('http://localhost:5000/checkAuth', {
+      .post(process.env.REACT_APP_API_URL + '/checkAuth', {
         email: userObject.email,
       })
       .then((res) => {
@@ -144,7 +144,7 @@ const App = ({ location }) => {
           //if the user is a lumni
           if (alumniEmail.includes(userObject.email)) {
             axios
-              .post('http://localhost:5000/findAUser', {
+              .post(process.env.REACT_APP_API_URL + '/findAUser', {
                 email: userObject.email,
               })
               .then((res) => {
@@ -164,7 +164,7 @@ const App = ({ location }) => {
                   //if the user is not verified
                   else {
                     axios
-                      .post('http://localhost:5000/deleteUser', {
+                      .post(process.env.REACT_APP_API_URL + '/deleteUser', {
                         email: userObject.email,
                       })
                       .then((res) => {
@@ -193,7 +193,7 @@ const App = ({ location }) => {
         //if signed in for the first time
         else {
           axios
-            .post('http://localhost:5000/auth', {
+            .post(process.env.REACT_APP_API_URL + '/auth', {
               email: userObject.email,
               name: userObject.name,
             })

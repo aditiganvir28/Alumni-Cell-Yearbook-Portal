@@ -50,7 +50,7 @@ const MakeAComment = () => {
     }, 20000)
     if (isStudent === false) {
       await axios
-        .post('http://localhost:5000/myComments', {
+        .post(process.env.REACT_APP_API_URL + '/myComments', {
           comment: comment,
           friend_email: result[0].email,
           friend_name: result[0].name,
@@ -65,7 +65,7 @@ const MakeAComment = () => {
     }
     if (isStudent === true) {
       await axios
-        .post('http://localhost:5000/newComments', {
+        .post(process.env.REACT_APP_API_URL + '/newComments', {
           comment: comment,
           user_email: user.email,
           user_name: user.name,
@@ -79,7 +79,7 @@ const MakeAComment = () => {
         })
     } else {
       await axios
-        .post('http://localhost:5000/newComments', {
+        .post(process.env.REACT_APP_API_URL + '/newComments', {
           comment: comment,
           user_email: profile.email,
           user_name: profile.name,
@@ -105,7 +105,7 @@ const MakeAComment = () => {
   //Getting all the approved comments to be displayed in the approved section
   useEffect(() => {
     axios
-      .post('http://localhost:5000/getApprovedComments', {
+      .post(process.env.REACT_APP_API_URL + '/getApprovedComments', {
         friend_email: result.email,
       })
       .then((res) => {

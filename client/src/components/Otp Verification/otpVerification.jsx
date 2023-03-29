@@ -40,7 +40,7 @@ const token = (length) => {
     //Get the data to be displayed on the profile
   // useEffect(() => {
   //   axios
-  //     .post('http://localhost:5000/profile', {
+  //     .post(process.env.REACT_APP_API_URL + '/profile', {
   //       email: user.email,
   //     })
   //     .then((res) => {
@@ -56,7 +56,7 @@ const token = (length) => {
         setTimeout(()=>{
             setState(false)
         }, 20000)
-        axios.post('http://localhost:5000/verify',{
+        axios.post(process.env.REACT_APP_API_URL + '/verify',{
             phoneOTP: otp,
             userId: user.email
         }).then((res)=>{
@@ -90,7 +90,7 @@ const token = (length) => {
         setTimeout(()=>{
             setState(false)
         }, 20000)
-        axios.post('http://localhost:5000/resendOTP',{
+        axios.post(process.env.REACT_APP_API_URL + '/resendOTP',{
             phoneOTP: otp,
             userId: user.email
         }).then((res)=>{

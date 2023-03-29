@@ -73,7 +73,7 @@ function Edit(props) {
 
   // Getting User Data From Backend
   // useEffect(()=>{
-  //   const getUserData = async() => {axios.post('http://localhost:5000/profile', {
+  //   const getUserData = async() => {axios.post(process.env.REACT_APP_API_URL + '/profile', {
   //     email: email
   //   }).then((res)=>{
   //     console.log(res.data.User[0]);
@@ -94,7 +94,7 @@ function Edit(props) {
     if (user.email !== undefined) {
       const getUserData = async () => {
         axios
-          .post('http://localhost:5000/profile', {
+          .post(process.env.REACT_APP_API_URL + '/profile', {
             email: user.email, // use user.email directly instead of email state variable
           })
           .then((res) => {
@@ -126,7 +126,7 @@ function Edit(props) {
       settwo_step_verified(false)
     }
     axios
-      .put('http://localhost:5000/updateUser', {
+      .put(process.env.REACT_APP_API_URL + '/updateUser', {
         email: email,
         name: userData.name,
         roll_no: userData.roll_no,
@@ -179,7 +179,7 @@ function Edit(props) {
     }, 60000)
 
     axios
-      .post('http://localhost:5000/resendMail', {
+      .post(process.env.REACT_APP_API_URL + '/resendMail', {
         userId: user.email,
         personalMailId: userData.personal_email_id,
       })
