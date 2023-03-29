@@ -20,7 +20,7 @@ const app = express()
 //     console.log('listening on https://yearbookportal-iiti.co.in:5000');
 // });
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8081
 
 //We are using cors to allow cross-origin requests.
 //We are using app.use() to add the cors middleware to the Express application.
