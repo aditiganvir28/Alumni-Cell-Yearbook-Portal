@@ -27,6 +27,8 @@ client/node_modules
 server/node_modules
 node_modules
 
+server/.env
+
 client/node_modules/
 server/node_modules/
 node_modules/
@@ -50,4 +52,3 @@ client/node_modules/.cache/default-development/1.pack
 client/node_modules/.cache/default-development/0.pack
 client/node_modules/.cache/.eslintcache
 client/node_modules/.cache/.eslintcache
-.env
