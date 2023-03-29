@@ -50,3 +50,4 @@ client/node_modules/.cache/default-development/1.pack
 client/node_modules/.cache/default-development/0.pack
 client/node_modules/.cache/.eslintcache
 client/node_modules/.cache/.eslintcache
+.env
