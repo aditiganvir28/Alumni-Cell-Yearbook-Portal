@@ -39,12 +39,12 @@ clientLink = process.env.CLIENT_LINK;
 
 
 app.use(
-  // cors({
-  //   origin: [clientLink],
-  //   methods: ['GET', 'POST', 'UPDATE', 'PUT'],
-  //   credentials: true,
-  // }),
-  cors()
+  cors({
+    origin: [clientLink],
+    methods: ['GET', 'POST', 'UPDATE', 'PUT'],
+    credentials: true,
+  }),
+  // cors()
 )
 
 app.use(express.json())
