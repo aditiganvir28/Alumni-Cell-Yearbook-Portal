@@ -65,7 +65,7 @@ function Homepage() {
               <div className="w-4/5 lg:w-2/5 lg:mt-0 mt-8 border-2 lg:h-3/5 h-2/5 rounded-xl flex flex-col items-start justify-center relative">
                 <div className="text-white font-bold uppercase text-4xl lg:text-5xl lg:text-left lg:pl-4 mt-8 text-center lg:mr-4">
                   <motion.h3>
-                    WELCOME TO THE YEARBOOK PORTAL '23 OF IIT INDORE ...
+                    WELCOME TO THE <div className="disc">YEARBOOK PORTAL</div> '23 OF IIT INDORE ...
                   </motion.h3>
                 </div>
                 <div className=" lg:mb-0 mb-2 text-white uppercase text-3xl text-left pl-4 lg:pr-4 mt-8 lg:mt-8 w-full flex-wrap overscroll-contain">
@@ -79,7 +79,7 @@ function Homepage() {
               </div>
               <div className="w-full lg:w-1/3 lg:h-3/4 mt-8 lg:mt-0 flex flex-col items-center lg:items-start">
                 <div className="text-4xl uppercase text-white text-center lg:mt-12 lg:text-left w-4/5 lg:w-3/4">
-                  This is your new memories page!
+                  This is your new <div className="disc">memories</div> page!
                 </div>
                 <div className="h-96 w-96 rounded-full mt-12 lg:mb-0 mb-12">
                   <img src={People} className="w-full" alt="Error"></img>
