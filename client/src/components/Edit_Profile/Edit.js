@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 //   const { user, loading, setLoading } = useContext(LoginContext)
 
 function Edit(props) {
-  const { user, loading, setLoading } = useContext(LoginContext)
+  const { user, loading, setLoading, profile, setProfile, item, setItem } = useContext(LoginContext)
   const [message, setMessage] = useState('')
   const [imageSelected, setImageSelected] = useState('gfjebwfbweif')
   const [imageUrl, setImageUrl] = useState('')
@@ -31,7 +31,7 @@ function Edit(props) {
   useEffect(() => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 2500))
+      await new Promise((r) => setTimeout(r, 3500))
 
       setLoading((loading) => !loading)
     }
@@ -60,6 +60,21 @@ function Edit(props) {
   const [userContactOnLoad, setUserContactOnLoad] = useState('')
   const [changes, setChanges] = useState(false)
 
+
+  // Token
+  const token = (length) => {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+  
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+  
+    return result;
+  };
+  
+
   useEffect(() => {
     if (
       userPEmailOnLoad !== userData.personal_email_id ||
@@ -71,30 +86,13 @@ function Edit(props) {
     }
   })
 
-  // Getting User Data From Backend
-  // useEffect(()=>{
-  //   const getUserData = async() => {axios.post(process.env.REACT_APP_API_URL + '/profile', {
-  //     email: email
-  //   }).then((res)=>{
-  //     console.log(res.data.User[0]);
-  //     setUserData(res.data.User[0]);
-  //     setImageUrl(res.data.User[0].profile_img);
-  //   })}
-  //   // getUserData();
-  //   const timeoutId = setTimeout(() => {
-  //     getUserData();
-  //   }, 2500); // delay execution by 1 second
-
-  //   return () => clearTimeout(timeoutId);
-
-  // }, [])
 
   // ***************************************
   useEffect(() => {
     if (user.email !== undefined) {
       const getUserData = async () => {
         axios
-          .post(process.env.REACT_APP_API_URL + '/profile', {
+          .post('http://localhost:5000/profile', {
             email: user.email, // use user.email directly instead of email state variable
           })
           .then((res) => {
@@ -113,20 +111,9 @@ function Edit(props) {
 
   const navigate = useNavigate()
 
-  //sending data to store in the database
-
-  const [one_step_verified, setOne_step_verified] = useState(true)
-  const [two_step_verified, settwo_step_verified] = useState(true)
-
   const onUpdate = () => {
-    if (userPEmailOnLoad !== userData.personal_email_id) {
-      setOne_step_verified(false)
-    }
-    if (userContactOnLoad !== userData.contact_details) {
-      settwo_step_verified(false)
-    }
     axios
-      .put(process.env.REACT_APP_API_URL + '/updateUser', {
+      .put('http://localhost:5000/updateUser', {
         email: email,
         name: userData.name,
         roll_no: userData.roll_no,
@@ -142,22 +129,21 @@ function Edit(props) {
         profile_img: imageUrl,
         question_1: userData.question_1,
         question_2: userData.question_2,
-        one_step_verified: one_step_verified,
-        two_step_verified: two_step_verified,
       })
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
-        if (
-          res.data.message ===
-          'Sent a verification email to your personal email id'
-        )
-          setVeriify2(true)
-        // setMessage("Your Profile has been updated successfully");
         if (message === 'User data updated successfully') {
           setVerify(true)
+          setVeriify2(true)
+          window.localStorage.setItem('verified', true);
+          window.localStorage.setItem('profileIcon', true);
+          const p = JSON.stringify(res.data.user);
+          console.log(p);
+          window.localStorage.setItem('profile', p);
+          setProfile(res.data.user);
           const timetonavigate = setTimeout(() => {
-            navigate('/profile')
+            navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
           }, 2000) // delay execution by 2 second
 
           return () => clearTimeout(timetonavigate)
@@ -172,24 +158,24 @@ function Edit(props) {
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
 
-  const resendMail = () => {
-    setState(true)
-    setTimeout(() => {
-      setState(false)
-    }, 60000)
+  // const resendMail = () => {
+  //   setState(true)
+  //   setTimeout(() => {
+  //     setState(false)
+  //   }, 60000)
 
-    axios
-      .post(process.env.REACT_APP_API_URL + '/resendMail', {
-        userId: user.email,
-        personalMailId: userData.personal_email_id,
-      })
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+  //   axios
+  //     .post('http://localhost:5000/resendMail', {
+  //       userId: user.email,
+  //       personalMailId: userData.personal_email_id,
+  //     })
+  //     .then((res) => {
+  //       console.log(res)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
 
   return (
     <>
@@ -406,7 +392,7 @@ function Edit(props) {
                   </button>
                 )}
                 {verify && <h2 id="verificationmessage">{message}</h2>}
-                {verify2 && changes && (
+                {/* {verify2 && changes && (
                   <button
                     className="submit1"
                     onClick={resendMail}
@@ -416,12 +402,12 @@ function Edit(props) {
                   >
                     Resend Mail
                   </button>
-                )}
+                )} */}
               </div>
             </div>
             <div className="right">
               <span className="dot">
-                <img id="ip" src={imageUrl} alt='err'/>
+                <img id="ip" src={imageUrl} />
               </span>
               {/* <h2> </h2> */}
               <br />
