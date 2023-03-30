@@ -21,7 +21,7 @@ input .search{
     // padding: 1%;
     margin-top: 3%;
     margin-bottom: 3%;
-    width: 100%;
+    width: 90%;
 }
 .searchr ul{
     width: 29%;
@@ -86,7 +86,7 @@ body {
 
 .dropdown-nav{
     max-height: 5%;
-    
+    z-index: 3;    
 }
 
 .css-0{
@@ -210,6 +210,7 @@ button {
     width: 90%;
     cursor: pointer;
     display: block;
+    z-index: 3;
 }
 
 i {
