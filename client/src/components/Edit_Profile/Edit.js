@@ -31,7 +31,7 @@ function Edit(props) {
   useEffect(() => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 3500))
+      await new Promise((r) => setTimeout(r, 4500))
 
       setLoading((loading) => !loading)
     }
@@ -56,9 +56,7 @@ function Edit(props) {
       })
   }
 
-  const [userPEmailOnLoad, setUserPEmailOnLoad] = useState('')
-  const [userContactOnLoad, setUserContactOnLoad] = useState('')
-  const [changes, setChanges] = useState(false)
+
 
 
   // Token
@@ -75,16 +73,6 @@ function Edit(props) {
   };
   
 
-  useEffect(() => {
-    if (
-      userPEmailOnLoad !== userData.personal_email_id ||
-      userContactOnLoad !== userData.contact_details
-    ) {
-      setChanges(true)
-    } else {
-      setChanges(false)
-    }
-  })
 
 
   // ***************************************
@@ -92,15 +80,13 @@ function Edit(props) {
     if (user.email !== undefined) {
       const getUserData = async () => {
         axios
-          .post('http://localhost:5000/profile', {
+          .post(process.env.REACT_APP_API_URL + '/profile', {
             email: user.email, // use user.email directly instead of email state variable
           })
           .then((res) => {
             console.log(res.data.User[0])
             setUserData(res.data.User[0])
             setImageUrl(res.data.User[0].profile_img)
-            setUserPEmailOnLoad(res.data.User[0].personal_email_id)
-            setUserContactOnLoad(res.data.User[0].contact_details)
           })
       }
       getUserData()
@@ -113,7 +99,7 @@ function Edit(props) {
 
   const onUpdate = () => {
     axios
-      .put('http://localhost:5000/updateUser', {
+      .put(process.env.REACT_APP_API_URL + '/updateUser', {
         email: email,
         name: userData.name,
         roll_no: userData.roll_no,
@@ -157,25 +143,6 @@ function Edit(props) {
   const setOptionValue = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value })
   }
-
-  // const resendMail = () => {
-  //   setState(true)
-  //   setTimeout(() => {
-  //     setState(false)
-  //   }, 60000)
-
-  //   axios
-  //     .post('http://localhost:5000/resendMail', {
-  //       userId: user.email,
-  //       personalMailId: userData.personal_email_id,
-  //     })
-  //     .then((res) => {
-  //       console.log(res)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
 
   return (
     <>
