@@ -11,10 +11,10 @@ const RejectedComments = require('../models/rejected_comments')
 const Memories = require('../models/memories')
 
 // adding environment variable ****************
-const gmailUser = process.env.GMAIL_USER;
-const gmailPass = process.env.GMAIL_PASS;
-const serverLink = process.env.SERVER_LINK;
-const clientLink = process.env.CLIENT_LINK;
+const gmailUser = process.env.GMAIL_USER
+const gmailPass = process.env.GMAIL_PASS
+const serverLink = process.env.SERVER_LINK
+const clientLink = process.env.CLIENT_LINK
 
 //Api to set up sender to send a mail
 const transporter = nodemailer.createTransport({
@@ -393,7 +393,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
   await user.save() // save the updated user data
 
-  res.status(200).json({ message: 'User data updated successfully',user })
+  res.status(200).json({ message: 'User data updated successfully', user })
 })
 
 //find a user who logged in in user's data
