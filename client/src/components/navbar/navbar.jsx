@@ -241,7 +241,7 @@ const Navbar = () => {
                       setInputValue("");
                       setDisplay(false);
                       e.target.value="";
-                      axios.post('http://localhost:5000/searchword', {
+                      axios.post(process.env.REACT_APP_API_URL + '/searchword', {
                             searchword: val.email
                           }).then((res) => {
                           console.log(res.data);

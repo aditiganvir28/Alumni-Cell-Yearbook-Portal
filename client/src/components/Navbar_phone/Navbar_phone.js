@@ -141,7 +141,7 @@ export function Navbar_phone() {
 
   // Search Engine Functions
   useEffect(() => {
-    axios.post('http://localhost:5000/searchword', {
+    axios.post(process.env.REACT_APP_API_URL + '/searchword', {
       searchword: searchword
     }).then((res) => {
       setResult(res.data);
@@ -158,7 +158,7 @@ export function Navbar_phone() {
   }
 
   useEffect(() => {
-    axios.post('http://localhost:5000/wordEntered', {
+    axios.post(process.env.REACT_APP_API_URL + '/wordEntered', {
       wordentered: wordentered
     }).then((res) => {
       // console.log(res.data);

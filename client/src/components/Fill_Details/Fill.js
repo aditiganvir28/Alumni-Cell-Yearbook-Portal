@@ -83,7 +83,7 @@ function Fill(props) {
     }, 8000)
 
     axios
-      .post('http://localhost:5000/userData', {
+      .post(process.env.REACT_APP_API_URL + '/userData', {
         email: user.email,
         name: userData.name,
         roll_no: userData.roll_no,
@@ -127,7 +127,7 @@ function Fill(props) {
     }, 8000)
 
     axios
-      .post('http://localhost:5000/resendMail', {
+      .post(process.env.REACT_APP_API_URL + '/resendMail', {
         userId: user.email,
         personalMailId: userData.personal_email_id,
       })

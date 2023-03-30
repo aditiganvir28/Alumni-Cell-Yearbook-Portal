@@ -57,7 +57,7 @@ const SecondLogin = () => {
       })
     if (imageUploaded) {
       axios
-        .post('http://localhost:5000/memories_image', {
+        .post(process.env.REACT_APP_API_URL + '/memories_image', {
           user_email: profile.email,
           name: profile.name,
           memory_img: imageUrl,
@@ -77,7 +77,7 @@ const SecondLogin = () => {
 
   useEffect(() => {
     axios
-      .post('http://localhost:5000/getmyComments', {
+      .post(process.env.REACT_APP_API_URL + '/getmyComments', {
         user_email: user.email,
       })
       .then((res) => {
@@ -92,7 +92,7 @@ const SecondLogin = () => {
 
   useEffect(() => {
     axios
-      .post('http://localhost:5000/getNewComments', {
+      .post(process.env.REACT_APP_API_URL + '/getNewComments', {
         friend_email: user.email,
       })
       .then((res) => {
@@ -106,7 +106,7 @@ const SecondLogin = () => {
   //Getting all the approved comments to be displayed in the approved section
   useEffect(() => {
     axios
-      .post('http://localhost:5000/getApprovedComments', {
+      .post(process.env.REACT_APP_API_URL + '/getApprovedComments', {
         friend_email: user.email,
       })
       .then((res) => {
@@ -228,7 +228,7 @@ const SecondLogin = () => {
                       }}
                       onClick={async (e) => {
                         await axios
-                          .post('http://localhost:5000/approvedComments', {
+                          .post(process.env.REACT_APP_API_URL + '/approvedComments', {
                             friend_email: user.email,
                             user_email: val.user_email,
                             user_name: val.user_name,
@@ -242,7 +242,7 @@ const SecondLogin = () => {
                           })
 
                         await axios
-                          .post('http://localhost:5000/deleteComments', {
+                          .post(process.env.REACT_APP_API_URL + '/deleteComments', {
                             friend_email: user.email,
                             user_email: val.user_email,
                             user_name: val.user_name,
@@ -280,7 +280,7 @@ const SecondLogin = () => {
                           e.preventDefault()
 
                           axios
-                            .post('http://localhost:5000/rejectedComments', {
+                            .post(process.env.REACT_APP_API_URL + '/rejectedComments', {
                               friend_email: user.email,
                               user_email: val.user_email,
                               user_name: val.user_name,
@@ -294,7 +294,7 @@ const SecondLogin = () => {
                             })
 
                           axios
-                            .post('http://localhost:5000/deleteComments', {
+                            .post(process.env.REACT_APP_API_URL + '/deleteComments', {
                               friend_email: user.email,
                               user_email: val.user_email,
                               user_name: val.user_name,
