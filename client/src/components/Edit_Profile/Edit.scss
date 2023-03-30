@@ -1,19 +1,16 @@
 body{
     background-color: #180c1e;
 }
-.container_fill {
+.container {
     font-family: 'Quantico', sans-serif;
-    // margin-top: 7%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .header{
     align-items: center;
     justify-content: center;
     display: flex;
     padding:2%;
-}
-#ques{
-    color: white;
-    padding: 1px;
 }
 // .navbar{
 //     background-color: #4d1a6c;
@@ -73,20 +70,31 @@ input {
     background-color: #3E185C;
     color: white;      
     padding: 10px;
-    margin: 0 0 20px 0;
+    // margin: 0 0 20px 0;
     margin-left: auto;
     margin-right: auto;
 }
-// .dot {
-//     margin: 10px;
-//     width: 350px;
-//     height: 350px;
-//     background-color: #3E065F;
-//     border-radius: 50%;
-//     display: flex;
-//     margin-right: 90px;
-//     margin-left: 70px;
-// }
+#imgip{
+    border-radius: 10px; 
+    width: 80% !important;
+    background-color: #3E185C;
+    color: white;      
+    padding: 10px;
+    // margin: 0 0 20px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+.dot {
+    // margin-left: 10%;
+    margin-bottom: 0% !important;
+    width: 350px;
+    height: 350px;
+    background-color: #3E065F;
+    border-radius: 50%;
+    display: flex;
+    // margin-right: 90px;
+    margin: 10%;
+}
 #fill{
     width: 100%;
     margin-right: 10%;
@@ -97,8 +105,9 @@ input {
     flex: auto;
     // margin: 0 500px 0 0;
 }
-#fill{
+#fill {
     font-size: 40px;
+    margin-left: 0%;
     font-weight: bold;
     font-style: oblique;
     /* padding: 10px; */
@@ -111,13 +120,14 @@ h2{
     font-size: 25px;
     /* margin-left: 600px; */
 }
-.left {
-    
+.left {    
     // position: absolute;
-    padding-bottom: 10%;
-    padding-left: 70px; 
+    display: block;
+    padding: 4%;
     background-color: #210735;    
     height: fit-content;
+    width: 50%;
+    margin-left: 0%;
 }
 .description {
     background-color: #3E065F;
@@ -167,10 +177,8 @@ h2{
     background-color: #3E185C;
     margin-bottom: 2%;
 }
-#upld:hover{
-    background-color: #fec80a;
-    color: black !important;
-    border: 1px solid black;
+.container2 {
+    margin: 2%;
 }
 @media (max-width: 600px) {
     .container2, .navbar, .container4 {   
@@ -186,30 +194,20 @@ h2{
     display: inline;
 }
 select {
-    width: 73%;
+    width: 95%;
     background-color: #3E185C;
     color: white;      
     padding: 10px;
     margin-bottom: 2%;
 }
 
-#verificationmessage {
-    font-size: 100%;
-    text-align: right;
-    margin-right: 5%;
-}
-
-#emailver {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-#sub5 {
-    margin: 1%;
-    margin-right: 5%;
-    // font-size: 95%; 
-    align-self: flex-end;
-    padding: 2% !important;
-    width: auto;
+@media (max-width: 1150px) {
+    .left {
+        width: 90%;
+        margin: auto;
+    }
+    .right {
+        width: 100%;
+        margin: 1%;
+    }
 }
