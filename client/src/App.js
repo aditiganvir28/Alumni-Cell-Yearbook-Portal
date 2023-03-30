@@ -69,6 +69,7 @@ const App = ({ location }) => {
       google.accounts.id.renderButton(document.getElementById('google-login'), {
         theme: 'outline',
         size: 'medium',
+
         width: 'large',
       })
     }
