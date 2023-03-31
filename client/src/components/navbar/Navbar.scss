@@ -95,6 +95,10 @@ body {
     transition: ease-in;
 }
 
+.bg-123123{
+    background: radial-gradient(at right bottom, rgb(15, 23, 42), rgb(88, 28, 135), rgb(15, 23, 42));
+}
+
 @media screen and (max-width: 800px){
     body{
        overflow-x: hidden; 
