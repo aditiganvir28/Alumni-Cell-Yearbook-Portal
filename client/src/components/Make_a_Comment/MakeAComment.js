@@ -201,10 +201,10 @@ const MakeAComment = () => {
                   <h3 style={{ color: 'white' }}>
                     Roll No: {result[0].roll_no}
                   </h3>
-                  <h3 style={{ color: 'white' }}>
+                  {/* <h3 style={{ color: 'white' }}>
                     {' '}
                     {result[0].academic_program}, {result[0].department}
-                  </h3>
+                  </h3> */}
                   <h3 style={{ color: 'white' }}>
                     {result[0].academic_program}, {result[0].department}
                   </h3>
@@ -269,8 +269,7 @@ const MakeAComment = () => {
                             {val2.comment}
                           </Card.Text>
                           <p id="name" style={{ paddingBottom: '0rem' }}>
-                            -{val2.name}
-                            -By
+                            By {val2.name}
                           </p>
                         </Card.Body>
                       </Card>
