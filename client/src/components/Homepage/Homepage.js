@@ -133,7 +133,7 @@ function Homepage() {
                     stiffness: 200,
                     delay: 0.3,
                   }}
-                  className="w-3/4 h-64 rounded-xl border-2 mt-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                  className="w-3/4 h-64 rounded-xl mt-2 shdw"
                 >
                   <img
                     className="w-full h-full object-contain rounded-xl-2"
@@ -150,10 +150,10 @@ function Homepage() {
                     stiffness: 200,
                     delay: 0.3,
                   }}
-                  className="w-3/4 -mt-16 ml-12 h-64 rounded-xl border-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                  className="w-3/4 -mt-16 ml-12 h-64 rounded-xl shdw"
                 >
                   <img
-                    className="w-full h-full object-cover rounded-xl"
+                    className="w-full h-full object-contain rounded-xl"
                     src={step2}
                   ></img>
                 </motion.div>
@@ -202,7 +202,7 @@ function Homepage() {
                   stiffness: 200,
                   delay: 0.3,
                 }}
-                className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block border-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block shdw"
               >
                 <img
                   className="w-full h-full object-contain rounded-xl-2"
@@ -219,10 +219,10 @@ function Homepage() {
                   type: 'spring',
                   stiffness: 200,
                 }}
-                className="w-96 h-64 rounded-xl -ml-80 mt-64 bg-[#180c1e] hidden lg:block border-2 shadow-gray-700 border-gray-700 shadow-md shdw" 
+                className="w-96 h-64 rounded-xl -ml-80 mt-64 bg-[#180c1e] hidden lg:block shdw" 
               >
                 <img
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-contain rounded-xl"
                   alt="err"
                   src={step2}
                 ></img>
@@ -271,7 +271,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-3/4 h-96 rounded-xl border-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                    className="w-3/4 h-96 rounded-xl shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl-2"
@@ -321,10 +321,10 @@ function Homepage() {
                   stiffness: 200,
                   delay: 0.3,
                 }}
-                className="w-1/3 h-96 rounded-xl -ml-96 mt-32 hidden lg:block border-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                className="w-1/3 h-80 rounded-xl -ml-96 mt-32 hidden lg:block shdw"
               >
                 <img
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-contain rounded-xl"
                   alt="err"
                   src={step3}
                 ></img>
@@ -405,7 +405,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block border-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                    className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl-2"
@@ -423,7 +423,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-96 h-64 rounded-xl -ml-72 mt-32 bg-[#180c1e] hidden lg:block border-2 border-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                    className="w-96 h-64 rounded-xl -ml-72 mt-32 bg-[#180c1e] hidden lg:block shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl"
@@ -443,13 +443,13 @@ function Homepage() {
                     }}
                     className="w-full lg:hidden flex flex-col items-center justify-center"
                   >
-                    <div className="w-3/4 h-64 rounded-xl border-2 shadow-gray-700 border-gray-700 shadow-md shdw">
+                    <div className="w-3/4 h-64 rounded-xl shdw">
                       <img
                         className="w-full h-full object-contain rounded-xl-2"
                         src={Step_4}
                       ></img>
                     </div>
-                    <div className="w-3/4 h-64 rounded-xl mt-4 bg-gray-800 border-2 shadow-gray-700 border-gray-700 shadow-md shdw">
+                    <div className="w-3/4 h-64 rounded-xl mt-4  shdw">
                       <img
                         className="w-full h-full object-contain rounded-xl"
                         src={Step_5}
