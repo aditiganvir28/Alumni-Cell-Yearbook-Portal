@@ -141,7 +141,8 @@ li {
   border-color: white;
   border-radius: 10px;
   border-width: 1px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-flow: column;
   margin-bottom: 2%;
@@ -172,6 +173,7 @@ li {
     background: #29013e;
   }
 }
+
 .edit {
   display: flex;
   // padding-left: 40%;
