@@ -353,7 +353,7 @@ function Homepage() {
                   stiffness: 100,
                   delay: 0.3,
                 }}
-                className="overflow-hidden hidden lg:block border-2 shadow-gray-700 border-gray-700 shadow-md shdw"
+                className="overflow-hidden hidden lg:block"
               >
                 <img
                   className="ml-14 w-8 object-contain z-10 rounded-none"
