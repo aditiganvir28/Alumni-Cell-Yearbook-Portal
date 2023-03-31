@@ -205,9 +205,9 @@ const MakeAComment = () => {
                     {' '}
                     {result[0].academic_program}, {result[0].department}
                   </h3> */}
-                  <h3 style={{ color: 'white' }}>
+                  <h4 style={{ color: 'white' }}>
                     {result[0].academic_program}, {result[0].department}
-                  </h3>
+                  </h4>
                   <h3 style={{ color: 'white' }}>{result[0].about}</h3>
                 </div>
               )}
