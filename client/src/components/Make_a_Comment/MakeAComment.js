@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { LoginContext } from '../../helpers/Context'
 import './MakeAComment.scss'
-// import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import alumniData from '../navbar/akumniData.json'
@@ -16,7 +16,7 @@ const MakeAComment = () => {
   const { loading, setLoading } = useContext(LoginContext)
   const [approvedComments, setApprovedComments] = useState([])
   const [state, setState] = useState(false)
-  console.log(result)
+  const [comments, setComments] = useState({})
   const alumniEmail = alumniData
 
   useEffect(() => {
@@ -41,35 +41,85 @@ const MakeAComment = () => {
 
   //Add comment in the comment section of user who makes a comment
   //and new comment of comment section on whom the comment is being made
-  const handleSubmit = async (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   console.log(isStudent)
+  //   setState(true)
+  //   setTimeout(() => {
+  //     setState(false)
+  //   }, 20000)
+
+  //   if (isStudent === false) {
+  //     await axios
+  //       .post(process.env.REACT_APP_API_URL + '/myComments', {
+  //         comment: comment,
+  //         friend_email: result[0].email,
+  //         friend_name: result[0].name,
+  //         user_email: profile.email,
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data.message)
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   }
+  //   if (isStudent === true) {
+  //     await axios
+  //       .post(process.env.REACT_APP_API_URL + '/newComments', {
+  //         comment: comment,
+  //         user_email: user.email,
+  //         user_name: user.name,
+  //         friend_email: result[0].email,
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data.message)
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   } else {
+  //     await axios
+  //       .post(process.env.REACT_APP_API_URL + '/newComments', {
+  //         comment: comment,
+  //         user_email: profile.email,
+  //         user_name: profile.name,
+  //         friend_email: result[0].email,
+  //       })
+  //       .then((res) => {
+  //         console.log(res.data.message)
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   }
+
+  //   if (isStudent === true) {
+  //     navigate('/')
+  //   } else {
+  //     console.log('fuck')
+  //     navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
+  //   }
+  //   window.localStorage.removeItem('searchAlumni')
+  // }
+  const handleSubmit2 = async (e) => {
     e.preventDefault()
-    console.log(isStudent)
-    setState(true)
-    setTimeout(() => {
-      setState(false)
-    }, 20000)
+    console.log(result)
     if (isStudent === false) {
       await axios
-        .post(process.env.REACT_APP_API_URL + '/myComments', {
+        .post(process.env.REACT_APP_API_URL + '/comments', {
+          comment_sender_id: profile._id,
+          comment_sender_name: profile.name,
+          comment_sender_roll_no: profile.roll_no,
+          comment_sender_email_id: profile.email,
+          comment_sender_academic_program: profile.academic_program,
+          comment_reciever_id: result[0]._id,
+          comment_reciever_name: result[0].name,
+          comment_reciever_roll_no: result[0].roll_no,
+          comment_reciever_email_id: result[0].email,
+          comment_reciever_academic_program: result[0].academic_program,
           comment: comment,
-          friend_email: result[0].email,
-          friend_name: result[0].name,
-          user_email: profile.email,
-        })
-        .then((res) => {
-          console.log(res.data.message)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    }
-    if (isStudent === true) {
-      await axios
-        .post(process.env.REACT_APP_API_URL + '/newComments', {
-          comment: comment,
-          user_email: user.email,
-          user_name: user.name,
-          friend_email: result[0].email,
+          status: 'new',
         })
         .then((res) => {
           console.log(res.data.message)
@@ -79,11 +129,19 @@ const MakeAComment = () => {
         })
     } else {
       await axios
-        .post(process.env.REACT_APP_API_URL + '/newComments', {
+        .post(process.env.REACT_APP_API_URL + '/Comments', {
+          comment_sender_id: '',
+          comment_sender_name: user._name,
+          comment_sender_roll_no: '',
+          comment_sender_email_id: user.email,
+          comment_sender_academic_program: profile.academic_program,
+          comment_reciever_id: result[0]._id,
+          comment_reciever_name: result[0].name,
+          comment_reciever_roll_no: result[0].roll_no,
+          comment_reciever_email_id: result[0].email,
+          comment_reciever_academic_program: result[0].academic_program,
           comment: comment,
-          user_email: profile.email,
-          user_name: profile.name,
-          friend_email: result[0].email,
+          status: 'new',
         })
         .then((res) => {
           console.log(res.data.message)
@@ -102,14 +160,14 @@ const MakeAComment = () => {
     window.localStorage.removeItem('searchAlumni')
   }
 
-  //Getting all the approved comments to be displayed in the approved section
+  //Getting all the comments
+
   useEffect(() => {
     axios
-      .post(process.env.REACT_APP_API_URL + '/getApprovedComments', {
-        friend_email: result.email,
-      })
+      .get(process.env.REACT_APP_API_URL + '/getComments')
       .then((res) => {
-        setApprovedComments(res.data.comments)
+        setComments(res.data)
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err)
@@ -173,7 +231,7 @@ const MakeAComment = () => {
                 <button
                   type="submit"
                   id="post"
-                  onClick={handleSubmit}
+                  onClick={handleSubmit2}
                   style={{
                     color: 'white',
                     float: 'right',
@@ -192,28 +250,33 @@ const MakeAComment = () => {
               <h1 id="make">Approved Comments</h1>
             </div>
             <div id="cards-container">
-              {/* {approvedComments.map((val) => (
-                <Card
-                  style={{
-                    minWidth: '18rem',
-                    height: '11rem',
-                    margin: '1rem',
-                    overflow: 'auto',
-                  }}
-                >
-                  <Card.Img variant="top" />
-                  <Card.Body>
-                    <Card.Text style={{ paddingBottom: '1rem' }}>
-                      {val.comment}
-                      Comment..........
-                    </Card.Text>
-                    <p id="name" style={{ paddingBottom: '0rem' }}>
-                      -{val.user_name}
-                      -By
-                    </p>
-                  </Card.Body>
-                </Card>
-              ))} */}
+              {comments.map((val) =>
+                val.comment_sender.map(
+                  (val2) =>
+                    val.comment_reciever_email_id === result[0].email &&
+                    val2.status === 'approved' && (
+                      <Card
+                        style={{
+                          minWidth: '18rem',
+                          height: '11rem',
+                          margin: '1rem',
+                          overflow: 'auto',
+                        }}
+                      >
+                        <Card.Img variant="top" />
+                        <Card.Body>
+                          <Card.Text style={{ paddingBottom: '1rem' }}>
+                            {val2.comment}
+                          </Card.Text>
+                          <p id="name" style={{ paddingBottom: '0rem' }}>
+                            -{val2.name}
+                            -By
+                          </p>
+                        </Card.Body>
+                      </Card>
+                    ),
+                ),
+              )}
             </div>
           </div>
         </div>

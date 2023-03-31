@@ -119,6 +119,8 @@ const Navbar = () => {
   //Logout Function
   const handleLogout =() =>{
       setUser({});
+      navigate('/');
+      window.location.reload();
       window.localStorage.removeItem('user');
       window.localStorage.removeItem('searchAlumni');
       window.localStorage.removeItem('profileIcon');
@@ -126,11 +128,15 @@ const Navbar = () => {
       window.localStorage.removeItem('profile')
       setLoggedin(false);
       setProfileIcon(false);
+      window.localStorage.removeItem('searchedAlumni');
+      window.localStorage.removeItem('userData');
       window.localStorage.setItem('loggedin', false)
       window.localStorage.removeItem('loggedin')
-      document.getElementById("google-login").hidden = false;
-      navigate('/');
-      window.location.reload();
+      document.getElementId("google-login").hidden = false;
+      
+      console.log('logout');
+      
+     
     }
   
   //adding sidebar on smaller screens
@@ -167,17 +173,6 @@ const Navbar = () => {
   
     return result;
   };
-
-  // const loadingSpinner2 = () => {
-  //   setLoading(true)
-  //   const Load = async () => {
-  //     await new Promise((r) => setTimeout(r, 30000))
-
-  //     setLoading((loading) => !loading)
-  //   }
-
-  //   Load()
-  // }
 
   if (loggedin === true) {
     document.getElementById("google-login").hidden = true;
@@ -337,7 +332,7 @@ const Navbar = () => {
           <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>about</div></a>
           <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>developers</div></a>
           <a href='/'><div onClick={handleLogout} className={loggedin ? 'uppercase' : 'hidden'}>Logout</div></a>
-          <div id='google-login'>
+          <div className='google-login'>
           </div>
         </div>
         <motion.div onClick={() => setIsOpen(isOpen => !isOpen)} className='w-full bg-[#180c1e] flex justify-center'><div className={isOpen ? 'hidden' : 'text-center -mt-2 pt-4 overflow-hidden w-12 h-12 text-xl rounded-full bg-[#4d1a6c]'}>∨</div></motion.div>
