@@ -37,7 +37,7 @@ const Navbar = () => {
   const { result, setResult } = useContext(LoginContext);
   const [inputValue, setInputValue]= useState();
   const [display, setDisplay] = useState(false);
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
   const [example, setExample] = useState([]);
   const alumniEmail= alumniData; //geeting all the alumnis data
 
@@ -289,7 +289,7 @@ const Navbar = () => {
         animate={isOpen ? "open" : "closed"}
         variants={variants}>
         <div className='h-screen w-screen bg-[#4d1a6c] flex flex-col items-center justify-start pt-8'>
-          <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-16 rounded-xl' alt='err'></img>
+          <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-24 rounded-xl' alt='err'></img>
           <motion.div className='absolute top-0 right-0 mt-8 mr-8 text-3xl' onClick={() => setIsOpen(isOpen => !isOpen)}>×</motion.div>
           {loggedin &&
             <div id='loggedIn' className='mt-24 mb-16'>
@@ -301,7 +301,7 @@ const Navbar = () => {
                     // onEnter();
                   }} value={inputValue} />
                   {wordEnteredList.length === 0 &&
-                    <ul>
+                    <ul className="dropdown-nav">
                       <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }}>No User Found</button></li>
                     </ul>}
                   {wordEnteredList.length !== 0 &&
