@@ -501,7 +501,7 @@ function Homepage() {
           </div>
           <div className="flex w-screen flex-col bg-[#160923] z-0 lg:-mt-[4rem]">
             <div className="lg:pt-16 flex flex-col lg:flex-row items-center justify-around lg:h-3/5 w-full bg-gradient-to-tr from-purple-800 lg:pb-16">
-              <a href={Yearbook} target="_blank">
+              <a href={"https://drive.google.com/file/d/1BkMCRR_AuaxFD5BTzDhhL8ygENYMf-FG/view?usp=share_link"} target="https://drive.google.com/file/d/1BkMCRR_AuaxFD5BTzDhhL8ygENYMf-FG/view?usp=share_link">
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}

@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 function Edit(props) {
   const { user, loading, setLoading, profile, setProfile, item, setItem } = useContext(LoginContext)
   const [message, setMessage] = useState('')
-  const [imageSelected, setImageSelected] = useState('gfjebwfbweif')
+  const [imageSelected, setImageSelected] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [verify, setVerify] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)
@@ -48,7 +48,7 @@ function Edit(props) {
     console.log(formData)
 
     axios
-      .post('https://api.cloudinary.com/v1_1/dheskw46y/image/upload', formData)
+      .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
       .then((res) => {
         console.log(res.data.url)
         setImageUrl(res.data.url)
