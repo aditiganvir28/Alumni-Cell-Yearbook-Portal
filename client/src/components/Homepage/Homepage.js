@@ -12,13 +12,15 @@ import UC from './images/UC.gif'
 import { motion } from 'framer-motion'
 import Step_1 from './images/Step_1.png'
 // import step_22 from './images/step_22.png'
-import Step_2 from './images/Step_2.png'
-import Step_3 from './images/Step_3.png'
+import step2 from './images/step2.png'
+import step3 from './images/step3.png'
+// import Step_2 from './images/Step_2.png'
+// import Step_3 from './images/Step_3.png'
 import Step_4 from './images/Step_4.png'
 import Step_5 from './images/Step_5.png'
-import Yearbook from './images/Yearbook2022.pdf'
-import Navbar from '../navbar/navbar'
-import yearbook from './images/yearbook.png'
+// import Yearbook from './images/Yearbook2022.pdf'
+// import Navbar from '../navbar/navbar'
+// import yearbook from './images/yearbook.png'
 function Homepage() {
   const { loading, setLoading } = useContext(LoginContext)
 
@@ -152,7 +154,7 @@ function Homepage() {
                 >
                   <img
                     className="w-full h-full object-contain rounded-xl border-2"
-                    src={Step_2}
+                    src={step2}
                   ></img>
                 </motion.div>
               </div>
@@ -223,7 +225,7 @@ function Homepage() {
                 <img
                   className="w-full h-full object-contain rounded-xl"
                   alt="err"
-                  src={Step_2}
+                  src={step2}
                 ></img>
               </motion.div>
             </div>
@@ -274,7 +276,7 @@ function Homepage() {
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl border-2"
-                      src={Step_3}
+                      src={step3}
                     ></img>
                   </motion.div>
                 </div>
@@ -325,7 +327,7 @@ function Homepage() {
                 <img
                   className="w-full h-full object-cover rounded-xl"
                   alt="err"
-                  src={Step_3}
+                  src={step3}
                 ></img>
               </motion.div>
             </div>
