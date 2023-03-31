@@ -10,6 +10,8 @@ const ApprovedCommetns = require('../models/approved_comments')
 const RejectedComments = require('../models/rejected_comments')
 const Memories = require('../models/memories')
 
+
+
 // adding environment variable ****************
 const gmailUser = process.env.GMAIL_USER
 const gmailPass = process.env.GMAIL_PASS
@@ -189,7 +191,6 @@ const createUsersData = asyncHandler(async (req, res) => {
 
 verifyPhoneOtp = async (req, res, next) => {
   try {
-    const phoneOtp = req.body.phoneOTP
     const userId = req.body.userId
 
     const user = await Users.findOne({ email: userId }).exec()
@@ -199,13 +200,12 @@ verifyPhoneOtp = async (req, res, next) => {
       return
     }
 
-    if (user.phoneOTP !== phoneOtp) {
-      res.send({ message: 'Incorrect OTP' })
-      return
-    }
-    const token = createJwtToken({ userId: user._id })
+    // if (user.phoneOTP !== phoneOtp) {
+    //   res.send({ message: 'Incorrect OTP' })
+    //   return
+    // }
+    // const token = createJwtToken({ userId: user._id })
 
-    user.phoneOTP = ''
     user.two_step_verified = true
     await user.save()
     res.send({ message: 'Mobile number verified', user })
