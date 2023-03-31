@@ -12,13 +12,15 @@ import UC from './images/UC.gif'
 import { motion } from 'framer-motion'
 import Step_1 from './images/Step_1.png'
 // import step_22 from './images/step_22.png'
-import Step_2 from './images/Step_2.png'
-import Step_3 from './images/Step_3.png'
+import step2 from './images/step2.png'
+import step3 from './images/step3.png'
+// import Step_2 from './images/Step_2.png'
+// import Step_3 from './images/Step_3.png'
 import Step_4 from './images/Step_4.png'
 import Step_5 from './images/Step_5.png'
-import Yearbook from './images/Yearbook2022.pdf'
-import Navbar from '../navbar/navbar'
-import yearbook from './images/yearbook.png'
+// import Yearbook from './images/Yearbook2022.pdf'
+// import Navbar from '../navbar/navbar'
+// import yearbook from './images/yearbook.png'
 function Homepage() {
   const { loading, setLoading } = useContext(LoginContext)
 
@@ -131,10 +133,10 @@ function Homepage() {
                     stiffness: 200,
                     delay: 0.3,
                   }}
-                  className="w-3/4 h-64 rounded-xl"
+                  className="w-3/4 h-64 rounded-xl mt-2 shdw"
                 >
                   <img
-                    className="w-full h-full object-contain rounded-xl border-2"
+                    className="w-full h-full object-contain rounded-xl-2"
                     src={Step_1}
                   ></img>
                 </motion.div>
@@ -148,11 +150,11 @@ function Homepage() {
                     stiffness: 200,
                     delay: 0.3,
                   }}
-                  className="w-3/4 mt-4 h-64 rounded-xl"
+                  className="w-3/4 -mt-16 ml-12 h-64 rounded-xl shdw"
                 >
                   <img
-                    className="w-full h-full object-contain rounded-xl border-2"
-                    src={Step_2}
+                    className="w-full h-full object-contain rounded-xl"
+                    src={step2}
                   ></img>
                 </motion.div>
               </div>
@@ -200,10 +202,10 @@ function Homepage() {
                   stiffness: 200,
                   delay: 0.3,
                 }}
-                className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block"
+                className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block shdw"
               >
                 <img
-                  className="w-full h-full object-contain rounded-xl border-2"
+                  className="w-full h-full object-contain rounded-xl-2"
                   alt="err"
                   src={Step_1}
                 ></img>
@@ -216,14 +218,13 @@ function Homepage() {
                   duration: 0.3,
                   type: 'spring',
                   stiffness: 200,
-                  delay: 0.3,
                 }}
-                className="w-96 h-64 rounded-xl -ml-80 mt-64 bg-[#180c1e] hidden lg:block border-2"
+                className="w-96 h-64 rounded-xl -ml-80 mt-64 bg-[#180c1e] hidden lg:block shdw" 
               >
                 <img
                   className="w-full h-full object-contain rounded-xl"
                   alt="err"
-                  src={Step_2}
+                  src={step2}
                 ></img>
               </motion.div>
             </div>
@@ -270,11 +271,11 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-3/4 h-96 rounded-xl"
+                    className="w-3/4 h-96 rounded-xl shdw"
                   >
                     <img
-                      className="w-full h-full object-contain rounded-xl border-2"
-                      src={Step_3}
+                      className="w-full h-full object-contain rounded-xl-2"
+                      src={step3}
                     ></img>
                   </motion.div>
                 </div>
@@ -320,12 +321,12 @@ function Homepage() {
                   stiffness: 200,
                   delay: 0.3,
                 }}
-                className="w-1/3 h-96 rounded-xl -ml-96 mt-32 hidden lg:block border-2"
+                className="w-1/3 h-80 rounded-xl -ml-96 mt-32 hidden lg:block shdw"
               >
                 <img
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-contain rounded-xl"
                   alt="err"
-                  src={Step_3}
+                  src={step3}
                 ></img>
               </motion.div>
             </div>
@@ -404,10 +405,10 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block"
+                    className="w-96 h-64 rounded-xl -ml-64 mt-16 hidden lg:block shdw"
                   >
                     <img
-                      className="w-full h-full object-contain rounded-xl border-2"
+                      className="w-full h-full object-contain rounded-xl-2"
                       alt="err"
                       src={Step_4}
                     ></img>
@@ -422,7 +423,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-96 h-64 rounded-xl -ml-72 mt-32 bg-[#180c1e] hidden lg:block border-2"
+                    className="w-96 h-64 rounded-xl -ml-72 mt-32 bg-[#180c1e] hidden lg:block shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl"
@@ -442,15 +443,15 @@ function Homepage() {
                     }}
                     className="w-full lg:hidden flex flex-col items-center justify-center"
                   >
-                    <div className="w-3/4 h-64 rounded-xl">
+                    <div className="w-3/4 h-64 rounded-xl shdw">
                       <img
-                        className="w-full h-full object-contain rounded-xl border-2"
+                        className="w-full h-full object-contain rounded-xl-2"
                         src={Step_4}
                       ></img>
                     </div>
-                    <div className="w-3/4 h-64 rounded-xl mt-4 bg-gray-800">
+                    <div className="w-3/4 h-64 rounded-xl mt-4  shdw">
                       <img
-                        className="w-full h-full object-contain rounded-xl border-2"
+                        className="w-full h-full object-contain rounded-xl"
                         src={Step_5}
                       ></img>
                     </div>
@@ -501,7 +502,7 @@ function Homepage() {
           </div>
           <div className="flex w-screen flex-col bg-[#160923] z-0 lg:-mt-[4rem]">
             <div className="lg:pt-16 flex flex-col lg:flex-row items-center justify-around lg:h-3/5 w-full bg-gradient-to-tr from-purple-800 lg:pb-16">
-              <a href={Yearbook} target="_blank">
+              <a href={"https://drive.google.com/file/d/1BkMCRR_AuaxFD5BTzDhhL8ygENYMf-FG/view?usp=share_link"} target="https://drive.google.com/file/d/1BkMCRR_AuaxFD5BTzDhhL8ygENYMf-FG/view?usp=share_link">
                 <motion.div
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}

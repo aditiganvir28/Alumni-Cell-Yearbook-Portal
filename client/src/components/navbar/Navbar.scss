@@ -95,6 +95,10 @@ body {
     transition: ease-in;
 }
 
+.bg-123123{
+    background: radial-gradient(at right bottom, rgb(15, 23, 42), rgb(88, 28, 135), rgb(15, 23, 42));
+}
+
 @media screen and (max-width: 800px){
     body{
        overflow-x: hidden; 
@@ -133,13 +137,15 @@ body {
 
 .navbar {
     background-color: #4d1a6c;
+    // opacity: 70%;
+    // position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 2%;
     margin-right: 2%;
     flex: auto;
-    border: 2px solid white;
+    border: 0.5px solid white;
     border-radius: 15px;
 }
 

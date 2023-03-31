@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import React, { useState, useEffect } from 'react'
 
 import './App.css'
@@ -58,7 +57,7 @@ const App = ({ location }) => {
 
   //Google authentication for IITI students
   useEffect(() => {
-    console.log('here', process.env.REACT_APP_API_URL);
+    console.log('here', process.env.REACT_APP_API_URL)
     /*global google*/
     if (window.google) {
       google.accounts.id.initialize({
@@ -89,6 +88,7 @@ const App = ({ location }) => {
 
   //getting all the users who have made their profile
   useEffect(() => {
+    console.log(process.env.REACT_APP_API_URL)
     axios
       .get(process.env.REACT_APP_API_URL + '/getUsersData')
       .then((res) => {

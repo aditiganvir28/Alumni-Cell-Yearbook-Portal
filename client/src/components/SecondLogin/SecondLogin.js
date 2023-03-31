@@ -6,17 +6,14 @@ import { useNavigate } from 'react-router-dom'
 
 const SecondLogin = () => {
   const { user, loading, setLoading, profile } = useContext(LoginContext)
-  const [myComments, setMyComments] = useState([])
-  const [newComments, setNewComments] = useState([])
-  const [approvedComments, setApprovedComments] = useState([])
   const [state, setState] = useState(false)
-  const [setUploaded] = useState(false)
-  // const [uploaded] = useState(false)
+  const [uploaded, setUploaded] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)
   const [imageSelected, setImageSelected] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
   const [message, setMessage] = useState('')
   const [imageadded, setImageadded] = useState(false)
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
     setLoading(true)
@@ -65,6 +62,9 @@ const SecondLogin = () => {
         .then((res) => {
           console.log(res.data)
           setMessage(res.data.message)
+          setTimeout(() => {
+            setMessage('')
+          }, 10000)
           setImageadded(true)
         })
         .catch((err) => {
@@ -73,49 +73,20 @@ const SecondLogin = () => {
     }
   }
 
-  //Getting the myComment to be dispalyed in the myComments Section
+  //Getting all the comments
 
   useEffect(() => {
     axios
-      .post(process.env.REACT_APP_API_URL + '/getmyComments', {
-        user_email: user.email,
-      })
+      .get(process.env.REACT_APP_API_URL + '/getComments')
       .then((res) => {
-        setMyComments(res.data[0].comment)
+        console.log('working')
+        setComments(res.data)
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
-  })
-
-  //Getting all the newComments to be displayed in the newComments Section
-
-  useEffect(() => {
-    axios
-      .post(process.env.REACT_APP_API_URL + '/getNewComments', {
-        friend_email: user.email,
-      })
-      .then((res) => {
-        setNewComments(res.data[0].comments)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  })
-
-  //Getting all the approved comments to be displayed in the approved section
-  useEffect(() => {
-    axios
-      .post(process.env.REACT_APP_API_URL + '/getApprovedComments', {
-        friend_email: user.email,
-      })
-      .then((res) => {
-        setApprovedComments(res.data[0].comments)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  })
+  }, [])
 
   // redirecting to edit page for editing the profile
   const navigate = useNavigate()
@@ -147,17 +118,22 @@ const SecondLogin = () => {
                 <h1 id="cmt">Approved Comments</h1>
               </div>
               <div id="commentsscroll">
-                {approvedComments.map((val) => (
-                  <div id="comment">
-                    <p id="commentp">{val.comment}</p>
-                    <p id="commentby">-{val.user_name}</p>
-                  </div>
-                ))}
+                {comments.map((val) =>
+                  val.comment_sender.map(
+                    (val2) =>
+                      val.comment_reciever_email_id === profile.email &&
+                      val2.status === 'approved' && (
+                        <div id="comment">
+                          <p id="commentp">{val2.comment}</p>
+                          <p id="commentby">-{val2.name}</p>
+                        </div>
+                      ),
+                  ),
+                )}
               </div>
             </div>
             <div className="profile">
               <div className="dotsl">
-                {/* <img id = "ip" src={profile.profile_img}/> */}
                 <img className="ipp" id="ip" src={profile.profile_img} />
               </div>
               <br></br>
@@ -174,7 +150,6 @@ const SecondLogin = () => {
                 <h3 style={{ color: 'white' }}>{profile.about}</h3>
               </div>
               <div className="edit">
-                {/* <div style={{ width: '50%' }}> */}
                 <button
                   className="button"
                   style={{ width: '30%', color: 'white' }}
@@ -183,7 +158,6 @@ const SecondLogin = () => {
                 >
                   EDIT YOUR PROFILE
                 </button>
-                {/* </div> */}
                 <input
                   type="file"
                   id="memo"
@@ -194,8 +168,8 @@ const SecondLogin = () => {
                 <button id="upld2" onClick={uploadImage}>
                   Upload Memories Image
                 </button>
-                {imageUploaded && imageadded && <p>{message}</p>}
               </div>
+              {imageUploaded && imageadded && <p>{message}</p>}
             </div>
           </div>
 
@@ -204,120 +178,114 @@ const SecondLogin = () => {
               <h1 id="cmt">My Comments</h1>
 
               <div id="commentsscroll">
-                {myComments.map((val) => (
-                  <div id="comment">
-                    <p id="commentp">{val.comment}</p>
-                    <p id="commentby">-{val.friend_name}</p>
-                  </div>
-                ))}
+                {comments.map((val) =>
+                  val.comment_sender.map(
+                    (val2) =>
+                      val2.email_id === profile.email && (
+                        <div id="comment">
+                          {console.log(val2.comment)}
+                          <p id="commentp">{val2.comment}</p>
+                          <p id="commentby">-{val2.name}</p>
+                        </div>
+                      ),
+                  ),
+                )}
               </div>
             </div>
             <div className="comments3">
               <h1 id="cmt">New Comments</h1>
               {/* <h1 style={{ display : "inline"}}>..................</h1> */}
               <ul style={{ display: 'block' }}>
-                {newComments.map((val, index) => (
-                  <li id="comment5">
-                    <p className="newComment">{val.comment}</p>
-                    <p className="newCommentUserName"> - {val.user_name}</p>
-                    <button
-                      id="check"
-                      disabled={state}
-                      style={{
-                        backgroundColor: state ? 'grey' : 'transparent',
-                      }}
-                      onClick={async (e) => {
-                        await axios
-                          .post(process.env.REACT_APP_API_URL + '/approvedComments', {
-                            friend_email: user.email,
-                            user_email: val.user_email,
-                            user_name: val.user_name,
-                            comment: val.comment,
-                          })
-                          .then((res) => {
-                            console.log(res.data.message)
-                          })
-                          .catch((err) => {
-                            console.log(err)
-                          })
+                {comments.map((val, index) =>
+                  val.comment_sender.map((val2, index2) => (
+                    <>
+                      {console.log(
+                        val.comment_reciever_email_id === profile.email,
+                      )}
+                      {console.log(profile)}
+                      {console.log(val)}
+                      {val.comment_reciever_email_id === profile.email &&
+                        val2.status === 'new' && (
+                          <li id="comment5">
+                            <p className="newComment">{val2.comment}</p>
+                            <p className="newCommentUserName"> - {val2.name}</p>
+                            <button
+                              id="check"
+                              disabled={state}
+                              style={{
+                                backgroundColor: state ? 'grey' : 'transparent',
+                              }}
+                              onClick={async (e) => {
+                                e.preventDefault()
+                                await axios
+                                  .put(
+                                    process.env.REACT_APP_API_URL +
+                                      '/setApprovedComments',
+                                    {
+                                      comment_reciever_email_id: profile.email,
+                                      comment_sender_email_id: val2.email_id,
+                                      comment: val2.comment,
+                                    },
+                                  )
+                                  .then((res) => {
+                                    console.log(res.data)
+                                  })
+                                  .catch((err) => {
+                                    console.log(err)
+                                  })
 
-                        await axios
-                          .post(process.env.REACT_APP_API_URL + '/deleteComments', {
-                            friend_email: user.email,
-                            user_email: val.user_email,
-                            user_name: val.user_name,
-                            comment: val.comment,
-                          })
-                          .then((res) => {
-                            console.log(res.data)
-                          })
-                          .catch((err) => {
-                            console.log(err)
-                          })
+                                setState(true)
+                                setTimeout(() => {
+                                  setState(false)
+                                }, 7000)
+                                window.location.reload()
+                              }}
+                            >
+                              <i
+                                className="fa fa-check-circle"
+                                style={{ display: 'inline' }}
+                              ></i>
+                            </button>
+                            <p style={{ display: 'inline' }}> </p>
+                            <button
+                              id="check"
+                              disabled={state}
+                              style={{
+                                backgroundColor: state ? 'grey' : 'transparent',
+                              }}
+                              onClick={async (e) => {
+                                e.preventDefault()
+                                await axios
+                                  .post(
+                                    process.env.REACT_APP_API_URL +
+                                      '/setRejectedComments',
+                                    {
+                                      comment_reciever_email_id: profile.email,
+                                      comment_sender_email_id: val2.email_id,
+                                      comment: val2.comment,
+                                    },
+                                  )
+                                  .then((res) => {
+                                    console.log(res.data)
+                                  })
+                                  .catch((err) => {
+                                    console.log(err)
+                                  })
 
-                        setState(true)
-                        setTimeout(() => {
-                          setState(false)
-                        }, 20000)
-
-                        loadingSpinner3()
-                      }}
-                    >
-                      <i
-                        className="fa fa-check-circle"
-                        style={{ display: 'inline' }}
-                      ></i>
-                    </button>
-                    <p style={{ display: 'inline' }}> </p>
-                    <button
-                      id="check"
-                      disabled={state}
-                      style={{
-                        backgroundColor: state ? 'grey' : 'transparent',
-                      }}
-                      onClick={async (e) => {
-                        {
-                          e.preventDefault()
-
-                          axios
-                            .post(process.env.REACT_APP_API_URL + '/rejectedComments', {
-                              friend_email: user.email,
-                              user_email: val.user_email,
-                              user_name: val.user_name,
-                              comment: val.comment,
-                            })
-                            .then((res) => {
-                              console.log(res.data.message)
-                            })
-                            .catch((err) => {
-                              console.log(err)
-                            })
-
-                          axios
-                            .post(process.env.REACT_APP_API_URL + '/deleteComments', {
-                              friend_email: user.email,
-                              user_email: val.user_email,
-                              user_name: val.user_name,
-                              comment: val.comment,
-                            })
-                            .then((res) => {
-                              console.log(res.data)
-                            })
-                            .catch((err) => {
-                              console.log(err)
-                            })
-                        }
-                        setState(true)
-                        setTimeout(() => {
-                          setState(false)
-                        }, 20000)
-                        // loadingSpinner();
-                      }}
-                    >
-                      <a href="" className="fa fa-times-circle"></a>
-                    </button>
-                  </li>
-                ))}
+                                setState(true)
+                                setTimeout(() => {
+                                  setState(false)
+                                }, 20000)
+                                // loadingSpinner();
+                              }}
+                            >
+                              <a href="" className="fa fa-times-circle"></a>
+                            </button>
+                          </li>
+                        )}
+                    </>
+                  )),
+                )}
               </ul>
             </div>
 
