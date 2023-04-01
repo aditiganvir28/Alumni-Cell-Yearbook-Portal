@@ -22,7 +22,7 @@ button.links{
     width: 0%;
     visibility: hidden;
     margin: 0px;
-    padding: 0px !important;
+    
 }
 input .search{
     margin: 10px 0 0 0;
@@ -156,8 +156,8 @@ button.css-1ycil38{
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 60%;
-        height:40%;
+        width: 400px;
+        height:550px;
         top: 0vh;
         background-color: #4d1a6c;
         border:solid 2px white;
@@ -177,17 +177,18 @@ button.css-1ycil38{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 17vh;
-        margin-left: 19vw;
+        margin-top: 400px;
+        margin-left: 80px;
         height: 3rem;
+    }
+    #prof.links{
+        margin-top: 325px !important;
     }
     button.links{
         visibility: visible;
         width: 15rem;
     }
-    #prof{
-        margin-top: 22vh;
-    }
+    
 }
 
 .navbar {
