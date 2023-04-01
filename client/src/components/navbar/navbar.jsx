@@ -63,7 +63,7 @@ const Navbar = () => {
   const loadingSpinner2 = () => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 10000))
+      await new Promise((r) => setTimeout(r, 7000))
 
       setLoading((loading) => !loading)
     }

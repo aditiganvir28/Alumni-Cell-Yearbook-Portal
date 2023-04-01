@@ -69,7 +69,7 @@ const MakeAComment = () => {
       await axios
         .post(process.env.REACT_APP_API_URL + '/Comments', {
           comment_sender_id: '',
-          comment_sender_name: user._name,
+          comment_sender_name: user.name,
           comment_sender_roll_no: '',
           comment_sender_email_id: user.email,
           comment_sender_academic_program: profile.academic_program,
@@ -92,7 +92,6 @@ const MakeAComment = () => {
     if (isStudent === true) {
       navigate('/')
     } else {
-      console.log('fuck')
       navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
     }
     window.localStorage.removeItem('searchAlumni')
