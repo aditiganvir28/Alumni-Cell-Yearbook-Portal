@@ -15,7 +15,7 @@ input.nav-keliye{
 .links{
     display: flex;
     margin: 0px;
-    width: 35%;
+    // width: 35%;
 }
 #contain{
     display: flex;
@@ -72,6 +72,7 @@ input .search{
     margin: 2rem;
     border-radius: 10%;
     width: 20vh;
+    margin-left: 10rem;
     // font-weight: 600;
 }
 #logout:hover{
@@ -187,9 +188,9 @@ button.css-1ycil38{
         transform: translateY(0%);
         transition: transform 0.5s ease-in;
     }
-    #av{
-        padding: 30px;
-    }
+    // #av{
+    //     padding: 30px;
+    // }
     .chakra-button{
         visibility: hidden;
     }
@@ -265,7 +266,7 @@ ul {
   
 }
 
-#av:hover, button.links:hover{
+#av:hover{
     /* padding: auto; */
     background-color: #3b1353bd;
     color: white;
