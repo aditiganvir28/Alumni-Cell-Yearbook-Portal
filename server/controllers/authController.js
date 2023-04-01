@@ -13,7 +13,6 @@ const getAllusers = asyncHandler(async (rq, res) => {
 })
 
 const createUsers = asyncHandler(async (req, res) => {
-  console.log('hello')
   const { email, name } = req.body
 
   //Create and store user
