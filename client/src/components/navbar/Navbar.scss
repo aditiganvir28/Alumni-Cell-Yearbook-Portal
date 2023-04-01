@@ -16,7 +16,7 @@ MenuItem {
     display: flex;
     flex: auto;
     justify-content: end;
-    align-items: flex-end;
+    align-items: center;
 }
 button.links{
     width: 0%;
@@ -180,6 +180,7 @@ button.css-1ycil38{
         margin-top: 400px;
         margin-left: 80px;
         height: 3rem;
+        border: none;
     }
     #prof.links{
         margin-top: 325px !important;
@@ -228,16 +229,20 @@ ul {
 // }
 
 #av{
+    display: flex;
     color: white;
-    padding: 14px 50px;
+    padding-left: 50px;
+    padding-right: 50px;
     // padding-left: 5%;
     // margin: 2%;
     text-decoration: none;
     text-align: center;
-    display: inline;
+    align-items: center;
+    justify-content: center;
+  
 }
 
-#av:hover{
+#av:hover, button.links:hover{
     /* padding: auto; */
     background-color: #3b1353bd;
     color: white;
