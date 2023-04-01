@@ -39,69 +39,7 @@ const MakeAComment = () => {
   //   Load()
   // }, [])
 
-  //Add comment in the comment section of user who makes a comment
-  //and new comment of comment section on whom the comment is being made
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   console.log(isStudent)
-  //   setState(true)
-  //   setTimeout(() => {
-  //     setState(false)
-  //   }, 20000)
-
-  //   if (isStudent === false) {
-  //     await axios
-  //       .post(process.env.REACT_APP_API_URL + '/myComments', {
-  //         comment: comment,
-  //         friend_email: result[0].email,
-  //         friend_name: result[0].name,
-  //         user_email: profile.email,
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data.message)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
-  //   if (isStudent === true) {
-  //     await axios
-  //       .post(process.env.REACT_APP_API_URL + '/newComments', {
-  //         comment: comment,
-  //         user_email: user.email,
-  //         user_name: user.name,
-  //         friend_email: result[0].email,
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data.message)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     await axios
-  //       .post(process.env.REACT_APP_API_URL + '/newComments', {
-  //         comment: comment,
-  //         user_email: profile.email,
-  //         user_name: profile.name,
-  //         friend_email: result[0].email,
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data.message)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
-
-  //   if (isStudent === true) {
-  //     navigate('/')
-  //   } else {
-  //     console.log('fuck')
-  //     navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
-  //   }
-  //   window.localStorage.removeItem('searchAlumni')
-  // }
+  
   const handleSubmit2 = async (e) => {
     e.preventDefault()
     console.log(result)

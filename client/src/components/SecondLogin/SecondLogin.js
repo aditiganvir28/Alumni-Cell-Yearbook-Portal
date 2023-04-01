@@ -46,7 +46,7 @@ const SecondLogin = () => {
     console.log(formData)
 
     await axios
-      .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
+      .post("https://api.cloudinary.com/v1_1/dimwfie4o/image/upload", formData)
       .then((res) => {
         console.log(res.data.url)
         setImageUrl(res.data.url)

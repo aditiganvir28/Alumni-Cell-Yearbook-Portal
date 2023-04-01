@@ -61,8 +61,7 @@ const App = ({ location }) => {
     /*global google*/
     if (window.google) {
       google.accounts.id.initialize({
-        client_id:
-          '971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com',
+        client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
         callback: handleCallbackResponse,
       })
       google.accounts.id.renderButton(document.getElementById('google-login'), {

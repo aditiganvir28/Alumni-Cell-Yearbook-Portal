@@ -48,7 +48,7 @@ function Edit(props) {
     console.log(formData)
 
     axios
-      .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
+      .post(process.env.REACT_APP_CLOUDINARY_LINK, formData)
       .then((res) => {
         console.log(res.data.url)
         setImageUrl(res.data.url)

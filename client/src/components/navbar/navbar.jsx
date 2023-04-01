@@ -56,7 +56,7 @@ const Navbar = () => {
     }
   );
   setExample(filteredPersons);
-  }, [filteredPersons])
+  }, [example])
 
   //loading spinner function
   const loadingSpinner2 = () => {
