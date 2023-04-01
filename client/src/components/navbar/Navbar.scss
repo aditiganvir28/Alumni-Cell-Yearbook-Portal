@@ -15,6 +15,7 @@ input.nav-keliye{
 .links{
     display: flex;
     margin: 0px;
+    height: 4rem;
     // width: 35%;
 }
 #contain{
@@ -31,6 +32,7 @@ button.links{
     width: 0%;
     visibility: hidden;
     margin: 0px;
+    
     
 }
 .names{
@@ -68,10 +70,13 @@ input .search{
 }
 #logout{
     border: 1px solid white;
-    display: inline;
-    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border-radius: 10%;
-    width: 20vh;
+    width: 10rem;
+    height: 4rem;
     margin-left: 10rem;
     // font-weight: 600;
 }
@@ -89,9 +94,9 @@ input .search{
     color: black;
 
 }
-.searchr{
-    margin-left: 3.5rem;
-}
+// .searchr{
+//     margin-left: 3.5rem;
+// }
 
 .search ul li button{
     color: black;
@@ -165,6 +170,9 @@ button.css-1ycil38{
         padding-top: 1vh;
         padding-bottom: 1vh;
     }
+    #av{
+        padding: 20px;
+    }
     .links{
         padding-top:5vh;
         position: fixed;
@@ -181,7 +189,6 @@ button.css-1ycil38{
         border:solid 2px white;
         font-size: 20px;
         transform: translateY(-120%);
-        
         z-index: 100;
     }
     .active{
@@ -198,18 +205,20 @@ button.css-1ycil38{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 450px;
+        margin-top: 340px;
         margin-left: 80px;
         height: 3rem;
         border: none;
     }
     #prof.links{
-        margin-top: 370px !important;
+        margin-top: 270px !important;
     }
+    
     button.links{
         visibility: visible;
         width: 15rem;
     }
+    
     
 }
 
@@ -271,7 +280,7 @@ ul {
     background-color: #3b1353bd;
     color: white;
     border-radius: 10px;
-    height: 3.9rem;
+    // height: 3.9rem;
 }
 
 img {
