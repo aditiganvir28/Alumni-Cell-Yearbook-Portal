@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import './About.scss'
 import { LoginContext } from '../../helpers/Context.js'
-// import Navbar from '../navbar/navbar'
 
 function About() {
   const { loading, setLoading } = useContext(LoginContext)
@@ -50,7 +49,7 @@ function About() {
                     of 4 individuals but now encompasses 5 teams working to
                     improve Alum-Institute-Student Relations. The Yearbook was
                     one such initiative undertaken by the Cell. Starting with
-                    the Class of 2021, the Yearbook’s First Edition was a
+                    the Class of 2022, the Yearbook’s First Edition was a
                     smashing success and helped the alums and the students
                     connect more. Following the same, the Yearbook Portal is
                     another initiative headed by the Web Development Division of
@@ -60,7 +59,7 @@ function About() {
                     to hear your comments and suggestions so we can improve in
                     the coming years.{' '}
                   </p>
-                  <p>
+                  <p id='para-abouta'>
                     Please reach us at<br></br>E-Mail: alumnicell@iiti.ac.in
                     <br></br>Enjoy commenting!<br></br>Regards,<br></br>The
                     Alumni Cell,<br></br>Indian Institute of Technology Indore

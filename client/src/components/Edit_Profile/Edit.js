@@ -3,11 +3,7 @@ import { LoginContext } from '../../helpers/Context'
 import './Edit.scss'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-// import { useLocation } from 'react-router-dom'
 
-// const temp_USER = {};
-// const Edit = () => {
-//   const { user, loading, setLoading } = useContext(LoginContext)
 
 function Edit(props) {
   const { user, loading, setLoading, profile, setProfile, item, setItem } = useContext(LoginContext)
@@ -21,11 +17,9 @@ function Edit(props) {
   const [state, setState] = useState(false)
   const [verify2, setVeriify2] = useState(false)
 
-  // const email = user.email;
   const [email, setEmail] = useState(user.email)
   useEffect(() => {
     setEmail(user.email)
-    // console.log(email);
   })
 
   useEffect(() => {
@@ -41,16 +35,13 @@ function Edit(props) {
 
   const uploadImage = () => {
     setUploaded(true)
-    console.log(imageSelected)
     const formData = new FormData()
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'profile_img')
-    console.log(formData)
 
     axios
-      .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
+      .post(process.env.REACT_APP_CLOUDINARY_LINK, formData)
       .then((res) => {
-        console.log(res.data.url)
         setImageUrl(res.data.url)
         setImageUploaded(true)
       })
@@ -84,7 +75,6 @@ function Edit(props) {
             email: user.email, // use user.email directly instead of email state variable
           })
           .then((res) => {
-            console.log(res.data.User[0])
             setUserData(res.data.User[0])
             setImageUrl(res.data.User[0].profile_img)
           })
@@ -125,7 +115,6 @@ function Edit(props) {
           window.localStorage.setItem('verified', true);
           window.localStorage.setItem('profileIcon', true);
           const p = JSON.stringify(res.data.user);
-          console.log(p);
           window.localStorage.setItem('profile', p);
           setProfile(res.data.user);
           const timetonavigate = setTimeout(() => {

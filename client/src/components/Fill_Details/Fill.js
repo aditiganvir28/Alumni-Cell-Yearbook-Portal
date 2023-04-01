@@ -65,6 +65,8 @@ function Fill(props) {
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
+        console.log(res.data.message);
+        if(res.data.message==="Sent an otp to your contact number"){
         
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
           'size': 'invisible',
@@ -80,17 +82,17 @@ function Fill(props) {
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
           .then((confirmationResult) => {
             window.confirmationResult = confirmationResult;
-            console.log(confirmationResult)
             setSentOtp(true);
             setSub(true);
         }).catch((error) => {
       console.log(error);
           setMessage("Please enter your mobile number with +91");
         });
-      })
+  }})
       .catch((err) => {
         console.log(err)
       })
+      
   }
 
   const otpVerify = (e) => {
@@ -107,7 +109,7 @@ function Fill(props) {
     window.confirmationResult
       .confirm(code)
       .then((result) => {
-        console.log("sjdwsdkj")
+        
         axios
       .post(process.env.REACT_APP_API_URL + "/verify", {
         userId: user.email,
@@ -115,7 +117,7 @@ function Fill(props) {
       .then((res) => {
         console.log(res);
         if (res.data.message === "Sent a verification email to your personal email_id") {
-          console.log(res.data);
+          
           setFill(true);
           setVerified(true);
           setProfileIcon(true);
@@ -123,10 +125,10 @@ function Fill(props) {
           window.localStorage.setItem("verified", true);
           window.localStorage.setItem("profileIcon", true);
           setProfile(res.data.user);
-          // const p = JSON.stringify(res.data.User[0])
+          
           window.localStorage.setItem("profile", JSON.stringify(res.data.user));
-          console.log(profile);
-          // navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
+          
+          
           setSentOtp(false);
           setVerify(true)
           setVeriify2(true)
@@ -152,27 +154,27 @@ function Fill(props) {
     
   };
 
-  const resendOTP = () => {
-    setState(true);
-    setTimeout(() => {
-      setState(false);
-    }, 20000);
-    axios
-      .post(process.env.REACT_APP_API_URL + "/resendOTP", {
-        phoneOTP: otp,
-        userId: user.email,
-      })
-      .then((res) => {
-        console.log(res);
-        if (res.data.message === "Mobile number verified") {
-        } else {
-          setMessage(res.data.message);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const resendOTP = () => {
+  //   setState(true);
+  //   setTimeout(() => {
+  //     setState(false);
+  //   }, 20000);
+  //   axios
+  //     .post(process.env.REACT_APP_API_URL + "/resendOTP", {
+  //       phoneOTP: otp,
+  //       userId: user.email,
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //       if (res.data.message === "Mobile number verified") {
+  //       } else {
+  //         setMessage(res.data.message);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const uploadImage = () => {
     setUploaded(true)
@@ -180,12 +182,12 @@ function Fill(props) {
     const formData = new FormData()
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'profile_img')
-    console.log(formData)
+    
 
     axios
-      .post('https://api.cloudinary.com/v1_1/dimwfie4o/image/upload', formData)
+      .post("https://api.cloudinary.com/v1_1/dimwfie4o/image/upload", formData)
       .then((res) => {
-        console.log(res.data.url)
+        
         setImageUrl(res.data.url)
         setImageUploaded(true)
         setTimeout(() => {
@@ -445,12 +447,7 @@ function Fill(props) {
                     setOtp(e.target.value);
                   }}
                 />
-                <div className={state ? "resend-disabled" : "resend"}>
-                  <button onClick={resendOTP} disabled={state}>
-                    Resend OTP
-                  </button>
-                </div>
-                <p style={{ color: "red" }}>{message}</p>
+                <p style={{ color: "white" }}>{message}</p>
               </form>
               <div className="submit">
                 <button

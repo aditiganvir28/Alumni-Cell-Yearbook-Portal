@@ -3,10 +3,10 @@ import React, { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
 import Card from "react-bootstrap/Card";
-// import loadingSpinner from "../Homepage/images/808.gif";
+
 import "./Cards.scss";
 import { LoginContext } from "../../helpers/Context";
-// import Navbar from '../navbar/navbar'
+
 function Cards() {
   const { loading, setLoading } = useContext(LoginContext);
 
@@ -28,7 +28,7 @@ function Cards() {
           <span class="loader"></span>
         </div>
       )}
-        <h1 id="meet">Meet The <div className="disc">Team</div> :)</h1>
+        <h1 id="meet">Meet The <div className="disc">Team</div> :) </h1>
       {!loading && (
         <motion.div
           viewport={{ once: true }}

@@ -110,12 +110,11 @@ li {
 #upld2 {
   border: 1px solid white;
   border-radius: 10%;
-  // overflow: hidden;
+  
   width: 25vh;
   margin-left: 1vh;
   background-color: #3e185c;
-  // color: black;
-  // font-weight: bolder;
+  
 }
 #upld2 :hover {
   background-color: #fec80a !important;
@@ -176,14 +175,13 @@ li {
 
 .edit {
   display: flex;
-  // padding-left: 40%;
+  
   padding-bottom: 2%;
   padding-top: 1%;
 }
 .button {
   margin: 1%;
-  // height: 50px;
-  // width: 190px;
+  
 }
 #edit {
   border: 1px solid black;
@@ -191,8 +189,7 @@ li {
   overflow: hidden;
   width: fit-content !important;
   display: inline-flex;
-  // margin-left: 55%;
-  // margin-top: 1%;
+  
   background-color: #fec90ad9;
   color: black !important;
   font-weight: bolder;
@@ -203,11 +200,7 @@ li {
   color: white;
 }
 
-// .footer-item {
-//     text-align: left;
-//     padding: 90px;
-//     padding-left: 1%;
-// }
+
 #links {
   display: block;
 }
@@ -240,7 +233,7 @@ li {
   display: flex;
   flex-direction: column;
   margin: 2%;
-  // background-clip: content-box;
+  
 }
 
 #commentp {
@@ -297,7 +290,7 @@ li {
   margin: 3.5%;
 }
 
-@media screen and (max-width: 1800px) {
+@media screen and (max-width: 800px) {
   .container2sl {
     flex-flow: column;
     width: 100%;
@@ -316,12 +309,12 @@ li {
   .comments3 {
     margin-top: 3%;
     margin-left: 3%;
-    // margin-left: 0%;
+    
   }
   .comments {
     margin-top: 3%;
     margin-left: 3%;
-    // margin-left: 0%;
+    
   }
   .comments,
   .comments2,

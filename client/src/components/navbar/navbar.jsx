@@ -57,13 +57,13 @@ const Navbar = () => {
     );
 
     setExample(filteredPersons);
-  }, [example])
+  }, [wordentered])
 
   //loading spinner function
   const loadingSpinner2 = () => {
     setLoading(true)
     const Load = async () => {
-      await new Promise((r) => setTimeout(r, 10000))
+      await new Promise((r) => setTimeout(r, 7000))
 
       setLoading((loading) => !loading)
     }
@@ -233,8 +233,8 @@ const Navbar = () => {
                       }
                     </>}
                   {loggedin && <><button 
-                  className={renderNav()} onClick={handleLogout}>Sign Out</button></>}
-                  {loggedin && <button id='prof' className={renderNav()}><Link to={`profile/${profile._id}/${profile.name}/${token(32)}`}>Profile</Link></button>}
+                  className={renderNav()} onClick={handleLogout}>SIGN OUT</button></>}
+                  {loggedin && <button id='prof' className={renderNav()}><Link to={`profile/${profile._id}/${profile.name}/${token(32)}`}>PROFILE</Link></button>}
                 </div>
 
                 <div onClick={handleNavbar} className="hamburger-toggle">
@@ -248,19 +248,19 @@ const Navbar = () => {
                   {loggedin &&
                     <div id='loggedIn'>
                       <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
-                        <div className="searchr" style={{ width: '190%', display: "flex" }}>
+                        <div className="searchr" style={{ width: '70%', display: "flex" }}>
                           {(isStudent || verified) && <>
-                            <input type="text" placeholder="Search..." class="search" onChange={(e) => {
+                            <input type="text" placeholder="Search..." class="search nav-keliye" onChange={(e) => {
                               searchAWord(e);
                               (e.target.value === "") ? setDisplay(false) : setDisplay(true);
                               // onEnter();
                             }} value={inputValue} />
-                            {wordEnteredList.length === 0 &&
+                            {wordEnteredList.length === undefined &&
                               <ul>
                                 <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }}>No User Found</button></li>
                               </ul>}
                             {example.length !== 0 &&
-                              <ul>
+                              <ul className='names'>
                                 {example.map((val, index) =>
                                 (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }} key={index} onClick={(e) => {
                                   e.preventDefault();

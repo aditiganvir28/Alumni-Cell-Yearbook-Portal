@@ -22,16 +22,13 @@ const clientLink = process.env.CLIENT_LINK
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    // user: 'yearbookiiti@gmail.com',
+
     user: gmailUser,
-    // pass: 'ukminlnnlztqdaqu',
+
     pass: gmailPass,
   },
 })
 
-//Otp Verification tokens
-const { createJwtToken } = require('../utils/token.util')
-const { generateOTP } = require('../utils/otp.util')
 
 //Geeting all the users data who have created their profile
 const getUsersData = asyncHandler(async (req, res) => {
@@ -65,8 +62,6 @@ const createUsersData = asyncHandler(async (req, res) => {
     question_2,
   } = req.body
 
-  console.log(req.body)
-
   // Confirm data
   if (
     !email ||
@@ -85,28 +80,6 @@ const createUsersData = asyncHandler(async (req, res) => {
   ) {
     return res.send({ message: 'All fields are required' })
   }
-
-  // Check if email is in use
-  // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
-
-  //     if(existingUser){
-  //         return res.send({message:"Email is already in use"});
-  //     }
-
-  // // // Check if contact_no is in use
-  // const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
-
-  //     if(existingUser2){
-  //         return res.send({message:"Mobile number is already in use"});
-  //     }
-
-  // //Check if roll.no is in use
-  // const existingUser3 = await Users.findOne({roll_no: roll_no}).exec();
-
-  //     if(existingUser3){
-  //         return res.send({message:"Roll_No is already in use"});
-  //     }
-
 
   // Create and store the new user
   const usersData = await Users.create({
@@ -143,7 +116,6 @@ const verifyPhoneOtp = async (req, res, next) => {
     const userId = req.body.userId
 
     const user = await Users.findOne({ email: userId }).exec()
-    console.log(userId)
     if (!user) {
       res.send({ message: 'User not found' })
       return
@@ -163,13 +135,13 @@ const verifyPhoneOtp = async (req, res, next) => {
         // html: `Click <a href='${url}'>here</a> to confirm your email.`,
         html: `<p>Thank you for registering on the Yearbook Portal.
         Please verify your registered email by clicking on the link below.
-        <a href='${url}'>Verify</a>
+        <a href='${url}'>Verify</a><br>
         In case you enter the wrong OTP, you will have to sign in again and fill all the details.
         It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
         To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-        <a href='#'>Whatsapp</a>
+        <a href='#'>Whatsapp</a><br>
         We also urge you to create your profile on the Alumni Portal by visiting
-        <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a>
+        <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
         You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
       <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
       <p>Regards,<br>
@@ -183,7 +155,6 @@ const verifyPhoneOtp = async (req, res, next) => {
     } catch (err) {
       console.log(err)
     }
-    // res.send({ message: 'Mobile number verified', user })
   } catch (error) {
     next(error)
   }
@@ -229,8 +200,6 @@ const resendMail = asyncHandler(async (req, res) => {
   //Generate a veification token with th user's ID
   const userId = req.body.userId
   const personalMailId = req.body.personalMailId
-  console.log(personalMailId)
-  console.log('reached')
   const user = await Users.findOne({ email: userId }).exec()
   if (!user) {
     res.send({ message: 'User not found' })
@@ -248,13 +217,13 @@ const resendMail = asyncHandler(async (req, res) => {
       // html: `Click <a href='${url}'>here</a> to confirm your email.`,
       html: `<p>Thank you for registering on the Yearbook Portal.
       Please verify your registered email by clicking on the link below.
-      <a href='${url}'>Verify</a>
+      <a href='${url}'>Verify</a><br>
       In case you enter the wrong OTP, you will have to sign in again and fill all the details.
       It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
       To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-      <a href='#'>Whatsapp</a>
+      <a href='#'>Whatsapp</a><br>
       We also urge you to create your profile on the Alumni Portal by visiting
-      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a>
+      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
       You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
     <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
     <p>Regards,<br>
@@ -263,7 +232,7 @@ const resendMail = asyncHandler(async (req, res) => {
     })
 
     return res.send({
-      message: `Sent a verification email to ${personalMailId}`,
+      message: `Sent a verification email to your personal email id`,
     })
   } catch (err) {
     console.log(err)
@@ -456,10 +425,8 @@ const comments = asyncHandler(async (req, res) => {
   const User = await Comments.find({
     comment_reciever_email_id: comment_reciever_email_id,
   })
-  console.log(User)
   try {
     if (!User?.length) {
-      console.log('create')
       const newUser = await Comments.create({
         comment_reciever_id,
         comment_reciever_name,
@@ -528,15 +495,12 @@ const setApprovedComments = asyncHandler(async (req, res) => {
   const comment_sender_email_id = req.body.comment_sender_email_id
   const comment = req.body.comment
 
-  console.log(comment)
-
   const user = await Comments.find({
     comment_reciever_email_id: comment_reciever_email_id,
   })
   if (!user?.length) {
     return res.send({ message: 'No user found' })
   }
-  console.log(user[0].comment_sender)
   for (var i = 0; i <= user[0].comment_sender.length; i++) {
     if (
       user[0].comment_sender[i].email_id === comment_sender_email_id &&
@@ -563,7 +527,7 @@ const setRejectedComments = asyncHandler(async (req, res) => {
   }
   console.log(user[0].comment_sender)
   for (var i = 0; i <= user[0].comment_sender.length; i++) {
-    console.log(i)
+    
     if (
       user[0].comment_sender[i].email_id === comment_sender_email_id &&
       user[0].comment_sender[i].comment === comment

@@ -15,16 +15,16 @@ import Error from './components/Error/Error'
 import alumniData from './components/navbar/akumniData.json'
 
 import { Route, Routes, useNavigate } from 'react-router-dom'
-// import { useParams } from 'react-router'
+
 import jwt_decode from 'jwt-decode'
 import { LoginContext } from './helpers/Context'
 import axios from 'axios'
 import { Navbar_phone } from './components/Navbar_phone/Navbar_phone'
 
 const App = ({ location }) => {
-  const [user, setUser] = useState({}) //the one who logged in
+  const [user, setUser] = useState({})
   const [loggedin, setLoggedin] = useState(false)
-  const [authData, setAuthData] = useState([]) //all the users wha have already logged in
+  const [authData, setAuthData] = useState([])
   const [result, setResult] = useState({})
   const [isRegistered, setIsRegistered] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -61,8 +61,7 @@ const App = ({ location }) => {
     /*global google*/
     if (window.google) {
       google.accounts.id.initialize({
-        client_id:
-          '971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com',
+        client_id: "971426024153-8iva32hh346i681clve32rkq2g7uu7eo.apps.googleusercontent.com",
         callback: handleCallbackResponse,
       })
       google.accounts.id.renderButton(document.getElementById('google-login'), {
@@ -88,11 +87,11 @@ const App = ({ location }) => {
 
   //getting all the users who have made their profile
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_URL)
+    
     axios
       .get(process.env.REACT_APP_API_URL + '/getUsersData')
       .then((res) => {
-        console.log(res.data)
+        
         setAllUsuers(res.data)
       })
       .catch((err) => {
@@ -106,20 +105,14 @@ const App = ({ location }) => {
       .get(process.env.REACT_APP_API_URL + '/auth')
       .then((res) => {
         setAuthData(res.data)
-        // console.log(authData)
+        
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
 
-  const rand = () => {
-    return Math.random().toString(36).substr(2)
-  }
 
-  const token = () => {
-    return rand() + rand()
-  }
 
   //Callback Function after logging in
   async function handleCallbackResponse(response) {
@@ -134,7 +127,7 @@ const App = ({ location }) => {
     window.localStorage.setItem('loggedin', true)
     //Rendering the signin button
     document.getElementById('google-login').hidden = true
-    console.log(userObject)
+    
 
     await axios
       .post(process.env.REACT_APP_API_URL + '/checkAuth', {
@@ -183,13 +176,13 @@ const App = ({ location }) => {
                   navigate(`/fill/${userObject.jti}`)
                 }
               })
-            console.log('Second time sign in and alumni')
+            
           }
           //If the user is student
           else {
             setFill(true)
             navigate('/')
-            console.log('second time sign in and student')
+            
           }
         }
         //if signed in for the first time
@@ -203,14 +196,14 @@ const App = ({ location }) => {
               console.log(res)
               //If alumni
               if (alumniEmail.includes(userObject.email)) {
-                console.log('first time login and alumni')
+                
                 navigate(`/fill/${userObject.jti}`)
               }
               //if student
               else {
                 setFill(true)
                 navigate('/')
-                console.log('first time login and student')
+                
               }
             })
             .catch((err) => {

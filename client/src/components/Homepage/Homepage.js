@@ -11,16 +11,13 @@ import People from './images/people1.png'
 import UC from './images/UC.gif'
 import { motion } from 'framer-motion'
 import Step_1 from './images/Step_1.png'
-// import step_22 from './images/step_22.png'
+
 import step2 from './images/step2.png'
 import step3 from './images/step3.png'
-// import Step_2 from './images/Step_2.png'
-// import Step_3 from './images/Step_3.png'
+
 import Step_4 from './images/Step_4.png'
 import Step_5 from './images/Step_5.png'
-// import Yearbook from './images/Yearbook2022.pdf'
-// import Navbar from '../navbar/navbar'
-// import yearbook from './images/yearbook.png'
+
 function Homepage() {
   const { loading, setLoading } = useContext(LoginContext)
 
@@ -35,24 +32,7 @@ function Homepage() {
     Load()
   }, [])
 
-  // const sentence = {
-  //   hidden: { opacity: 1 },
-  //   visible: {
-  //     opacity: 1,
-  //     transition: {
-  //       delay: 0.5,
-  //       staggerChildren: 0.08,
-  //     },
-  //   },
-  // }
 
-  // const letter = {
-  //   hidden: { opacity: 0, y: 50 },
-  //   visible: {
-  //     opacity: 1,
-  //     y: 0,
-  //   },
-  // }
   return (
     <div className='z-10'>
       {loading && (

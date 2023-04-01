@@ -28,83 +28,9 @@ const MakeAComment = () => {
   })
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   const Load = async () => {
-  //     await new Promise((r) => setTimeout(r, 1000))
-
-  //     setLoading((loading) => !loading)
-  //   }
-
-  //   Load()
-  // }, [])
-
-  //Add comment in the comment section of user who makes a comment
-  //and new comment of comment section on whom the comment is being made
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   console.log(isStudent)
-  //   setState(true)
-  //   setTimeout(() => {
-  //     setState(false)
-  //   }, 20000)
-
-  //   if (isStudent === false) {
-  //     await axios
-  //       .post(process.env.REACT_APP_API_URL + '/myComments', {
-  //         comment: comment,
-  //         friend_email: result[0].email,
-  //         friend_name: result[0].name,
-  //         user_email: profile.email,
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data.message)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
-  //   if (isStudent === true) {
-  //     await axios
-  //       .post(process.env.REACT_APP_API_URL + '/newComments', {
-  //         comment: comment,
-  //         user_email: user.email,
-  //         user_name: user.name,
-  //         friend_email: result[0].email,
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data.message)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   } else {
-  //     await axios
-  //       .post(process.env.REACT_APP_API_URL + '/newComments', {
-  //         comment: comment,
-  //         user_email: profile.email,
-  //         user_name: profile.name,
-  //         friend_email: result[0].email,
-  //       })
-  //       .then((res) => {
-  //         console.log(res.data.message)
-  //       })
-  //       .catch((err) => {
-  //         console.log(err)
-  //       })
-  //   }
-
-  //   if (isStudent === true) {
-  //     navigate('/')
-  //   } else {
-  //     console.log('fuck')
-  //     navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
-  //   }
-  //   window.localStorage.removeItem('searchAlumni')
-  // }
   const handleSubmit2 = async (e) => {
     e.preventDefault()
-    console.log(result)
+    
     if (isStudent === false) {
       await axios
         .post(process.env.REACT_APP_API_URL + '/comments', {
@@ -131,7 +57,7 @@ const MakeAComment = () => {
       await axios
         .post(process.env.REACT_APP_API_URL + '/Comments', {
           comment_sender_id: '',
-          comment_sender_name: user._name,
+          comment_sender_name: user.name,
           comment_sender_roll_no: '',
           comment_sender_email_id: user.email,
           comment_sender_academic_program: profile.academic_program,
@@ -154,7 +80,6 @@ const MakeAComment = () => {
     if (isStudent === true) {
       navigate('/')
     } else {
-      console.log('fuck')
       navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
     }
     window.localStorage.removeItem('searchAlumni')
@@ -167,7 +92,7 @@ const MakeAComment = () => {
       .get(process.env.REACT_APP_API_URL + '/getComments')
       .then((res) => {
         setComments(res.data)
-        console.log(res.data)
+        
       })
       .catch((err) => {
         console.log(err)
