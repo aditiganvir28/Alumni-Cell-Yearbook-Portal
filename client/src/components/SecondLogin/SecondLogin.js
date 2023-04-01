@@ -43,12 +43,12 @@ const SecondLogin = () => {
     const formData = new FormData()
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'memories_image')
-    console.log(formData)
+    
 
     await axios
       .post("https://api.cloudinary.com/v1_1/dimwfie4o/image/upload", formData)
       .then((res) => {
-        console.log(res.data.url)
+        
         setImageUrl(res.data.url)
         setImageUploaded(true)
       })
@@ -60,7 +60,7 @@ const SecondLogin = () => {
           memory_img: imageUrl,
         })
         .then((res) => {
-          console.log(res.data)
+          
           setMessage(res.data.message)
           setTimeout(() => {
             setMessage('')
@@ -79,7 +79,7 @@ const SecondLogin = () => {
     axios
       .get(process.env.REACT_APP_API_URL + '/getComments')
       .then((res) => {
-        console.log('working')
+        
         setComments(res.data)
         console.log(res.data)
       })
@@ -91,7 +91,6 @@ const SecondLogin = () => {
   // redirecting to edit page for editing the profile
   const navigate = useNavigate()
   const editProfile = () => {
-    // window.location.href = '/edit';
     navigate(`/edit/${profile._id}`)
   }
 
@@ -194,7 +193,7 @@ const SecondLogin = () => {
             </div>
             <div className="comments3">
               <h1 id="cmt">New Comments</h1>
-              {/* <h1 style={{ display : "inline"}}>..................</h1> */}
+              
               <ul style={{ display: 'block' }}>
                 {comments.map((val, index) =>
                   val.comment_sender.map((val2, index2) => (
@@ -276,7 +275,6 @@ const SecondLogin = () => {
                                 setTimeout(() => {
                                   setState(false)
                                 }, 20000)
-                                // loadingSpinner();
                               }}
                             >
                               <a href="" className="fa fa-times-circle"></a>

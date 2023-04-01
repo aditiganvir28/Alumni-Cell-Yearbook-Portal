@@ -28,21 +28,9 @@ const MakeAComment = () => {
   })
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   setLoading(true)
-  //   const Load = async () => {
-  //     await new Promise((r) => setTimeout(r, 1000))
-
-  //     setLoading((loading) => !loading)
-  //   }
-
-  //   Load()
-  // }, [])
-
-  
   const handleSubmit2 = async (e) => {
     e.preventDefault()
-    console.log(result)
+    
     if (isStudent === false) {
       await axios
         .post(process.env.REACT_APP_API_URL + '/comments', {
@@ -104,7 +92,7 @@ const MakeAComment = () => {
       .get(process.env.REACT_APP_API_URL + '/getComments')
       .then((res) => {
         setComments(res.data)
-        console.log(res.data)
+        
       })
       .catch((err) => {
         console.log(err)

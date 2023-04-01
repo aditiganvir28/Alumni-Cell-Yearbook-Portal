@@ -7,36 +7,18 @@ const authRoutes = require('./routes/authRoutes')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
-// const https=require('https');
-// const fs=require('fs');
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/yearbookportal-iiti.co.in/alumni cell.pem', 'utf8'); // key
-// const credentials = {
-//   key: privateKey,
-// };
+
 const app = express()
-// app.use(express.static('public'));
-// const httpsServer = https.createServer(credentials, app);
-// httpsServer.listen('5000', () => {
-//     console.log('listening on https://yearbookportal-iiti.co.in:5000');
-// });
 
 const port = process.env.PORT || 5000
 
-//We are using cors to allow cross-origin requests.
-//We are using app.use() to add the cors middleware to the Express application.
 
-//To parse the incoming requests with JSON payloads we are using express.json()
-//which is a built-in middleware function in Express.
 
 // ADDING ENVIRENMENT VARIABLES
 mongodbLink = process.env.MONGODB_LINK;
 clientLink = process.env.CLIENT_LINK;
-// console.log(mongodbLink);
-// console.log(clientLink);
 
 //Middlewares
-
-
 
 app.use(
   cors({
@@ -44,7 +26,6 @@ app.use(
     methods: ['GET', 'POST', 'UPDATE', 'PUT'],
     credentials: true,
   }),
-  // cors()
 )
 
 app.use(express.json())
@@ -58,7 +39,6 @@ const morgan = require('morgan')
 app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
-  // res.json({message: "Hello from server!!"});
   res.send('Hello from server')
 })
 
@@ -87,11 +67,6 @@ mongoose
 
 app.use(authRoutes)
 app.use(userDataRoutes)
-
-// app.post('/profile', (req,res)=>{
-//     userEmail: req.userEmail;
-
-// })
 
 // page not found error handling  middleware
 
