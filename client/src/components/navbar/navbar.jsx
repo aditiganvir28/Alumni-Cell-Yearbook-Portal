@@ -40,6 +40,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(true)
   const [example, setExample] = useState([]);
   const alumniEmail= alumniData; //geeting all the alumnis data
+  
 
 
   //Use ReactFilter
@@ -285,12 +286,15 @@ const Navbar = () => {
   
     <>
     <div className='navbar_phone absolute z-10'>
+    {/* <div id='google-login'>
+          </div> */}
       <motion.div className='flex flex-col justify-center items-center bg-[#180c1e] overflow-y-hidden'
         animate={isOpen ? "open" : "closed"}
         variants={variants}>
         <div className='h-screen w-screen bg-[#4d1a6c] flex flex-col items-center justify-start pt-8'>
           <img src='/images/1.png' className='absolute ml-4 top-0 left-0 mt-4 w-16 h-16 rounded-xl' alt='err'></img>
           <motion.div className='absolute top-0 right-0 mt-8 mr-8 text-3xl' onClick={() => setIsOpen(isOpen => !isOpen)}>×</motion.div>
+          
           {loggedin &&
             <div id='loggedIn' className='mt-24 mb-16'>
               <div className="searchr" style={{ width: '100%', display: "flex" }}>
@@ -302,26 +306,35 @@ const Navbar = () => {
                   }} value={inputValue} />
                   {wordEnteredList.length === 0 &&
                     <ul>
-                      <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }}>No User Found</button></li>
+                    <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}>No User Found</button></li>
                     </ul>}
-                  {wordEnteredList.length !== 0 &&
-                    <ul>
-                      {wordEnteredList.map((val, index) =>
-                      (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }} key={index} onClick={(e) => {
-                        e.preventDefault();
-                        setSearchword(val.email);
-                        setInputValue("");
-                        setDisplay(false);
-                        e.target.value = "";
-                        setTimeout(() => {
-                          navigate(`/comment/${result[0]._id}/${result[0].name}/${result[0].roll_no}`)
-                        }, 1000)
-
-                      }}><p>{val.name}</p>
-                        <p style={{ fontSize: "70%", fontStyle: "italic" }}>{val.academic_program}</p>
-                      </button></li>)
-                      )}
-                    </ul>
+                  {example.length!==0 && 
+                  <ul>
+                  {example.map((val, index) =>
+                  (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}} key={index} onClick={(e) => {
+                    e.preventDefault();
+                    window.localStorage.removeItem('searchedAlumni')
+                    // loadingSpinner();
+                    setInputValue("");
+                    setDisplay(false);
+                    e.target.value="";
+                    axios.post(process.env.REACT_APP_API_URL + '/searchword', {
+                          searchword: val.email
+                        }).then((res) => {
+                        console.log(res.data);
+                        setResult(res.data);
+                        window.localStorage.setItem('searchedAlumni', JSON.stringify(res.data));
+                        
+                        }).catch((err) => {
+                        console.log(err)
+                        })
+                        navigate(`/comment/${val._id}/${val.name}/${val.roll_no}`)
+                        loadingSpinner2();
+                    }}><p>{val.name}</p>
+                    <p style={{fontSize: "70%", fontStyle: "italic"}}>{val.academic_program}</p>
+                  </button></li>)
+                  )}
+                  </ul>
                   }
                 </>}
               </div>
@@ -332,8 +345,7 @@ const Navbar = () => {
           <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>about</div></a>
           <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>developers</div></a>
           <a href='/'><div onClick={handleLogout} className={loggedin ? 'uppercase' : 'hidden'}>Logout</div></a>
-          <div className='google-login'>
-          </div>
+         
         </div>
         <motion.div onClick={() => setIsOpen(isOpen => !isOpen)} className='w-full bg-[#180c1e] flex justify-center'><div className={isOpen ? 'hidden' : 'text-center -mt-2 pt-4 overflow-hidden w-12 h-12 text-xl rounded-full bg-[#4d1a6c]'}>∨</div></motion.div>
       </motion.div>

@@ -10,12 +10,29 @@ const ApprovedCommetns = require('../models/approved_comments')
 const RejectedComments = require('../models/rejected_comments')
 const Memories = require('../models/memories')
 const Comments = require('../models/comments')
+const { initializeApp } = require('firebase/app')
+const getAuth = require('firebase/auth')
+const RecaptchaVerifier = require('firebase/auth')
+const signInWithPhoneNumber = require('firebase/auth')
 
 // adding environment variable ****************
 const gmailUser = process.env.GMAIL_USER
 const gmailPass = process.env.GMAIL_PASS
 const serverLink = process.env.SERVER_LINK
 const clientLink = process.env.CLIENT_LINK
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyDIGpWgvEYrMb3hxXSEGCAKaqF29Cs255k',
+  authDomain: 'yearbook-portal-iiti.firebaseapp.com',
+  projectId: 'yearbook-portal-iiti',
+  storageBucket: 'yearbook-portal-iiti.appspot.com',
+  messagingSenderId: '1007377731371',
+  appId: '1:1007377731371:web:bb7c73ba24e50b0c50bf6e',
+  measurementId: 'G-BND844SPS7',
+}
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
 
 //Api to set up sender to send a mail
 const transporter = nodemailer.createTransport({
@@ -156,10 +173,39 @@ const createUsersData = asyncHandler(async (req, res) => {
   }
   try {
     // generate otp
-    const otp = generateOTP(6)
-    // save otp to user collection
-    usersData.phoneOTP = otp
-    await usersData.save()
+    // const otp = generateOTP(6)
+    // // save otp to user collection
+    // usersData.phoneOTP = otp
+    // await usersData.save()
+
+    const auth = getAuth()
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      'sign-in-button',
+      {
+        size: 'invisible',
+        callback: (response) => {
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          onSignInSubmit()
+        },
+      },
+      auth,
+    )
+
+    const phoneNumber = usersData.contact_details
+    const appVerifier = window.recaptchaVerifier
+
+    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+      .then((confirmationResult) => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        // window.confirmationResult = confirmationResult
+        // ...
+      })
+      .catch((error) => {
+        // Error; SMS not sent
+        // ...
+        grecaptcha.reset(window.recaptchaWidgetId)
+      })
 
     // const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
     // const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
@@ -189,31 +235,32 @@ const createUsersData = asyncHandler(async (req, res) => {
 // ---------------------- verify phone otp -------------------------
 
 verifyPhoneOtp = async (req, res, next) => {
-  try {
-    const phoneOtp = req.body.phoneOTP
-    const userId = req.body.userId
+  const userId = req.body.userId
 
-    const user = await Users.findOne({ email: userId }).exec()
-    console.log(userId)
-    if (!user) {
-      res.send({ message: 'User not found' })
-      return
-    }
-
-    if (user.phoneOTP !== phoneOtp) {
-      res.send({ message: 'Incorrect OTP' })
-      return
-    }
-    const token = createJwtToken({ userId: user._id })
-
-    user.phoneOTP = ''
-    user.two_step_verified = true
-    await user.save()
-    res.send({ message: 'Mobile number verified', user })
-    // return res.redirect('http://localhost:3000/')
-  } catch (error) {
-    next(error)
+  const user = await Users.findOne({ email: userId }).exec()
+  console.log(userId)
+  if (!user) {
+    res.send({ message: 'User not found' })
+    return
   }
+
+  const code = phoneOtp
+  confirmationResult
+    .confirm(code)
+    .then(async (result) => {
+      // User signed in successfully.
+      // const user = result.user
+      // ...
+      user.two_step_verified = true
+      await user.save()
+      res.send({ message: 'Mobile number verified', user })
+    })
+    .catch((error) => {
+      // User couldn't sign in (bad verification code?)
+      // ...
+    })
+
+  // user.phoneOTP = ''
 }
 
 //Resend OTP
