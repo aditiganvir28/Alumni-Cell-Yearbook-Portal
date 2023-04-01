@@ -15,6 +15,7 @@ input.nav-keliye{
 .links{
     display: flex;
     margin: 0px;
+    height: 4rem;
     // width: 35%;
 }
 #contain{
@@ -69,10 +70,13 @@ input .search{
 }
 #logout{
     border: 1px solid white;
-    display: inline;
-    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     border-radius: 10%;
-    width: 20vh;
+    width: 10rem;
+    height: 4rem;
     margin-left: 10rem;
     // font-weight: 600;
 }
@@ -280,7 +284,7 @@ ul {
     background-color: #3b1353bd;
     color: white;
     border-radius: 10px;
-    height: 3.9rem;
+    // height: 3.9rem;
 }
 
 img {
