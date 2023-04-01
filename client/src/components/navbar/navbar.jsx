@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { useRouteLoaderData } from "react-router-dom";
 import './Navbar.scss';
 import { LoginContext } from '../../helpers/Context';
@@ -25,37 +25,38 @@ const Navbar = () => {
     closed: { y: "-96%" },
   }
 
-  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon,profile, setProfile, loadingSpinner, isStudent, setIsStudent, setUserData, userData} = useContext(LoginContext);
+  const { loggedin, setLoggedin, user, setUser, setLoading, allUsers, verified, setVerified, profileIcon, setProfileIcon, profile, setProfile, loadingSpinner, isStudent, setIsStudent, setUserData, userData } = useContext(LoginContext);
 
   const navigate = useNavigate();
-  const [navOpen, setNavopen]= useState(false);
+  const [navOpen, setNavopen] = useState(false);
   const [setSearchword] = useState("");
   // const [searchword] = useState("");
   const [wordentered, setWordentered] = useState("");
   const [wordEnteredList] = useState([]);
   // const [setWordEnteredList] = useState([]);
   const { result, setResult } = useContext(LoginContext);
-  const [inputValue, setInputValue]= useState();
+  const [inputValue, setInputValue] = useState();
   const [display, setDisplay] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
   const [example, setExample] = useState([]);
-  const alumniEmail= alumniData; //geeting all the alumnis data
+  const alumniEmail = alumniData; //geeting all the alumnis data
 
 
   //Use ReactFilter
-  var filteredPersons= []
-  useEffect(()=>{
-  filteredPersons = allUsers.filter(
-    person => {
-      return (
-        person
-        .name
-        .toLowerCase()
-        .startsWith(wordentered.toLowerCase())
-      );
-    }
-  );
-  setExample(filteredPersons);
+  var filteredPersons = []
+  useEffect(() => {
+    filteredPersons = allUsers.filter(
+      person => {
+        return (
+          person
+            .name
+            .toLowerCase()
+            .startsWith(wordentered.toLowerCase())
+        );
+      }
+    );
+
+    setExample(filteredPersons);
   }, [example])
 
   //loading spinner function
@@ -99,64 +100,64 @@ const Navbar = () => {
     }
 
     const profileI = (window.localStorage.getItem('profileIcon'));
-    if(profileI==="true"){
+    if (profileI === "true") {
       setProfileIcon(true);
     }
 
     const verify = (window.localStorage.getItem('verified'));
-    if(verify === 'true'){
+    if (verify === 'true') {
       setVerified(true);
     }
 
     const p = (window.localStorage.getItem('profile'));
-    if(verify==="true"){
+    if (verify === "true") {
       setProfile(JSON.parse(p));
     }
 
-    
-  },[])
+
+  }, [])
 
   console.log(loggedin);
 
   //Logout Function
-  const handleLogout =() =>{
-      setUser({});
-      navigate('/');
-      window.location.reload();
-      window.localStorage.removeItem('user');
-      window.localStorage.removeItem('searchAlumni');
-      window.localStorage.removeItem('profileIcon');
-      window.localStorage.removeItem('verified');
-      window.localStorage.removeItem('profile')
-      setLoggedin(false);
-      setProfileIcon(false);
-      window.localStorage.removeItem('searchedAlumni');
-      window.localStorage.removeItem('userData');
-      window.localStorage.setItem('loggedin', false)
-      window.localStorage.removeItem('loggedin')
-      document.getElementId("google-login").hidden = false;
-      
-      console.log('logout');
-      
-     
-    }
-  
+  const handleLogout = () => {
+    setUser({});
+    navigate('/');
+    window.location.reload();
+    window.localStorage.removeItem('user');
+    window.localStorage.removeItem('searchAlumni');
+    window.localStorage.removeItem('profileIcon');
+    window.localStorage.removeItem('verified');
+    window.localStorage.removeItem('profile')
+    setLoggedin(false);
+    setProfileIcon(false);
+    window.localStorage.removeItem('searchedAlumni');
+    window.localStorage.removeItem('userData');
+    window.localStorage.setItem('loggedin', false)
+    window.localStorage.removeItem('loggedin')
+    document.getElementId("google-login").hidden = false;
+
+    console.log('logout');
+
+
+  }
+
   //adding sidebar on smaller screens
-  const handleNavbar=()=>{
+  const handleNavbar = () => {
     setNavopen(!navOpen)
   };
-  const handleDropdownclick=(e)=>{
+  const handleDropdownclick = (e) => {
     e.stopPropagation();
   };
-  const handleNavopen=()=>{
-    if(navOpen){
+  const handleNavopen = () => {
+    if (navOpen) {
       setNavopen(!navOpen)
     }
   };
-  const renderNav = ()=>{
-    if(navOpen){
+  const renderNav = () => {
+    if (navOpen) {
       return "links active"
-    }else{
+    } else {
       return "links deactivate";
     }
   }
@@ -168,11 +169,11 @@ const Navbar = () => {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
-  
+
     for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-  
+
     return result;
   };
 
@@ -182,10 +183,10 @@ const Navbar = () => {
 
 
 
-  if(alumniEmail.includes(user.email)){
+  if (alumniEmail.includes(user.email)) {
     setIsStudent(false);
   }
-  else{
+  else {
     setIsStudent(true);
   }
 
@@ -194,107 +195,115 @@ const Navbar = () => {
     setInputValue(event.target.value);
   }
 
-  return(
+  return (
     <>
-    <div className='navbar-laptop'>
-    <div className="overflow-x-hidden" id='abd'>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
-      </style>
-      <div className='header22'>
-        <img src='/images/1.png' alt='err'/>
-        <div className='navbar'>
-          <ul >
-            <div onClick={handleNavopen} className={renderNav()}>
-            <Link id='av'to="/">HOME</Link>
-            <Link id='av' to="/about">ABOUT</Link>
-            <Link id='av' to="/team">DEVELOPERS</Link>
-            {loggedin && 
-            <>
-            {(profileIcon)? 
-                  <Menu>
+      <div className='navbar-laptop'>
+        <div className="overflow-x-hidden" id='abd'>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+          </style>
+          <div className='header22'>
+            <img src='/images/1.png' alt='err' />
+            <div className='navbar'>
+              <ul>
+                <div onClick={handleNavopen} className={renderNav()}>
+                  <Link id='av' to="/">HOME</Link>
+                  <Link id='av' to="/about">ABOUT</Link>
+                  <Link id='av' to="/team">DEVELOPERS</Link>
+                  {loggedin &&
+                    <>
+                      {(profileIcon) ?
+                        <div id='contain'>
+                        <Menu>
                           <MenuButton as={Button} w='29%' ml={2} rightIcon={<ChevronDownIcon />}>
                             <img src="../../../images/profile.jpg" alt="" id='profilepic' />
                           </MenuButton>
                           <MenuList>
                             <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${token(32)}`}>
                               <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
-                              <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
-                    </MenuList>
-                  </Menu> :
-                  <button id='logout' onClick={handleLogout}>Sign Out</button>
-}
-            </>}
-            
-            </div>
-
-            <div onClick={handleNavbar} className="hamburger-toggle">
-            <HamburgerIcon/>
-          </div>
-            
-            <div id='google-login'>
-            </div>
-          
-              <>
-              {loggedin && 
-              <div id='loggedIn'>
-                <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
-                  <div className="searchr" style={{ width: '190%', display:"flex"}}>
-                    { (isStudent || verified) && <>
-                    <input type="text" placeholder="Search..." class="search" onChange={(e) => {
-                      searchAWord(e);
-                      (e.target.value === "") ? setDisplay(false) : setDisplay(true);
-                      // onEnter();
-                    }} value={inputValue}/>
-                    {wordEnteredList.length===0 && 
-                    <ul>
-                      <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}}>No User Found</button></li>
-                      </ul>}
-                    {example.length!==0 && 
-                    <ul>
-                    {example.map((val, index) =>
-                    (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{textAlign:"left"}} key={index} onClick={(e) => {
-                      e.preventDefault();
-                      window.localStorage.removeItem('searchedAlumni')
-                      // loadingSpinner();
-                      setInputValue("");
-                      setDisplay(false);
-                      e.target.value="";
-                      axios.post(process.env.REACT_APP_API_URL + '/searchword', {
-                            searchword: val.email
-                          }).then((res) => {
-                          console.log(res.data);
-                          setResult(res.data);
-                          window.localStorage.setItem('searchedAlumni', JSON.stringify(res.data));
-                          
-                          }).catch((err) => {
-                          console.log(err)
-                          })
-                          navigate(`/comment/${val._id}/${val.name}/${val.roll_no}`)
-                          loadingSpinner2();
-                      }}><p>{val.name}</p>
-                      <p style={{fontSize: "70%", fontStyle: "italic"}}>{val.academic_program}</p>
-                    </button></li>)
-                    )}
-                    </ul>
-                    }
+                            <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
+                          </MenuList>
+                        </Menu>
+                        </div> :
+                        <>
+                        <button id='logout' onClick={handleLogout}>Sign Out</button>
+                        
+                        
+                        </>
+                      }
                     </>}
-                  </div>
-                  
-                </li>
+                  {loggedin && <><button 
+                  className={renderNav()} onClick={handleLogout}>Sign Out</button></>}
+                  {loggedin && <button id='prof' className={renderNav()}><Link to={`profile/${profile._id}/${profile.name}/${token(32)}`}>Profile</Link></button>}
                 </div>
-}
-              </>
-</ul>
-          
-          
+
+                <div onClick={handleNavbar} className="hamburger-toggle">
+                  <HamburgerIcon />
+                </div>
+
+                <div id='google-login'>
+                </div>
+
+                <>
+                  {loggedin &&
+                    <div id='loggedIn'>
+                      <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
+                        <div className="searchr" style={{ width: '190%', display: "flex" }}>
+                          {(isStudent || verified) && <>
+                            <input type="text" placeholder="Search..." class="search" onChange={(e) => {
+                              searchAWord(e);
+                              (e.target.value === "") ? setDisplay(false) : setDisplay(true);
+                              // onEnter();
+                            }} value={inputValue} />
+                            {wordEnteredList.length === 0 &&
+                              <ul>
+                                <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }}>No User Found</button></li>
+                              </ul>}
+                            {example.length !== 0 &&
+                              <ul>
+                                {example.map((val, index) =>
+                                (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }} key={index} onClick={(e) => {
+                                  e.preventDefault();
+                                  window.localStorage.removeItem('searchedAlumni')
+                                  // loadingSpinner();
+                                  setInputValue("");
+                                  setDisplay(false);
+                                  e.target.value = "";
+                                  axios.post(process.env.REACT_APP_API_URL + '/searchword', {
+                                    searchword: val.email
+                                  }).then((res) => {
+                                    console.log(res.data);
+                                    setResult(res.data);
+                                    window.localStorage.setItem('searchedAlumni', JSON.stringify(res.data));
+
+                                  }).catch((err) => {
+                                    console.log(err)
+                                  })
+                                  navigate(`/comment/${val._id}/${val.name}/${val.roll_no}`)
+                                  loadingSpinner2();
+                                }}><p>{val.name}</p>
+                                  <p style={{ fontSize: "70%", fontStyle: "italic" }}>{val.academic_program}</p>
+                                </button></li>)
+                                )}
+                              </ul>
+                            }
+                          </>}
+                        </div>
+
+                      </li>
+                    </div>
+                  }
+                </>
+              </ul>
+
+
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    </div>
-  
-    <>
-    {/* <div className='navbar_phone absolute z-10'>
+
+      <>
+        {/* <div className='navbar_phone absolute z-10'>
       <motion.div className='flex flex-col justify-center items-center bg-[#180c1e] overflow-y-hidden'
         animate={isOpen ? "open" : "closed"}
         variants={variants}>
@@ -326,7 +335,6 @@ const Navbar = () => {
                         setTimeout(() => {
                           navigate(`/comment/${result[0]._id}/${result[0].name}/${result[0].roll_no}`)
                         }, 1000)
-
                       }}><p>{val.name}</p>
                         <p style={{ fontSize: "70%", fontStyle: "italic" }}>{val.academic_program}</p>
                       </button></li>)
@@ -337,7 +345,6 @@ const Navbar = () => {
               </div>
             </div>
           }
-
           <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mt-24 mb-24'}>Home</div></a>
           <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>about</div></a>
           <a href='/'><div className={loggedin ? 'mb-12 uppercase' : 'uppercase mb-24'}>developers</div></a>
@@ -348,11 +355,11 @@ const Navbar = () => {
         <motion.div onClick={() => setIsOpen(isOpen => !isOpen)} className='w-full bg-[#180c1e] flex justify-center'><div className={isOpen ? 'hidden' : 'text-center -mt-2 pt-4 overflow-hidden w-12 h-12 text-xl rounded-full bg-[#4d1a6c]'}>∨</div></motion.div>
       </motion.div>
       </div> */}
-    </>
+      </>
     </>
 
 
-  
+
   )
 }
 

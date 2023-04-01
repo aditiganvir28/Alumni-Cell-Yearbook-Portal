@@ -8,6 +8,22 @@
 MenuItem {
     background-color: #4d1a6c;
 }
+.links{
+    display: flex;
+    margin: 0px;
+}
+#contain{
+    display: flex;
+    flex: auto;
+    justify-content: end;
+    align-items: flex-end;
+}
+button.links{
+    width: 0%;
+    visibility: hidden;
+    margin: 0px;
+    padding: 0px !important;
+}
 input .search{
     margin: 10px 0 0 0;
     // padding: 1%;
@@ -38,10 +54,10 @@ input .search{
 }
 #logout{
     border: 1px solid white;
-    margin: 2%;
-    // margin-left: 5%;
+    display: inline;
+    margin: 2rem;
     border-radius: 10%;
-    width: 40vh;
+    width: 20vh;
     // font-weight: 600;
 }
 #logout:hover{
@@ -89,7 +105,15 @@ body {
     max-height: 5%;
     z-index: 3;    
 }
+//for the profile pic form expanding horribly
+.css-xl71ch{
+    width: 50px;
+}
+button.css-1ycil38{
+    width: 100px;
+}
 
+//for the dropdown onclick at the profile
 .css-0{
     border: 2px solid white;
     transition: ease-in;
@@ -98,11 +122,19 @@ body {
 .bg-123123{
     background: radial-gradient(at right bottom, rgb(15, 23, 42), rgb(88, 28, 135), rgb(15, 23, 42));
 }
-
-@media screen and (max-width: 800px){
+#loggedIn{
+    display: flex;
+    max-width: 60%;
+    flex: auto;
+}
+@media screen and (max-width: 1200px){
  
     body{
        overflow-x: hidden; 
+    }
+    .css-0{
+        display: flex;
+        flex-flow: column;
     }
     .dropdown-nav{
         display: none;
@@ -122,6 +154,7 @@ body {
         // right: 0px;
         left: 0px;
         display: flex;
+        align-items: center;
         flex-direction: column;
         width: 60%;
         height:40%;
@@ -137,7 +170,24 @@ body {
         transform: translateY(0%);
         transition: transform 0.5s ease-in;
     }
-    
+    .chakra-button{
+        visibility: hidden;
+    }
+    button.active{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 17vh;
+        margin-left: 19vw;
+        height: 3rem;
+    }
+    button.links{
+        visibility: visible;
+        width: 15rem;
+    }
+    #prof{
+        margin-top: 22vh;
+    }
 }
 
 .navbar {
@@ -153,6 +203,7 @@ body {
     border: 0.5px solid white;
     border-radius: 15px;
     box-shadow: 0 0 3px 1px #ffffffd0;
+    height: 4rem;
 }
 
 .google {
@@ -178,8 +229,11 @@ ul {
 #av{
     color: white;
     padding: 14px 50px;
+    // padding-left: 5%;
+    // margin: 2%;
     text-decoration: none;
     text-align: center;
+    display: inline;
 }
 
 #av:hover{

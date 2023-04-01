@@ -28,6 +28,7 @@ function Cards() {
           <span class="loader"></span>
         </div>
       )}
+        <h1 id="meet">Meet The <div className="disc">Team</div> :)</h1>
       {!loading && (
         <motion.div
           viewport={{ once: true }}

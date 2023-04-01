@@ -1,6 +1,6 @@
 const Members= [
     {
-        Name: 'Ashutosh',
+        Name: 'Agrima Bundela',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -9,7 +9,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Agrima',
+        Name: 'Aditi Ganvir',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -18,7 +18,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Aditi',
+        Name: 'Ayush Awasthi',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -27,7 +27,15 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Tarun',
+        Name: 'Tarun Balaji',
+        Desc: 'this is something about me, basically somewhat of a flavor-text',
+        Linkedin: '#',
+        Facebook: '#',
+        Instagram: '#',
+        Google: '#',
+        img: '/images/grey.png'
+    },{
+        Name: 'Harsh Soni',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -36,7 +44,7 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Harsh',
+        Name: 'Ashutosh Samantaray',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
@@ -44,15 +52,8 @@ const Members= [
         Google: '#',
         img: '/images/grey.png'
     },
-    {
-        Name: 'Ayush',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
-    },
+    
+    
     // {
     //     Name: 'Safdar',
     //     Desc: 'this is something about me, basically somewhat of a flavor-text',
