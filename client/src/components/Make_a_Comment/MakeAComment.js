@@ -16,7 +16,8 @@ const MakeAComment = () => {
   const { loading, setLoading } = useContext(LoginContext)
   const [approvedComments, setApprovedComments] = useState([])
   const [state, setState] = useState(false)
-  const [comments, setComments] = useState({})
+  const [comments, setComments] = useState([])
+  const [message2, setMessage2] = useState('')
   const alumniEmail = alumniData
 
   useEffect(() => {
@@ -91,7 +92,13 @@ const MakeAComment = () => {
     axios
       .get(process.env.REACT_APP_API_URL + '/getComments')
       .then((res) => {
-        setComments(res.data)
+        if(res.data.message==="No users found"){
+          setMessage2(res.data.message)
+          setComments([])
+        }else{
+          setComments(res.data.User)
+        }
+        console.log(res.data)
         
       })
       .catch((err) => {
@@ -174,7 +181,8 @@ const MakeAComment = () => {
             <div style={{ display: 'inline' }}>
               <h1 id="make">Approved Comments</h1>
             </div>
-            <div id="cards-container">
+            <div id="cards-container">{(message2!=="No User Found") &&
+              <>
               {comments.map((val) =>
                 val.comment_sender.map(
                   (val2) =>
@@ -201,6 +209,7 @@ const MakeAComment = () => {
                     ),
                 ),
               )}
+              </>}
             </div>
           </div>
         </div>

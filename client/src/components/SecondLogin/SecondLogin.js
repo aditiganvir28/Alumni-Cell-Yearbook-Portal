@@ -12,6 +12,7 @@ const SecondLogin = () => {
   const [imageSelected, setImageSelected] = useState(false)
   const [imageUrl, setImageUrl] = useState('')
   const [message, setMessage] = useState('')
+  const [message2, setMessage2] = useState('')
   const [imageadded, setImageadded] = useState(false)
   const [comments, setComments] = useState([])
 
@@ -79,9 +80,14 @@ const SecondLogin = () => {
     axios
       .get(process.env.REACT_APP_API_URL + '/getComments')
       .then((res) => {
-        
-        setComments(res.data)
+        if(res.data.message==="No users found"){
+          setMessage2(res.data.message)
+          setComments([])
+        }else{
+          setComments(res.data.User)
+        }
         console.log(res.data)
+        
       })
       .catch((err) => {
         console.log(err)
@@ -93,6 +99,8 @@ const SecondLogin = () => {
   const editProfile = () => {
     navigate(`/edit/${profile._id}`)
   }
+
+  console.log(comments)
 
   return (
     <>
@@ -116,7 +124,8 @@ const SecondLogin = () => {
               <div>
                 <h1 id="cmt">Approved Comments</h1>
               </div>
-              <div id="commentsscroll">
+              <div id="commentsscroll">{(comments.length!==0) &&
+              <>
                 {comments.map((val) =>
                   val.comment_sender.map(
                     (val2) =>
@@ -129,6 +138,7 @@ const SecondLogin = () => {
                       ),
                   ),
                 )}
+                </>}
               </div>
             </div>
             <div className="profile">
@@ -176,7 +186,8 @@ const SecondLogin = () => {
             <div className="comments2">
               <h1 id="cmt">My Comments</h1>
 
-              <div id="commentsscroll">
+              <div id="commentsscroll">{(message2!=="No User Found") &&
+              <>
                 {comments.map((val) =>
                   val.comment_sender.map(
                     (val2) =>
@@ -189,20 +200,17 @@ const SecondLogin = () => {
                       ),
                   ),
                 )}
+                </>}
               </div>
             </div>
             <div className="comments3">
               <h1 id="cmt">New Comments</h1>
               
-              <ul style={{ display: 'block' }}>
+              <ul style={{ display: 'block' }}>{(message2!=="No User Found") &&
+              <>
                 {comments.map((val, index) =>
                   val.comment_sender.map((val2, index2) => (
                     <>
-                      {console.log(
-                        val.comment_reciever_email_id === profile.email,
-                      )}
-                      {console.log(profile)}
-                      {console.log(val)}
                       {val.comment_reciever_email_id === profile.email &&
                         val2.status === 'new' && (
                           <li id="comment5">
@@ -284,6 +292,7 @@ const SecondLogin = () => {
                     </>
                   )),
                 )}
+                </>}
               </ul>
             </div>
 
