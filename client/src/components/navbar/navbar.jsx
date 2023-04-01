@@ -213,6 +213,7 @@ const Navbar = () => {
                   {loggedin &&
                     <>
                       {(profileIcon) ?
+                        <div id='contain'>
                         <Menu>
                           <MenuButton as={Button} w='29%' ml={2} rightIcon={<ChevronDownIcon />}>
                             <img src="../../../images/profile.jpg" alt="" id='profilepic' />
@@ -222,7 +223,8 @@ const Navbar = () => {
                               <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
                             <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                           </MenuList>
-                        </Menu> :
+                        </Menu>
+                        </div> :
                         <>
                         <button id='logout' onClick={handleLogout}>Sign Out</button>
                         
@@ -230,7 +232,8 @@ const Navbar = () => {
                         </>
                       }
                     </>}
-                  {loggedin && <><button className={renderNav()} onClick={handleLogout}>Sign Out</button></>}
+                  {loggedin && <><button 
+                  className={renderNav()} onClick={handleLogout}>Sign Out</button></>}
                   {loggedin && <button id='prof' className={renderNav()}><Link to={`profile/${profile._id}/${profile.name}/${token(32)}`}>Profile</Link></button>}
                 </div>
 

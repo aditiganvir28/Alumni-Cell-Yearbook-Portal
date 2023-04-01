@@ -10,10 +10,19 @@ MenuItem {
 }
 .links{
     display: flex;
+    margin: 0px;
+}
+#contain{
+    display: flex;
+    flex: auto;
+    justify-content: end;
+    align-items: flex-end;
 }
 button.links{
     width: 0%;
     visibility: hidden;
+    margin: 0px;
+    padding: 0px !important;
 }
 input .search{
     margin: 10px 0 0 0;
@@ -113,7 +122,11 @@ button.css-1ycil38{
 .bg-123123{
     background: radial-gradient(at right bottom, rgb(15, 23, 42), rgb(88, 28, 135), rgb(15, 23, 42));
 }
-
+#loggedIn{
+    display: flex;
+    max-width: 60%;
+    flex: auto;
+}
 @media screen and (max-width: 1200px){
  
     body{
@@ -165,7 +178,7 @@ button.css-1ycil38{
         align-items: center;
         justify-content: center;
         margin-top: 17vh;
-        margin-left: 12vw;
+        margin-left: 19vw;
         height: 3rem;
     }
     button.links{
