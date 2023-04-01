@@ -210,7 +210,7 @@ button.css-1ycil38{
     border: 0.5px solid white;
     border-radius: 15px;
     box-shadow: 0 0 3px 1px #ffffffd0;
-    height: 4rem;
+    height: 4.4rem;
 }
 
 .google {
@@ -238,6 +238,7 @@ ul {
     color: white;
     padding-left: 50px;
     padding-right: 50px;
+    padding-top: 0%;
     // padding-left: 5%;
     // margin: 2%;
     text-decoration: none;
@@ -247,10 +248,11 @@ ul {
   
 }
 
-#av:hover, button.links:hover{
+#av:hover{
     /* padding: auto; */
     background-color: #3b1353bd;
     color: white;
+    height: 3.9rem;
     border-radius: 10px;
 }
 
