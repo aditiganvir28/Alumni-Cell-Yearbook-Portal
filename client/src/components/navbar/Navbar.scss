@@ -8,10 +8,14 @@
 MenuItem {
     background-color: #4d1a6c;
 }
+input.nav-keliye{
+    margin-left: 0px;
+}
+
 .links{
     display: flex;
     margin: 0px;
-    width: 45%;
+    width: 35%;
 }
 #contain{
     display: flex;
@@ -19,14 +23,19 @@ MenuItem {
     justify-content: end;
     align-items: center;
     position: absolute;
-    margin-left: 75%;
+    margin-left: 74%;
     z-index: 100;
+    margin-bottom: 0%;
 }
 button.links{
     width: 0%;
     visibility: hidden;
     margin: 0px;
     
+}
+.names{
+    margin-top: 3.5rem !important;
+    margin-left: 0px !important;
 }
 input .search{
     margin: 10px 0 0 0;
@@ -41,7 +50,7 @@ input .search{
     // padding: 1%;
     margin-top: 3%;
     margin-bottom: 3%;
-    width: 75%;
+    width: 100%;
     margin-left: 5%;
 }
 .searchr ul{
@@ -78,6 +87,9 @@ input .search{
     border-radius: 5%;
     color: black;
 
+}
+.searchr{
+    margin-left: 3.5rem;
 }
 
 .search ul li button{
@@ -129,7 +141,7 @@ button.css-1ycil38{
 }
 #loggedIn{
     display: flex;
-    max-width: 60%;
+    // max-width: 60%;
     flex: auto;
 }
 @media screen and (max-width: 1200px){
@@ -175,6 +187,9 @@ button.css-1ycil38{
         transform: translateY(0%);
         transition: transform 0.5s ease-in;
     }
+    #av{
+        padding: 30px;
+    }
     .chakra-button{
         visibility: hidden;
     }
@@ -182,13 +197,13 @@ button.css-1ycil38{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 400px;
+        margin-top: 450px;
         margin-left: 80px;
         height: 3rem;
         border: none;
     }
     #prof.links{
-        margin-top: 325px !important;
+        margin-top: 370px !important;
     }
     button.links{
         visibility: visible;
@@ -238,7 +253,6 @@ ul {
     color: white;
     padding-left: 50px;
     padding-right: 50px;
-    padding-top: 0%;
     // padding-left: 5%;
     // margin: 2%;
     text-decoration: none;
@@ -248,12 +262,12 @@ ul {
   
 }
 
-#av:hover{
+#av:hover, button.links:hover{
     /* padding: auto; */
     background-color: #3b1353bd;
     color: white;
-    height: 3.9rem;
     border-radius: 10px;
+    height: 3.9rem;
 }
 
 img {
