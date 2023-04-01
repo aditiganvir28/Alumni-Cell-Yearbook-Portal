@@ -170,6 +170,9 @@ button.css-1ycil38{
         padding-top: 1vh;
         padding-bottom: 1vh;
     }
+    #av{
+        padding: 20px;
+    }
     .links{
         padding-top:5vh;
         position: fixed;
@@ -181,14 +184,11 @@ button.css-1ycil38{
         flex-direction: column;
         width: 400px;
         height:550px;
-        width: 400px;
-        height:550px;
         top: 0vh;
         background-color: #4d1a6c;
         border:solid 2px white;
         font-size: 20px;
         transform: translateY(-120%);
-        
         z-index: 100;
     }
     .active{
@@ -205,19 +205,15 @@ button.css-1ycil38{
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 400px;
-        margin-left: 80px;
-        margin-top: 450px;
+        margin-top: 340px;
         margin-left: 80px;
         height: 3rem;
         border: none;
     }
     #prof.links{
-        margin-top: 370px !important;
+        margin-top: 270px !important;
     }
-    #prof.links{
-        margin-top: 325px !important;
-    }
+    
     button.links{
         visibility: visible;
         width: 15rem;
