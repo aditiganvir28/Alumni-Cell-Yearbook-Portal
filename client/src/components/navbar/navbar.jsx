@@ -232,9 +232,9 @@ const Navbar = () => {
                         </>
                       }
                     </>}
-                  {loggedin && <><button 
+                  {loggedin && verified && <><button 
                   className={renderNav()} onClick={handleLogout}>SIGN OUT</button></>}
-                  {loggedin && <button id='prof' className={renderNav()}><Link to={`profile/${profile._id}/${profile.name}/${token(32)}`}>PROFILE</Link></button>}
+                  {loggedin && verified && <button id='prof' className={renderNav()}><Link to={`profile/${profile._id}/${profile.name}/${token(32)}`}>PROFILE</Link></button>}
                 </div>
 
                 <div onClick={handleNavbar} className="hamburger-toggle">
