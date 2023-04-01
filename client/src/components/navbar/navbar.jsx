@@ -56,7 +56,7 @@ const Navbar = () => {
     }
   );
   setExample(filteredPersons);
-  })
+  }, [filteredPersons])
 
   //loading spinner function
   const loadingSpinner2 = () => {
@@ -202,11 +202,29 @@ const Navbar = () => {
       <div className='header22'>
         <img src='/images/1.png' alt='err'/>
         <div className='navbar'>
-          <ul onClick={handleNavopen} className={renderNav()}>
+          <ul >
+            <div onClick={handleNavopen} className={renderNav()}>
             <Link id='av'to="/">HOME</Link>
             <Link id='av' to="/about">ABOUT</Link>
             <Link id='av' to="/team">DEVELOPERS</Link>
+            {profileIcon ?
+                  <Menu>
+                          <MenuButton as={Button} w='29%' ml={2} rightIcon={<ChevronDownIcon />}>
+                            <img src="../../../images/profile.jpg" alt="" id='profilepic' />
+                          </MenuButton>
+                          <MenuList>
+                            <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${token(32)}`}>
+                              <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
+                              <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
+                    </MenuList>
+                  </Menu> :
+                  <button id='logout' onClick={handleLogout}>Sign Out</button>
+}
+            </div>
 
+            <div onClick={handleNavbar} className="hamburger-toggle">
+            <HamburgerIcon/>
+          </div>
             
             <div id='google-login'>
             </div>
@@ -256,35 +274,21 @@ const Navbar = () => {
                     }
                     </>}
                   </div>
-                  {profileIcon ?
-                  <Menu>
-                          <MenuButton as={Button} w='29%' ml={2} rightIcon={<ChevronDownIcon />}>
-                            <img src="../../../images/profile.jpg" alt="" id='profilepic' />
-                          </MenuButton>
-                          <MenuList>
-                            <><Link id='avl' to={`profile/${profile._id}/${profile.name}/${token(32)}`}>
-                              <MenuItem id='avl' bgColor={'#4d1a6c'}>My Profile</MenuItem></Link></>
-                              <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
-                    </MenuList>
-                  </Menu> :
-                  <button id='logout' onClick={handleLogout}>Sign Out</button>
-}
+                  
                 </li>
                 </div>
 }
               </>
 </ul>
           
-          <div onClick={handleNavbar} className="hamburger-toggle">
-            <HamburgerIcon/>
-          </div>
+          
         </div>
       </div>
     </div>
     </div>
   
     <>
-    <div className='navbar_phone absolute z-10'>
+    {/* <div className='navbar_phone absolute z-10'>
       <motion.div className='flex flex-col justify-center items-center bg-[#180c1e] overflow-y-hidden'
         animate={isOpen ? "open" : "closed"}
         variants={variants}>
@@ -337,7 +341,7 @@ const Navbar = () => {
         </div>
         <motion.div onClick={() => setIsOpen(isOpen => !isOpen)} className='w-full bg-[#180c1e] flex justify-center'><div className={isOpen ? 'hidden' : 'text-center -mt-2 pt-4 overflow-hidden w-12 h-12 text-xl rounded-full bg-[#4d1a6c]'}>∨</div></motion.div>
       </motion.div>
-      </div>
+      </div> */}
     </>
     </>
 

@@ -2,14 +2,14 @@ import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAbcGYezhasUa7wwypTx3sk4iUx8l4AMO8",
-  authDomain: "yearbook-portal-75c4e.firebaseapp.com",
-  projectId: "yearbook-portal-75c4e",
-  storageBucket: "yearbook-portal-75c4e.appspot.com",
-  messagingSenderId: "131318662277",
-  appId: "1:131318662277:web:5aca49c8a5f932ba17d5ec",
-  measurementId: "G-5T023WQZ2E"
-};
+  apiKey: 'AIzaSyDIGpWgvEYrMb3hxXSEGCAKaqF29Cs255k',
+  authDomain: 'yearbook-portal-iiti.firebaseapp.com',
+  projectId: 'yearbook-portal-iiti',
+  storageBucket: 'yearbook-portal-iiti.appspot.com',
+  messagingSenderId: '1007377731371',
+  appId: '1:1007377731371:web:bb7c73ba24e50b0c50bf6e',
+  measurementId: 'G-BND844SPS7',
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
