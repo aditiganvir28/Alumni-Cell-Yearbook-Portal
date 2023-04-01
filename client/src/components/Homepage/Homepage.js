@@ -271,7 +271,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-3/4 h-96 rounded-xl shdw"
+                    className="w-3/4 h-72 rounded-xl shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl-2"
@@ -321,7 +321,7 @@ function Homepage() {
                   stiffness: 200,
                   delay: 0.3,
                 }}
-                className="w-1/3 h-80 rounded-xl -ml-96 mt-32 hidden lg:block shdw"
+                className="w-1/3 h-80 rounded-xl -ml-80 mt-32 hidden lg:block shdw"
               >
                 <img
                   className="w-full h-full object-contain rounded-xl"
@@ -423,7 +423,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-96 h-64 rounded-xl -ml-72 mt-32 bg-[#180c1e] hidden lg:block shdw"
+                    className="w-96 h-64 rounded-xl -ml-64 mt-48 bg-[#180c1e] hidden lg:block shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl"
@@ -490,7 +490,7 @@ function Homepage() {
                             behavior: 'smooth',
                           })
                         }}
-                        className="bg-transparent border-2 rounded-xl border-white w-32 h-14 text-white uppercase hover:bg-[#fec80a] hover:text-[#180c1e] hover:border-transparent ease-in-out duration-300 "
+                        className="bg-transparent border-2 rounded-xl border-white w-32 h-14 text-white uppercase hover:bg-[#fec80a] hover:text-[#180c1e] hover:border-transparent ease-in-out duration-300"
                       >
                         Sign In
                       </button>
