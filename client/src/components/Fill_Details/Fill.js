@@ -65,7 +65,7 @@ function Fill(props) {
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
-
+        console.log(res.data.message);
         if(res.data.message==="Sent an otp to your contact number"){
         
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {

@@ -87,25 +87,25 @@ const createUsersData = asyncHandler(async (req, res) => {
   }
 
   // Check if email is in use
-  const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
+  // const existingUser = await Users.findOne({presonal_email_id: personal_email_id}).exec();
 
-      if(existingUser){
-          return res.send({message:"Email is already in use"});
-      }
+  //     if(existingUser){
+  //         return res.send({message:"Email is already in use"});
+  //     }
 
   // // // Check if contact_no is in use
-  const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
+  // const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
 
-      if(existingUser2){
-          return res.send({message:"Mobile number is already in use"});
-      }
+  //     if(existingUser2){
+  //         return res.send({message:"Mobile number is already in use"});
+  //     }
 
   // //Check if roll.no is in use
-  const existingUser3 = await Users.findOne({roll_no: roll_no}).exec();
+  // const existingUser3 = await Users.findOne({roll_no: roll_no}).exec();
 
-      if(existingUser3){
-          return res.send({message:"Roll_No is already in use"});
-      }
+  //     if(existingUser3){
+  //         return res.send({message:"Roll_No is already in use"});
+  //     }
 
 
   // Create and store the new user
