@@ -485,9 +485,9 @@ const getComments = asyncHandler(async (req, res) => {
 
   //If no comments
   if (!User?.length) {
-    return res.send({ message: 'No users found' })
+    return res.send({ message: 'No users found'})
   }
-  return res.send(User)
+  return res.send({message:"User found", User})
 })
 
 const setApprovedComments = asyncHandler(async (req, res) => {
