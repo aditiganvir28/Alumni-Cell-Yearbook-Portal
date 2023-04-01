@@ -185,7 +185,7 @@ const SecondLogin = () => {
                         <div id="comment">
                           {console.log(val2.comment)}
                           <p id="commentp">{val2.comment}</p>
-                          <p id="commentby">-{val2.name}</p>
+                          <p id="commentby">-{val.comment_reciever_name}</p>
                         </div>
                       ),
                   ),
