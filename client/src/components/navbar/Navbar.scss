@@ -38,10 +38,10 @@ input .search{
 }
 #logout{
     border: 1px solid white;
-    margin: 2%;
-    // margin-left: 5%;
+    display: inline;
+    margin: 2rem;
     border-radius: 10%;
-    width: 40vh;
+    width: 20vh;
     // font-weight: 600;
 }
 #logout:hover{
@@ -153,6 +153,7 @@ body {
     border: 0.5px solid white;
     border-radius: 15px;
     box-shadow: 0 0 3px 1px #ffffffd0;
+    height: 4rem;
 }
 
 .google {
@@ -178,8 +179,11 @@ ul {
 #av{
     color: white;
     padding: 14px 50px;
+    // padding-left: 5%;
+    // margin: 2%;
     text-decoration: none;
     text-align: center;
+    display: inline;
 }
 
 #av:hover{
