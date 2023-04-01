@@ -8,6 +8,9 @@
 MenuItem {
     background-color: #4d1a6c;
 }
+.links{
+    display: flex;
+}
 input .search{
     margin: 10px 0 0 0;
     // padding: 1%;
@@ -89,7 +92,14 @@ body {
     max-height: 5%;
     z-index: 3;    
 }
+//for the profile pic form expanding horribly
+.css-xl71ch{
+    width: 50px;
+}
 
+
+
+//for the dropdown onclick at the profile
 .css-0{
     border: 2px solid white;
     transition: ease-in;
