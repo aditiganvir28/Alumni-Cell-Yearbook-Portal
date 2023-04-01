@@ -25,6 +25,7 @@ input.nav-keliye{
     align-items: center;
     position: absolute;
     margin-left: 74%;
+    order: 100px;
     z-index: 100;
     margin-bottom: 0%;
 }
@@ -162,10 +163,10 @@ button.css-1ycil38{
     .dropdown-nav{
         display: none;
     }
-    .hamburger-toggle{
-        display: flex;
-        padding-right: 20%;
-    }
+    // .hamburger-toggle{
+    //     display: flex;
+    //     padding-right: 20%;
+    // }
     .navbar{
         padding-top: 1vh;
         padding-bottom: 1vh;
@@ -218,7 +219,12 @@ button.css-1ycil38{
         visibility: visible;
         width: 15rem;
     }
-    
+    .hamburger-toggle{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 10%;
+    }
     
 }
 
