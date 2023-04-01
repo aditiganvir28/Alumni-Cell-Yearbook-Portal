@@ -15,6 +15,8 @@ const getAuth = require('firebase/auth')
 const RecaptchaVerifier = require('firebase/auth')
 const signInWithPhoneNumber = require('firebase/auth')
 
+
+
 // adding environment variable ****************
 const gmailUser = process.env.GMAIL_USER
 const gmailPass = process.env.GMAIL_PASS
@@ -235,13 +237,28 @@ const createUsersData = asyncHandler(async (req, res) => {
 // ---------------------- verify phone otp -------------------------
 
 verifyPhoneOtp = async (req, res, next) => {
-  const userId = req.body.userId
+  try {
+    const userId = req.body.userId
 
-  const user = await Users.findOne({ email: userId }).exec()
-  console.log(userId)
-  if (!user) {
-    res.send({ message: 'User not found' })
-    return
+    const user = await Users.findOne({ email: userId }).exec()
+    console.log(userId)
+    if (!user) {
+      res.send({ message: 'User not found' })
+      return
+    }
+
+    // if (user.phoneOTP !== phoneOtp) {
+    //   res.send({ message: 'Incorrect OTP' })
+    //   return
+    // }
+    // const token = createJwtToken({ userId: user._id })
+
+    user.two_step_verified = true
+    await user.save()
+    res.send({ message: 'Mobile number verified', user })
+    // return res.redirect('http://localhost:3000/')
+  } catch (error) {
+    next(error)
   }
 
   const code = phoneOtp
