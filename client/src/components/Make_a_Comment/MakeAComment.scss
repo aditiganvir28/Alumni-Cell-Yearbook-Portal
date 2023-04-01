@@ -90,7 +90,8 @@ li{
 }
 
 .description {
-    background-color: #3E065F;
+    // background-color: #3E065F;
+    background-color: #180c1e;
     border: none;
     display: flex;
     flex-direction: column;
@@ -163,7 +164,11 @@ input {
     // align-self: center;
     padding: 2%;
     overflow: auto;
-    border: 1px solid white;
+    border-color: rgba(104, 13, 173, 0.9058823529);
+    border-width: 1px;
+    box-shadow: 0 0px 11px rgba(104, 13, 173, 0.9058823529);
+    background-color: #180c1e;
+    font-size: large;
 }
 
 #cards-container {
