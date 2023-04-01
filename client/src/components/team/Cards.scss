@@ -6,14 +6,16 @@ body{
 }
 
 .card{
-    background-color: #4d1a6c;
+    background-color: #180c1e;
     color: white;
     padding: 2%;
     min-width: 30%;
     max-height: 30%;
     border-radius: 5%;
-    border-color: white;
+    border-color: #680dade7;
     border-width: 1px;
+    box-shadow: 0 0px 11px #680dade7
+    
 }
 
 .cards{
@@ -25,6 +27,15 @@ body{
     justify-content: center;
     /* grid-template: 25rem 25rem / 20rem 20rem 20rem; */
     gap: 2rem;
+}
+
+#card-body{
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#card-title {
+    text-align: center;
 }
 #photo{
     width: 100%;

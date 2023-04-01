@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import './Fill.scss'
 import { LoginContext } from '../../helpers/Context'
-import { useContext } from 'react'
+import { useContext, useNavigate } from 'react'
+// import { sign } from 'crypto';
+
 
 function Fill(props) {
   const {
@@ -15,7 +18,12 @@ function Fill(props) {
     setLoggedin,
     profile,
     setProfile,
+    setFill,
+    setVerified,
+    setProfileIcon,
+
   } = useContext(LoginContext)
+  
   const [message, setMessage] = useState('')
   const [imageSelected, setImageSelected] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -24,8 +32,22 @@ function Fill(props) {
   const [upload, setUploaded] = useState(false)
   const [verify2, setVeriify2] = useState(false)
   const [state, setState] = useState(false)
+  const [otp, setOtp] = useState("");
 
   console.log(user)
+  // token for profile
+  const token = (length) => {
+    let result = "";
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
+  };
 
   // useEffect(() => {
   //   setLoading(true)
@@ -37,6 +59,159 @@ function Fill(props) {
 
   //   Load()
   // }, [])
+
+ 
+
+  const auth = getAuth();
+
+  
+
+  const onSubmit = () => {
+    setState(true)
+    setTimeout(() => {
+      setState(false)
+    }, 8000)
+
+    axios
+      .post(process.env.REACT_APP_API_URL + '/userData', {
+        email: user.email,
+        name: userData.name,
+        roll_no: userData.roll_no,
+        academic_program: userData.academic_program,
+        department: userData.department,
+        personal_email_id: userData.personal_email_id,
+        contact_details: userData.contact_details,
+        alternate_contact_details: userData.alternate_contact_details,
+        address: userData.address,
+        current_company: userData.current_company,
+        designation: userData.designation,
+        about: userData.about,
+        profile_img: imageUrl,
+        question_1: userData.question_1,
+        question_2: userData.question_2,
+      })
+      .then((res) => {
+        console.log(res.data.message)
+        setMessage(res.data.message)
+
+        // ****************************************
+        window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+          'size': 'invisible',
+          'callback': (response) => {
+            // reCAPTCHA solved, allow signInWithPhoneNumber.
+            // onSignInSubmit();
+          }
+        }, auth);
+        const phoneNumber = userData.contact_details;
+        console.log(phoneNumber)
+        const appVerifier = window.recaptchaVerifier;
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+    .then((confirmationResult) => {
+      // window.localStorage.setItem('confirmationResult',JSON.stringify(confirmationResult.confirm) )
+      // console.log(confirmationResult)
+      // // ...
+      window.confirmationResult = confirmationResult;
+      console.log(confirmationResult)
+    }).catch((error) => {
+      console.log(error);
+    });
+    // *******************************************
+
+        setVerify(true)
+        if (
+          res.data.message ===
+          'Sent a verification email to your personal email id'
+        ) {
+          setVeriify2(true)
+          window.localStorage.setItem('userData', JSON.stringify(userData))
+        }
+        setTimeout(() => {
+          setMessage('')
+        }, 8000)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const otpVerify = (e) => {
+    e.preventDefault();
+    setState(true);
+    setTimeout(() => {
+      setState(false);
+    }, 20000);
+
+
+    const code = otp;
+
+    //const confirmationResult = () window.confirmationResult
+    
+    window.confirmationResult
+      .confirm(code)
+      .then((result) => {
+        // User signed in successfully.
+        // const user = result.user;
+        console.log("sjdwsdkj")
+        axios
+      .post(process.env.REACT_APP_API_URL + "/verify", {
+        userId: user.email,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.message === "Mobile number verified") {
+          console.log(res.data);
+          setFill(true);
+          setVerified(true);
+          setProfileIcon(true);
+          setLoggedin(true);
+          window.localStorage.setItem("verified", true);
+          window.localStorage.setItem("profileIcon", true);
+          setProfile(res.data.user);
+          // const p = JSON.stringify(res.data.User[0])
+          window.localStorage.setItem("profile", JSON.stringify(res.data.user));
+          console.log(profile);
+          // navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
+        }
+        setMessage(res.data.message);
+        setTimeout(() => {
+          setMessage("");
+        }, 20000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+        // ...
+      })
+      .catch((error) => {
+        // User couldn't sign in (bad verification code?)
+        // ...
+      });
+
+    
+  };
+
+  const resendOTP = () => {
+    setState(true);
+    setTimeout(() => {
+      setState(false);
+    }, 20000);
+    axios
+      .post(process.env.REACT_APP_API_URL + "/resendOTP", {
+        phoneOTP: otp,
+        userId: user.email,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.message === "Mobile number verified") {
+        } else {
+          setMessage(res.data.message);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const uploadImage = () => {
     setUploaded(true)
@@ -74,51 +249,12 @@ function Fill(props) {
   //   question_2: '',
   // })
 
+ 
+  
+
   //sending data to store in the database
 
-  const onSubmit = () => {
-    setState(true)
-    setTimeout(() => {
-      setState(false)
-    }, 8000)
-
-    axios
-      .post(process.env.REACT_APP_API_URL + '/userData', {
-        email: user.email,
-        name: userData.name,
-        roll_no: userData.roll_no,
-        academic_program: userData.academic_program,
-        department: userData.department,
-        personal_email_id: userData.personal_email_id,
-        contact_details: userData.contact_details,
-        alternate_contact_details: userData.alternate_contact_details,
-        address: userData.address,
-        current_company: userData.current_company,
-        designation: userData.designation,
-        about: userData.about,
-        profile_img: imageUrl,
-        question_1: userData.question_1,
-        question_2: userData.question_2,
-      })
-      .then((res) => {
-        console.log(res.data.message)
-        setMessage(res.data.message)
-        setVerify(true)
-        if (
-          res.data.message ===
-          'Sent a verification email to your personal email id'
-        ) {
-          setVeriify2(true)
-          window.localStorage.setItem('userData', JSON.stringify(userData))
-        }
-        setTimeout(() => {
-          setMessage('')
-        }, 8000)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+  
 
   const resendMail = () => {
     setState(true)
@@ -361,6 +497,31 @@ function Fill(props) {
                     Submit
                   </button>
                 )}
+                <form>
+          <input
+            type="text"
+            id="otp"
+            onChange={(e) => {
+              setOtp(e.target.value);
+            }}
+          />
+          <div className={state ? "resend-disabled" : "resend"}>
+            <button onClick={resendOTP} disabled={state}>
+              Resend OTP
+            </button>
+          </div>
+          <p style={{ color: "red" }}>{message}</p>
+        </form>
+        <div className="submit">
+          <button
+            onClick={otpVerify}
+            id="submit"
+            disabled={state}
+            style={{ background: state ? "#838080" : "#3E185C" }}
+          >
+            Submit
+          </button>
+        </div>
                 {verify && <h2 id="verificationmessage">{message}</h2>}
                 {verify2 && (
                   <button
@@ -373,6 +534,7 @@ function Fill(props) {
                     Resend Mail
                   </button>
                 )}
+                <div id="recaptcha-container"></div>
               </div>
             </div>
             <div className="right">

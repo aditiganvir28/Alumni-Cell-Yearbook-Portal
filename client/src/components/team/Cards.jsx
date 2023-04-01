@@ -1,6 +1,7 @@
 import Members from "./members";
 import React, { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
+import { motion } from "framer-motion";
 import Card from "react-bootstrap/Card";
 // import loadingSpinner from "../Homepage/images/808.gif";
 import "./Cards.scss";
@@ -28,22 +29,25 @@ function Cards() {
         </div>
       )}
       {!loading && (
-        <div className="cards">
+        <motion.div
+          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
+          className="cards"
+        >
           {Members.map((member) => {
             return (
               <Card post={member} key={member.Name} style={{ width: "18rem" }}>
-                <Card.Img id='photo'variant="top" src={member.img} />
-                <Card.Body>
-                  <Card.Title>{member.Name}</Card.Title>
-                  <Card.Text>{member.Desc}</Card.Text>
-                  <Button variant="primary" id="go" style={{ width: "70%" }}>
-                    Go somewhere
-                  </Button>
+                <Card.Img id="photo" variant="top" src={member.img} />
+                <Card.Body id="card-body">
+                  <Card.Title id="card-title">{member.Name}</Card.Title>
+                  <Card.Text id="card-text">{member.Desc}</Card.Text>
                 </Card.Body>
               </Card>
             );
           })}
-        </div>
+        </motion.div>
       )}
     </>
   );
