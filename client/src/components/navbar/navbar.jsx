@@ -116,6 +116,8 @@ const Navbar = () => {
     
   },[])
 
+  console.log(loggedin);
+
   //Logout Function
   const handleLogout =() =>{
       setUser({});
@@ -207,7 +209,9 @@ const Navbar = () => {
             <Link id='av'to="/">HOME</Link>
             <Link id='av' to="/about">ABOUT</Link>
             <Link id='av' to="/team">DEVELOPERS</Link>
-            {profileIcon ?
+            {loggedin && 
+            <>
+            {(profileIcon)? 
                   <Menu>
                           <MenuButton as={Button} w='29%' ml={2} rightIcon={<ChevronDownIcon />}>
                             <img src="../../../images/profile.jpg" alt="" id='profilepic' />
@@ -220,6 +224,8 @@ const Navbar = () => {
                   </Menu> :
                   <button id='logout' onClick={handleLogout}>Sign Out</button>
 }
+            </>}
+            
             </div>
 
             <div onClick={handleNavbar} className="hamburger-toggle">
