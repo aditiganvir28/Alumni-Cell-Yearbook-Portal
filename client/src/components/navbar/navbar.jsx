@@ -248,7 +248,7 @@ const Navbar = () => {
                   {loggedin &&
                     <div id='loggedIn'>
                       <li className="dropdown-nav" onClick={handleDropdownclick} style={{ display: 'flex' }}>
-                        <div className="searchr" style={{ width: '190%', display: "flex" }}>
+                        <div className="searchr" style={{ width: '70%', display: "flex" }}>
                           {(isStudent || verified) && <>
                             <input type="text" placeholder="Search..." class="search" onChange={(e) => {
                               searchAWord(e);

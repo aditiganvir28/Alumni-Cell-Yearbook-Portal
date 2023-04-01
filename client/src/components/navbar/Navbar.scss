@@ -11,7 +11,7 @@ MenuItem {
 .links{
     display: flex;
     margin: 0px;
-    width: 45%;
+    width: 35%;
 }
 #contain{
     display: flex;
@@ -19,8 +19,9 @@ MenuItem {
     justify-content: end;
     align-items: center;
     position: absolute;
-    margin-left: 75%;
+    margin-left: 74%;
     z-index: 100;
+    margin-bottom: 0%;
 }
 button.links{
     width: 0%;
@@ -41,7 +42,7 @@ input .search{
     // padding: 1%;
     margin-top: 3%;
     margin-bottom: 3%;
-    width: 75%;
+    width: 100%;
     margin-left: 5%;
 }
 .searchr ul{
@@ -78,6 +79,9 @@ input .search{
     border-radius: 5%;
     color: black;
 
+}
+.searchr{
+    margin-left: 3.5rem;
 }
 
 .search ul li button{
@@ -129,7 +133,7 @@ button.css-1ycil38{
 }
 #loggedIn{
     display: flex;
-    max-width: 60%;
+    // max-width: 60%;
     flex: auto;
 }
 @media screen and (max-width: 1200px){
