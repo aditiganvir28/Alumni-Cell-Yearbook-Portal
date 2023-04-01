@@ -74,7 +74,7 @@ function About() {
                   I extend a sincere congratulations and best of luck to the Class of 2023. While
                   your days as a student have come to an end, your connection to IIT Indore lasts
                   for a lifetime. Take advantage of the opportunities provided by our global alumni
-                  network – leverage it and contribute to it.<br/>
+                  network –leverage it and contribute to it.<br/>
                   In the coming years, I urge that you not forget your alma mater, professors, and
                   fellows. I encourage you to not only give back to the institute, but also keep us
                   updated on the many achievements you will experience in your careers and
