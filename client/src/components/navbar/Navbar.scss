@@ -11,12 +11,16 @@ MenuItem {
 .links{
     display: flex;
     margin: 0px;
+    width: 45%;
 }
 #contain{
     display: flex;
     flex: auto;
     justify-content: end;
     align-items: center;
+    position: absolute;
+    margin-left: 75%;
+    z-index: 100;
 }
 button.links{
     width: 0%;
@@ -37,7 +41,8 @@ input .search{
     // padding: 1%;
     margin-top: 3%;
     margin-bottom: 3%;
-    width: 90%;
+    width: 75%;
+    margin-left: 5%;
 }
 .searchr ul{
     width: 15rem;
