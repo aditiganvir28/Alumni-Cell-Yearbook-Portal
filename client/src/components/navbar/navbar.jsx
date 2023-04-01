@@ -55,8 +55,9 @@ const Navbar = () => {
         );
       }
     );
+
     setExample(filteredPersons);
-  }, [filteredPersons])
+  }, [example])
 
   //loading spinner function
   const loadingSpinner2 = () => {
@@ -222,10 +223,15 @@ const Navbar = () => {
                             <MenuItem bgColor={'#4d1a6c'} onClick={handleLogout}>Sign Out</MenuItem>
                           </MenuList>
                         </Menu> :
+                        <>
                         <button id='logout' onClick={handleLogout}>Sign Out</button>
+                        
+                        
+                        </>
                       }
                     </>}
-
+                  {loggedin && <><button className={renderNav()} onClick={handleLogout}>Sign Out</button></>}
+                  {loggedin && <button id='prof' className={renderNav()}><Link to={`profile/${profile._id}/${profile.name}/${token(32)}`}>Profile</Link></button>}
                 </div>
 
                 <div onClick={handleNavbar} className="hamburger-toggle">

@@ -11,6 +11,10 @@ MenuItem {
 .links{
     display: flex;
 }
+button.links{
+    width: 0%;
+    visibility: hidden;
+}
 input .search{
     margin: 10px 0 0 0;
     // padding: 1%;
@@ -96,8 +100,9 @@ body {
 .css-xl71ch{
     width: 50px;
 }
-
-
+button.css-1ycil38{
+    width: 100px;
+}
 
 //for the dropdown onclick at the profile
 .css-0{
@@ -109,10 +114,14 @@ body {
     background: radial-gradient(at right bottom, rgb(15, 23, 42), rgb(88, 28, 135), rgb(15, 23, 42));
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1200px){
  
     body{
        overflow-x: hidden; 
+    }
+    .css-0{
+        display: flex;
+        flex-flow: column;
     }
     .dropdown-nav{
         display: none;
@@ -132,6 +141,7 @@ body {
         // right: 0px;
         left: 0px;
         display: flex;
+        align-items: center;
         flex-direction: column;
         width: 60%;
         height:40%;
@@ -147,7 +157,24 @@ body {
         transform: translateY(0%);
         transition: transform 0.5s ease-in;
     }
-    
+    .chakra-button{
+        visibility: hidden;
+    }
+    button.active{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 17vh;
+        margin-left: 12vw;
+        height: 3rem;
+    }
+    button.links{
+        visibility: visible;
+        width: 15rem;
+    }
+    #prof{
+        margin-top: 22vh;
+    }
 }
 
 .navbar {
