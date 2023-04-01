@@ -4,7 +4,6 @@ import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth
 import './Fill.scss'
 import { LoginContext } from '../../helpers/Context'
 import { useContext, useNavigate } from 'react'
-// import { sign } from 'crypto';
 
 
 function Fill(props) {
@@ -33,38 +32,11 @@ function Fill(props) {
   const [verify2, setVeriify2] = useState(false)
   const [state, setState] = useState(false)
   const [otp, setOtp] = useState("");
+  const [sentOtp, setSentOtp] = useState(false);
+  const [sub, setSub] = useState(false);
 
   console.log(user)
-  // token for profile
-  const token = (length) => {
-    let result = "";
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    const charactersLength = characters.length;
-
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-
-    return result;
-  };
-
-  // useEffect(() => {
-  //   setLoading(true)
-  //   const Load = async () => {
-  //     await new Promise((r) => setTimeout(r, 1000))
-
-  //     setLoading((loading) => !loading)
-  //   }
-
-  //   Load()
-  // }, [])
-
- 
-
   const auth = getAuth();
-
-  
 
   const onSubmit = () => {
     setState(true)
@@ -93,41 +65,28 @@ function Fill(props) {
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
-
-        // ****************************************
+        
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
           'size': 'invisible',
           'callback': (response) => {
-            // reCAPTCHA solved, allow signInWithPhoneNumber.
-            // onSignInSubmit();
+            console.log("recaptcha")
           }
         }, auth);
+        
         const phoneNumber = userData.contact_details;
         console.log(phoneNumber)
         const appVerifier = window.recaptchaVerifier;
+        
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-    .then((confirmationResult) => {
-      // window.localStorage.setItem('confirmationResult',JSON.stringify(confirmationResult.confirm) )
-      // console.log(confirmationResult)
-      // // ...
-      window.confirmationResult = confirmationResult;
-      console.log(confirmationResult)
-    }).catch((error) => {
+          .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+            console.log(confirmationResult)
+            setSentOtp(true);
+            setSub(true);
+        }).catch((error) => {
       console.log(error);
-    });
-    // *******************************************
-
-        setVerify(true)
-        if (
-          res.data.message ===
-          'Sent a verification email to your personal email id'
-        ) {
-          setVeriify2(true)
-          window.localStorage.setItem('userData', JSON.stringify(userData))
-        }
-        setTimeout(() => {
-          setMessage('')
-        }, 8000)
+          setMessage("Please enter your mobile number with +91");
+        });
       })
       .catch((err) => {
         console.log(err)
@@ -136,6 +95,7 @@ function Fill(props) {
 
   const otpVerify = (e) => {
     e.preventDefault();
+
     setState(true);
     setTimeout(() => {
       setState(false);
@@ -143,14 +103,10 @@ function Fill(props) {
 
 
     const code = otp;
-
-    //const confirmationResult = () window.confirmationResult
     
     window.confirmationResult
       .confirm(code)
       .then((result) => {
-        // User signed in successfully.
-        // const user = result.user;
         console.log("sjdwsdkj")
         axios
       .post(process.env.REACT_APP_API_URL + "/verify", {
@@ -158,7 +114,7 @@ function Fill(props) {
       })
       .then((res) => {
         console.log(res);
-        if (res.data.message === "Mobile number verified") {
+        if (res.data.message === "Sent a verification email to your personal email_id") {
           console.log(res.data);
           setFill(true);
           setVerified(true);
@@ -171,6 +127,14 @@ function Fill(props) {
           window.localStorage.setItem("profile", JSON.stringify(res.data.user));
           console.log(profile);
           // navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
+          setSentOtp(false);
+          setVerify(true)
+          setVeriify2(true)
+          window.localStorage.setItem('userData', JSON.stringify(userData))
+        
+        setTimeout(() => {
+          setMessage('')
+        }, 8000)
         }
         setMessage(res.data.message);
         setTimeout(() => {
@@ -180,12 +144,9 @@ function Fill(props) {
       .catch((err) => {
         console.log(err);
       });
-
-        // ...
       })
       .catch((error) => {
-        // User couldn't sign in (bad verification code?)
-        // ...
+        console.log(error);
       });
 
     
@@ -232,29 +193,6 @@ function Fill(props) {
         }, 30000)
       })
   }
-
-  // const [userData, setUserData] = useState({
-  //   name_: '',
-  //   roll_no: '',
-  //   academic_program: '',
-  //   department: '',
-  //   personal_email_id: '',
-  //   contact_details: '',
-  //   alternate_contact_details: '',
-  //   address: '',
-  //   current_company: '',
-  //   designation: '',
-  //   about: '',
-  //   question_1: '',
-  //   question_2: '',
-  // })
-
- 
-  
-
-  //sending data to store in the database
-
-  
 
   const resendMail = () => {
     setState(true)
@@ -486,7 +424,7 @@ function Fill(props) {
               />
               <br />
               <div id="emailver">
-                {!verify2 && (
+                {!sub && (
                   <button
                     className="submit1"
                     onClick={onSubmit}
@@ -497,32 +435,36 @@ function Fill(props) {
                     Submit
                   </button>
                 )}
+                {sentOtp && 
+                <>
                 <form>
-          <input
-            type="text"
-            id="otp"
-            onChange={(e) => {
-              setOtp(e.target.value);
-            }}
-          />
-          <div className={state ? "resend-disabled" : "resend"}>
-            <button onClick={resendOTP} disabled={state}>
-              Resend OTP
-            </button>
-          </div>
-          <p style={{ color: "red" }}>{message}</p>
-        </form>
-        <div className="submit">
-          <button
-            onClick={otpVerify}
-            id="submit"
-            disabled={state}
-            style={{ background: state ? "#838080" : "#3E185C" }}
-          >
-            Submit
-          </button>
-        </div>
-                {verify && <h2 id="verificationmessage">{message}</h2>}
+                <input
+                  type="text"
+                  id="otp"
+                  onChange={(e) => {
+                    setOtp(e.target.value);
+                  }}
+                />
+                <div className={state ? "resend-disabled" : "resend"}>
+                  <button onClick={resendOTP} disabled={state}>
+                    Resend OTP
+                  </button>
+                </div>
+                <p style={{ color: "red" }}>{message}</p>
+              </form>
+              <div className="submit">
+                <button
+                  onClick={otpVerify}
+                  id="submit"
+                  disabled={state}
+                  style={{ background: state ? "#838080" : "#3E185C" }}
+                >
+                  Submit
+                </button>
+              </div>
+              </>}
+                
+                {verify &&  !sentOtp &&<h2 id="verificationmessage">{message}</h2>}
                 {verify2 && (
                   <button
                     className="submit1"

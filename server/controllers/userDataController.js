@@ -10,11 +10,6 @@ const ApprovedCommetns = require('../models/approved_comments')
 const RejectedComments = require('../models/rejected_comments')
 const Memories = require('../models/memories')
 const Comments = require('../models/comments')
-const { initializeApp } = require('firebase/app')
-const getAuth = require('firebase/auth')
-const RecaptchaVerifier = require('firebase/auth')
-const signInWithPhoneNumber = require('firebase/auth')
-
 
 
 // adding environment variable ****************
@@ -22,19 +17,6 @@ const gmailUser = process.env.GMAIL_USER
 const gmailPass = process.env.GMAIL_PASS
 const serverLink = process.env.SERVER_LINK
 const clientLink = process.env.CLIENT_LINK
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyDIGpWgvEYrMb3hxXSEGCAKaqF29Cs255k',
-  authDomain: 'yearbook-portal-iiti.firebaseapp.com',
-  projectId: 'yearbook-portal-iiti',
-  storageBucket: 'yearbook-portal-iiti.appspot.com',
-  messagingSenderId: '1007377731371',
-  appId: '1:1007377731371:web:bb7c73ba24e50b0c50bf6e',
-  measurementId: 'G-BND844SPS7',
-}
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
 
 //Api to set up sender to send a mail
 const transporter = nodemailer.createTransport({
@@ -111,12 +93,20 @@ const createUsersData = asyncHandler(async (req, res) => {
   //         return res.send({message:"Email is already in use"});
   //     }
 
-  // // Check if contact_no is in use
+  // // // Check if contact_no is in use
   // const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
 
   //     if(existingUser2){
   //         return res.send({message:"Mobile number is already in use"});
   //     }
+
+  // //Check if roll.no is in use
+  // const existingUser3 = await Users.findOne({roll_no: roll_no}).exec();
+
+  //     if(existingUser3){
+  //         return res.send({message:"Roll_No is already in use"});
+  //     }
+
 
   // Create and store the new user
   const usersData = await Users.create({
@@ -139,104 +129,16 @@ const createUsersData = asyncHandler(async (req, res) => {
 
   if (usersData) {
     //created
-    res.send({ message: `Sent a verification email to your personal email id` })
+    return res.send({message:"Sent an otp to your contact number"})
+    
   } else {
-    res.send({ message: 'Invalid Userdata Recieved' })
-  }
-
-  //Generate a veification token with th user's ID
-  const verificationToken = usersData.generateVerificationToken()
-  try {
-    //Email the user a unique verification link
-    // const url = `http://localhost:5000/verify/${verificationToken}`
-    const url = `${serverLink}/verify/${verificationToken}`
-
-    transporter.sendMail({
-      to: personal_email_id,
-      subject: 'Verify Account',
-      // html: `Click <a href='${url}'>here</a> to confirm your email.`,
-      html: `<p>Thank you for registering on the Yearbook Portal.
-      Please verify your registered email by clicking on the link below
-      <a href='${url}'>Verify</a><br>
-      In case you enter the wrong OTP, you will have to sign in again and fill all the details.
-      It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
-      To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-      <a href='#'>Whatsapp</a><br>
-      We also urge you to create your profile on the Alumni Portal by visiting
-      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
-      You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
-    <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
-    <p>Regards,<br>
-    The Alumni Cell,<br>
-    Indian Institute of Technology, Indore</p>`,
-    })
-  } catch (err) {
-    console.log(err)
-  }
-  try {
-    // generate otp
-    // const otp = generateOTP(6)
-    // // save otp to user collection
-    // usersData.phoneOTP = otp
-    // await usersData.save()
-
-    const auth = getAuth()
-    window.recaptchaVerifier = new RecaptchaVerifier(
-      'sign-in-button',
-      {
-        size: 'invisible',
-        callback: (response) => {
-          // reCAPTCHA solved, allow signInWithPhoneNumber.
-          onSignInSubmit()
-        },
-      },
-      auth,
-    )
-
-    const phoneNumber = usersData.contact_details
-    const appVerifier = window.recaptchaVerifier
-
-    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-      .then((confirmationResult) => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        // window.confirmationResult = confirmationResult
-        // ...
-      })
-      .catch((error) => {
-        // Error; SMS not sent
-        // ...
-        grecaptcha.reset(window.recaptchaWidgetId)
-      })
-
-    // const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
-    // const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
-    // const client = require('twilio')(accountSid, authToken)
-    // client.messages
-    //   .create({
-    //     messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
-    //     body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
-    //     to: usersData.contact_details,
-    //   })
-    //   .then((message) => console.log(message.sid))
-    // const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
-    // const authToken = '6cce98e7ef4d627822b3e5c47d5b43db'
-    // const client = require('twilio')(accountSid, authToken)
-    // client.messages
-    //   .create({
-    //     body: `Your otp is ${otp}`,
-    //     from: '+15074426876',
-    //     to: usersData.contact_details,
-    //   })
-    //   .then((message) => console.log(message.sid))
-  } catch (error) {
-    console.log(error)
+    return res.send({ message: 'Invalid Userdata Recieved' })
   }
 })
 
 // ---------------------- verify phone otp -------------------------
 
-verifyPhoneOtp = async (req, res, next) => {
+const verifyPhoneOtp = async (req, res, next) => {
   try {
     const userId = req.body.userId
 
@@ -247,83 +149,45 @@ verifyPhoneOtp = async (req, res, next) => {
       return
     }
 
-    // if (user.phoneOTP !== phoneOtp) {
-    //   res.send({ message: 'Incorrect OTP' })
-    //   return
-    // }
-    // const token = createJwtToken({ userId: user._id })
-
-    user.two_step_verified = true
+    user.one_step_verified = true
     await user.save()
-    res.send({ message: 'Mobile number verified', user })
-    // return res.redirect('http://localhost:3000/')
+
+    const verificationToken = user.generateVerificationToken()
+    try {
+      //Email the user a unique verification link
+      const url = `${serverLink}/verify/${verificationToken}`
+      console.log('Reaches')
+      transporter.sendMail({
+        to: user.personal_email_id,
+        subject: 'Verify Account',
+        // html: `Click <a href='${url}'>here</a> to confirm your email.`,
+        html: `<p>Thank you for registering on the Yearbook Portal.
+        Please verify your registered email by clicking on the link below.
+        <a href='${url}'>Verify</a>
+        In case you enter the wrong OTP, you will have to sign in again and fill all the details.
+        It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
+        To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
+        <a href='#'>Whatsapp</a>
+        We also urge you to create your profile on the Alumni Portal by visiting
+        <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a>
+        You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
+      <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
+      <p>Regards,<br>
+      The Alumni Cell,<br>
+      Indian Institute of Technology, Indore</p>`,
+      })
+  
+      return res.send({
+        message: `Sent a verification email to your personal email_id`, user
+      })
+    } catch (err) {
+      console.log(err)
+    }
+    // res.send({ message: 'Mobile number verified', user })
   } catch (error) {
     next(error)
   }
-
-  const code = phoneOtp
-  confirmationResult
-    .confirm(code)
-    .then(async (result) => {
-      // User signed in successfully.
-      // const user = result.user
-      // ...
-      user.two_step_verified = true
-      await user.save()
-      res.send({ message: 'Mobile number verified', user })
-    })
-    .catch((error) => {
-      // User couldn't sign in (bad verification code?)
-      // ...
-    })
-
-  // user.phoneOTP = ''
 }
-
-//Resend OTP
-
-const resendOTP = asyncHandler(async (req, res) => {
-  try {
-    const userId = req.body.userId
-
-    const user = await Users.findOne({ email: userId }).exec()
-
-    if (!user) {
-      res.send({ message: 'User not found' })
-      return
-    }
-
-    // generate otp
-    const otp = generateOTP(6)
-    // save otp to user collection
-    user.phoneOTP = otp
-    await user.save()
-    console.log(user.phoneOTP)
-
-    // const accountSid = 'AC5e1a6c286440f64dfe905f3e413626bc'
-    // const authToken = '616ea49c9fe06650a6dee1c6078f41ba'
-    // const client = require('twilio')(accountSid, authToken)
-    // client.messages
-    //   .create({
-    //     messagingServiceSid: 'MG00b633e7e2ca484f1297811f96eae80b',
-    //     body: `Your otp for verication of your profile on the Yearbook Portal is: ${otp}`,
-    //     to: usersData.contact_details,
-    //   })
-    //   .then((message) => console.log(message.sid))
-    const accountSid = 'AC3d44bb903d40babb4fdad3c626de8edc'
-    const authToken = '6cce98e7ef4d627822b3e5c47d5b43db'
-    const client = require('twilio')(accountSid, authToken)
-    client.messages
-      .create({
-        body: `Your otp is ${otp}`,
-        from: '+15074426876',
-        to: user.contact_details,
-      })
-      .then((message) => console.log(message.sid))
-  } catch (error) {
-    console.log(error)
-  }
-})
 
 //Verify the personal_email_id
 const verify = async (req, res) => {
@@ -351,10 +215,10 @@ const verify = async (req, res) => {
     }
 
     //Update user verification status to true
-    user.one_step_verified = true
+    user.two_step_verified = true
     await user.save()
 
-    return res.redirect(`${clientLink}/otpVerification/${token}`)
+    return res.redirect(`${clientLink}/`)
   } catch (err) {
     return res.status(500).send(err)
   }
@@ -723,7 +587,6 @@ module.exports = {
   getSearchWord,
   findAUser,
   verifyPhoneOtp,
-  resendOTP,
   resendMail,
   deleteUser,
   memory_img,
