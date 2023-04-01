@@ -82,7 +82,6 @@ function Fill(props) {
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
           .then((confirmationResult) => {
             window.confirmationResult = confirmationResult;
-            console.log(confirmationResult)
             setSentOtp(true);
             setSub(true);
         }).catch((error) => {
@@ -110,7 +109,7 @@ function Fill(props) {
     window.confirmationResult
       .confirm(code)
       .then((result) => {
-        console.log("sjdwsdkj")
+        
         axios
       .post(process.env.REACT_APP_API_URL + "/verify", {
         userId: user.email,
@@ -118,7 +117,7 @@ function Fill(props) {
       .then((res) => {
         console.log(res);
         if (res.data.message === "Sent a verification email to your personal email_id") {
-          console.log(res.data);
+          
           setFill(true);
           setVerified(true);
           setProfileIcon(true);
@@ -126,10 +125,10 @@ function Fill(props) {
           window.localStorage.setItem("verified", true);
           window.localStorage.setItem("profileIcon", true);
           setProfile(res.data.user);
-          // const p = JSON.stringify(res.data.User[0])
+          
           window.localStorage.setItem("profile", JSON.stringify(res.data.user));
-          console.log(profile);
-          // navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
+          
+          
           setSentOtp(false);
           setVerify(true)
           setVeriify2(true)
@@ -183,12 +182,12 @@ function Fill(props) {
     const formData = new FormData()
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'profile_img')
-    console.log(formData)
+    
 
     axios
       .post("https://api.cloudinary.com/v1_1/dimwfie4o/image/upload", formData)
       .then((res) => {
-        console.log(res.data.url)
+        
         setImageUrl(res.data.url)
         setImageUploaded(true)
         setTimeout(() => {

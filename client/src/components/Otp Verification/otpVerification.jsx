@@ -40,16 +40,6 @@ const OtpVerification = () => {
     return result;
   };
 
-  //Get the data to be displayed on the profile
-  // useEffect(() => {
-  //   axios
-  //     .post(process.env.REACT_APP_API_URL + '/profile', {
-  //       email: user.email,
-  //     })
-  //     .then((res) => {
-  //       setProfile(res.data.User[0])
-  //     })
-  // })
 
   const navigate = useNavigate();
 
@@ -84,7 +74,6 @@ const OtpVerification = () => {
           window.localStorage.setItem("verified", true);
           window.localStorage.setItem("profileIcon", true);
           setProfile(res.data.user);
-          // const p = JSON.stringify(res.data.User[0])
           window.localStorage.setItem("profile", JSON.stringify(res.data.user));
           console.log(profile);
           navigate(`/profile/${profile._id}/${profile.name}/${token(32)}`);
