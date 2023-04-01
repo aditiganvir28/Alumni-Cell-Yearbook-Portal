@@ -1,7 +1,7 @@
 const Members= [
     {
         Name: 'Agrima Bundela',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
+        Desc: 'about me lorem ipsum lorem ipsum lorem ipdsum dfdsfsdf fesssssssssssssssss fffffffffffff',
         Linkedin: '#',
         Facebook: '#',
         Instagram: '#',
@@ -19,7 +19,7 @@ const Members= [
     },
     {
         Name: 'Ayush Awasthi',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
+        Desc: 'kiddo of the group',
         Linkedin: '#',
         Facebook: '#',
         Instagram: '#',
@@ -27,14 +27,6 @@ const Members= [
         img: '/images/grey.png'
     },
     {
-        Name: 'Tarun Balaji',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
-    },{
         Name: 'Harsh Soni',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
@@ -45,6 +37,15 @@ const Members= [
     },
     {
         Name: 'Ashutosh Samantaray',
+        Desc: 'this is something about me, basically somewhat of a flavor-text',
+        Linkedin: '#',
+        Facebook: '#',
+        Instagram: '#',
+        Google: '#',
+        img: '/images/grey.png'
+    },
+    {
+        Name: 'Tarun Balaji',
         Desc: 'this is something about me, basically somewhat of a flavor-text',
         Linkedin: '#',
         Facebook: '#',
