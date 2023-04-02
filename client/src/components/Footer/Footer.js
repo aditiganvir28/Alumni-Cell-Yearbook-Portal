@@ -88,7 +88,7 @@ function Footer() {
           </div>
           <div className='flex flex-row space-y-8 space-x-8 absolute bottom-0 lg:bottom-16 mb-16 lg:mb-0 right-8 mr-32 lg:mr-0'>
             <img src="images/IITI.png" className='w-12 mt-8 h-12' alt='iiti logo'></img>
-            <img src="images/ACR.jfif" className='w-12 h-12' alt='acr logo'></img>
+            <img src="images/ACR.png" className='w-12 h-12' alt='acr logo'></img>
           </div>
         </div>
       </div>
