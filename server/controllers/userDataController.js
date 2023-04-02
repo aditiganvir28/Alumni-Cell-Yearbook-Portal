@@ -67,12 +67,12 @@ const createUsersData = asyncHandler(async (req, res) => {
     !email ||
     !name ||
     !roll_no ||
+    !academic_program ||
     !department ||
     !contact_details ||
     !alternate_contact_details ||
     !address ||
     !personal_email_id ||
-    !designation ||
     !about ||
     !profile_img ||
     !question_1 ||
@@ -80,6 +80,36 @@ const createUsersData = asyncHandler(async (req, res) => {
   ) {
     return res.send({ message: 'All fields are required' })
   }
+
+  console.log(personal_email_id)
+  console.log(roll_no)
+  console.log(contact_details)
+
+  // Check if email is in use
+  const existingUser = await Users.find({personal_email_id: personal_email_id}).exec();
+  console.log(existingUser)
+  console.log("1")
+  if(existingUser.length!==0){
+    return res.send({message:"Personal Email Id is already in use"});
+}
+
+      
+
+  // // // // Check if contact_no is in use
+  const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
+  console.log(existingUser2)
+  console.log("2")
+      if(existingUser2){
+          return res.send({message:"Mobile number is already in use"});
+      }
+
+  // //Check if roll.no is in use
+  const existingUser3 = await Users.findOne({roll_no: roll_no}).exec();
+      console.log(existingUser3)
+      console.log("3")
+      if(existingUser3){
+          return res.send({message:"Roll_No is already in use"});
+      }
 
   // Create and store the new user
   const usersData = await Users.create({
@@ -99,6 +129,10 @@ const createUsersData = asyncHandler(async (req, res) => {
     question_1,
     question_2,
   })
+
+  
+
+  
 
   if (usersData) {
     //created

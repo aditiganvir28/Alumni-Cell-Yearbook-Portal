@@ -34,6 +34,7 @@ function Fill(props) {
   const [otp, setOtp] = useState("");
   const [sentOtp, setSentOtp] = useState(false);
   const [sub, setSub] = useState(false);
+  const[wait, setWait] = useState(false);
 
   console.log(user)
   const auth = getAuth();
@@ -88,6 +89,10 @@ function Fill(props) {
       console.log(error);
           setMessage("Please enter your mobile number with +91");
         });
+
+        setTimeout(()=>{
+          setMessage("")
+        },15000)
   }})
       .catch((err) => {
         console.log(err)
@@ -141,7 +146,7 @@ function Fill(props) {
         setMessage(res.data.message);
         setTimeout(() => {
           setMessage("");
-        }, 20000);
+        }, 5000);
       })
       .catch((err) => {
         console.log(err);
@@ -183,16 +188,16 @@ function Fill(props) {
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'profile_img')
     
-
+    setWait(true);
     axios
       .post("https://api.cloudinary.com/v1_1/dimwfie4o/image/upload", formData)
       .then((res) => {
-        
+        setWait(false)
         setImageUrl(res.data.url)
         setImageUploaded(true)
         setTimeout(() => {
           setImageUploaded(false)
-        }, 30000)
+        }, 10000)
       })
   }
 
@@ -221,12 +226,6 @@ function Fill(props) {
 
   return (
     <>
-      {loading && (
-        <div className="spinner">
-          <span class="loader"></span>
-        </div>
-      )}
-      {!loading && (
         <div className="container_fill">
           <style>
             @import
@@ -461,7 +460,7 @@ function Fill(props) {
               </div>
               </>}
                 
-                {verify &&  !sentOtp &&<h2 id="verificationmessage">{message}</h2>}
+                <h2 id="verificationmessage">{message}</h2>
                 {verify2 && (
                   <button
                     className="submit1"
@@ -501,15 +500,14 @@ function Fill(props) {
               </button>
               {upload && (
                 <h3 style={{ color: 'white' }}>
+                  {wait && "Wait... while image is uploading"}
                   {imageUploaded
-                    ? 'Image Uploaded'
-                    : 'Wait... while image is uploading'}
+                    &&'Image Uploaded'}
                 </h3>
               )}
             </div>
           </div>
         </div>
-      )}
     </>
   )
 }
