@@ -167,24 +167,24 @@ const verifyPhoneOtp = async (req, res, next) => {
         to: user.personal_email_id,
         subject: 'Verify Account',
         // html: `Click <a href='${url}'>here</a> to confirm your email.`,
-        html: `<p>Thank you for registering on the Yearbook Portal.
-        Please verify your registered email by clicking on the link below.
-        <a href='${url}'>Verify</a><br>
-        In case you enter the wrong OTP, you will have to sign in again and fill all the details.
-        It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
-        To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-        <a href='#'>Whatsapp</a><br>
+        html: `<p>Thank you for registering on the Yearbook Portal.<br/>
+        
+        It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!<br/>
+        To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group-
+        <a href='#'>Whatsapp Group Link</a><br/>
         We also urge you to create your profile on the Alumni Portal by visiting
-        <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
+        <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br/>
         You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
-      <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
-      <p>Regards,<br>
-      The Alumni Cell,<br>
+      <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>LinkedIn</a></p><br/>
+      Please verify your registered email by clicking on the link below.
+        <a href='${url}'>Verify</a><br/>
+      <p>Regards,<br/>
+      The Alumni Cell,<br/>
       Indian Institute of Technology, Indore</p>`,
       })
   
       return res.send({
-        message: `Sent a verification email to your personal email_id`, user
+        message: `Sent a verification email on your personal Email-ID`, user
       })
     } catch (err) {
       console.log(err)
@@ -249,24 +249,24 @@ const resendMail = asyncHandler(async (req, res) => {
       to: personalMailId,
       subject: 'Verify Account',
       // html: `Click <a href='${url}'>here</a> to confirm your email.`,
-      html: `<p>Thank you for registering on the Yearbook Portal.
-      Please verify your registered email by clicking on the link below.
-      <a href='${url}'>Verify</a><br>
-      In case you enter the wrong OTP, you will have to sign in again and fill all the details.
-      It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
-      To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-      <a href='#'>Whatsapp</a><br>
+      html: `<p>Thank you for registering on the Yearbook Portal.<br/>
+        
+      It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!<br/>
+      To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group-
+      <a href='#'>Whatsapp Group Link</a><br/>
       We also urge you to create your profile on the Alumni Portal by visiting
-      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
+      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br/>
       You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
-    <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
-    <p>Regards,<br>
-    The Alumni Cell,<br>
+    <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>LinkedIn</a></p><br/>
+    Please verify your registered email by clicking on the link below.
+      <a href='${url}'>Verify</a><br/>
+    <p>Regards,<br/>
+    The Alumni Cell,<br/>
     Indian Institute of Technology, Indore</p>`,
     })
 
     return res.send({
-      message: `Sent a verification email to your personal email id`,
+      message: `Sent a verification email to your Personal Email-ID`,
     })
   } catch (err) {
     console.log(err)
