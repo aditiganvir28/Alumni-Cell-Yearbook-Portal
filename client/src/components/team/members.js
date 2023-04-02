@@ -6,7 +6,7 @@ const Members= [
         Facebook: '#',
         Instagram: '#',
         Google: '#',
-        img: '/images/grey.png'
+        img: '/images/agrima.jpg'
     },
     {
         Name: 'Aditi Ganvir',
@@ -24,7 +24,7 @@ const Members= [
         Facebook: '#',
         Instagram: '#',
         Google: '#',
-        img: '/images/grey.png'
+        img: '/images/ayush.jpg'
     },
     {
         Name: 'Harsh Soni',
@@ -33,7 +33,7 @@ const Members= [
         Facebook: '#',
         Instagram: '#',
         Google: '#',
-        img: '/images/grey.png'
+        img: '/images/harsh.jpg'
     },
     {
         Name: 'Ashutosh Samantaray',
@@ -42,7 +42,7 @@ const Members= [
         Facebook: '#',
         Instagram: '#',
         Google: '#',
-        img: '/images/grey.png'
+        img: '/images/ashutosh.jpg'
     },
     {
         Name: 'Tarun Balaji',
@@ -51,7 +51,7 @@ const Members= [
         Facebook: '#',
         Instagram: '#',
         Google: '#',
-        img: '/images/grey.png'
+        img: '/images/tarun.jpg'
     },
     
     

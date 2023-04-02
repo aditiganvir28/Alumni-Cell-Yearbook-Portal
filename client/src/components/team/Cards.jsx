@@ -43,7 +43,7 @@ function Cards() {
                 <Card.Img id="photo" variant="top" src={member.img} />
                 <Card.Body id="card-body">
                   <Card.Title id="card-title">{member.Name}</Card.Title>
-                  <Card.Text id="card-text">{member.Desc}</Card.Text>
+                  {/* <Card.Text id="card-text">{member.Desc}</Card.Text> */}
                 </Card.Body>
               </Card>
             );
