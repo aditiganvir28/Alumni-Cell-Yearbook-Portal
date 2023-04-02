@@ -38,10 +38,10 @@ function Footer() {
             style={{ listStyleType: 'circle', marginLeft: '30px' }}
           >
             <li>
-              <a href="https://alumni.iiti.ac.in/">Alumni Portal</a>
+              <a href="https://alumni.iiti.ac.in/" target="_blank">Alumni Portal</a>
             </li>
             <li>
-              <a href="https://iiti.ac.in/">IITI Official Website</a>
+              <a href="https://iiti.ac.in/" target="_blank">IITI Official Website</a>
             </li>
           </ul>
           {/* <br></br> */}
@@ -49,7 +49,7 @@ function Footer() {
             <a
               href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=alumnicell@iiti.ac.in"
               className="fa fa-envelope"
-              id="env"
+              id="env" target="_blank"
             ></a>
             <p id="para2" className="bg-transparent">
               {' '}
@@ -64,24 +64,24 @@ function Footer() {
             <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8 w-1/2">
               <a
                 href="https://www.facebook.com/iitialumnicell/"
-                className="fa fa-facebook"
+                className="fa fa-facebook" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
               <a
                 href="https://twitter.com/AlumniIit"
-                className="fa fa-twitter"
+                className="fa fa-twitter" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
             </div>
             <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8 mb-8 lg:mb-0 w-1/2">
               <a
                 href="https://www.linkedin.com/company/alumni-cell-iit-indore/"
-                className="fa fa-linkedin"
+                className="fa fa-linkedin" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
               <a
                 href="https://www.instagram.com/alumni_cell_iiti/?hl=en"
-                className="fa fa-instagram"
+                className="fa fa-instagram" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
             </div>
