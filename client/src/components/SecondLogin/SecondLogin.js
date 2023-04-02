@@ -15,6 +15,8 @@ const SecondLogin = () => {
   const [message2, setMessage2] = useState('')
   const [imageadded, setImageadded] = useState(false)
   const [comments, setComments] = useState([])
+  const [setStateImage, stateImage] = useState(false);
+  const[wait, setWait] = useState(false);
 
   useEffect(() => {
     setLoading(true)
@@ -44,11 +46,12 @@ const SecondLogin = () => {
     const formData = new FormData()
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'memories_image')
-    
+    setWait(true);
 
     await axios
       .post("https://api.cloudinary.com/v1_1/dimwfie4o/image/upload", formData)
       .then((res) => {
+        
         
         setImageUrl(res.data.url)
         setImageUploaded(true)
@@ -61,7 +64,7 @@ const SecondLogin = () => {
           memory_img: imageUrl,
         })
         .then((res) => {
-          
+          setWait(false);
           setMessage(res.data.message)
           setTimeout(() => {
             setMessage('')
@@ -174,10 +177,11 @@ const SecondLogin = () => {
                     setImageSelected(event.target.files[0])
                   }}
                 ></input>
-                <button id="upld2" onClick={uploadImage}>
+                <button id="upld2" onClick={uploadImage} style={{backgroundColor: state? '#D8D8D8': '#3E185C'}}>
                   Upload Memories Image
                 </button>
               </div>
+              {wait && <p>Wait... while Image is Uploading</p>}
               {imageUploaded && imageadded && <p>{message}</p>}
             </div>
           </div>
