@@ -15,7 +15,7 @@ const Members= [
         Facebook: '#',
         Instagram: '#',
         Google: '#',
-        img: '/images/grey.png'
+        img: '/images/aditi.jpg'
     },
     {
         Name: 'Ayush Awasthi',
