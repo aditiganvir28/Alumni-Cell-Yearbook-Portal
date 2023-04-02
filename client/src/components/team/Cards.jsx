@@ -48,6 +48,7 @@ function Cards() {
                 <Card.Img id="photo" variant="top" src={member.img} />
                 <Card.Body id="card-body">
                   <Card.Title id="card-title">{member.Name}</Card.Title>
+                  {/* <Card.Title id="card-title">{member.Desc}</Card.Title> */}
                   {/* <Card.Text id="card-text">{member.Desc}</Card.Text> */}
                   
                   <motion.a 
@@ -56,7 +57,7 @@ function Cards() {
                   <motion.a 
                   whileHover={{ scale: 1.1 }} id='insta'
                   href={member.Instagram} className="fa fa-instagram" target="_blank"></motion.a>
-                  <motion.a href="" whileHover={{ scale: 1.1 }} className="fa fa-github" id="insta" target="_blank"></motion.a>
+                  <motion.a href={member.Google} whileHover={{ scale: 1.1 }} className="fa fa-github" id="insta" target="_blank"></motion.a>
                   {/* <motion.a href= {member.Yearbook} whileHover={{ scale: 1.1 }} className="fa fa-user" id="insta"></motion.a> */}
                   
                 </Card.Body>

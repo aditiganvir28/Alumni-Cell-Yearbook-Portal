@@ -1,7 +1,7 @@
 const Members = [
     {
-      Name: "Agrima Bundela",
-      Desc: "about me lorem ipsum lorem ipsum lorem ipdsum dfdsfsdf fesssssssssssssssss fffffffffffff",
+      Name: "Agrima Bundela | Web Dev Head",
+      Desc: "Web Development Head",
       Linkedin: "https://www.linkedin.com/in/agrimabundela/",
       Facebook: "#",
       Instagram: "https://www.instagram.com/agrimabundela/",
@@ -10,8 +10,8 @@ const Members = [
       img: "/images/agrima.jpg",
     },
     {
-        Name: 'Aditi Ganvir',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
+        Name: 'Aditi Ganvir | Backend Developer',
+        Desc: 'Member',
         Linkedin: '#',
         Facebook: '#',
         Instagram: '#',
@@ -19,8 +19,8 @@ const Members = [
         img: '/images/aditi.jpg'
     },
     {
-      Name: "Ayush Awasthi",
-      Desc: "kiddo of the group",
+      Name: "Ayush Awasthi | Frontend Developer",
+      Desc: "Member",
       Linkedin: "https://www.linkedin.com/in/ayush-awasthi-a232b8254/",
       Facebook: "#",
       Instagram: "https://www.instagram.com/ayush__awasthi__/",
@@ -28,8 +28,8 @@ const Members = [
       img: "/images/ayush.jpg",
     },
     {
-      Name: "Harsh Soni",
-      Desc: "this is something about me, basically somewhat of a flavor-text",
+      Name: "Harsh Soni | Backend Developer",
+      Desc: "Member",
       Linkedin: "https://www.linkedin.com/in/harsh-soni15/",
       Facebook: "#",
       Instagram: "https://www.instagram.com/harsh.soni_1/",
@@ -38,8 +38,8 @@ const Members = [
       img: "/images/harsh.jpg",
     },
     {
-      Name: "Ashutosh Samantaray",
-      Desc: "this is something about me, basically somewhat of a flavor-text",
+      Name: "Ashutosh Samantaray | Frontend Developer",
+      Desc: "Member",
       Linkedin: "https://www.linkedin.com/in/ashutosh-samantaray-531516249/",
       Facebook: "#",
       Instagram: "https://www.instagram.com/ash_utosh1005/",
@@ -47,8 +47,8 @@ const Members = [
       img: "/images/ashutosh.jpg",
     },
     {
-      Name: "Tarun Balaji",
-      Desc: "this is something about me, basically somewhat of a flavor-text",
+      Name: "Tarun Balaji | Frontend Developer",
+      Desc: "Member",
       Linkedin: "https://www.linkedin.com/in/tarun-balaji-b87860242/",
       Facebook: "#",
       Instagram: "https://www.instagram.com/tarunbalaji2003/",
