@@ -17,6 +17,7 @@ const MakeAComment = () => {
   const [approvedComments, setApprovedComments] = useState([])
   const [state, setState] = useState(false)
   const [comments, setComments] = useState([])
+  const [message, setMessage] = useState('')
   const [message2, setMessage2] = useState('')
   const alumniEmail = alumniData
 
@@ -50,6 +51,7 @@ const MakeAComment = () => {
         })
         .then((res) => {
           console.log(res.data.message)
+          setMessage("Comment Posted Successfully !!")
         })
         .catch((err) => {
           console.log(err)
@@ -72,17 +74,20 @@ const MakeAComment = () => {
         })
         .then((res) => {
           console.log(res.data.message)
+          setMessage("Comment Posted Successfully !!")
         })
         .catch((err) => {
           console.log(err)
         })
     }
 
-    if (isStudent === true) {
-      navigate('/')
-    } else {
-      navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`)
-    }
+    setTimeout(() => {
+      if (isStudent === true) {
+        navigate('/');
+      } else {
+        navigate(`/profile/${profile._id}/${profile.name}/${profile.roll_no}`);
+      }
+    }, 1500);
     window.localStorage.removeItem('searchAlumni')
   }
 
@@ -174,6 +179,7 @@ const MakeAComment = () => {
                   POST!
                 </button>
               </form>
+                <h2>{message}</h2>
             </div>
           </div>
 
