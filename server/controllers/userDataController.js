@@ -255,7 +255,7 @@ const resendMail = asyncHandler(async (req, res) => {
       To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group-
       <a href='#'>Whatsapp Group Link</a><br/>
       We also urge you to create your profile on the Alumni Portal by visiting
-      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br/>
+      <a href='https://alumni.iiti.ac.in/'>Alumni Portal</a><br/>
       You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
     <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>LinkedIn</a></p><br/>
     Please verify your registered email by clicking on the link below.
