@@ -572,7 +572,7 @@ const setRejectedComments = asyncHandler(async (req, res) => {
       break
     }
   }
-  res.send({ message: 'comment added in approved section', user })
+  res.send({ message: 'comment added in rejected section', user })
 })
 
 module.exports = {

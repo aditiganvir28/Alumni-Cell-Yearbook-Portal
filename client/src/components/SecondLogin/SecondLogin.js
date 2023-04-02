@@ -287,6 +287,7 @@ const SecondLogin = () => {
                                 setTimeout(() => {
                                   setState(false)
                                 }, 20000)
+                                window.location.reload()
                               }}
                             >
                               <a href="" className="fa fa-times-circle"></a>
