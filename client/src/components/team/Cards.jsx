@@ -23,12 +23,20 @@ function Cards() {
 
   return (
     <>
+      <style>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"
+        />
+      </style>
       {loading && (
         <div className="spinner">
           <span class="loader"></span>
         </div>
       )}
-        <h1 id="meet">Meet The <div className="disc">Team</div> :) </h1>
+      <h1 id="meet">
+        Meet The <div className="disc">Team</div> :){" "}
+      </h1>
       {!loading && (
         <motion.div
           viewport={{ once: true }}
@@ -43,7 +51,9 @@ function Cards() {
                 <Card.Img id="photo" variant="top" src={member.img} />
                 <Card.Body id="card-body">
                   <Card.Title id="card-title">{member.Name}</Card.Title>
-                  <Card.Text id="card-text">{member.Desc}</Card.Text>
+                  {/* <Card.Text id="card-text">{member.Desc}</Card.Text> */}
+                  <a href={member.Instagram} className="fa fa-instagram"></a>
+                  <a href={member.Linkedin} className="fa fa-linkedin"></a>
                 </Card.Body>
               </Card>
             );
