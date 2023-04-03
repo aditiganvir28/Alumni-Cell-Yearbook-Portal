@@ -32,6 +32,13 @@ const MakeAComment = () => {
 
   const handleSubmit2 = async (e) => {
     e.preventDefault()
+    if(comment === "" || comment === undefined){
+      setMessage("Comment cannot be empty");
+      setTimeout(() => {
+        setMessage('')
+      }, 1500);
+
+    }else{
     
     if (isStudent === false) {
       await axios
@@ -80,7 +87,7 @@ const MakeAComment = () => {
           console.log(err)
         })
     }
-
+    
     setTimeout(() => {
       if (isStudent === true) {
         navigate('/');
@@ -89,6 +96,7 @@ const MakeAComment = () => {
       }
     }, 1500);
     window.localStorage.removeItem('searchAlumni')
+  }
   }
 
   //Getting all the comments
