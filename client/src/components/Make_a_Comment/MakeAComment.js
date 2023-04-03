@@ -196,6 +196,7 @@ const MakeAComment = () => {
                           height: '11rem',
                           margin: '1rem',
                           overflow: 'auto',
+                          maxWidth: '30rem'
                         }}
                       >
                         <Card.Img variant="top" />

@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
 import Card from "react-bootstrap/Card";
-
 import "./Cards.scss";
 import { LoginContext } from "../../helpers/Context";
 
@@ -51,9 +50,18 @@ function Cards() {
                 <Card.Img id="photo" variant="top" src={member.img} />
                 <Card.Body id="card-body">
                   <Card.Title id="card-title">{member.Name}</Card.Title>
+                  {/* <Card.Title id="card-title">{member.Desc}</Card.Title> */}
                   {/* <Card.Text id="card-text">{member.Desc}</Card.Text> */}
-                  <a href={member.Instagram} className="fa fa-instagram"></a>
-                  <a href={member.Linkedin} className="fa fa-linkedin"></a>
+                  
+                  <motion.a 
+                  whileHover={{ scale: 1.1 }} id="insta"
+                  href={member.Linkedin} className="fa fa-linkedin" target="_blank"></motion.a>
+                  <motion.a 
+                  whileHover={{ scale: 1.1 }} id='insta'
+                  href={member.Instagram} className="fa fa-instagram" target="_blank"></motion.a>
+                  <motion.a href={member.Google} whileHover={{ scale: 1.1 }} className="fa fa-github" id="insta" target="_blank"></motion.a>
+                  {/* <motion.a href= {member.Yearbook} whileHover={{ scale: 1.1 }} className="fa fa-user" id="insta"></motion.a> */}
+                  
                 </Card.Body>
               </Card>
             );
