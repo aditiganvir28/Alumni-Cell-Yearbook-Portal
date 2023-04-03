@@ -22,18 +22,20 @@ function Cards() {
 
   return (
     <>
-    <style>
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"
-      ></link>
-    </style>
+      <style>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"
+        />
+      </style>
       {loading && (
         <div className="spinner">
           <span class="loader"></span>
         </div>
       )}
-        <h1 id="meet">Meet The <div className="disc">Team</div> :) </h1>
+      <h1 id="meet">
+        Meet The <div className="disc">Team</div> :){" "}
+      </h1>
       {!loading && (
         <motion.div
           viewport={{ once: true }}
