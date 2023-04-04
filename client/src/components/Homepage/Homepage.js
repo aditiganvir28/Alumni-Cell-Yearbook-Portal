@@ -251,7 +251,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-3/4 h-72 rounded-xl shdw"
+                    className="w-3/4 h-72 -mt-24 rounded-xl shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl-2"
