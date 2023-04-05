@@ -544,7 +544,7 @@ function Homepage() {
                     </p>
                   </div>
                   <div className="flex-col w-1/2">
-                    <h1 className="uppercase p-0 text-5xl">11+</h1>
+                    <h1 className="uppercase p-0 text-5xl">10+</h1>
                     <p className="bg-transparent capitalize text-white">
                       departments
                     </p>
