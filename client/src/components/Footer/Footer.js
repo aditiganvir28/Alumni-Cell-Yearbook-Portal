@@ -10,7 +10,7 @@ function Footer() {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
-      <div className="container2f" id="abd1">
+      <div className="container2f" id="abdd">
         <div className="footer-item">
           <h1 className="alumni-footer">Alumni Cell</h1>
           <p id="line" className="bg-white">

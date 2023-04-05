@@ -251,7 +251,7 @@ function Homepage() {
                       stiffness: 200,
                       delay: 0.3,
                     }}
-                    className="w-3/4 h-72 rounded-xl shdw"
+                    className="w-3/4 h-72 -mt-24 rounded-xl shdw"
                   >
                     <img
                       className="w-full h-full object-contain rounded-xl-2"
@@ -544,7 +544,7 @@ function Homepage() {
                     </p>
                   </div>
                   <div className="flex-col w-1/2">
-                    <h1 className="uppercase p-0 text-5xl">11+</h1>
+                    <h1 className="uppercase p-0 text-5xl">10+</h1>
                     <p className="bg-transparent capitalize text-white">
                       departments
                     </p>
