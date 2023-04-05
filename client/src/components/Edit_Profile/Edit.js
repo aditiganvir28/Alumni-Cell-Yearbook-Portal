@@ -176,9 +176,9 @@ function Edit(props) {
               <br />
               <select
                 name="academic_program"
-                id=""
+                id="dropdown"
                 defaultValue={userData.academic_program}
-                style={{ width: '78%' }}
+                // style={{ width: '78%' }}
                 onChange={setOptionValue}
               >
                 <option value="" name="Academic Program" selected disabled>
@@ -210,7 +210,7 @@ function Edit(props) {
                 </option>
               </select>
               <br />
-              <input
+              {/* <input
                 type="text"
                 placeholder="Department*"
                 size="60"
@@ -219,7 +219,55 @@ function Edit(props) {
                 onChange={(e) =>
                   setUserData({ ...userData, [e.target.name]: e.target.value })
                 }
-              />
+              /> */}
+
+              <select
+                name="department"
+                id="dropdown"
+                defaultValue={userData.department}
+                // style={{ width: '78%' }}
+                onChange={setOptionValue}
+              >
+                <option value="" name="Department" selected disabled>
+                  Department
+                </option>
+                <option
+                  value="Computer Science and Engineering"
+                  name="department"
+                >
+                  Computer Science and Engineering
+                </option>
+                <option
+                  value="Electrical Engineering"
+                  name="department"
+                >
+                  Electrical Engineering
+                </option>
+                <option value="Mechanical Engineering" name="department">
+                Mechanical Engineering
+                </option>
+                <option value="Civil Engineering" name="department">
+                Civil Engineering
+                </option>
+                <option value="Metallurgy Engineering and Materials Science" name="department">
+                Metallurgy Engineering and Materials Science
+                </option>
+                <option value="Astronomy, Astrophysics and Space Engineering" name="department">
+                Astronomy, Astrophysics and Space Engineering
+                </option>
+                <option value="Biosciences and Biomedical Engineering" name="department">
+                Biosciences and Biomedical Engineering
+                </option>
+                <option value="Chemistry" name="department">
+                Chemistry
+                </option>
+                <option value="Mathematics" name="department">
+                Mathematics
+                </option>
+                <option value="Humanities and Social Sciences" name="department">
+                Humanities and Social Sciences
+                </option>
+              </select>
               <br />
               {/* <input
                 type="text"

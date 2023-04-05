@@ -33,7 +33,6 @@ const Members = [
       Linkedin: "https://www.linkedin.com/in/harsh-soni15/",
       Facebook: "#",
       Instagram: "https://www.instagram.com/harsh.soni_1/",
-      Yearbook : "/comment/6429ca3aebdfb42777641f56/Harsh%20Soni/210003035",
       Google: "https://github.com/SoniHarsh1",
       img: "/images/harsh.jpg",
     },
