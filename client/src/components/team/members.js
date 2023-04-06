@@ -12,9 +12,9 @@ const Members = [
     {
         Name: 'Aditi Ganvir | Backend Developer',
         Desc: 'Member',
-        Linkedin: '#',
+        Linkedin: 'https://www.linkedin.com/in/aditi-ganvir-216336232/',
         Facebook: '#',
-        Instagram: '#',
+        Instagram: 'https://www.instagram.com/ganviraditi/',
         Google: 'https://github.com/aditiganvir28',
         img: '/images/aditi.jpg'
     },
