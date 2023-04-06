@@ -429,7 +429,7 @@ function Homepage() {
                         src={Step_4}
                       ></img>
                     </div>
-                    <div className="w-3/4 h-64 rounded-xl mt-4  shdw">
+                    <div className="w-3/4 h-64 rounded-xl -mt-16 ml-12 shdw">
                       <img
                         className="w-full h-full object-contain rounded-xl"
                         src={Step_5}
