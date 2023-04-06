@@ -17,6 +17,16 @@ body{
     box-shadow: 0 0px 11px #680dade7
     
 }
+
+#insta {
+    font-size: 100%;
+    padding: 7%;
+}
+
+#insta:hover{
+
+    color: #fec80a;
+}
 #meet{
     text-align: center;
     font-size: 2.5rem;
@@ -34,16 +44,16 @@ body{
 
 #card-body{
     margin-top: 3%;
-    margin-left: auto;
-    margin-right: auto;
+    // margin-left: auto;
+    // margin-right: auto;
     text-align: center;
 }
 #card-text{
-    text-align: center;
+    margin-left: 25%;
 }
 #card-title {
     text-align: center;
-    font-size: x-large;
+    font-size: larger;
 }
 #photo{
     width: 100%;
@@ -59,4 +69,9 @@ button #go{
     vertical-align: middle;
     margin: 2% !important;
     margin-right: 0% !important;
+}
+@media (max-width: 720px) {
+    #card-title{
+        font-size: medium;
+    }
 }

@@ -10,7 +10,7 @@ function Footer() {
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
       </style>
-      <div className="container2f" id="abd1">
+      <div className="container2f" id="abdd">
         <div className="footer-item">
           <h1 className="alumni-footer">Alumni Cell</h1>
           <p id="line" className="bg-white">
@@ -38,10 +38,10 @@ function Footer() {
             style={{ listStyleType: 'circle', marginLeft: '30px' }}
           >
             <li>
-              <a href="https://alumni.iiti.ac.in/">Alumni Portal</a>
+              <a href="https://alumni.iiti.ac.in/" target="_blank">Alumni Portal</a>
             </li>
             <li>
-              <a href="https://iiti.ac.in/">IITI Official Website</a>
+              <a href="https://iiti.ac.in/" target="_blank">IITI Official Website</a>
             </li>
           </ul>
           {/* <br></br> */}
@@ -49,7 +49,7 @@ function Footer() {
             <a
               href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=alumnicell@iiti.ac.in"
               className="fa fa-envelope"
-              id="env"
+              id="env" target="_blank"
             ></a>
             <p id="para2" className="bg-transparent">
               {' '}
@@ -64,31 +64,31 @@ function Footer() {
             <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8 w-1/2">
               <a
                 href="https://www.facebook.com/iitialumnicell/"
-                className="fa fa-facebook"
+                className="fa fa-facebook" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
               <a
                 href="https://twitter.com/AlumniIit"
-                className="fa fa-twitter"
+                className="fa fa-twitter" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
             </div>
             <div className="flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-8 mb-8 lg:mb-0 w-1/2">
               <a
                 href="https://www.linkedin.com/company/alumni-cell-iit-indore/"
-                className="fa fa-linkedin"
+                className="fa fa-linkedin" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
               <a
                 href="https://www.instagram.com/alumni_cell_iiti/?hl=en"
-                className="fa fa-instagram"
+                className="fa fa-instagram" target="_blank"
                 style={{ display: 'inline' }}
               ></a>
             </div>
           </div>
           <div className='flex flex-row space-y-8 space-x-8 absolute bottom-0 lg:bottom-16 mb-16 lg:mb-0 right-8 mr-32 lg:mr-0'>
             <img src="images/IITI.png" className='w-12 mt-8 h-12' alt='iiti logo'></img>
-            <img src="images/ACR.jfif" className='w-12 h-12' alt='acr logo'></img>
+            <img src="images/ACR.png" className='w-12 h-12' alt='acr logo'></img>
           </div>
         </div>
       </div>

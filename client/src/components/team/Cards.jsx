@@ -3,7 +3,6 @@ import React, { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import { motion } from "framer-motion";
 import Card from "react-bootstrap/Card";
-
 import "./Cards.scss";
 import { LoginContext } from "../../helpers/Context";
 
@@ -23,12 +22,20 @@ function Cards() {
 
   return (
     <>
+      <style>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css"
+        />
+      </style>
       {loading && (
         <div className="spinner">
           <span class="loader"></span>
         </div>
       )}
-        <h1 id="meet">Meet The <div className="disc">Team</div> :) </h1>
+      <h1 id="meet">
+        Meet The <div className="disc">Team</div> :){" "}
+      </h1>
       {!loading && (
         <motion.div
           viewport={{ once: true }}
@@ -43,7 +50,18 @@ function Cards() {
                 <Card.Img id="photo" variant="top" src={member.img} />
                 <Card.Body id="card-body">
                   <Card.Title id="card-title">{member.Name}</Card.Title>
-                  <Card.Text id="card-text">{member.Desc}</Card.Text>
+                  {/* <Card.Title id="card-title">{member.Desc}</Card.Title> */}
+                  {/* <Card.Text id="card-text">{member.Desc}</Card.Text> */}
+                  
+                  <motion.a 
+                  whileHover={{ scale: 1.1 }} id="insta"
+                  href={member.Linkedin} className="fa fa-linkedin" target="_blank"></motion.a>
+                  <motion.a 
+                  whileHover={{ scale: 1.1 }} id='insta'
+                  href={member.Instagram} className="fa fa-instagram" target="_blank"></motion.a>
+                  <motion.a href={member.Google} whileHover={{ scale: 1.1 }} className="fa fa-github" id="insta" target="_blank"></motion.a>
+                  {/* <motion.a href= {member.Yearbook} whileHover={{ scale: 1.1 }} className="fa fa-user" id="insta"></motion.a> */}
+                  
                 </Card.Body>
               </Card>
             );

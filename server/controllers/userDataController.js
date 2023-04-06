@@ -78,7 +78,7 @@ const createUsersData = asyncHandler(async (req, res) => {
     !question_1 ||
     !question_2
   ) {
-    return res.send({ message: 'All fields are required' })
+    return res.send({ message: 'All fields are required.' })
   }
 
   console.log(personal_email_id)
@@ -90,17 +90,14 @@ const createUsersData = asyncHandler(async (req, res) => {
   console.log(existingUser)
   console.log("1")
   if(existingUser.length!==0){
-    return res.send({message:"Personal Email Id is already in use"});
+    return res.send({message:"Personal Email Id is already in use."});
 }
-
-      
-
   // // // // Check if contact_no is in use
   const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
   console.log(existingUser2)
   console.log("2")
       if(existingUser2){
-          return res.send({message:"Mobile number is already in use"});
+          return res.send({message:"Mobile Number is already in use."});
       }
 
   // //Check if roll.no is in use
@@ -108,7 +105,7 @@ const createUsersData = asyncHandler(async (req, res) => {
       console.log(existingUser3)
       console.log("3")
       if(existingUser3){
-          return res.send({message:"Roll_No is already in use"});
+          return res.send({message:"Roll_No is already in use."});
       }
 
   // Create and store the new user
@@ -128,15 +125,11 @@ const createUsersData = asyncHandler(async (req, res) => {
     profile_img,
     question_1,
     question_2,
-  })
-
-  
-
-  
+  }) 
 
   if (usersData) {
     //created
-    return res.send({message:"Sent an otp to your contact number"})
+    return res.send({message:"Sent an OTP to your contact number."})
     
   } else {
     return res.send({ message: 'Invalid Userdata Recieved' })
@@ -167,24 +160,24 @@ const verifyPhoneOtp = async (req, res, next) => {
         to: user.personal_email_id,
         subject: 'Verify Account',
         // html: `Click <a href='${url}'>here</a> to confirm your email.`,
-        html: `<p>Thank you for registering on the Yearbook Portal.
-        Please verify your registered email by clicking on the link below.
-        <a href='${url}'>Verify</a><br>
-        In case you enter the wrong OTP, you will have to sign in again and fill all the details.
-        It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
-        To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-        <a href='#'>Whatsapp</a><br>
+        html: `<p>Thank you for registering on the Yearbook Portal.<br/>
+        
+        It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!<br/>
+        To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group-
+        <a href='#'>Whatsapp Group Link</a><br/>
         We also urge you to create your profile on the Alumni Portal by visiting
-        <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
+        <a href='https://alumni.iiti.ac.in/'>Alumni Portal Link</a><br/>
         You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
-      <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
-      <p>Regards,<br>
-      The Alumni Cell,<br>
-      Indian Institute of Technology, Indore</p>`,
+      <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>LinkedIn</a></p><br/>
+      Please verify your registered email by clicking on the link below.
+        <a href='${url}'>Verify</a><br/>
+      <p>Regards,<br/>
+      The Alumni Cell,<br/>
+      Indian Institute of Technology Indore</p>`,
       })
   
       return res.send({
-        message: `Sent a verification email to your personal email_id`, user
+        message: `Sent a verification email on your personal Email-ID.`, user
       })
     } catch (err) {
       console.log(err)
@@ -249,24 +242,24 @@ const resendMail = asyncHandler(async (req, res) => {
       to: personalMailId,
       subject: 'Verify Account',
       // html: `Click <a href='${url}'>here</a> to confirm your email.`,
-      html: `<p>Thank you for registering on the Yearbook Portal.
-      Please verify your registered email by clicking on the link below.
-      <a href='${url}'>Verify</a><br>
-      In case you enter the wrong OTP, you will have to sign in again and fill all the details.
-      It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!
-      To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group
-      <a href='#'>Whatsapp</a><br>
+      html: `<p>Thank you for registering on the Yearbook Portal.<br/>
+        
+      It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!<br/>
+      To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group-
+      <a href='#'>Whatsapp Group Link</a><br/>
       We also urge you to create your profile on the Alumni Portal by visiting
-      <a href='https://alumni.iiti.ac.in/'>Alumni Cell</a><br>
+      <a href='https://alumni.iiti.ac.in/'>Alumni Portal Link</a><br/>
       You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
-    <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>Linkedin</a></p>
-    <p>Regards,<br>
-    The Alumni Cell,<br>
-    Indian Institute of Technology, Indore</p>`,
+    <a href = 'https://in.linkedin.com/company/alumni-cell-iit-indore'>LinkedIn</a></p><br/>
+    Please verify your registered email by clicking on the link below.
+      <a href='${url}'>Verify</a><br/>
+    <p>Regards,<br/>
+    The Alumni Cell,<br/>
+    Indian Institute of Technology Indore</p>`,
     })
 
     return res.send({
-      message: `Sent a verification email to your personal email id`,
+      message: `Sent a verification email to your Personal Email-ID.`,
     })
   } catch (err) {
     console.log(err)
@@ -304,7 +297,7 @@ const updateUser = asyncHandler(async (req, res) => {
     !about ||
     !profile_img
   ) {
-    return res.send({ message: 'All fields are required' })
+    return res.send({ message: 'All fields are required.' })
   }
 
   const user = await Users.findOne({ email }) // find the user in the database by email
@@ -325,7 +318,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
   await user.save() // save the updated user data
 
-  res.status(200).json({ message: 'User data updated successfully', user })
+  res.status(200).json({ message: 'User data updated successfully.', user })
 })
 
 //find a user who logged in in user's data
@@ -421,7 +414,7 @@ const memory_img = asyncHandler(async (req, res) => {
         { $push: { memory_img: memory_img } },
       )
 
-      return res.send({ message: 'Image Uploaded Successfully' })
+      return res.send({ message: 'Image Uploaded Successfully.' })
     }
     try {
       const addImage = await Memories.findOneAndUpdate(
@@ -432,7 +425,7 @@ const memory_img = asyncHandler(async (req, res) => {
       console.log(err)
     }
 
-    return res.send({ message: 'Image Upload Successfully' })
+    return res.send({ message: 'Image Upload Successfully.' })
   } catch (err) {
     console.log(err)
   }

@@ -1,60 +1,60 @@
-const Members= [
+const Members = [
     {
-        Name: 'Agrima Bundela',
-        Desc: 'about me lorem ipsum lorem ipsum lorem ipdsum dfdsfsdf fesssssssssssssssss fffffffffffff',
+      Name: "Agrima Bundela | Web Dev Head",
+      Desc: "Web Development Head",
+      Linkedin: "https://www.linkedin.com/in/agrimabundela/",
+      Facebook: "#",
+      Instagram: "https://www.instagram.com/agrimabundela/",
+      
+      Google: "https://github.com/Agrima10",
+      img: "/images/agrima.jpg",
+    },
+    {
+        Name: 'Aditi Ganvir | Backend Developer',
+        Desc: 'Member',
         Linkedin: '#',
         Facebook: '#',
         Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
+        Google: 'https://github.com/aditiganvir28',
+        img: '/images/aditi.jpg'
     },
     {
-        Name: 'Aditi Ganvir',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
+      Name: "Ayush Awasthi | Frontend Developer",
+      Desc: "Member",
+      Linkedin: "https://www.linkedin.com/in/ayush-awasthi-a232b8254/",
+      Facebook: "#",
+      Instagram: "https://www.instagram.com/ayush__awasthi__/",
+      Google: "https://github.com/ayushawasthi24",
+      img: "/images/ayush.jpg",
     },
     {
-        Name: 'Ayush Awasthi',
-        Desc: 'kiddo of the group',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
+      Name: "Harsh Soni | Backend Developer",
+      Desc: "Member",
+      Linkedin: "https://www.linkedin.com/in/harsh-soni15/",
+      Facebook: "#",
+      Instagram: "https://www.instagram.com/harsh.soni_1/",
+      Google: "https://github.com/SoniHarsh1",
+      img: "/images/harsh.jpg",
     },
     {
-        Name: 'Harsh Soni',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
+      Name: "Ashutosh Samantaray | Frontend Developer",
+      Desc: "Member",
+      Linkedin: "https://www.linkedin.com/in/ashutosh-samantaray-531516249/",
+      Facebook: "#",
+      Instagram: "https://www.instagram.com/ash_utosh1005/",
+      Google: "https://github.com/A5HU705H",
+      img: "/images/ashutosh.jpg",
     },
     {
-        Name: 'Ashutosh Samantaray',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
+      Name: "Tarun Balaji | Frontend Developer",
+      Desc: "Member",
+      Linkedin: "https://www.linkedin.com/in/tarun-balaji-b87860242/",
+      Facebook: "#",
+      Instagram: "https://www.instagram.com/tarunbalaji2003/",
+      Google: "https://github.com/Ghost4681",
+      img: "/images/tarun.jpg",
     },
-    {
-        Name: 'Tarun Balaji',
-        Desc: 'this is something about me, basically somewhat of a flavor-text',
-        Linkedin: '#',
-        Facebook: '#',
-        Instagram: '#',
-        Google: '#',
-        img: '/images/grey.png'
-    },
-    
-    
+  
     // {
     //     Name: 'Safdar',
     //     Desc: 'this is something about me, basically somewhat of a flavor-text',
@@ -64,6 +64,6 @@ const Members= [
     //     Google: '#',
     //     img: '/images/grey.png'
     // }
-]
-
-export default Members;
+  ];
+  
+  export default Members;
