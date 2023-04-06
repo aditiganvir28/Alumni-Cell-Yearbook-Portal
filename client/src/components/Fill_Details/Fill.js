@@ -90,9 +90,9 @@ function Fill(props) {
           setMessage("Please enter your mobile number with +91");
         });
 
-        setTimeout(()=>{
-          setMessage("")
-        },15000)
+        // setTimeout(()=>{
+        //   setMessage("")
+        // },15000)
   }})
       .catch((err) => {
         console.log(err)
@@ -139,14 +139,14 @@ function Fill(props) {
           setVeriify2(true)
           window.localStorage.setItem('userData', JSON.stringify(userData))
         
-        setTimeout(() => {
-          setMessage('')
-        }, 8000)
+        // setTimeout(() => {
+        //   setMessage('')
+        // }, 8000)
         }
         setMessage(res.data.message);
-        setTimeout(() => {
-          setMessage("");
-        }, 5000);
+        // setTimeout(() => {
+        //   setMessage("");
+        // }, 5000);
       })
       .catch((err) => {
         console.log(err);
@@ -446,7 +446,7 @@ function Fill(props) {
                     setOtp(e.target.value);
                   }}
                 />
-                <p style={{ color: "white" }}>{message}</p>
+                {/* <p style={{ color: "white" }}>{message}</p> */}
               </form>
               <div className="submit">
                 <button
