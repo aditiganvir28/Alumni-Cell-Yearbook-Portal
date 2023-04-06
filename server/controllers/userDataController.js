@@ -262,7 +262,7 @@ const resendMail = asyncHandler(async (req, res) => {
       <a href='${url}'>Verify</a><br/>
     <p>Regards,<br/>
     The Alumni Cell,<br/>
-    Indian Institute of Technology, Indore</p>`,
+    Indian Institute of Technology Indore</p>`,
     })
 
     return res.send({
