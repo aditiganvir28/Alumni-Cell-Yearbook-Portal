@@ -178,7 +178,7 @@ const verifyPhoneOtp = async (req, res, next) => {
       })
   
       return res.send({
-        message: `Sent a verification email on your personal Email-ID.`, user
+        message: `Sent a verification email to your personal email_id`, user
       })
     } catch (err) {
       console.log(err)
@@ -260,7 +260,7 @@ const resendMail = asyncHandler(async (req, res) => {
     })
 
     return res.send({
-      message: `Sent a verification email to your Personal Email-ID.`,
+      message: `Sent a verification email to your personal email_id`,
     })
   } catch (err) {
     console.log(err)
