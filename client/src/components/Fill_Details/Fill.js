@@ -129,6 +129,7 @@ function Fill(props) {
           setLoggedin(true);
           window.localStorage.setItem("verified", true);
           window.localStorage.setItem("profileIcon", true);
+          window.localStorage.setItem("loggedin", true)
           setProfile(res.data.user);
           
           window.localStorage.setItem("profile", JSON.stringify(res.data.user));

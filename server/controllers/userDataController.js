@@ -90,14 +90,14 @@ const createUsersData = asyncHandler(async (req, res) => {
   console.log(existingUser)
   console.log("1")
   if(existingUser.length!==0){
-    return res.send({message:"Personal Email Id is already in use."});
+    return res.send({message:"Personal Email Id is already in use"});
 }
   // // // // Check if contact_no is in use
   const existingUser2 = await Users.findOne({contact_details: contact_details}).exec();
   console.log(existingUser2)
   console.log("2")
       if(existingUser2){
-          return res.send({message:"Mobile Number is already in use."});
+          return res.send({message:"Mobile Number is already in use"});
       }
 
   // //Check if roll.no is in use
@@ -105,7 +105,7 @@ const createUsersData = asyncHandler(async (req, res) => {
       console.log(existingUser3)
       console.log("3")
       if(existingUser3){
-          return res.send({message:"Roll_No is already in use."});
+          return res.send({message:"Roll_No is already in use"});
       }
 
   // Create and store the new user
@@ -178,7 +178,7 @@ const verifyPhoneOtp = async (req, res, next) => {
       })
   
       return res.send({
-        message: `Sent a verification email on your personal Email-ID.`, user
+        message: `Sent a verification email to your personal email_id`, user
       })
     } catch (err) {
       console.log(err)
@@ -260,7 +260,7 @@ const resendMail = asyncHandler(async (req, res) => {
     })
 
     return res.send({
-      message: `Sent a verification email to your Personal Email-ID.`,
+      message: `Sent a verification email to your personal email_id`,
     })
   } catch (err) {
     console.log(err)
@@ -298,7 +298,7 @@ const updateUser = asyncHandler(async (req, res) => {
     !about ||
     !profile_img
   ) {
-    return res.send({ message: 'All fields are required.' })
+    return res.send({ message: 'All fields are required' })
   }
 
   const user = await Users.findOne({ email }) // find the user in the database by email
@@ -319,7 +319,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
   await user.save() // save the updated user data
 
-  res.status(200).json({ message: 'User data updated successfully.', user })
+  res.status(200).json({ message: 'User data updated successfully', user })
 })
 
 //find a user who logged in in user's data

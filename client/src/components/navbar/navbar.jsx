@@ -118,6 +118,7 @@ const Navbar = () => {
   }, [])
 
   console.log(loggedin);
+  console.log(verified);
 
   //Logout Function
   const handleLogout = () => {
