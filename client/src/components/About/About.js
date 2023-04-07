@@ -113,6 +113,13 @@ function About() {
                       </div>
                       <hr></hr>
                       <div class="containera">
+                        <div class="label"><div className="dash">&#62;</div> How do I proceed if I login once and was unable to create my profile?</div>
+                        <div class="content">
+                        The Profile Page will not open again after you sign-in. You will have to sign out and sign in again to create your profile.
+                        </div>
+                      </div>
+                      <hr></hr>
+                      <div class="containera">
                         <div class="label"><div className="dash">&#62;</div> Would I have to re-enter my details for the physical yearbook separately?</div>
                         <div class="content">
                         No, your profile from the portal will be used for printing the yearbook. 
