@@ -164,7 +164,7 @@ const verifyPhoneOtp = async (req, res, next) => {
         
         It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!<br/>
         To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group-
-        <a href='#'>Whatsapp Group Link</a><br/>
+        <a href='https://chat.whatsapp.com/GD4OCbSgrmR397TkAb48YZ'>Whatsapp Group Link</a><br/>
         We also urge you to create your profile on the Alumni Portal by visiting
         <a href='https://alumni.iiti.ac.in/'>Alumni Portal Link</a><br/>
         You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
@@ -246,7 +246,7 @@ const resendMail = asyncHandler(async (req, res) => {
         
       It's a pleasure to have you join the Alumni Community of IIT Indore! We congratulate you on your graduation!<br/>
       To stay connected with your Batch and the Institute, we urge you to join the following WhatsApp Group-
-      <a href='#'>Whatsapp Group Link</a><br/>
+      <a href='https://chat.whatsapp.com/GD4OCbSgrmR397TkAb48YZ'>Whatsapp Group Link</a><br/>
       We also urge you to create your profile on the Alumni Portal by visiting
       <a href='https://alumni.iiti.ac.in/'>Alumni Portal Link</a><br/>
       You can connect with us on LinkedIn to ensure all your updates can be featured on the Official Page of the Alumni Cell.
