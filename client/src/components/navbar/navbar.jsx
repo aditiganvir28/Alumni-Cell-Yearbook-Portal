@@ -272,7 +272,6 @@ const Navbar = () => {
                                   axios.post(process.env.REACT_APP_API_URL + '/searchword', {
                                     searchword: val.email
                                   }).then((res) => {
-                                    console.log(res.data);
                                     setResult(res.data);
                                     window.localStorage.setItem('searchedAlumni', JSON.stringify(res.data));
 

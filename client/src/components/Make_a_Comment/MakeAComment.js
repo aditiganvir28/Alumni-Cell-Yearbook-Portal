@@ -110,7 +110,6 @@ const MakeAComment = () => {
         } else {
           setComments(res.data.User);
         }
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

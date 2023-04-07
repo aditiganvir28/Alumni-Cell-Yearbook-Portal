@@ -42,7 +42,6 @@ const SecondLogin = () => {
 
   const uploadImage = async () => {
     setUploaded(true)
-    console.log(imageSelected)
     const formData = new FormData()
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'memories_image')
@@ -89,7 +88,7 @@ const SecondLogin = () => {
         }else{
           setComments(res.data.User)
         }
-        console.log(res.data)
+        
         
       })
       .catch((err) => {
@@ -102,8 +101,6 @@ const SecondLogin = () => {
   const editProfile = () => {
     navigate(`/edit/${profile._id}`)
   }
-
-  console.log(comments)
 
   return (
     <>
@@ -197,7 +194,6 @@ const SecondLogin = () => {
                     (val2) =>
                       val2.email_id === profile.email && (
                         <div id="comment">
-                          {console.log(val2.comment)}
                           <p id="commentp">{val2.comment}</p>
                           <p id="commentby">-{val.comment_reciever_name}</p>
                         </div>
@@ -239,7 +235,7 @@ const SecondLogin = () => {
                                     },
                                   )
                                   .then((res) => {
-                                    console.log(res.data)
+                                    // console.log(res.data)
                                   })
                                   .catch((err) => {
                                     console.log(err)
@@ -277,7 +273,7 @@ const SecondLogin = () => {
                                     },
                                   )
                                   .then((res) => {
-                                    console.log(res.data)
+                                    // console.log(res.data)
                                   })
                                   .catch((err) => {
                                     console.log(err)

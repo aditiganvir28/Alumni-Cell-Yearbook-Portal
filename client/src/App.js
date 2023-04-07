@@ -57,7 +57,7 @@ const App = ({ location }) => {
 
   //Google authentication for IITI students
   useEffect(() => {
-    console.log('here', process.env.REACT_APP_API_URL)
+    
     /*global google*/
     if (window.google) {
       google.accounts.id.initialize({
@@ -193,7 +193,7 @@ const App = ({ location }) => {
               name: userObject.name,
             })
             .then((res) => {
-              console.log(res)
+              // console.log(res)
               //If alumni
               if (alumniEmail.includes(userObject.email)) {
                 
