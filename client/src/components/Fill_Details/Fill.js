@@ -36,7 +36,7 @@ function Fill(props) {
   const [sub, setSub] = useState(false);
   const[wait, setWait] = useState(false);
 
-  console.log(user)
+  
   const auth = getAuth();
 
   const onSubmit = () => {
@@ -64,18 +64,18 @@ function Fill(props) {
         question_2: userData.question_2,
       })
       .then((res) => {
-        console.log(res.data.message)
+        
         setMessage(res.data.message)
-        console.log(res.data.message);
-        if(res.data.message==="Sent an otp to your contact number"){
+       
+        if(res.data.message==="Sent an OTP to your contact number."){
+          
         
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
           'size': 'invisible',
           'callback': (response) => {
             console.log("recaptcha")
           }
-        }, auth);
-        
+        }, auth)
         const phoneNumber = userData.contact_details;
         console.log(phoneNumber)
         const appVerifier = window.recaptchaVerifier;

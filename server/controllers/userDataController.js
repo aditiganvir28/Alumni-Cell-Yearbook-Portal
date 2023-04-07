@@ -129,6 +129,7 @@ const createUsersData = asyncHandler(async (req, res) => {
 
   if (usersData) {
     //created
+    console.log("created")
     return res.send({message:"Sent an OTP to your contact number."})
     
   } else {
