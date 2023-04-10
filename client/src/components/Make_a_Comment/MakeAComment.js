@@ -196,7 +196,7 @@ const MakeAComment = () => {
                       (val2) =>
                         val.comment_reciever_email_id === result[0].email &&
                         val2.status === "approved" && (
-                          <Card
+                          <Card id='commentcard'
                             style={{
                               minWidth: "18rem",
                               height: "11rem",
