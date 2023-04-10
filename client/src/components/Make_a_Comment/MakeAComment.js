@@ -198,11 +198,7 @@ const MakeAComment = () => {
                         val2.status === "approved" && (
                           <Card id='commentcard'
                             style={{
-                              minWidth: "18rem",
-                              height: "11rem",
-                              margin: "1rem",
-                              overflow: "auto",
-                              maxWidth: "30rem",
+                              
                             }}
                           >
                             <Card.Img variant="top" />
