@@ -109,7 +109,7 @@ function Edit(props) {
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
-        if (message === 'User data updated successfully') {
+        if (res.data.message === "User data updated successfully") {
           setVerify(true)
           setVeriify2(true)
           window.localStorage.setItem('verified', true);
