@@ -32,6 +32,7 @@ function Fill(props) {
   const [verify2, setVeriify2] = useState(false)
   const [state, setState] = useState(false)
   const [otp, setOtp] = useState("");
+  const [rollNoisNumber, setRollNoisNumber] = useState('')
   const [sentOtp, setSentOtp] = useState(false);
   const [sub, setSub] = useState(false);
   const[wait, setWait] = useState(false);
@@ -43,7 +44,7 @@ function Fill(props) {
     setState(true)
     setTimeout(() => {
       setState(false)
-    }, 8000)
+    }, 6000)
 
     axios
       .post(process.env.REACT_APP_API_URL + '/userData', {
@@ -65,10 +66,19 @@ function Fill(props) {
       })
       .then((res) => {
         
-        setMessage(res.data.message)
-       
+        
+        if(res.data.message === "Roll No. should be in Digits"){
+          setRollNoisNumber(res.data.message);
+          const timetochangemsg = setTimeout(() => {
+            setRollNoisNumber('');
+          }, 1500) // delay execution by 2 second
+          
+          return () => clearTimeout(timetochangemsg)
+        }
+        
         if(res.data.message==="Sent an OTP to your contact number."){
           
+          setMessage(res.data.message)
         
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
           'size': 'invisible',
@@ -490,6 +500,7 @@ function Fill(props) {
                     Submit
                   </button>
                 )}
+
                 {sentOtp && 
                 <>
                 <form>
@@ -515,6 +526,7 @@ function Fill(props) {
               </>}
                 
                 <h2 id="verificationmessage">{message}</h2>
+                {rollNoisNumber!=='' && <h2 id = "verificationmessage">{rollNoisNumber}</h2>}
                 {verify2 && (
                   <button
                     className="submit1"

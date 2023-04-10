@@ -16,6 +16,7 @@ function Edit(props) {
   const [userData, setUserData] = useState({})
   const [state, setState] = useState(false)
   const [verify2, setVeriify2] = useState(false)
+  const [rollNoisNumber, setRollNoisNumber] = useState('')
 
   const [email, setEmail] = useState(user.email)
   useEffect(() => {
@@ -109,6 +110,14 @@ function Edit(props) {
       .then((res) => {
         console.log(res.data.message)
         setMessage(res.data.message)
+        if(res.data.message === "Roll No. should be in Digits"){
+          setRollNoisNumber(res.data.message);
+          const timetochangemsg = setTimeout(() => {
+            setRollNoisNumber('');
+          }, 1500) // delay execution by 2 second
+
+          return () => clearTimeout(timetochangemsg)
+        }
         if (res.data.message === "User data updated successfully") {
           setVerify(true)
           setVeriify2(true)
@@ -396,6 +405,7 @@ function Edit(props) {
                   </button>
                 )}
                 {verify && <h2 id="verificationmessage">{message}</h2>}
+                <h2 id = "verificationmessage">{rollNoisNumber}</h2>
                 {/* {verify2 && changes && (
                   <button
                     className="submit1"

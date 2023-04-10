@@ -100,6 +100,11 @@ const createUsersData = asyncHandler(async (req, res) => {
           return res.send({message:"Mobile Number is already in use"});
       }
 
+  // // // check if roll no. is a number or not
+  if (isNaN(roll_no)) {
+    return res.send({ message: 'Roll No. should be in Digits' })
+  }
+
   // //Check if roll.no is in use
   const existingUser3 = await Users.findOne({roll_no: roll_no}).exec();
       console.log(existingUser3)
@@ -299,6 +304,11 @@ const updateUser = asyncHandler(async (req, res) => {
     !profile_img
   ) {
     return res.send({ message: 'All fields are required' })
+  }
+
+  // // // check if roll no. is a number or not
+  if (isNaN(roll_no)) {
+    return res.send({ message: 'Roll No. should be in Digits' })
   }
 
   const user = await Users.findOne({ email }) // find the user in the database by email
