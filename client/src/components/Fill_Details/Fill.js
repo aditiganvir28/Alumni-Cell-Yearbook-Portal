@@ -343,6 +343,9 @@ function Fill(props) {
                 <option value="Biosciences and Biomedical Engineering" name="department">
                 Biosciences and Biomedical Engineering
                 </option>
+                <option value="Physics" name="department">
+                Physics
+                </option>
                 <option value="Chemistry" name="department">
                 Chemistry
                 </option>
@@ -351,6 +354,9 @@ function Fill(props) {
                 </option>
                 <option value="Humanities and Social Sciences" name="department">
                 Humanities and Social Sciences
+                </option>
+                <option value="Electric Vehicle Technology" name="department">
+                Electric Vehicle Technology
                 </option>
               </select>
               <br />
