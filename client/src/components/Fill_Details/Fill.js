@@ -77,7 +77,7 @@ function Fill(props) {
           }
         }, auth)
         const phoneNumber = userData.contact_details;
-        console.log(phoneNumber)
+        
         const appVerifier = window.recaptchaVerifier;
         
         signInWithPhoneNumber(auth, phoneNumber, appVerifier)
@@ -120,7 +120,7 @@ function Fill(props) {
         userId: user.email,
       })
       .then((res) => {
-        console.log(res);
+        
         if (res.data.message === "Sent a verification email to your personal email_id") {
           
           setFill(true);
@@ -184,7 +184,7 @@ function Fill(props) {
 
   const uploadImage = () => {
     setUploaded(true)
-    console.log(imageSelected)
+    
     const formData = new FormData()
     formData.append('file', imageSelected)
     formData.append('upload_preset', 'profile_img')
@@ -214,7 +214,7 @@ function Fill(props) {
         personalMailId: userData.personal_email_id,
       })
       .then((res) => {
-        console.log(res)
+        
       })
       .catch((err) => {
         console.log(err)
