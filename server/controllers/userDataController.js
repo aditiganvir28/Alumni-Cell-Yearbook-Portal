@@ -288,20 +288,24 @@ const updateUser = asyncHandler(async (req, res) => {
     designation,
     about,
     profile_img,
+    question_1,
+    question_2,
   } = req.body
 
   if (
     !email ||
     !name ||
     !roll_no ||
+    !academic_program ||
     !department ||
     !contact_details ||
     !alternate_contact_details ||
     !address ||
     !personal_email_id ||
-    !designation ||
     !about ||
-    !profile_img
+    !profile_img ||
+    !question_1 ||
+    !question_2
   ) {
     return res.send({ message: 'All fields are required' })
   }
@@ -326,6 +330,8 @@ const updateUser = asyncHandler(async (req, res) => {
   user.designation = designation
   user.about = about
   user.profile_img = profile_img
+  user.question_1 = question_1
+  user.question_2 = question_2
 
   await user.save() // save the updated user data
 

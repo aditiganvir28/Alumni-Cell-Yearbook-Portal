@@ -118,6 +118,14 @@ function Edit(props) {
 
           return () => clearTimeout(timetochangemsg)
         }
+        if(res.data.message === "All fields are required"){
+          setRollNoisNumber(res.data.message);
+          const timetochangemsg = setTimeout(() => {
+            setRollNoisNumber('');
+          }, 2000) // delay execution by 2 second
+
+          return () => clearTimeout(timetochangemsg)
+        }
         if (res.data.message === "User data updated successfully") {
           setVerify(true)
           setVeriify2(true)
