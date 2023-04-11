@@ -261,7 +261,7 @@ const Navbar = () => {
                                 <li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }}>No User Found</button></li>
                               </ul>}
                             {example.length !== 0 &&
-                              <ul className='names'>
+                              <ul className='names' id='searchlist'>
                                 {example.map((val, index) =>
                                 (<li><button className={`btnsearch2 ${(display) ? "" : "display-none"}`} style={{ textAlign: "left" }} key={index} onClick={(e) => {
                                   e.preventDefault();
