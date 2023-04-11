@@ -370,7 +370,7 @@ MenuItem {
 #searchlist {
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 50%;
+  height: 50%;
   &::-webkit-scrollbar {
     width: 12px;
     background-color: #f5f5f5;
