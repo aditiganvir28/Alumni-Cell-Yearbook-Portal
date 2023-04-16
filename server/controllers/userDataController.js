@@ -46,7 +46,6 @@ const getUsersData = asyncHandler(async (req, res) => {
     academic_program: user.academic_program
   }))
 
-  console.log(userData)
   return res.send(userData)
 })
 
@@ -593,6 +592,31 @@ const setRejectedComments = asyncHandler(async (req, res) => {
   res.send({ message: 'comment added in rejected section', user })
 })
 
+const getRecieversComments = asyncHandler(async (req,res)=>{
+  const comment_reciever_email_id = req.body.comment_reciever_email_id
+  
+    //Get all usersData from MongoDb
+    const users = await Comments.find({comment_reciever_email_id:comment_reciever_email_id})
+
+    //If no usersData
+    if (!users?.length) {
+      return res.send({ message: 'No userData found' })
+    }
+    var approvedComments=[]
+    users.map(user => {
+      approvedComments = user.comment_sender.filter(sender => sender.status === "approved")
+
+    })
+
+      const approvedUsers = approvedComments.map(user => ({
+        name: user.name,
+        comment: user.comment
+      }))
+
+    return res.send({ message: "Approved users found", users: approvedUsers })
+
+})
+
 module.exports = {
   getUsersData,
   createUsersData,
@@ -610,4 +634,5 @@ module.exports = {
   getComments,
   setApprovedComments,
   setRejectedComments,
+  getRecieversComments
 }
