@@ -39,7 +39,15 @@ const getUsersData = asyncHandler(async (req, res) => {
   if (!User?.length) {
     return res.send({ message: 'No userData found' })
   }
-  return res.send(User)
+  // Map over each user to extract only the necessary data
+  const userData = User.map(user => ({
+    email: user.email,
+    name: user.name,
+    roll_no: user.roll_no,
+    academic_program: user.academic_program
+  }))
+
+  return res.send(userData)
 })
 
 //Add a New User
@@ -395,7 +403,18 @@ const getSearchWord = asyncHandler(async (req, res) => {
     return res.send({})
   }
 
-  res.send(User)
+  // Map over each user to extract only the necessary data
+  const userData = User.map(user => ({
+    email:user.email,
+    name: user.name,
+    roll_no: user.roll_no,
+    academic_program: user.academic_program,
+    department: user.department,
+    about: user.about,
+    profile_img: user.profile_img
+  }))
+
+  res.send(userData)
 })
 
 //delete a user
@@ -524,14 +543,35 @@ const comments = asyncHandler(async (req, res) => {
 })
 
 const getComments = asyncHandler(async (req, res) => {
+  const email = req.body.email
+  console.log(email)
   //Get all Comments from MongoDb
   const User = await Comments.find()
 
+  const users = await Comments.find({
+    "comment_sender": {
+      "$elemMatch": {
+        "email_id": email,
+      }
+    }
+  });
+  var comm
+  users.map((user)=>{
+    comm = user.comment_sender.filter(sender => sender.email_id === email)
+  })
+
+  const approvedUsers = comm.map(user => ({
+    name: user.name,
+    comment: user.comment
+  }))
+
+  console.log(users)
+  console.log(approvedUsers)
   //If no comments
   if (!User?.length) {
     return res.send({ message: 'No users found'})
   }
-  return res.send({message:"User found", User})
+  return res.send({message:"User found", User: approvedUsers})
 })
 
 const setApprovedComments = asyncHandler(async (req, res) => {
@@ -569,7 +609,7 @@ const setRejectedComments = asyncHandler(async (req, res) => {
   if (!user?.length) {
     return res.send({ message: 'No user found' })
   }
-  console.log(user[0].comment_sender)
+  
   for (var i = 0; i <= user[0].comment_sender.length; i++) {
     
     if (
@@ -583,6 +623,41 @@ const setRejectedComments = asyncHandler(async (req, res) => {
     }
   }
   res.send({ message: 'comment added in rejected section', user })
+})
+
+const getRecieversComments = asyncHandler(async (req,res)=>{
+  const comment_reciever_email_id = req.body.comment_reciever_email_id
+  
+    //Get all usersData from MongoDb
+    const users = await Comments.find({comment_reciever_email_id:comment_reciever_email_id})
+
+    //If no usersData
+    if (!users?.length) {
+      return res.send({ message: 'No userData found' })
+    }
+    var approvedComments=[]
+    users.map(user => {
+      approvedComments = user.comment_sender.filter(sender => sender.status === "approved")
+
+    })
+    
+    const comments = [];
+
+  users.forEach(user => {
+    user.comment_sender.forEach(comment => {
+      if(comment.status==="new"){
+        comments.push({ name: comment.name, comment: comment.comment, email_id: comment.email_id });
+      }
+      
+    });
+  });
+      const approvedUsers = approvedComments.map(user => ({
+        name: user.name,
+        comment: user.comment
+      }))
+
+    return res.send({ message: "Approved users found", users: approvedUsers, user2: comments})
+
 })
 
 module.exports = {
@@ -602,4 +677,5 @@ module.exports = {
   getComments,
   setApprovedComments,
   setRejectedComments,
+  getRecieversComments
 }

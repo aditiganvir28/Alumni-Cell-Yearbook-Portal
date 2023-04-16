@@ -19,8 +19,9 @@ router.put('/updateUser', userDataController.updateUser)
 router.post('/memories_image', userDataController.memory_img)
 router.get('/getUsersData', userDataController.getUsersData)
 router.post('/comments', userDataController.comments)
-router.get('/getComments', userDataController.getComments)
+router.post('/getComments', userDataController.getComments)
 router.put('/setApprovedComments', userDataController.setApprovedComments)
 router.post('/setRejectedComments', userDataController.setRejectedComments)
+router.post('/getRecieversComments', userDataController.getRecieversComments)
 
 module.exports = router

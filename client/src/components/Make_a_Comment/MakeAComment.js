@@ -98,23 +98,25 @@ const MakeAComment = () => {
     }
   };
 
-  //Getting all the comments
 
+  // Getting Reciever's Comments
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_API_URL + "/getComments")
+      .post(process.env.REACT_APP_API_URL + "/getRecieversComments",{
+        comment_reciever_email_id: result[0].email
+      })
       .then((res) => {
         if (res.data.message === "No users found") {
           setMessage2(res.data.message);
           setComments([]);
         } else {
-          setComments(res.data.User);
+          setComments(res.data.users);
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
 
   return (
     <>
@@ -190,12 +192,8 @@ const MakeAComment = () => {
             </div>
             <div id="cards-container">
               {message2 !== "No User Found" && (
-                <>
-                  {comments.map((val) =>
-                    val.comment_sender.map(
-                      (val2) =>
-                        val.comment_reciever_email_id === result[0].email &&
-                        val2.status === "approved" && (
+                
+                  comments.map((val) =>
                           <Card id='commentcard'
                             style={{
                               
@@ -204,18 +202,15 @@ const MakeAComment = () => {
                             <Card.Img variant="top" />
                             <Card.Body>
                               <Card.Text style={{ paddingBottom: "1rem" }}>
-                                {val2.comment}
+                                {val.comment}
                               </Card.Text>
                               <p id="name" style={{ paddingBottom: "0rem" }}>
-                                By {val2.name}
+                                By {val.name}
                               </p>
                             </Card.Body>
                           </Card>
-                        )
-                    )
-                  )}
-                </>
-              )}
+                ))
+              }
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const SecondLogin = () => {
-  const { user, loading, setLoading, profile } = useContext(LoginContext)
+  const { user, loading, setLoading, profile} = useContext(LoginContext)
   const [state, setState] = useState(false)
   const [uploaded, setUploaded] = useState(false)
   const [imageUploaded, setImageUploaded] = useState(false)
@@ -17,6 +17,10 @@ const SecondLogin = () => {
   const [comments, setComments] = useState([])
   const [setStateImage, stateImage] = useState(false);
   const[wait, setWait] = useState(false);
+  const[myComments, setMyComments] = useState([]);
+  const[approvedComments, setApprovedComments] = useState([])
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
 
   useEffect(() => {
     setLoading(true)
@@ -77,10 +81,12 @@ const SecondLogin = () => {
   }
 
   //Getting all the comments
-
   useEffect(() => {
+    if(count2<5){
     axios
-      .get(process.env.REACT_APP_API_URL + '/getComments')
+      .post(process.env.REACT_APP_API_URL + '/getComments',{
+        email: profile.email
+      })
       .then((res) => {
         if(res.data.message==="No users found"){
           setMessage2(res.data.message)
@@ -94,7 +100,35 @@ const SecondLogin = () => {
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+
+      setCount2(count2+1)
+    }
+  },[count2])
+
+  // Getting Reciever's Comments
+  useEffect(() => {
+    if(count1<5){
+    axios
+      .post(process.env.REACT_APP_API_URL + "/getRecieversComments",{
+        comment_reciever_email_id: profile.email
+      })
+      .then((res) => {
+        if (res.data.message === "No users found") {
+          setMessage2(res.data.message);
+          setMyComments([]);
+          setApprovedComments([]);
+        } else {
+          setMyComments(res.data.user2);
+          setApprovedComments(res.data.users)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+      setCount1(count1+1)
+    }
+  },[count1]);
 
   // redirecting to edit page for editing the profile
   const navigate = useNavigate()
@@ -126,18 +160,12 @@ const SecondLogin = () => {
               </div>
               <div id="commentsscroll">{(comments.length!==0) &&
               <>
-                {comments.map((val) =>
-                  val.comment_sender.map(
-                    (val2) =>
-                      val.comment_reciever_email_id === profile.email &&
-                      val2.status === 'approved' && (
+                {approvedComments.map((val) =>
                         <div id="comment">
-                          <p id="commentp">{val2.comment}</p>
-                          <p id="commentby">-{val2.name}</p>
+                          <p id="commentp">{val.comment}</p>
+                          <p id="commentby">-{val.name}</p>
                         </div>
-                      ),
-                  ),
-                )}
+                      )}
                 </>}
               </div>
             </div>
@@ -190,16 +218,11 @@ const SecondLogin = () => {
               <div id="commentsscroll">{(message2!=="No User Found") &&
               <>
                 {comments.map((val) =>
-                  val.comment_sender.map(
-                    (val2) =>
-                      val2.email_id === profile.email && (
                         <div id="comment">
-                          <p id="commentp">{val2.comment}</p>
-                          <p id="commentby">-{val.comment_reciever_name}</p>
+                          <p id="commentp">{val.comment}</p>
+                          <p id="commentby">-{val.name}</p>
                         </div>
-                      ),
-                  ),
-                )}
+                      )}
                 </>}
               </div>
             </div>
@@ -208,14 +231,10 @@ const SecondLogin = () => {
               
               <ul style={{ display: 'block' }}>{(message2!=="No User Found") &&
               <>
-                {comments.map((val, index) =>
-                  val.comment_sender.map((val2, index2) => (
-                    <>
-                      {val.comment_reciever_email_id === profile.email &&
-                        val2.status === 'new' && (
+                {myComments.map((val, index) =>
                           <li id="comment5">
-                            <p className="newComment">{val2.comment}</p>
-                            <p className="newCommentUserName"> - {val2.name}</p>
+                            <p className="newComment">{val.comment}</p>
+                            <p className="newCommentUserName"> - {val.name}</p>
                             <button
                               id="check"
                               disabled={state}
@@ -230,8 +249,8 @@ const SecondLogin = () => {
                                       '/setApprovedComments',
                                     {
                                       comment_reciever_email_id: profile.email,
-                                      comment_sender_email_id: val2.email_id,
-                                      comment: val2.comment,
+                                      comment_sender_email_id: val.email_id,
+                                      comment: val.comment,
                                     },
                                   )
                                   .then((res) => {
@@ -268,8 +287,8 @@ const SecondLogin = () => {
                                       '/setRejectedComments',
                                     {
                                       comment_reciever_email_id: profile.email,
-                                      comment_sender_email_id: val2.email_id,
-                                      comment: val2.comment,
+                                      comment_sender_email_id: val.email_id,
+                                      comment: val.comment,
                                     },
                                   )
                                   .then((res) => {
@@ -290,9 +309,6 @@ const SecondLogin = () => {
                             </button>
                           </li>
                         )}
-                    </>
-                  )),
-                )}
                 </>}
               </ul>
             </div>

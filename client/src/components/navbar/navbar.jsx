@@ -59,6 +59,7 @@ const Navbar = () => {
     setExample(filteredPersons);
   }, [wordentered])
 
+
   //loading spinner function
   const loadingSpinner2 = () => {
     setLoading(true)
@@ -279,7 +280,8 @@ const Navbar = () => {
                                   }).catch((err) => {
                                     console.log(err)
                                   })
-                                  navigate(`/comment/${val._id}/${val.name}/${val.roll_no}`)
+                                  navigate(`/comment/${val.name}/${val.roll_no}`)
+                                  
                                   loadingSpinner2();
                                 }}><p>{val.name}</p>
                                   <p style={{ fontSize: "70%", fontStyle: "italic" }}>{val.academic_program}</p>

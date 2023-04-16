@@ -86,34 +86,18 @@ const App = ({ location }) => {
     Load()
   }
 
-  //getting all the users who have made their profile
+  //Get all users's name branch and email id
   useEffect(() => {
     
     axios
       .get(process.env.REACT_APP_API_URL + '/getUsersData')
       .then((res) => {
-        
         setAllUsuers(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
-
-  //getting all users who have already signed in
-  useEffect(() => {
-    axios
-      .get(process.env.REACT_APP_API_URL + '/auth')
-      .then((res) => {
-        setAuthData(res.data)
-        
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
-
-
 
   //Callback Function after logging in
   async function handleCallbackResponse(response) {
@@ -269,7 +253,7 @@ const App = ({ location }) => {
           <Route exact path="/team" element={<Cards />} />
           <Route
             exact
-            path="/comment/:_id/:name/:roll_no"
+            path="/comment/:name/:roll_no"
             element={<MakeAComment />}
           />
           <Route
