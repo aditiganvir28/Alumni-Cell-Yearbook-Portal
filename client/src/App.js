@@ -252,7 +252,7 @@ const App = ({ location }) => {
           <Route exact path="/team" element={<Cards />} />
           <Route
             exact
-            path="/comment/:_id/:name/:roll_no"
+            path="/comment/:name/:roll_no"
             element={<MakeAComment />}
           />
           <Route

@@ -43,6 +43,7 @@ const getUsersData = asyncHandler(async (req, res) => {
   const userData = User.map(user => ({
     email: user.email,
     name: user.name,
+    roll_no: user.roll_no,
     academic_program: user.academic_program
   }))
 
