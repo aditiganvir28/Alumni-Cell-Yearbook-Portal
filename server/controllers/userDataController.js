@@ -555,13 +555,23 @@ const getComments = asyncHandler(async (req, res) => {
       }
     }
   });
+  var comm
+  users.map((user)=>{
+    comm = user.comment_sender.filter(sender => sender.email_id === email)
+  })
+
+  const approvedUsers = comm.map(user => ({
+    name: user.name,
+    comment: user.comment
+  }))
 
   console.log(users)
+  console.log(approvedUsers)
   //If no comments
   if (!User?.length) {
     return res.send({ message: 'No users found'})
   }
-  return res.send({message:"User found", User})
+  return res.send({message:"User found", User: approvedUsers})
 })
 
 const setApprovedComments = asyncHandler(async (req, res) => {
@@ -599,7 +609,7 @@ const setRejectedComments = asyncHandler(async (req, res) => {
   if (!user?.length) {
     return res.send({ message: 'No user found' })
   }
-  console.log(user[0].comment_sender)
+  
   for (var i = 0; i <= user[0].comment_sender.length; i++) {
     
     if (
@@ -630,13 +640,23 @@ const getRecieversComments = asyncHandler(async (req,res)=>{
       approvedComments = user.comment_sender.filter(sender => sender.status === "approved")
 
     })
+    
+    const comments = [];
 
+  users.forEach(user => {
+    user.comment_sender.forEach(comment => {
+      if(comment.status==="new"){
+        comments.push({ name: comment.name, comment: comment.comment, email_id: comment.email_id });
+      }
+      
+    });
+  });
       const approvedUsers = approvedComments.map(user => ({
         name: user.name,
         comment: user.comment
       }))
 
-    return res.send({ message: "Approved users found", users: approvedUsers })
+    return res.send({ message: "Approved users found", users: approvedUsers, user2: comments})
 
 })
 
