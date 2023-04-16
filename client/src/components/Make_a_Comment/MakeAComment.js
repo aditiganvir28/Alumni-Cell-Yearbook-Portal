@@ -116,6 +116,26 @@ const MakeAComment = () => {
       });
   }, []);
 
+  // Getting Reciever's Comments
+  // useEffect(() => {
+  //   axios
+  //     .post(process.env.REACT_APP_API_URL + "/getRecieversComments",{
+  //       comment_reciever_email_id: result[0].comment_reciever_email_id
+  //     })
+  //     .then((res) => {
+  //       if (res.data.message === "No users found") {
+  //         setMessage2(res.data.message);
+  //         setComments([]);
+  //       } else {
+  //         console.log(res.data.User)
+  //         setComments(res.data.User);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   return (
     <>
       {loading && (

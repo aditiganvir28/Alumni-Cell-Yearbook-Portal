@@ -39,7 +39,15 @@ const getUsersData = asyncHandler(async (req, res) => {
   if (!User?.length) {
     return res.send({ message: 'No userData found' })
   }
-  return res.send(User)
+  // Map over each user to extract only the necessary data
+  const userData = User.map(user => ({
+    email: user.email,
+    name: user.name,
+    academic_program: user.academic_program
+  }))
+
+  console.log(userData)
+  return res.send(userData)
 })
 
 //Add a New User

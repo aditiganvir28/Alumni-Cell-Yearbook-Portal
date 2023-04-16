@@ -85,6 +85,19 @@ const App = ({ location }) => {
     Load()
   }
 
+  //Get all users's name branch and email id
+  useEffect(() => {
+    
+    axios
+      .get(process.env.REACT_APP_API_URL + '/getUsersData')
+      .then((res) => {
+        setAllUsuers(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   //Callback Function after logging in
   async function handleCallbackResponse(response) {
     //getting all the data from google for the user who signs in

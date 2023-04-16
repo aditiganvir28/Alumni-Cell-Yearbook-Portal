@@ -59,6 +59,7 @@ const Navbar = () => {
     setExample(filteredPersons);
   }, [wordentered])
 
+
   //loading spinner function
   const loadingSpinner2 = () => {
     setLoading(true)
