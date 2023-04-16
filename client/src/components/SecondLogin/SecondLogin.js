@@ -77,10 +77,11 @@ const SecondLogin = () => {
   }
 
   //Getting all the comments
-
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_API_URL + '/getComments')
+      .post(process.env.REACT_APP_API_URL + '/getComments',{
+        email: profile.email
+      })
       .then((res) => {
         if(res.data.message==="No users found"){
           setMessage2(res.data.message)

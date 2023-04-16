@@ -403,7 +403,18 @@ const getSearchWord = asyncHandler(async (req, res) => {
     return res.send({})
   }
 
-  res.send(User)
+  // Map over each user to extract only the necessary data
+  const userData = User.map(user => ({
+    email:user.email,
+    name: user.name,
+    roll_no: user.roll_no,
+    academic_program: user.academic_program,
+    department: user.department,
+    about: user.about,
+    profile_img: user.profile_img
+  }))
+
+  res.send(userData)
 })
 
 //delete a user
@@ -532,9 +543,20 @@ const comments = asyncHandler(async (req, res) => {
 })
 
 const getComments = asyncHandler(async (req, res) => {
+  const email = req.body.email
+  console.log(email)
   //Get all Comments from MongoDb
   const User = await Comments.find()
 
+  const users = await Comments.find({
+    "comment_sender": {
+      "$elemMatch": {
+        "email_id": email,
+      }
+    }
+  });
+
+  console.log(users)
   //If no comments
   if (!User?.length) {
     return res.send({ message: 'No users found'})
