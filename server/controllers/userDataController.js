@@ -302,9 +302,9 @@ const updateUser = asyncHandler(async (req, res) => {
     roll_no,
     academic_program,
     department,
-    personal_email_id,
-    contact_details,
-    alternate_contact_details,
+    // personal_email_id,
+    // contact_details,
+    // alternate_contact_details,
     address,
     current_company,
     designation,
@@ -320,10 +320,7 @@ const updateUser = asyncHandler(async (req, res) => {
     !roll_no ||
     !academic_program ||
     !department ||
-    !contact_details ||
-    !alternate_contact_details ||
     !address ||
-    !personal_email_id ||
     !about ||
     !profile_img ||
     !question_1 ||
@@ -344,9 +341,9 @@ const updateUser = asyncHandler(async (req, res) => {
   user.roll_no = roll_no
   user.academic_program = academic_program
   user.department = department
-  user.personal_email_id = personal_email_id
-  user.contact_details = contact_details
-  user.alternate_contact_details = alternate_contact_details
+  // user.personal_email_id = personal_email_id
+  // user.contact_details = contact_details
+  // user.alternate_contact_details = alternate_contact_details
   user.address = address
   user.current_company = current_company
   user.designation = designation
