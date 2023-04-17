@@ -107,11 +107,12 @@ const MakeAComment = () => {
         comment_reciever_email_id: result[0].email
       })
       .then((res) => {
-        if (res.data.message === "No users found") {
+        if (res.data.message === "No userData found") {
           setMessage2(res.data.message);
           setComments([]);
         } else {
           setComments(res.data.users);
+          setMessage2(res.data.message)
         }
       })
       .catch((err) => {
@@ -119,8 +120,6 @@ const MakeAComment = () => {
       });
     }
   },[result]);
-
-  console.log(comments)
 
   // useEffect(()=>{
   //   if (window.localStorage.getItem('searchedAlumni') !== null) {
@@ -209,7 +208,7 @@ const MakeAComment = () => {
               <h1 id="make">Approved Comments</h1>
             </div>
             <div id="cards-container">
-              {message2 !== "No User Found" && (
+              {message2 !== "No userData found" && (
                 
                   comments.map((val) =>
                           <Card id='commentcard'

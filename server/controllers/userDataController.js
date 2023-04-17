@@ -695,9 +695,10 @@ const getRecieversComments = asyncHandler(async (req,res)=>{
   
     //Get all usersData from MongoDb
     const users = await Comments.find({comment_reciever_email_id:comment_reciever_email_id})
-
+    console.log(users)
     //If no usersData
-    if (!users?.length) {
+    if (users.length===0) {
+      console.log("reached")
       return res.send({ message: 'No userData found' })
     }
     var approvedComments=[]
