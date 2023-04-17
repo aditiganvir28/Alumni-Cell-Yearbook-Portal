@@ -575,38 +575,69 @@ const comments = asyncHandler(async (req, res) => {
   }
 })
 
+// const getComments = asyncHandler(async (req, res) => {
+//   const email = req.body.email
+//   console.log(email)
+//   //Get all Comments from MongoDb
+//   // const User = await Comments.find()
+
+//   const users = await Comments.find({
+//     "comment_sender": {
+//       "$elemMatch": {
+//         "email_id": email,
+//       }
+//     }
+//   });
+//   var comm
+//   users.map((user)=>{
+//     comm = user.comment_sender.filter(sender => sender.email_id === email)
+//   })
+
+//   const approvedUsers = comm.map(user => ({
+//     name: user.name,
+//     comment: user.comment
+//   }))
+  
+
+//   console.log(users)
+//   console.log(approvedUsers)
+//   //If no comments
+//   if (!users) {
+//     return res.send({ message: 'No users found'})
+//   }
+//   return res.send({message:"User found", User: approvedUsers})
+// })
+
 const getComments = asyncHandler(async (req, res) => {
-  const email = req.body.email
-  console.log(email)
+  const email = req.body.email;
+  console.log(email);
   //Get all Comments from MongoDb
   // const User = await Comments.find()
 
   const users = await Comments.find({
-    "comment_sender": {
-      "$elemMatch": {
-        "email_id": email,
-      }
+    comment_sender: {
+      $elemMatch: {
+        email_id: email,
+      },
+    },
+  });
+  let comments = [];
+  users.forEach((user) => {
+    const comment = user.comment_sender.find((sender) => sender.email_id === email);
+    console.log(user.name)
+    if (comment) {
+      comments.push({ name: user.comment_reciever_name, comment: comment.comment });
     }
   });
-  var comm
-  users.map((user)=>{
-    comm = user.comment_sender.filter(sender => sender.email_id === email)
-  })
 
-  const approvedUsers = comm.map(user => ({
-    name: user.name,
-    comment: user.comment
-  }))
-  
+  console.log(comments)
 
-  console.log(users)
-  console.log(approvedUsers)
   //If no comments
-  if (!users) {
-    return res.send({ message: 'No users found'})
+  if (!comments) {
+    return res.send({ message: 'No comments found' });
   }
-  return res.send({message:"User found", User: approvedUsers})
-})
+  return res.send({ message: 'Comment found', User: comments });
+});
 
 const setApprovedComments = asyncHandler(async (req, res) => {
   const comment_reciever_email_id = req.body.comment_reciever_email_id

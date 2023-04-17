@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 // import { json } from 'react-router';
+import bcrypt from 'bcryptjs';
 
 
 const Navbar = () => {
@@ -85,10 +86,7 @@ const Navbar = () => {
     if (window.localStorage.getItem('searchedAlumni') !== null) {
       const salumni = window.localStorage.getItem('searchedAlumni');
       if (salumni !== null) {
-        console.log(salumni)
         setResult(JSON.parse(salumni));
-        console.log(JSON.parse(salumni))
-        console.log(result)
       }
     }
     if (window.localStorage.getItem('userData') !== null) {
