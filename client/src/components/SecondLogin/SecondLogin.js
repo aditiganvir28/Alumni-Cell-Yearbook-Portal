@@ -82,7 +82,7 @@ const SecondLogin = () => {
 
   //Getting all the comments
   useEffect(() => {
-    if(count2<5){
+    if(count2<5 && profile.email){
     axios
       .post(process.env.REACT_APP_API_URL + '/getComments',{
         email: profile.email
@@ -107,7 +107,7 @@ const SecondLogin = () => {
 
   // Getting Reciever's Comments
   useEffect(() => {
-    if(count1<5){
+    if(count1<5 && profile.email){
     axios
       .post(process.env.REACT_APP_API_URL + "/getRecieversComments",{
         comment_reciever_email_id: profile.email
