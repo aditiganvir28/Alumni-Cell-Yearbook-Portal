@@ -152,7 +152,7 @@ const SecondLogin = () => {
               <div>
                 <h1 id="cmt">Approved Comments</h1>
               </div>
-              <div id="commentsscroll">{(approvedComments.length!==0) &&
+              <div id="commentsscroll">{(approvedComments?.length!==0) &&
               <>
                 {approvedComments.map((val) =>
                         <div id="comment">
@@ -224,7 +224,7 @@ const SecondLogin = () => {
             <div className="comments2">
               <h1 id="cmt">My Comments</h1>
 
-              <div id="commentsscroll">{(comments.length!==0) &&
+              <div id="commentsscroll">{(comments?.length!==0) &&
               <>
                 {comments.map((val) =>
                         <div id="comment">
@@ -238,7 +238,7 @@ const SecondLogin = () => {
             <div className="comments3">
               <h1 id="cmt">New Comments</h1>
               
-              <ul style={{ display: 'block' }}>{(myComments.length!==0) &&
+              <ul style={{ display: 'block' }}>{(myComments?.length!==0) &&
               <>
                 {myComments.map((val, index) =>
                           <li id="comment5">
