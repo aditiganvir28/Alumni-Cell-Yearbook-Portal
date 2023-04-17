@@ -579,10 +579,12 @@ const getComments = asyncHandler(async (req, res) => {
     comm = user.comment_sender.filter(sender => sender.email_id === email)
   })
 
+  if(comm.length>0){
   const approvedUsers = comm.map(user => ({
     name: user.name,
     comment: user.comment
   }))
+}
 
   console.log(users)
   console.log(approvedUsers)

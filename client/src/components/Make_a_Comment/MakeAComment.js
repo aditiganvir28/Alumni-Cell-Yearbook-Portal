@@ -8,7 +8,7 @@ import alumniData from "../navbar/akumniData.json";
 // import Navbar from '../navbar/navbar'
 
 const MakeAComment = () => {
-  const { result, user, profile, isStudent, setIsStudent } =
+  const { result, user, profile, isStudent, setIsStudent, setResult } =
     useContext(LoginContext);
   const [userData, setUserData] = useState({});
   const [comment, setComment] = useState();
@@ -117,6 +117,18 @@ const MakeAComment = () => {
         console.log(err);
       });
   },[result]);
+
+  useEffect(()=>{
+    if (window.localStorage.getItem('searchedAlumni') !== null) {
+      const salumni = window.localStorage.getItem('searchedAlumni');
+      if (salumni !== null) {
+        console.log(salumni)
+        setResult(JSON.parse(salumni));
+        console.log(JSON.parse(salumni))
+        console.log(result)
+      }
+    }
+  },[])
 
   return (
     <>

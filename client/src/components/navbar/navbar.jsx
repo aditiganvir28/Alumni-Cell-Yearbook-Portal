@@ -85,7 +85,10 @@ const Navbar = () => {
     if (window.localStorage.getItem('searchedAlumni') !== null) {
       const salumni = window.localStorage.getItem('searchedAlumni');
       if (salumni !== null) {
+        console.log(salumni)
         setResult(JSON.parse(salumni));
+        console.log(JSON.parse(salumni))
+        console.log(result)
       }
     }
     if (window.localStorage.getItem('userData') !== null) {
