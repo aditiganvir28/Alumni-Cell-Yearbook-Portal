@@ -58,7 +58,7 @@ const Navbar = () => {
       }
     );
 
-    setExample(filteredPersons);
+    setExample(filteredPersons.slice(0,7));
   }, [wordentered])
 
 
