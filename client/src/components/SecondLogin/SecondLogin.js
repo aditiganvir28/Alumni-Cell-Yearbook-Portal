@@ -118,6 +118,7 @@ const SecondLogin = () => {
           setMyComments([]);
           setApprovedComments([]);
         } else {
+          console.log(res.data.users)
           setMyComments(res.data.user2);
           setApprovedComments(res.data.users)
         }
