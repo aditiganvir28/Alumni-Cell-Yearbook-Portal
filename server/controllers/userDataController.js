@@ -190,20 +190,19 @@ const verifyPhoneOtp = async (req, res, next) => {
       Indian Institute of Technology Indore</p>`,
       })
       
-      // const userData = user.map(user => ({
-      //   email: user.email,
-      //   name: user.name,
-      //   roll_no: user.roll_no,
-      //   academic_program: user.academic_program,
-      //   department: user.department,
-      //   current_company: user.current_company,
-      //   designation: user.designation,
-      //   about: user.about,
-      //   profile_img: user.profile_img,
-      //   one_step_verified: user.one_step_verified,
-      //   two_step_verified: user.two_step_verified,
-
-      // }))
+      const userData = user.map(user => ({
+        email: user.email,
+        name: user.name,
+        roll_no: user.roll_no,
+        academic_program: user.academic_program,
+        department: user.department,
+        current_company: user.current_company,
+        designation: user.designation,
+        about: user.about,
+        profile_img: user.profile_img,
+        one_step_verified: user.one_step_verified,
+        two_step_verified: user.two_step_verified,
+      }))
 
       return res.send({
         message: `Sent a verification email to your personal email_id`, user
@@ -580,7 +579,7 @@ const getComments = asyncHandler(async (req, res) => {
   const email = req.body.email
   console.log(email)
   //Get all Comments from MongoDb
-  const User = await Comments.find()
+  // const User = await Comments.find()
 
   const users = await Comments.find({
     "comment_sender": {
@@ -603,7 +602,7 @@ const getComments = asyncHandler(async (req, res) => {
   console.log(users)
   console.log(approvedUsers)
   //If no comments
-  if (!User?.length) {
+  if (!users) {
     return res.send({ message: 'No users found'})
   }
   return res.send({message:"User found", User: approvedUsers})
