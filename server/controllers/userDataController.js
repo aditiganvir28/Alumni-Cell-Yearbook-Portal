@@ -719,11 +719,67 @@ const getRecieversComments = asyncHandler(async (req,res)=>{
   });
       const approvedUsers = approvedComments.map(user => ({
         name: user.name,
-        comment: user.comment
+        comment: user.comment,
+        email: user.email_id
       }))
+
+      console.log(approvedComments)
 
     return res.send({ message: "Approved users found", users: approvedUsers, user2: comments})
 
+})
+
+const removeCommentFromMyComments = asyncHandler(async(req,res)=>{
+  const email = req.body.email;
+  const comment = req.body.comment;
+
+  const users = await Comments.find({
+    comment_sender: {
+      $elemMatch: {
+        email_id: email,
+        comment: comment,
+      },
+    },
+  });
+
+  await Promise.all(users.map(async (user) => {
+    const commentIndex = user.comment_sender.findIndex((sender) => sender.email_id === email && sender.comment === comment);
+    if (commentIndex !== -1) {
+      user.comment_sender.pull(user.comment_sender[commentIndex]);
+      await user.save();
+    }
+  }));
+
+  res.send({ message: 'Comment removed successfully' });
+})
+
+const removeCommentFromApprovedComments = asyncHandler(async(req,res)=>{
+  const comment_reciever_email_id = req.body.comment_reciever_email_id
+  const comment = req.body.comment
+  const email = req.body.email
+
+    //Get all usersData from MongoDb
+    const users = await Comments.find({comment_reciever_email_id:comment_reciever_email_id})
+
+    //If no usersData
+    if (users.length===0) {
+      return res.send({ message: 'No userData found' })
+    }
+    let commentRemoved = false;
+    await Promise.all(users.map(async (user) => {
+      const commentIndex = user.comment_sender.findIndex((sender) => sender.email_id === email && sender.comment === comment && sender.status==="approved");
+      if (commentIndex !== -1) {
+        user.comment_sender[commentIndex].status="new"
+        await user.save();
+        commentRemoved = true;
+      }
+    }));
+
+    if (!commentRemoved) {
+      return res.send({ message: 'Comment not found in approved comments' });
+    }
+
+    return res.send({ message: "Comment removed from approved comments"})
 })
 
 module.exports = {
@@ -743,5 +799,7 @@ module.exports = {
   getComments,
   setApprovedComments,
   setRejectedComments,
-  getRecieversComments
+  getRecieversComments,
+  removeCommentFromMyComments,
+  removeCommentFromApprovedComments
 }

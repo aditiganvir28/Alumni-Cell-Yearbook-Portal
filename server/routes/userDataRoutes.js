@@ -23,5 +23,7 @@ router.post('/getComments', userDataController.getComments)
 router.put('/setApprovedComments', userDataController.setApprovedComments)
 router.post('/setRejectedComments', userDataController.setRejectedComments)
 router.post('/getRecieversComments', userDataController.getRecieversComments)
+router.post('/removeCommentFromMyComments', userDataController.removeCommentFromMyComments)
+router.post('/removeCommentFromApprovedComments', userDataController.removeCommentFromApprovedComments)
 
 module.exports = router

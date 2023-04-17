@@ -163,6 +163,20 @@ const SecondLogin = () => {
                         <div id="comment">
                           <p id="commentp">{val.comment}</p>
                           <p id="commentby">-{val.name}</p>
+                          <button onClick={()=>{
+                            console.log(val)
+                            axios.post(process.env.REACT_APP_API_URL + "/removeCommentFromApprovedComments", 
+                            {
+                              comment_reciever_email_id: profile.email,
+                              comment: val.comment,
+                              email: val.email
+
+                            }).then((res)=>{
+                              window.location.reload()
+                            }).catch((err)=>{
+                              console.log(err)
+                            })
+                          }}>Remove</button>
                         </div>
                       )}
                 </>}
