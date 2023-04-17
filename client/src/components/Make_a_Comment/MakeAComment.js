@@ -101,6 +101,7 @@ const MakeAComment = () => {
 
   // Getting Reciever's Comments
   useEffect(() => {
+    if(result.length>0){
     axios
       .post(process.env.REACT_APP_API_URL + "/getRecieversComments",{
         comment_reciever_email_id: result[0].email
@@ -116,6 +117,7 @@ const MakeAComment = () => {
       .catch((err) => {
         console.log(err);
       });
+    }
   },[result]);
 
   // useEffect(()=>{
@@ -129,6 +131,8 @@ const MakeAComment = () => {
   //     }
   //   }
   // },[])
+
+  console.log(result)
 
   return (
     <>
