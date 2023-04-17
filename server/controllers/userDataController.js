@@ -388,17 +388,7 @@ const getProfileData = asyncHandler(async (req, res) => {
   if (!User.length) {
     res.send({ message: 'No User Found' })
   } else {
-    const userData = User.map(user => ({
-      email: user.email,
-      name: user.name,
-      roll_no: user.roll_no,
-      academic_program: user.academic_program,
-      department: user.department,
-      current_company: user.current_company,
-      about: user.about
-
-    }))
-    res.send({ message: 'User Found', User: userData })
+    res.send({ message: 'User Found', User: User })
   }
 })
 
