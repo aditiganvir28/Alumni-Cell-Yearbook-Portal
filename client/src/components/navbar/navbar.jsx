@@ -75,7 +75,7 @@ const Navbar = () => {
 
   //After refreshing the page user is still signed in 
   useEffect(() => {
-    if(count<5){
+
     if (window.localStorage.getItem('user') !== null) {
       const userLoggedIn = window.localStorage.getItem('user');
       if (userLoggedIn !== null) {
@@ -116,13 +116,11 @@ const Navbar = () => {
     if (verify === "true") {
       setProfile(JSON.parse(p));
     }
-setCount(count+1)
-  }
 
-  }, [count])
+  },[])
 
-  console.log(loggedin);
-  console.log(verified);
+  // console.log(loggedin);
+  // console.log(verified);
 
   //Logout Function
   const handleLogout = () => {
@@ -142,7 +140,7 @@ setCount(count+1)
     window.localStorage.removeItem('loggedin')
     document.getElementId("google-login").hidden = false;
 
-    console.log('logout');
+    // console.log('logout');
 
 
   }

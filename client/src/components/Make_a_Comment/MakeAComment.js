@@ -19,7 +19,7 @@ const MakeAComment = () => {
   const [message, setMessage] = useState("");
   const [message2, setMessage2] = useState("");
   const alumniEmail = alumniData;
-
+  const [count, setCount] = useState(0);
   useEffect(() => {
     if (alumniEmail.includes(user.email)) {
       setIsStudent(false);
@@ -101,8 +101,6 @@ const MakeAComment = () => {
 
   // Getting Reciever's Comments
   useEffect(() => {
-    console.log(result)
-    if(result.length!==0){
     axios
       .post(process.env.REACT_APP_API_URL + "/getRecieversComments",{
         comment_reciever_email_id: result[0].email
@@ -117,13 +115,8 @@ const MakeAComment = () => {
       })
       .catch((err) => {
         console.log(err);
-        navigate('/error')
       });
-    }
-    else{
-      navigate('/error')
-    }
-  },[]);
+  },[result]);
 
   return (
     <>
