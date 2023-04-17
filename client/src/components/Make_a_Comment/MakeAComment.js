@@ -37,6 +37,8 @@ const MakeAComment = () => {
         setMessage("");
       }, 1500);
     } else {
+      const confirmed = window.confirm("Are you sure you want to post this comment?");
+      if(confirmed){
       if (isStudent === false) {
         await axios
           .post(process.env.REACT_APP_API_URL + "/comments", {
@@ -96,6 +98,7 @@ const MakeAComment = () => {
       }, 1500);
       window.localStorage.removeItem("searchAlumni");
     }
+  }
   };
 
 

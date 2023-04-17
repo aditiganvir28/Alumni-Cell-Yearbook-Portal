@@ -159,7 +159,8 @@ const SecondLogin = () => {
                           <p id="commentp">{val.comment}</p>
                           <p id="commentby">-{val.name}</p>
                           <button id='logout2' onClick={()=>{
-                            console.log(val)
+                            const confirmed = window.confirm("Are you sure you want to remove this comment?");
+                            if(confirmed){
                             axios.post(process.env.REACT_APP_API_URL + "/removeCommentFromApprovedComments", 
                             {
                               comment_reciever_email_id: profile.email,
@@ -171,7 +172,7 @@ const SecondLogin = () => {
                             }).catch((err)=>{
                               console.log(err)
                             })
-                          }}>Remove Comment</button>
+                          }}}>Remove Comment</button>
                         </div>
                       )}
                 </>}
@@ -251,6 +252,8 @@ const SecondLogin = () => {
                               }}
                               onClick={async (e) => {
                                 e.preventDefault()
+                                const confirmed = window.confirm("Are you sure you want to approve this comment?");
+                                if(confirmed){
                                 await axios
                                   .put(
                                     process.env.REACT_APP_API_URL +
@@ -273,7 +276,7 @@ const SecondLogin = () => {
                                   setState(false)
                                 }, 7000)
                                 window.location.reload()
-                              }}
+                              }}}
                             >
                               <i
                                 className="fa fa-check-circle"
@@ -289,6 +292,8 @@ const SecondLogin = () => {
                               }}
                               onClick={async (e) => {
                                 e.preventDefault()
+                                const confirmed = window.confirm("Are you sure you want to reject this comment?");
+                                if(confirmed){
                                 await axios
                                   .post(
                                     process.env.REACT_APP_API_URL +
@@ -311,7 +316,7 @@ const SecondLogin = () => {
                                   setState(false)
                                 }, 20000)
                                 window.location.reload()
-                              }}
+                              }}}
                             >
                               <a href="" className="fa fa-times-circle"></a>
                             </button>
