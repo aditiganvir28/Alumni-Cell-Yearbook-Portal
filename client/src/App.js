@@ -12,6 +12,7 @@ import OtpVerification from './components/Otp Verification/otpVerification'
 import About from './components/About/About'
 import Footer from './components/Footer/Footer'
 import Error from './components/Error/Error'
+import Internet from './components/Internet/Internet'
 import alumniData from './components/navbar/akumniData.json'
 
 import { Route, Routes, useNavigate } from 'react-router-dom'
@@ -261,6 +262,7 @@ const App = ({ location }) => {
             element={<OtpVerification />}
           />
           <Route exact path="*" element={<Error />} />
+          <Route exact path='/issue' element={<Internet/>}/>
         </Routes>
 
         {!loading && <Footer />}
