@@ -19,8 +19,7 @@ const SecondLogin = () => {
   const[wait, setWait] = useState(false);
   const[myComments, setMyComments] = useState([]);
   const[approvedComments, setApprovedComments] = useState([])
-  const [count1, setCount1] = useState(0);
-  const [count2, setCount2] = useState(0);
+
 
   useEffect(() => {
     setLoading(true)
@@ -81,7 +80,7 @@ const SecondLogin = () => {
   }
   //Getting all the comments
   useEffect(() => {
-    if(count2<5 && profile.email){
+    if(profile.email){
     axios
       .post(process.env.REACT_APP_API_URL + '/getComments',{
         email: profile.email
@@ -99,14 +98,12 @@ const SecondLogin = () => {
       .catch((err) => {
         console.log(err)
       })
-
-      setCount2(count2+1)
     }
-  },[count2, profile])
+  },[profile])
 
   // Getting Reciever's Comments
   useEffect(() => {
-    if(count1<5 && profile.email){
+    if(profile.email){
     axios
       .post(process.env.REACT_APP_API_URL + "/getRecieversComments",{
         comment_reciever_email_id: profile.email
@@ -124,10 +121,8 @@ const SecondLogin = () => {
       .catch((err) => {
         console.log(err);
       });
-
-      setCount1(count1+1)
     }
-  },[count1, profile]);
+  },[ profile]);
 
   // redirecting to edit page for editing the profile
   const navigate = useNavigate()
@@ -157,7 +152,7 @@ const SecondLogin = () => {
               <div>
                 <h1 id="cmt">Approved Comments</h1>
               </div>
-              <div id="commentsscroll">{(comments.length!==0) &&
+              <div id="commentsscroll">{(approvedComments.length!==0) &&
               <>
                 {approvedComments.map((val) =>
                         <div id="comment">
@@ -214,7 +209,7 @@ const SecondLogin = () => {
             <div className="comments2">
               <h1 id="cmt">My Comments</h1>
 
-              <div id="commentsscroll">{(message2!=="No User Found") &&
+              <div id="commentsscroll">{(comments.length!==0) &&
               <>
                 {comments.map((val) =>
                         <div id="comment">
@@ -228,7 +223,7 @@ const SecondLogin = () => {
             <div className="comments3">
               <h1 id="cmt">New Comments</h1>
               
-              <ul style={{ display: 'block' }}>{(message2!=="No User Found") &&
+              <ul style={{ display: 'block' }}>{(myComments.length!==0) &&
               <>
                 {myComments.map((val, index) =>
                           <li id="comment5">
