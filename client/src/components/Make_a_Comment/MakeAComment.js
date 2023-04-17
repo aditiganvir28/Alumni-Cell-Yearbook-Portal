@@ -132,7 +132,7 @@ const MakeAComment = () => {
   //   }
   // },[])
 
-  console.log(result)
+  // console.log(result)
 
   return (
     <>
