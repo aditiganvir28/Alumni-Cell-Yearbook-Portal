@@ -79,7 +79,6 @@ const SecondLogin = () => {
         })
     }
   }
-
   //Getting all the comments
   useEffect(() => {
     if(count2<5 && profile.email){
@@ -103,7 +102,7 @@ const SecondLogin = () => {
 
       setCount2(count2+1)
     }
-  },[count2])
+  },[count2, profile])
 
   // Getting Reciever's Comments
   useEffect(() => {
@@ -128,7 +127,7 @@ const SecondLogin = () => {
 
       setCount1(count1+1)
     }
-  },[count1]);
+  },[count1, profile]);
 
   // redirecting to edit page for editing the profile
   const navigate = useNavigate()

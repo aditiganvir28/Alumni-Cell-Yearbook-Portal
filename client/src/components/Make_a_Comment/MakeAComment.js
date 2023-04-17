@@ -120,6 +120,8 @@ const MakeAComment = () => {
     }
   },[result]);
 
+  console.log(comments)
+
   // useEffect(()=>{
   //   if (window.localStorage.getItem('searchedAlumni') !== null) {
   //     const salumni = window.localStorage.getItem('searchedAlumni');
