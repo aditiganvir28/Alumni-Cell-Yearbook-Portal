@@ -24,8 +24,8 @@ Welcome to the Yearbook Portal, a full-stack application specifically designed a
 ---
 
 ### **Comtributors**
-1. Agrima Bundela
-2. Aditi Ganvir
+1. Aditi Ganvir
+2. Agrima Bundela
 3. Harsh Soni
 4. Tarun Soni
 5. Ayush Awasthi
