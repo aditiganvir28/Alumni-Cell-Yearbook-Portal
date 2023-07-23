@@ -32,13 +32,15 @@ Welcome to the Yearbook Portal, a full-stack application specifically designed a
 6. Ashutosh Samantharay
 
 ---
-![Step_3](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/2efc1347-12c7-4606-81c1-7d7b81bc30bf)
-
-![Step_5](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/395ffa04-99d6-48c3-af0f-0a575de9060d)
+![yp](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/8df567d3-2453-497a-8133-dc5d2db69393)
 
 ![step2](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/6537911f-c3cd-4ca1-bfae-2a919322a783)
 
 ![Step_1](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/aae164d2-ac92-476b-af68-04377c484e68)
+
+![Step_3](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/2efc1347-12c7-4606-81c1-7d7b81bc30bf)
+
+![Step_5](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/395ffa04-99d6-48c3-af0f-0a575de9060d)
 
 ![Step_4](https://github.com/aditiganvir28/Alumni-Cell-Yearbook-Portal/assets/100085991/aed92fcc-16d0-461a-bd6e-1a7a9f616b8f)
 
